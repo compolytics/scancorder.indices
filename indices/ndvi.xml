@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+  <Name>NDVI</Name>
+  <Wavelengths>
+    <Band name="Red" min="620" max="670" unit="nm"/>
+    <Band name="NIR" min="770" max="810" unit="nm"/>
+  </Wavelengths>
+  <MathML>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+        <divide/>
+        <apply>
+          <minus/>
+          <ci>NIR</ci>
+          <ci>Red</ci>
+        </apply>
+        <apply>
+          <plus/>
+          <ci>NIR</ci>
+          <ci>Red</ci>
+        </apply>
+      </apply>
+    </math>
+  </MathML>
+  <Metadata>
+    <Description>Normalized Difference Vegetation Index (NDVI)</Description>
+  </Metadata>
+</SpectralIndex>

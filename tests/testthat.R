@@ -10,3 +10,15 @@ library(testthat)
 library(scancorder.indices)
 
 test_check("scancorder.indices")
+# Sample data: a vector of wavelengths and corresponding reflectance values.
+wavelengths <- seq(500, 850, by = 10)
+set.seed(123)
+reflectance <- runif(length(wavelengths))
+
+# Calculate NDVI (using the XML file "ndvi.xml")
+ndvi_value <- calculate_index("ndvi.xml", wavelengths, reflectance)
+cat("NDVI:", ndvi_value, "\n")
+
+# Calculate NDWI (using the XML file "ndwi.xml")
+ndwi_value <- calculate_index("ndwi.xml", wavelengths, reflectance)
+cat("NDWI:", ndwi_value, "\n")

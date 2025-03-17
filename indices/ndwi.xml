@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+  <Name>NDWI</Name>
+  <Wavelengths>
+    <Band name="Green" min="520" max="560" unit="nm"/>
+    <Band name="NIR" min="770" max="810" unit="nm"/>
+  </Wavelengths>
+  <MathML>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+        <divide/>
+        <apply>
+          <minus/>
+          <ci>Green</ci>
+          <ci>NIR</ci>
+        </apply>
+        <apply>
+          <plus/>
+          <ci>Green</ci>
+          <ci>NIR</ci>
+        </apply>
+      </apply>
+    </math>
+  </MathML>
+  <Metadata>
+    <Description>Normalized Difference Water Index (NDWI)</Description>
+  </Metadata>
+</SpectralIndex>
