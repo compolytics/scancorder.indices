@@ -6,6 +6,15 @@ library(xml2)
 #' @export
 evaluate_mathml <- function(node, values) {
 
+  # If the node is a <math> element, evaluate its first child.
+  if (xml_name(node) == "math") {
+    children <- xml_children(node)
+    if (length(children) == 0) {
+      stop("Empty <math> element encountered.")
+    }
+    return(evaluate_mathml(children[[1]], values))
+  }
+
   # If the node is a variable identifier, return its value from the list.
   if (xml_name(node) == "ci") {
     varname <- xml_text(node)
