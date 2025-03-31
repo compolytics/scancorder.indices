@@ -5,6 +5,7 @@ library(xml2)
 #' This function expects an XML node and a named list 'values' with numeric values.
 #' @export
 evaluate_mathml <- function(node, values) {
+
   # If the node is a variable identifier, return its value from the list.
   if (xml_name(node) == "ci") {
     varname <- xml_text(node)
@@ -56,6 +57,5 @@ evaluate_mathml <- function(node, values) {
       stop(sprintf("Unsupported MathML operator: %s", operator))
     }
   }
-
   stop("Encountered an unknown MathML element.")
 }

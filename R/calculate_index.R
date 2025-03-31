@@ -46,6 +46,7 @@ calculate_index <- function(xml_file, wavelengths, reflectance) {
   }
 
   # Evaluate the MathML expression using the reflectance values.
+  message(sprintf("Index %s", mathml_node))
   index_value <- tryCatch({
     evaluate_mathml(mathml_node, reflectance_values)
   }, error = function(e) {
