@@ -1,4 +1,4 @@
-{
+[{
     "uuid": "8ace7e54-b089-4042-8f1d-0322ee59e674",
     "timestamp": 1.74101429405E+12,
     "source": "ScanCorderModule",
@@ -689,4 +689,4 @@
             5
         ]
     ]
-}
+}]

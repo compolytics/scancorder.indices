@@ -16,18 +16,6 @@ CalibrationReflectanceMultipoint <- R6Class("CalibrationReflectanceMultipoint",
       self$sample_order <- sample_order
     },
 
-    # Stub for get_onnx_model to mirror Python functionality.
-    get_onnx_model = function(inputs, uuid) {
-      # In R, you might not generate an ONNX node.
-      # This stub simply returns a list with calibration factor information.
-      list(
-        inputs = inputs,
-        uuid = uuid,
-        calibration_factors = if (!is.null(self$calibration_factors)) as.vector(self$calibration_factors) else NULL,
-        calibration_factors_shape = if (!is.null(self$calibration_factors)) dim(self$calibration_factors) else NULL
-      )
-    },
-
     # Applies the multipoint calibration to sensor reflectance.
     multi_point_calibration = function(sensor_values) {
       if (is.null(self$calibration_factors)) {
@@ -64,34 +52,20 @@ CalibrationReflectanceMultipoint <- R6Class("CalibrationReflectanceMultipoint",
       return(TRUE)
     },
 
-    # Stub for convert_to_bc. In the Python code this comes from the base class.
-    # Here we simply return the reflectance input unchanged.
-    convert_to_bc = function(reflectance_input, sample_order) {
-      # Implement any necessary reordering based on sample_order.
-      return(reflectance_input)
-    },
-
     # The score method expects two inputs:
     #   1. A reflectance input (matrix or array)
     #   2. A JSON string representing the sensor configuration.
-    score = function(...) {
-      args <- list(...)
-      if (length(args) == 1) {
-        args <- args[[1]]
-      }
-      if (length(args) != 2) {
-        stop("Scanner selector scoring needs to contain two inputs (scoring vector, configuration).")
-      }
+    score = function(reflectance, json_input) {
 
       # First input: reflectance data (numeric matrix).
-      reflectance_input <- args[[1]]
+      reflectance_input <- reflectance
 
       # Second input: sensor reading configuration as a JSON string.
-      config_json <- args[[2]]
+      config_json <- json_input
       input_json_struct <- fromJSON(config_json, simplifyVector = FALSE)
 
       # If the JSON is a single object, wrap it into a list.
-      if (is.null(names(input_json_struct)) || !is.null(input_json_struct$values)) {
+      if (!is.list(input_json_struct)) {
         input_json_struct <- list(input_json_struct)
       }
 
@@ -104,6 +78,7 @@ CalibrationReflectanceMultipoint <- R6Class("CalibrationReflectanceMultipoint",
         calibration_factors_arr <- simplify2array(calibration_factors)
         dims_sensor <- dim(reflectance_input)
         dims_cal <- dim(calibration_factors_arr)
+        print(calibration_factors_arr)
         if (length(dims_cal) != 3 || !all(dims_sensor == dims_cal[1:2]) || dims_cal[3] != 3) {
           stop("Calibration data not of correct size for this sensor.")
         }
@@ -114,9 +89,6 @@ CalibrationReflectanceMultipoint <- R6Class("CalibrationReflectanceMultipoint",
       if (is.null(self$calibration_factors)) {
         stop("Calibration factors are not defined.")
       }
-
-      # Ensure the reflectance input is in the proper order (using convert_to_bc).
-      reflectance_input <- self$convert_to_bc(reflectance_input, self$sample_order)
 
       # Run the calibration.
       transform_output <- self$multi_point_calibration(reflectance_input)

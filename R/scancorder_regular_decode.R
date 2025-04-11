@@ -102,8 +102,6 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
         mat <- calibration_map[[key]]$sensorValues
         if (nrow(mat) > 1) {
           calibration_map[[key]]$sensorValues <- matrix(colMeans(mat), nrow = nrow(mat), ncol = ncol(mat), byrow = TRUE)
-          # Alternatively, if you want a single averaged row, use:
-          # calibration_map[[key]]$sensorValues <- matrix(colMeans(mat), nrow = 1)
         }
       }
       b_parameter <- self$calculate_calibration(calibration_map)
@@ -122,33 +120,38 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
       return(calibrated)
     },
 
+    # Convert json data frame to numeric matrix
+    convert_json_to_matrix = function(json_data, type = as.numeric) {
+      df <- do.call(rbind, json_data)
+      matrix_data <- apply(df, c(1, 2), type)
+      return(matrix_data)
+    },
+
     # The main method: given a JSON string with sensor data, generate a reflectance vector.
     score = function(transform_input) {
+
       # Parse the JSON input (expects either a single object or a list of objects)
       input_json_struct <- fromJSON(transform_input, simplifyVector = FALSE)
-      if (!("values" %in% names(input_json_struct))) {
-        # Wrap single sensor reading into a list if necessary
+
+      if (!is.list(input_json_struct)) {
         input_json_struct <- list(input_json_struct)
       }
 
       transform_global_output <- list()
-
       for (input_json in input_json_struct) {
-        if (!is.list(input_json)) {
-          stop("Regular Scanner input json needs to be a dictionary")
-        }
-        if (is.null(input_json$values)) {
+
+        # Check if the input JSON contains the required "values" field.
+        if (!("values" %in% names(input_json))) {
           stop("Regular Scanner input json needs to contain a 'values' key containing sensor data")
         }
 
-        # Convert the "values" field to a numeric matrix.
-        sensor_values <- as.matrix(as.data.frame(input_json$values))
-        sensor_values <- apply(sensor_values, 2, as.numeric)
+        # Convert the "values" field to a numeric matrix
+        sensor_values <- self$convert_json_to_matrix(input_json$values)
 
         # If a channel mask is provided in the nested sensor config, use it.
         keys_to_check <- c("config", "sensorHead", "additionalInfo", "channel_mask")
         if (self$nested_key_exists(input_json, keys_to_check)) {
-          channel_mask <- as.matrix(as.data.frame(input_json$config$sensorHead$additionalInfo$channel_mask))
+          channel_mask <- self$convert_json_to_matrix(input_json$config$sensorHead$additionalInfo$channel_mask, as.logical)
           if (!all(dim(channel_mask) == dim(sensor_values))) {
             stop("Channel mask is not of equal size to values field")
           }
@@ -157,10 +160,10 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
 
         # Subtract dark current if provided.
         if (!is.null(input_json$perLEDDarkCurrent)) {
-          dark_current <- as.matrix(as.data.frame(input_json$perLEDDarkCurrent))
+          dark_current <- self$convert_json_to_matrix(input_json$perLEDDarkCurrent)
           sensor_values <- sensor_values - dark_current
         } else if (!is.null(input_json$darkCurrent)) {
-          dark_current <- as.matrix(as.data.frame(input_json$darkCurrent))
+          dark_current <- self$convert_json_to_matrix(input_json$darkCurrent)
           sensor_values <- sensor_values - dark_current
         }
 
@@ -170,14 +173,14 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
           calibration_map <- list()
           for (calibration in calibration_values) {
             true_value <- calibration$trueValuePercentage
-            this_calibration_data <- as.matrix(as.data.frame(calibration$sensorValue))
+            this_calibration_data <- self$convert_json_to_matrix(calibration$sensorValue)
 
             # Adjust calibration data for dark current if present.
             if (!is.null(calibration$perLEDDarkCurrent)) {
-              dark_current <- as.matrix(as.data.frame(calibration$perLEDDarkCurrent))
+              dark_current <- self$convert_json_to_matrix(calibration$perLEDDarkCurrent)
               this_calibration_data <- this_calibration_data - dark_current
             } else if (!is.null(calibration$darkCurrent)) {
-              dark_current <- as.matrix(as.data.frame(calibration$darkCurrent))
+              dark_current <- self$convert_json_to_matrix(calibration$darkCurrent)
               this_calibration_data <- this_calibration_data - dark_current
             } else if (!is.null(input_json$shape)) {
               if ((input_json$shape[1] + 1) == nrow(this_calibration_data)) {
