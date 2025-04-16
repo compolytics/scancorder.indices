@@ -35,7 +35,7 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
         stop("At least two calibration points are required")
       }
 
-      # Assume each calibration's sensorValues is a matrix of dimension (num_orient x num_feat)
+      # Assume each calibration's sensor values is a matrix of dimension (num_orient x num_feat)
       sensor_matrix <- calibration_map[[ref_keys[1]]]$sensorValues
       num_orient <- nrow(sensor_matrix)
       num_feat <- ncol(sensor_matrix)
@@ -104,12 +104,18 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
 
     # Multipoint calibration: uses several calibration measurements
     multi_point_calibration = function(sensor_values, calibration_map) {
-      # For each calibration entry, average the sensorValues if multiple measurements exist.
+      # For each calibration entry, average the sensor values if multiple measurements exist.
       for (key in names(calibration_map)) {
-        mat <- calibration_map[[key]]$sensorValues
-        if (nrow(mat) > 1) {
-          calibration_map[[key]]$sensorValues <- matrix(colMeans(mat), nrow = nrow(mat), ncol = ncol(mat), byrow = TRUE)
-        }
+        calib_vals <- calibration_map[[key]]$sensorValues
+        # Get dimensions from first list entry
+        rows <- nrow(calib_vals[[1]])
+        cols <- ncol(calib_vals[[1]])
+        depth <- length(calib_vals)
+        # Generate a stack
+        array_3d <- array(unlist(calib_vals), dim = c(rows, cols, depth))
+        mean_calibration <- apply(array_3d, c(1, 2), mean)
+        # Set mean calibration values
+        calibration_map[[key]]$sensorValues <- mean_calibration
       }
       b_parameter <- self$calculate_calibration(calibration_map)
       num_orient <- nrow(sensor_values)

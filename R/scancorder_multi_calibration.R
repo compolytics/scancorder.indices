@@ -20,6 +20,7 @@ CalibrationReflectanceMultipoint <- R6Class(
 
     # Applies the multi-point calibration to sensor reading
     multi_point_calibration = function(sensor_values) {
+
       if (is.null(self$calibration_factors)) {
         stop("Calibration factors are not defined.")
       }
@@ -35,6 +36,7 @@ CalibrationReflectanceMultipoint <- R6Class(
 
       # Apply the quadratic calibration:
       # calibrated = b0 * sensor^2 + b1 * sensor + b2
+      1
       b0 <- self$calibration_factors[, , 1]
       b1 <- self$calibration_factors[, , 2]
       b2 <- self$calibration_factors[, , 3]
@@ -55,12 +57,41 @@ CalibrationReflectanceMultipoint <- R6Class(
       return(TRUE)
     },
 
+    # Convert json data frame to numeric matrix
+    convert_json_to_matrix = function(json_data, type = as.numeric) {
+      df <- do.call(rbind, json_data)
+      matrix_data <- apply(df, c(1, 2), type)
+      return(matrix_data)
+    },
+
+    # Convert json data frame to 3D array
+    convert_json_to_3d_array = function(json_data, type = as.numeric) {
+      matrix_list <- lapply(json_data, function(mat) {
+        mat_df <- do.call(rbind, lapply(mat, unlist))  # ensures 2D shape
+        mat_clean <- apply(mat_df, c(1, 2), type)
+        return(mat_clean)
+      })
+
+      # Check that all matrices are the same size
+      dims_list <- lapply(matrix_list, dim)
+      if (!all(vapply(dims_list, function(d) all(d == dims_list[[1]]), logical(1)))) {
+        stop("Not all matrices have the same dimensions")
+      }
+
+      dims <- dims_list[[1]]
+      depth <- length(matrix_list)
+
+      array_data <- array(unlist(matrix_list), dim = c(depth, dims[1], dims[2]))
+      return(array_data)
+    },
+
     # The score method expects two inputs:
     #   1. A reflectance input (matrix or array)
     #   2. A JSON string representing the sensor configuration.
     score = function(reflectance, json_input) {
-      # First input: reflectance data (numeric matrix).
-      reflectance_input <- reflectance
+
+      # First input: reflectance data (as matrix).
+      reflectance_input <- do.call(rbind, reflectance)
 
       # Second input: sensor reading configuration as a JSON string.
       config_json <- json_input
@@ -76,25 +107,20 @@ CalibrationReflectanceMultipoint <- R6Class(
                          "sensorHead",
                          "additionalInfo",
                          "multi_calibration")
+
       if (self$nested_key_exists(input_json_struct[[1]], keys_to_check)) {
 
         # Extract the calibration factors from the JSON structure.
-        calibration_factors <- input_json_struct[[1]]$config$sensorHead$additionalInfo$multi_calibration
-
-        # Convert to a 3D array using simplify2array (assuming the nested list structure is regular).
-        calibration_factors_arr <- simplify2array(calibration_factors)
-
+        calibration_factors <- self$convert_json_to_3d_array(input_json_struct[[1]]$config$sensorHead$additionalInfo$multi_calibration)
         # Get the dimensions of the reflectance input and calibration factors.
         dims_sensor <- dim(reflectance_input)
-        dims_cal <- dim(calibration_factors_arr)
-
-        print(calibration_factors_arr)
-
+        dims_cal <- dim(calibration_factors)
+        # Ensure the calibration factors are of the correct size.
         if (length(dims_cal) != 3 ||
             !all(dims_sensor == dims_cal[1:2]) || dims_cal[3] != 3) {
           stop("Calibration data not of correct size for this sensor.")
         }
-        self$calibration_factors <- calibration_factors_arr
+        self$calibration_factors <- calibration_factors
       }
 
       # Ensure calibration factors are now defined.
@@ -104,6 +130,8 @@ CalibrationReflectanceMultipoint <- R6Class(
 
       # Run the calibration.
       transform_output <- self$multi_point_calibration(reflectance_input)
+      # We convert back to a list of samples (row vectors)
+      transform_output <- lapply(seq_len(nrow(transform_output)), function(i) as.numeric(transform_output[i, ]))
       return(transform_output)
     }
   )
