@@ -86,9 +86,16 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
       }
       key <- names(calibration_map)[1]
       # Average calibration sensor values along the measurement dimension:
-      calib_vals <- colMeans(calibration_map[[key]]$sensorValues)
+      calib_vals <- calibration_map[[key]]$sensorValues
+      # Get dimensions from first list entry
+      rows <- nrow(calib_vals[[1]])
+      cols <- ncol(calib_vals[[1]])
+      depth <- length(calib_vals)
+      # Generate a stack
+      array_3d <- array(unlist(calib_vals), dim = c(rows, cols, depth))
+      mean_calibration <- apply(array_3d, c(1, 2), mean)
       # Divide sensor values by calibration values (avoiding division by zero)
-      calibrated <- sensor_values / ifelse(calib_vals == 0, 1, calib_vals)
+      calibrated <- sensor_values / ifelse(mean_calibration == 0, 1, mean_calibration)
       calibrated[is.infinite(calibrated) | is.nan(calibrated)] <- 0
       # Multiply by the true factor
       calibrated <- calibrated * calibration_map[[key]]$trueFactor
@@ -169,39 +176,51 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
 
         # Process calibration data if available.
         if (!is.null(input_json$calibration)) {
+
+          # Get calibration data field
           calibration_values <- input_json$calibration
+          # Init calibration map
           calibration_map <- list()
           for (calibration in calibration_values) {
+
+            # Extract approximate true value of calibration
             true_value <- calibration$trueValuePercentage
+            # Get sensor values
             this_calibration_data <- self$convert_json_to_matrix(calibration$sensorValue)
 
             # Adjust calibration data for dark current if present.
             if (!is.null(calibration$perLEDDarkCurrent)) {
+
+              # if we have a dark current per LED, take that first
               dark_current <- self$convert_json_to_matrix(calibration$perLEDDarkCurrent)
               this_calibration_data <- this_calibration_data - dark_current
+
             } else if (!is.null(calibration$darkCurrent)) {
+
+              # if we have a dark current per Sensor, take that second
               dark_current <- self$convert_json_to_matrix(calibration$darkCurrent)
               this_calibration_data <- this_calibration_data - dark_current
+
             } else if (!is.null(input_json$shape)) {
+
+              # for legacy, first sensor reading can be dark current
               if ((input_json$shape[1] + 1) == nrow(this_calibration_data)) {
                 dark_current <- as.numeric(this_calibration_data[1, ])
                 this_calibration_data <- this_calibration_data[-1, , drop = FALSE] -
                   matrix(dark_current, nrow = nrow(this_calibration_data) - 1, ncol = ncol(this_calibration_data), byrow = TRUE)
               }
             }
-            calibration$sensorValue <- this_calibration_data
+
             key <- as.character(true_value)
+
             if (!(key %in% names(calibration_map))) {
-              calibration_map[[key]] <- list(sensorValues = this_calibration_data,
+              calibration_map[[key]] <- list(sensorValues = list(this_calibration_data),
                                              trueFactor = calibration$trueValueFactor)
             } else {
               # Stack additional calibration measurements if present.
-              existing <- calibration_map[[key]]$sensorValues
-              calibration_map[[key]]$sensorValues <- rbind(existing, this_calibration_data)
-              calibration_map[[key]]$trueFactor <- calibration$trueValueFactor
+              calibration_map[[key]]$sensorValues[[length(calibration_map[[key]]$sensorValues) + 1]] = this_calibration_data
             }
           }
-
           # Choose between two–point and multipoint calibration.
           if (length(calibration_map) > 0) {
             if (length(calibration_map) == 1) {
@@ -212,7 +231,7 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
           }
         }
 
-        # Optionally average sensor values over LEDs if requested.
+        # Optionally average sensor values over LED if requested.
         if (self$average_sensor_values) {
           if (!is.null(self$channel_mask)) {
             sensor_values[self$channel_mask == 0] <- NA

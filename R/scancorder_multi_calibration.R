@@ -2,21 +2,23 @@ library(R6)
 library(jsonlite)
 
 #' @export
-CalibrationReflectanceMultipoint <- R6Class("CalibrationReflectanceMultipoint",
-  public = list(
-    calibration_factors = NULL,
-    sample_order = NULL,
+CalibrationReflectanceMultipoint <- R6Class(
+  "CalibrationReflectanceMultipoint",
 
-    initialize = function(calibration_factors = NULL, sample_order = "SCORE_ND_ARRAY_TYPE_BC") {
+  public = list(
+
+    calibration_factors = NULL,
+
+    initialize = function(calibration_factors = NULL) {
+
       # If calibration_factors is provided, store it as an array.
       if (!is.null(calibration_factors)) {
         # Ensure calibration_factors is numeric and preserve its dimensions.
         self$calibration_factors <- as.array(calibration_factors)
       }
-      self$sample_order <- sample_order
     },
 
-    # Applies the multipoint calibration to sensor reflectance.
+    # Applies the multi-point calibration to sensor reading
     multi_point_calibration = function(sensor_values) {
       if (is.null(self$calibration_factors)) {
         stop("Calibration factors are not defined.")
@@ -26,15 +28,16 @@ CalibrationReflectanceMultipoint <- R6Class("CalibrationReflectanceMultipoint",
       dims_sensor <- dim(sensor_values)
       dims_cal <- dim(self$calibration_factors)
 
-      if (length(dims_cal) != 3 || !all(dims_sensor == dims_cal[1:2]) || dims_cal[3] != 3) {
+      if (length(dims_cal) != 3 ||
+          !all(dims_sensor == dims_cal[1:2]) || dims_cal[3] != 3) {
         stop("Calibration data not of correct size for this sensor.")
       }
 
       # Apply the quadratic calibration:
       # calibrated = b0 * sensor^2 + b1 * sensor + b2
-      b0 <- self$calibration_factors[ , , 1]
-      b1 <- self$calibration_factors[ , , 2]
-      b2 <- self$calibration_factors[ , , 3]
+      b0 <- self$calibration_factors[, , 1]
+      b1 <- self$calibration_factors[, , 2]
+      b2 <- self$calibration_factors[, , 3]
       calibrated <- b0 * sensor_values^2 + b1 * sensor_values + b2
       return(calibrated)
     },
@@ -56,7 +59,6 @@ CalibrationReflectanceMultipoint <- R6Class("CalibrationReflectanceMultipoint",
     #   1. A reflectance input (matrix or array)
     #   2. A JSON string representing the sensor configuration.
     score = function(reflectance, json_input) {
-
       # First input: reflectance data (numeric matrix).
       reflectance_input <- reflectance
 
@@ -70,16 +72,26 @@ CalibrationReflectanceMultipoint <- R6Class("CalibrationReflectanceMultipoint",
       }
 
       # Check for calibration factors within the JSON.
-      keys_to_check <- c("config", "sensorHead", "additionalInfo", "multi_calibration")
+      keys_to_check <- c("config",
+                         "sensorHead",
+                         "additionalInfo",
+                         "multi_calibration")
       if (self$nested_key_exists(input_json_struct[[1]], keys_to_check)) {
+
         # Extract the calibration factors from the JSON structure.
         calibration_factors <- input_json_struct[[1]]$config$sensorHead$additionalInfo$multi_calibration
+
         # Convert to a 3D array using simplify2array (assuming the nested list structure is regular).
         calibration_factors_arr <- simplify2array(calibration_factors)
+
+        # Get the dimensions of the reflectance input and calibration factors.
         dims_sensor <- dim(reflectance_input)
         dims_cal <- dim(calibration_factors_arr)
+
         print(calibration_factors_arr)
-        if (length(dims_cal) != 3 || !all(dims_sensor == dims_cal[1:2]) || dims_cal[3] != 3) {
+
+        if (length(dims_cal) != 3 ||
+            !all(dims_sensor == dims_cal[1:2]) || dims_cal[3] != 3) {
           stop("Calibration data not of correct size for this sensor.")
         }
         self$calibration_factors <- calibration_factors_arr
