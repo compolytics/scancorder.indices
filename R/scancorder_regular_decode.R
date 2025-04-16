@@ -31,6 +31,8 @@ library(jsonlite)
 #' }
 #'
 #' @export
+#' @importFrom xml2 read_xml
+#' @importFrom jsonlite fromJSON
 DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
   public = list(
     average_sensor_values = FALSE,

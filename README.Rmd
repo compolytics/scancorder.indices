@@ -13,12 +13,13 @@ knitr::opts_chunk$set(
 )
 ```
 
-# scancorder.indices
+# Compolytics (C) Scancorder Indices R-Package
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of scancorder.indices is to ...
+This package provides an implementation to decode sample files recording using 
+CICADA and subsequent spectral indices calculation. 
 
 ## Installation
 

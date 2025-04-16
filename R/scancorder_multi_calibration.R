@@ -2,6 +2,8 @@ library(R6)
 library(jsonlite)
 
 #' @export
+#' @importFrom xml2 read_xml
+#' @importFrom jsonlite fromJSON
 CalibrationReflectanceMultipoint <- R6Class(
   "CalibrationReflectanceMultipoint",
 
