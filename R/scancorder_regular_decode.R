@@ -1,6 +1,35 @@
 library(R6)
 library(jsonlite)
 
+#' DecodeCompolyticsRegularScanner: Decodes Sensor data from Compolytics Regular ScanCorder
+#'
+#' An R6 class designed to decode and calibrate raw sensor data from Compolytics scanners.
+#' It supports JSON input, various calibration modes (two-point and multipoint), and optional sensor value masking and averaging.
+#'
+#' @docType class
+#' @format \code{\link[R6]{R6Class}} object.
+#'
+#' @field average_sensor_values Logical. Whether to average sensor readings per LED's across sensor elements.
+#' @field channel_mask Matrix. A binary mask indicating which channels are valid. If provided it will overwrite potentially sensor supplied info.
+#'
+#' @section Methods:
+#' \describe{
+#'   \item{\code{new(average_sensor_values = FALSE, channel_mask = NULL)}}{Creates a new instance of the decoder.}
+#'   \item{\code{nested_key_exists(lst, keys)}}{Check if a nested key exists within a list.}
+#'   \item{\code{calculate_calibration(calibration_map)}}{Fit quadratic calibration model across multiple reference measurements.}
+#'   \item{\code{two_point_calibration(sensor_values, calibration_map)}}{Apply single-reference (two-point) calibration.}
+#'   \item{\code{multi_point_calibration(sensor_values, calibration_map)}}{Apply quadratic multipoint calibration from multiple reference measurements.}
+#'   \item{\code{convert_json_to_matrix(json_data, type = as.numeric)}}{Convert nested JSON arrays to a numeric matrix.}
+#'   \item{\code{score(transform_input)}}{Main method. Decodes a JSON string with sensor data and returns a reflectance vector.}
+#' }
+#'
+#' @examples
+#' \dontrun{
+#' decoder <- DecodeCompolyticsRegularScanner$new(average_sensor_values = TRUE)
+#' json_input <- '{"values": [[100, 200], [300, 400]], "darkCurrent": [[10, 10], [10, 10]]}'
+#' output <- decoder$score(json_input)
+#' }
+#'
 #' @export
 DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
   public = list(
@@ -133,6 +162,12 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
       return(calibrated)
     },
 
+    convert_json_to_vector  = function(json_data, type = as.numeric) {
+      vec <- unlist(json_data, recursive = TRUE, use.names = FALSE)
+      vec <- type(vec)
+      return(vec)
+    },
+
     # Convert json data frame to numeric matrix
     convert_json_to_matrix = function(json_data, type = as.numeric) {
       df <- do.call(rbind, json_data)
@@ -169,6 +204,13 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
             stop("Channel mask is not of equal size to values field")
           }
           self$channel_mask <- channel_mask
+        }
+
+        keys_to_check <- c("config", "sensorHead", "additionalInfo", "led_wl")
+        if (self$nested_key_exists(input_json, keys_to_check)) {
+          led_wavelengths <- self$convert_json_to_vector(input_json$config$sensorHead$additionalInfo$led_wl)
+        } else {
+          stop("Cannot load center wavelength")
         }
 
         # Subtract dark current if provided.
@@ -251,8 +293,8 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
         transform_global_output[[length(transform_global_output) + 1]] <- reflectance_vector
       }
 
-      # Return the list of reflectance vectors (one per input structure)
-      return(transform_global_output)
+      # Return the list of reflectance vectors (one per input structure) and the center wavelengths
+      list(reflectance = transform_global_output, wavelength = led_wavelengths)
     }
   )
 )

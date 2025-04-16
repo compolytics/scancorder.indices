@@ -26,7 +26,7 @@ test_that("test CICADA json with single point reflectance and sensor average",
             # Setup a decoder that will average the reflectance per LED across sensor channels
             decoder <- DecodeCompolyticsRegularScanner$new(average_sensor_values = TRUE)
             # Decode the JSON input to get the reflectance values
-            loadedReflectance <- decoder$score(json_input)
+            data <- decoder$score(json_input)
             # Check if the reflectance values are numeric
-            expect_equal(loadedReflectance, expectedReflectance)
+            expect_equal(data$reflectance, expectedReflectance)
           })

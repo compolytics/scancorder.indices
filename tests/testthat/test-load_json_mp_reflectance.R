@@ -26,11 +26,11 @@ test_that("test CICADA json with sensor set multi point reflectance and sensor a
             # Setup a decoder that will average the reflectance per LED across sensor channels
             decoder <- DecodeCompolyticsRegularScanner$new(average_sensor_values = TRUE)
             # Decode the JSON input to get the reflectance values
-            loadedReflectance <- decoder$score(json_input)
+            data <- decoder$score(json_input)
             # Setup multi-calibration tool
             calibrator <- CalibrationReflectanceMultipoint$new()
             # Run multi-calibration with sensor provided factors
-            loadedReflectance <- calibrator$score(loadedReflectance, json_input)
+            loadedReflectance <- calibrator$score(data$reflectance, json_input)
             # Check if the reflectance values are numeric
             expect_equal(loadedReflectance, expectedReflectance)
           })
