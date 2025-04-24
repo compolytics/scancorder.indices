@@ -16,7 +16,4 @@ test_that("test calculating NDVI from CICADA json with single point reflectance 
             ndvi_value <- calculate_index(get_index_xml("NDVI"), data$wavelength, data$reflectance)
             # Check if the NDVI value is as expected
             expect_equal(ndvi_value, expectedNDVI)
-
-            indices_table <- calculate_indices(data$wavelength, data$reflectance)
-            print(indices_table)
           })

@@ -14,5 +14,6 @@ Suggests:
 Imports:
     xml2 (>= 1.3.6),
     R6 (>= 2.6.1),
-    jsonlite (>= 1.8.9)
+    jsonlite (>= 1.8.9),
+    pkgload (>= 1.4.0)
 Config/testthat/edition: 3
