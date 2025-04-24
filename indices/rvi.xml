@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+  <Name>RVI</Name>
+  <Wavelengths>
+    <Band name="R670" min="670" max="670" unit="nm"/>
+    <Band name="R801" min="801" max="801" unit="nm"/>
+  </Wavelengths>
+  <MathML>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+		<apply>
+			<divide/>
+			<ci>R801</ci>
+			<ci>R670</ci>
+		</apply>
+    </math>
+  </MathML>
+  <Metadata>
+    <Description>Simple Ratio 801/670, Pigment Specific 2, Ratio Vegetation Index, NIR/Red (RVI)</Description>
+  </Metadata>
+</SpectralIndex>

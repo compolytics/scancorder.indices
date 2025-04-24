@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+  <Name>SR[683,510]</Name>
+  <Wavelengths>
+    <Band name="R510" min="510" max="510" unit="nm"/>
+    <Band name="R683" min="550" max="550" unit="nm"/>
+  </Wavelengths>
+  <MathML>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+		<apply>
+			<divide/>
+			<ci>R683</ci>
+			<ci>R510</ci>
+		</apply>
+    </math>
+  </MathML>
+  <Metadata>
+    <Description>Simple Ratio 683/510 (SR[683,510])</Description>
+  </Metadata>
+</SpectralIndex>

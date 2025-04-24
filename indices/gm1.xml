@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+  <Name>GM1</Name>
+  <Wavelengths>
+    <Band name="R550" min="550" max="550" unit="nm"/>
+    <Band name="R750" min="750" max="750" unit="nm"/>
+  </Wavelengths>
+  <MathML>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+	<apply>
+		<divide/>
+		<ci>R750</ci>
+        <ci>R550</ci>
+    </apply>
+    </math>
+  </MathML>
+  <Metadata>
+    <Description> Gitelson and Merzlyak Index 1 (GM1)</Description>
+  </Metadata>
+</SpectralIndex>

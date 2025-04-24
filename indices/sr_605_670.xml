@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+  <Name>SR[605,670]</Name>
+  <Wavelengths>
+    <Band name="R605" min="605" max="605" unit="nm"/>
+    <Band name="R670" min="670" max="670" unit="nm"/>
+  </Wavelengths>
+  <MathML>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+		<apply>
+			<divide/>
+			<ci>R605</ci>
+			<ci>R670</ci>
+		</apply>
+    </math>
+  </MathML>
+  <Metadata>
+    <Description>Simple Ratio 605/670 (SR[605,670])</Description>
+  </Metadata>
+</SpectralIndex>
