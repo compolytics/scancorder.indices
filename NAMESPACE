@@ -3,7 +3,7 @@
 export(CalibrationReflectanceMultipoint)
 export(DecodeCompolyticsRegularScanner)
 export(calculate_index)
-export(calculate_indices)
+export(calculate_indice_table)
 export(evaluate_mathml)
 export(get_index_xml)
 importFrom(jsonlite,fromJSON)
