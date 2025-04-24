@@ -2,7 +2,7 @@
 #'
 #' This function discovers all index XML definitions in the
 #' `inst/indices/` folder of the `scancorder.indices` package, then
-#' uses `calculate_indice_table()` to compute each index for each reflectance
+#' uses `calculate_indices_table()` to compute each index for each reflectance
 #' vector in `reflectance_list`.
 #'
 #' @param wavelengths Numeric vector of wavelengths (same length as each reflectance vector).
@@ -13,7 +13,7 @@
 #' @importFrom pkgload pkg_path
 #' @importFrom xml2 read_xml xml_find_first xml_text
 #' @export
-calculate_indice_table <- function(wavelengths, reflectance_list) {
+calculate_indices_table <- function(wavelengths, reflectance_list) {
   # Locate the indices directory in the package source
   pkg_root    <- pkgload::pkg_path()
   indices_dir <- file.path(pkg_root, "indices")

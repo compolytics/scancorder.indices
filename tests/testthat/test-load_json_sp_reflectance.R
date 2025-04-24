@@ -17,7 +17,6 @@ test_that("test CICADA json with single point reflectance and sensor average",
                 0.53368890808155600158
               )
             )
-
             json_path <- testthat::test_path(
               "data/20250303_150545_SA1211_B3009_S5221_08445c21-184a-4082-8597-e11f62e3561e_0001.json"
             )
