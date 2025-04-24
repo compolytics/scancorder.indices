@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>SR[555,675]</Name>
+    <Wavelengths>
+        <Band name="R555" min="555" max="555" unit="nm"/>
+        <Band name="R675" min="675" max="675" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R555</ci>
+                <ci>R675</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio 555/675 (SR[555,675])</Description>
+    </Metadata>
+</SpectralIndex>

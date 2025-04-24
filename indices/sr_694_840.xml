@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>SR[694,840]</Name>
+    <Wavelengths>
+        <Band name="R694" min="694" max="694" unit="nm"/>
+        <Band name="R840" min="840" max="840" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R694</ci>
+                <ci>R840</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio 694/840 (SR[694,840])</Description>
+    </Metadata>
+</SpectralIndex>

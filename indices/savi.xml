@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>SAVI</Name>
+    <Wavelengths>
+        <Band name="R670" min="670" max="670" unit="nm"/>
+        <Band name="R800" min="800" max="800" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <times/>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <minus/>
+                        <ci>R800</ci>
+                        <ci>R670</ci>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <ci>R800</ci>
+                        <ci>R670</ci>
+                        <cn>0.5</cn>
+                    </apply>
+                </apply>
+                <apply>
+                    <plus/>
+                    <cn>1.0</cn>
+                    <cn>0.5</cn>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Soil Adjusted Vegetation Index, N-content (early-mid period) (SAVI)</Description>
+    </Metadata>
+</SpectralIndex>

@@ -1,0 +1,61 @@
+# File: .github/workflows/render-readme.yml
+name: Render README.Rmd
+
+# 1) When to run
+on:
+  push:
+    # only when Rmd or workflow itself changes:
+    paths:
+      - README.Rmd
+      - .github/workflows/render-readme.yml
+  workflow_dispatch:    # also allow manual runs from the Actions tab
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 2) Check out your repo
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 3) Setup R (and Pandoc)
+      - name: Setup R
+        uses: r-lib/actions/setup-r@v3
+        with:
+          r-version: '4.5'   # pick the major.minor you need
+          
+      - name: Setup Pandoc
+        uses: r-lib/actions/setup-pandoc@v3
+
+      # 4) Cache R package library (optional but speeds up runs)
+      - name: Cache R packages
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: ${{ runner.os }}-r-${{ hashFiles('**/*.Rproj','**/*.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-r-
+
+      # 5) Install R dependencies
+      - name: Install R dependencies
+        run: |
+          Rscript -e 'install.packages(c("knitr","rmarkdown"), repos="https://cloud.r-project.org")'
+          # plus any other packages your README.Rmd needs:
+          # Rscript -e 'install.packages(c("dplyr","ggplot2"))'
+
+      # 6) Knit the README
+      - name: Render README.Rmd → README.md
+        run: |
+          Rscript -e 'rmarkdown::render("README.Rmd", output_format = "md_document", 
+                                          output_options = list(variant = "markdown_github"))'
+
+      # 7) Commit & push back if README.md changed
+      - name: Commit & Push changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "ci: auto-render README.md from README.Rmd"
+          file_pattern: README.md
+          # optionally set a user/email:
+          # author_name: github-actions
+          # author_email: actions@github.com
