@@ -23,11 +23,21 @@ CICADA and subsequent spectral indices calculation.
 
 ## Installation
 
+### From Github Repository
+
 You can install the development version of scancorder.indices from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("pak")
 pak::pak("compolytics/scancorder.indices")
+```
+
+### From R Package Repository
+
+Install from CRAN:
+
+```r
+install.packages("scancroder.indices")
 ```
 
 ## Example
