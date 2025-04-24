@@ -18,16 +18,26 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-This package provides an implementation to decode sample files recording using 
+This package provides an implementation to decode sample files recorded using 
 CICADA and subsequent spectral indices calculation. 
 
 ## Installation
+
+### From Github Repository
 
 You can install the development version of scancorder.indices from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("pak")
 pak::pak("compolytics/scancorder.indices")
+```
+
+### From R Package Repository
+
+Install from CRAN:
+
+```r
+install.packages("scancroder.indices")
 ```
 
 ## Example
