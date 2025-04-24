@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-  <Name>SR[556,750]</Name>
-  <Wavelengths>
-    <Band name="R556" min="556" max="556" unit="nm"/>
-    <Band name="R750" min="750" max="750" unit="nm"/>
-  </Wavelengths>
-  <MathML>
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-		<apply>
-			<divide/>
-			<ci>R556</ci>
-			<ci>R750</ci>
-		</apply>
-    </math>
-  </MathML>
-  <Metadata>
-    <Description>Simple Ratio 556/750, Chl-b (SR[556,750])</Description>
-  </Metadata>
+    <Name>SR[556,750]</Name>
+    <Wavelengths>
+        <Band name="R556" min="556" max="556" unit="nm"/>
+        <Band name="R750" min="750" max="750" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R556</ci>
+                <ci>R750</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio 556/750, Chl-b (SR[556,750])</Description>
+    </Metadata>
 </SpectralIndex>

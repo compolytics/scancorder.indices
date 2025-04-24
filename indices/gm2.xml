@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-  <Name>GM2</Name>
-  <Wavelengths>
-    <Band name="R700" min="700" max="700" unit="nm"/>
-    <Band name="R750" min="750" max="750" unit="nm"/>
-  </Wavelengths>
-  <MathML>
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-		<apply>
-			<divide/>
-			<ci>R750</ci>
-			<ci>R700</ci>
-		</apply>
-    </math>
-  </MathML>
-  <Metadata>
-    <Description>Simple Ratio 750/700, Gitelson and Merzlyak Index 2 (GM2)</Description>
-  </Metadata>
+    <Name>GM2</Name>
+    <Wavelengths>
+        <Band name="R700" min="700" max="700" unit="nm"/>
+        <Band name="R750" min="750" max="750" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R750</ci>
+                <ci>R700</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio 750/700, Gitelson and Merzlyak Index 2 (GM2)</Description>
+    </Metadata>
 </SpectralIndex>

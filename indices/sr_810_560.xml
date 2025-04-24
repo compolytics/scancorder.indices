@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-  <Name>SR[810,560]</Name>
-  <Wavelengths>
-    <Band name="R560" min="560" max="560" unit="nm"/>
-    <Band name="R810" min="810" max="810" unit="nm"/>
-  </Wavelengths>
-  <MathML>
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-		<apply>
-			<divide/>
-			<ci>R810</ci>
-			<ci>R560</ci>
-		</apply>
-    </math>
-  </MathML>
-  <Metadata>
-    <Description>Simple Ratio 810/560, Plant biochemical index (SR[810,560])</Description>
-  </Metadata>
+    <Name>SR[810,560]</Name>
+    <Wavelengths>
+        <Band name="R560" min="560" max="560" unit="nm"/>
+        <Band name="R810" min="810" max="810" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R810</ci>
+                <ci>R560</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio 810/560, Plant biochemical index (SR[810,560])</Description>
+    </Metadata>
 </SpectralIndex>

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-  <Name>RVI2</Name>
-  <Wavelengths>
-    <Band name="R493" min="493" max="493" unit="nm"/>
-    <Band name="R678" min="678" max="678" unit="nm"/>
-  </Wavelengths>
-  <MathML>
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <apply>
-        <divide/>
-        <ci>R493</ci>
-        <ci>R678</ci>
-      </apply>
-    </math>
-  </MathML>
-  <Metadata>
-    <Description>Disease-Water Stress Index 4 (RVI2)</Description>
-  </Metadata>
+    <Name>RVI2</Name>
+    <Wavelengths>
+        <Band name="R493" min="493" max="493" unit="nm"/>
+        <Band name="R678" min="678" max="678" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R493</ci>
+                <ci>R678</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Disease-Water Stress Index 4 (RVI2)</Description>
+    </Metadata>
 </SpectralIndex>

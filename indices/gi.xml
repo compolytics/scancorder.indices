@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-  <Name>GI</Name>
-  <Wavelengths>
-    <Band name="R550" min="550" max="550" unit="nm"/>
-    <Band name="R800" min="800" max="800" unit="nm"/>
-  </Wavelengths>
-  <MathML>
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-		<apply>
-			<divide/>
-			<ci>R550</ci>
-			<ci>R800</ci>
-		</apply>
-    </math>
-  </MathML>
-  <Metadata>
-    <Description>Greenness Index 2 (GI)</Description>
-  </Metadata>
+    <Name>GI</Name>
+    <Wavelengths>
+        <Band name="R550" min="550" max="550" unit="nm"/>
+        <Band name="R800" min="800" max="800" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R550</ci>
+                <ci>R800</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Greenness Index 2 (GI)</Description>
+    </Metadata>
 </SpectralIndex>
