@@ -9,6 +9,6 @@
 #' @return Invisibly returns `file`.
 #' @export
 write_indices_csv <- function(df, file, row.names = FALSE) {
-  utils::write.csv(df, file = file, row.names = row.names)
+  utils::write.table(df, file = file, sep= ";", dec=".", row.names = row.names)
   invisible(file)
 }
