@@ -9,7 +9,7 @@
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <divide/>
-                <cn>R690</cn>
+                <ci>R690</ci>
                 <ci>R550</ci>
             </apply>
         </math>

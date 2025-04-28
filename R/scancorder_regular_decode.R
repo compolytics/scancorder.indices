@@ -177,6 +177,17 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
       return(matrix_data)
     },
 
+    ensure_list = function(x) {
+      # if it's not a list, or it's a named list (i.e. a JSON object),
+      # then wrap it in a one-element list
+      if (!is.list(x) || !is.null(names(x))) {
+        list(x)
+      } else {
+        # otherwise it's an unnamed list (JSON array), leave as is
+        x
+      }
+    },
+
     # The main method: given a JSON string with sensor data, generate a reflectance vector.
     score = function(transform_input) {
 
@@ -198,22 +209,53 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
         # Convert the "values" field to a numeric matrix
         sensor_values <- self$convert_json_to_matrix(input_json$values)
 
-        # If a channel mask is provided in the nested sensor config, use it.
-        keys_to_check <- c("config", "sensorHead", "additionalInfo", "channel_mask")
+        # Try to find sensor external information from package
+        keys_to_check <- c("config", "sensorHead", "name")
         if (self$nested_key_exists(input_json, keys_to_check)) {
-          channel_mask <- self$convert_json_to_matrix(input_json$config$sensorHead$additionalInfo$channel_mask, as.logical)
-          if (!all(dim(channel_mask) == dim(sensor_values))) {
-            stop("Channel mask is not of equal size to values field")
-          }
-          self$channel_mask <- channel_mask
+          external_sensor_info <- find_sensor_metadata(input_json$config$sensorHead$name)
+        } else {
+          external_sensor_info = NULL
         }
 
-        keys_to_check <- c("config", "sensorHead", "additionalInfo", "led_wl")
+        # Get nested substructure with sensor information
+        keys_to_check <- c("config", "sensorHead", "additionalInfo")
         if (self$nested_key_exists(input_json, keys_to_check)) {
-          led_wavelengths <- self$convert_json_to_vector(input_json$config$sensorHead$additionalInfo$led_wl)
+          device_sensor_info <- input_json$config$sensorHead$additionalInfo
         } else {
+          stop("Cannot find sensor information in sample file.")
+        }
+
+        channel_mask <- get_field_base(device_sensor_info, external_sensor_info, "channel_mask")
+        if (is.null(channel_mask)) {
+          stop("Cannot find valid channel mask")
+        }
+        channel_mask <- self$convert_json_to_matrix(channel_mask)
+        if (!all(dim(channel_mask) == dim(sensor_values))) {
+            stop("Channel mask is not of equal size to values field")
+        }
+        self$channel_mask <- channel_mask
+
+        led_wavelengths <- get_field_base(device_sensor_info, external_sensor_info, "led_wl_real")
+        if (is.null(led_wavelengths)) {
+          led_wavelengths <- get_field_base(device_sensor_info, external_sensor_info, "led_wl")
+        }
+        if (is.null(led_wavelengths)) {
           stop("Cannot load center wavelength")
         }
+        led_wavelengths <- self$convert_json_to_vector(led_wavelengths)
+        print(led_wavelengths)
+
+        led_fwhm <- get_field_base(device_sensor_info, external_sensor_info, "led_fwhm_real")
+        if (is.null(led_fwhm)) {
+          led_fwhm <- get_field_base(device_sensor_info, external_sensor_info, "led_fwhm_nom")
+        }
+        if (is.null(led_fwhm)) {
+          warning("No FWHM for LEDs found, assuming 0 so wavelength must match range in index exactly")
+          led_fwhm = NULL
+        } else {
+          led_fwhm <- self$convert_json_to_vector(led_fwhm)
+        }
+        print(led_fwhm)
 
         # Subtract dark current if provided.
         if (!is.null(input_json$perLEDDarkCurrent)) {
@@ -227,8 +269,8 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
         # Process calibration data if available.
         if (!is.null(input_json$calibration)) {
 
-          # Get calibration data field
-          calibration_values <- input_json$calibration
+          # Get calibration data field, ensure it is a list
+          calibration_values <- self$ensure_list(input_json$calibration)
           # Init calibration map
           calibration_map <- list()
           for (calibration in calibration_values) {
@@ -295,8 +337,8 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
         transform_global_output[[length(transform_global_output) + 1]] <- reflectance_vector
       }
 
-      # Return the list of reflectance vectors (one per input structure) and the center wavelengths
-      list(reflectance = transform_global_output, wavelength = led_wavelengths)
+      # Return the list of reflectance vectors (one per input structure), the center wavelengths and FHWM of LEDs
+      list(reflectance = transform_global_output, wavelength = led_wavelengths, fwhm=led_fwhm)
     }
   )
 )
