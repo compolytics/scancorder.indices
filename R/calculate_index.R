@@ -26,7 +26,7 @@ calculate_index <- function(xml_file, wavelengths, reflectance_list, fwhm = NULL
   } else {
     fwhm <- unlist(fwhm)
     if (!is.numeric(fwhm) || length(fwhm) != length(wavelengths)) {
-      stop("`fwhm` must be a numeric vector of the same length as `wavelengths`")
+      stop("`fwhm` must be a numeric vector of the same length as `wavelengths`.")
     }
     margin <- 0.5 * fwhm
   }

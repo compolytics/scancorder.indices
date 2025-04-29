@@ -44,7 +44,5 @@ find_sensor_metadata <- function(
       }
     }
   }
-
-  warning(sprintf("No external metadata found containing serial '%s'", serial_code))
   NULL
 }

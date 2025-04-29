@@ -26,10 +26,7 @@ test_that("test calculating available indices for a CICADA json sample",
             # Step 3: Calculate Indices table from all available data
             # ------------------------------------------------------------------
             index_table <- calculate_indices_table(data$wavelength, calibReflectance, data$fwhm)
-            print("Table")
-            print(index_table)
             write_indices_csv(index_table, "expectedTable.csv", row.names = FALSE)
-
-            # Check if the NDVI value is as expected
+            # Check if the table values are as expected
             # expect_equal(expected_table, index_table)
           })

@@ -266,7 +266,6 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
           led_fwhm <- get_field_base(device_sensor_info, external_sensor_info, "led_fwhm_nom")
         }
         if (is.null(led_fwhm)) {
-          warning("No FWHM for LEDs found, assuming 0 so wavelength must match range in index exactly")
           led_fwhm = NULL
         } else {
           led_fwhm <- self$convert_json_to_vector(led_fwhm)
