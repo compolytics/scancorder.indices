@@ -16,8 +16,7 @@
 calculate_indices_table <- function(wavelengths, reflectance_list, fwhm) {
 
   # Locate the indices directory in the package source
-  pkg_root    <- pkgload::pkg_path()
-  indices_dir <- file.path(pkg_root, "indices")
+  indices_dir <- system.file("extdata", "indices", package = "scancorder.indices")
   if (!dir.exists(indices_dir)) {
     stop("Indices directory not found in package source: ", indices_dir)
   }

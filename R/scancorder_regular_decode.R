@@ -188,6 +188,20 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
       }
     },
 
+    flatten_sample_json = function(input_json) {
+      flat_list <- list()
+      for (entry in input_json) {
+        if ("data" %in% names(entry)) {
+          # If 'data' field exists, append all entries inside 'data'
+          flat_list <- c(flat_list, entry$data)
+        } else {
+          # Otherwise, append the entry itself
+          flat_list <- c(flat_list, list(entry))
+        }
+      }
+      return(flat_list)
+    },
+
     # The main method: given a JSON string with sensor data, generate a reflectance vector.
     score = function(transform_input) {
 
@@ -197,6 +211,9 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
       if (!is.list(input_json_struct)) {
         input_json_struct <- list(input_json_struct)
       }
+
+      # Flatten the input JSON if it contains a 'data' field
+      input_json_struct <- self$flatten_sample_json(input_json_struct)
 
       transform_global_output <- list()
       for (input_json in input_json_struct) {
@@ -243,7 +260,6 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
           stop("Cannot load center wavelength")
         }
         led_wavelengths <- self$convert_json_to_vector(led_wavelengths)
-        print(led_wavelengths)
 
         led_fwhm <- get_field_base(device_sensor_info, external_sensor_info, "led_fwhm_real")
         if (is.null(led_fwhm)) {
@@ -255,7 +271,6 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
         } else {
           led_fwhm <- self$convert_json_to_vector(led_fwhm)
         }
-        print(led_fwhm)
 
         # Subtract dark current if provided.
         if (!is.null(input_json$perLEDDarkCurrent)) {

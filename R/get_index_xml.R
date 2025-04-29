@@ -11,8 +11,7 @@
 #' @export
 get_index_xml <- function(index_name) {
   # Locate the package source path
-  pkg_root   <- pkgload::pkg_path()
-  indices_dir <- file.path(pkg_root, "indices")
+  indices_dir <- system.file("extdata", "indices", package = "scancorder.indices")
   if (!dir.exists(indices_dir)) {
     stop("Indices directory not found in package source: ", indices_dir)
   }

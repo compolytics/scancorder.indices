@@ -4,7 +4,7 @@
 \alias{calculate_index}
 \title{Main function to calculate the spectral index based on an XML definition.}
 \usage{
-calculate_index(xml_file, wavelengths, reflectance_list)
+calculate_index(xml_file, wavelengths, reflectance_list, fwhm = NULL)
 }
 \description{
 Main function to calculate the spectral index based on an XML definition.
