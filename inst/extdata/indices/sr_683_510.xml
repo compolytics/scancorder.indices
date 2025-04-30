@@ -3,7 +3,7 @@
     <Name>SR[683,510]</Name>
     <Wavelengths>
         <Band name="R510" min="510" max="510" unit="nm"/>
-        <Band name="R683" min="550" max="550" unit="nm"/>
+        <Band name="R683" min="683" max="683" unit="nm"/>
     </Wavelengths>
     <MathML>
         <math xmlns="http://www.w3.org/1998/Math/MathML">

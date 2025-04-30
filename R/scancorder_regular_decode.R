@@ -126,7 +126,7 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
       array_3d <- array(unlist(calib_vals), dim = c(rows, cols, depth))
       mean_calibration <- apply(array_3d, c(1, 2), mean)
       # Divide sensor values by calibration values (avoiding division by zero)
-      calibrated <- sensor_values / ifelse(mean_calibration == 0, 1, mean_calibration)
+      calibrated <- sensor_values / mean_calibration
       calibrated[is.infinite(calibrated) | is.nan(calibrated)] <- 0
       # Multiply by the true factor
       calibrated <- calibrated * calibration_map[[key]]$trueFactor
@@ -208,9 +208,7 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
       # Parse the JSON input (expects either a single object or a list of objects)
       input_json_struct <- fromJSON(transform_input, simplifyVector = FALSE)
 
-      if (!is.list(input_json_struct)) {
-        input_json_struct <- list(input_json_struct)
-      }
+      input_json_struct <- self$ensure_list(input_json_struct)
 
       # Flatten the input JSON if it contains a 'data' field
       input_json_struct <- self$flatten_sample_json(input_json_struct)
@@ -242,15 +240,21 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
           stop("Cannot find sensor information in sample file.")
         }
 
-        channel_mask <- get_field_base(device_sensor_info, external_sensor_info, "channel_mask")
-        if (is.null(channel_mask)) {
-          stop("Cannot find valid channel mask")
-        }
-        channel_mask <- self$convert_json_to_matrix(channel_mask)
-        if (!all(dim(channel_mask) == dim(sensor_values))) {
+        # if channel mask was not set in constructor, try to find one
+        if (is.null(self$channel_mask)) {
+
+          # Check if the channel mask is present in sensor description external
+          # or device info
+          channel_mask <- get_field_base(device_sensor_info, external_sensor_info, "channel_mask")
+          if (is.null(channel_mask)) {
+            stop("Cannot find valid channel mask")
+          }
+          channel_mask <- self$convert_json_to_matrix(channel_mask)
+          if (!all(dim(channel_mask) == dim(sensor_values))) {
             stop("Channel mask is not of equal size to values field")
+          }
+          self$channel_mask <- channel_mask
         }
-        self$channel_mask <- channel_mask
 
         led_wavelengths <- get_field_base(device_sensor_info, external_sensor_info, "led_wl_real")
         if (is.null(led_wavelengths)) {
@@ -352,7 +356,7 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
       }
 
       # Return the list of reflectance vectors (one per input structure), the center wavelengths and FHWM of LEDs
-      list(reflectance = transform_global_output, wavelength = led_wavelengths, fwhm=led_fwhm)
+      list(reflectance = transform_global_output, wavelength=led_wavelengths, fwhm=led_fwhm)
     }
   )
 )

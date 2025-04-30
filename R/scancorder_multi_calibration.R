@@ -20,6 +20,15 @@ CalibrationReflectanceMultipoint <- R6Class(
       }
     },
 
+    slice_keep_first = function(x, k) {
+      # 1) slice, keeping even singleton dims
+      y <- x[,, k, drop = FALSE]
+      # 2) drop *only* the last dimension
+      d <- dim(y)
+      dim(y) <- d[-length(d)]
+      y
+    },
+
     # Applies the multi-point calibration to sensor reading
     multi_point_calibration = function(sensor_values) {
 
@@ -37,9 +46,14 @@ CalibrationReflectanceMultipoint <- R6Class(
       }
       # Apply the quadratic calibration:
       # calibrated = b0 * sensor^2 + b1 * sensor + b2
-      b0 <- self$calibration_factors[, , 1]
-      b1 <- self$calibration_factors[, , 2]
-      b2 <- self$calibration_factors[, , 3]
+      b0 <- self$slice_keep_first(self$calibration_factors,1)
+      b1 <- self$slice_keep_first(self$calibration_factors,2)
+      b2 <- self$slice_keep_first(self$calibration_factors,3)
+
+      b0 <- b0[ rep(1L, dims_sensor[1]), , drop = FALSE ]
+      b1 <- b1[ rep(1L, dims_sensor[1]), , drop = FALSE ]
+      b2 <- b2[ rep(1L, dims_sensor[1]), , drop = FALSE ]
+
       calibrated <- b0 * sensor_values^2 + b1 * sensor_values + b2
       return(calibrated)
     },
@@ -85,6 +99,17 @@ CalibrationReflectanceMultipoint <- R6Class(
       return(array_data)
     },
 
+    ensure_list = function(x) {
+      # if it's not a list, or it's a named list (i.e. a JSON object),
+      # then wrap it in a one-element list
+      if (!is.list(x) || !is.null(names(x))) {
+        list(x)
+      } else {
+        # otherwise it's an unnamed list (JSON array), leave as is
+        x
+      }
+    },
+
     flatten_sample_json = function(input_json) {
       flat_list <- list()
       for (entry in input_json) {
@@ -112,9 +137,7 @@ CalibrationReflectanceMultipoint <- R6Class(
       input_json_struct <- fromJSON(config_json, simplifyVector = FALSE)
 
       # If the JSON is a single object, wrap it into a list.
-      if (!is.list(input_json_struct)) {
-        input_json_struct <- list(input_json_struct)
-      }
+      input_json_struct <- self$ensure_list(input_json_struct)
 
       # Flatten the input JSON if it contains a 'data' field
       input_json_struct <- self$flatten_sample_json(input_json_struct)
@@ -150,7 +173,6 @@ CalibrationReflectanceMultipoint <- R6Class(
         stop("Calibration data not of correct size for this sensor.")
       }
       self$calibration_factors <- calibration_factors
-
       # Run the calibration.
       transform_output <- self$multi_point_calibration(reflectance_input)
       # We convert back to a list of samples (row vectors)

@@ -2,15 +2,15 @@
 <SpectralIndex>
     <Name>GI</Name>
     <Wavelengths>
-        <Band name="R550" min="550" max="550" unit="nm"/>
-        <Band name="R800" min="800" max="800" unit="nm"/>
+        <Band name="R554" min="554" max="554" unit="nm"/>
+        <Band name="R677" min="677" max="677" unit="nm"/>
     </Wavelengths>
     <MathML>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <divide/>
-                <ci>R550</ci>
-                <ci>R800</ci>
+                <ci>R554</ci>
+                <ci>R677</ci>
             </apply>
         </math>
     </MathML>
