@@ -9,8 +9,8 @@
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <divide/>
-                <ci>R900</ci>
                 <ci>R950</ci>
+                <ci>R900</ci>
             </apply>
         </math>
     </MathML>

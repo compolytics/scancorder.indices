@@ -20,6 +20,15 @@ CalibrationReflectanceMultipoint <- R6Class(
       }
     },
 
+    slice_keep_first = function(x, k) {
+      # 1) slice, keeping even singleton dims
+      y <- x[,, k, drop = FALSE]
+      # 2) drop *only* the last dimension
+      d <- dim(y)
+      dim(y) <- d[-length(d)]
+      y
+    },
+
     # Applies the multi-point calibration to sensor reading
     multi_point_calibration = function(sensor_values) {
 
@@ -31,17 +40,20 @@ CalibrationReflectanceMultipoint <- R6Class(
       dims_sensor <- dim(sensor_values)
       dims_cal <- dim(self$calibration_factors)
 
-      if (length(dims_cal) != 3 ||
-          !all(dims_sensor == dims_cal[1:2]) || dims_cal[3] != 3) {
+      # Ensure the calibration factors are of the correct size.
+      if (length(dims_cal) != 3 || dims_sensor[2] != dims_cal[2] || dims_cal[3] != 3) {
         stop("Calibration data not of correct size for this sensor.")
       }
-
       # Apply the quadratic calibration:
       # calibrated = b0 * sensor^2 + b1 * sensor + b2
-      1
-      b0 <- self$calibration_factors[, , 1]
-      b1 <- self$calibration_factors[, , 2]
-      b2 <- self$calibration_factors[, , 3]
+      b0 <- self$slice_keep_first(self$calibration_factors,1)
+      b1 <- self$slice_keep_first(self$calibration_factors,2)
+      b2 <- self$slice_keep_first(self$calibration_factors,3)
+
+      b0 <- b0[ rep(1L, dims_sensor[1]), , drop = FALSE ]
+      b1 <- b1[ rep(1L, dims_sensor[1]), , drop = FALSE ]
+      b2 <- b2[ rep(1L, dims_sensor[1]), , drop = FALSE ]
+
       calibrated <- b0 * sensor_values^2 + b1 * sensor_values + b2
       return(calibrated)
     },
@@ -87,6 +99,31 @@ CalibrationReflectanceMultipoint <- R6Class(
       return(array_data)
     },
 
+    ensure_list = function(x) {
+      # if it's not a list, or it's a named list (i.e. a JSON object),
+      # then wrap it in a one-element list
+      if (!is.list(x) || !is.null(names(x))) {
+        list(x)
+      } else {
+        # otherwise it's an unnamed list (JSON array), leave as is
+        x
+      }
+    },
+
+    flatten_sample_json = function(input_json) {
+      flat_list <- list()
+      for (entry in input_json) {
+        if ("data" %in% names(entry)) {
+          # If 'data' field exists, append all entries inside 'data'
+          flat_list <- c(flat_list, entry$data)
+        } else {
+          # Otherwise, append the entry itself
+          flat_list <- c(flat_list, list(entry))
+        }
+      }
+      return(flat_list)
+    },
+
     # The score method expects two inputs:
     #   1. A reflectance input (matrix or array)
     #   2. A JSON string representing the sensor configuration.
@@ -100,36 +137,42 @@ CalibrationReflectanceMultipoint <- R6Class(
       input_json_struct <- fromJSON(config_json, simplifyVector = FALSE)
 
       # If the JSON is a single object, wrap it into a list.
-      if (!is.list(input_json_struct)) {
-        input_json_struct <- list(input_json_struct)
-      }
+      input_json_struct <- self$ensure_list(input_json_struct)
 
-      # Check for calibration factors within the JSON.
-      keys_to_check <- c("config",
-                         "sensorHead",
-                         "additionalInfo",
-                         "multi_calibration")
+      # Flatten the input JSON if it contains a 'data' field
+      input_json_struct <- self$flatten_sample_json(input_json_struct)
 
+      # Get nested substructure with sensor information
+      keys_to_check <- c("config", "sensorHead", "additionalInfo")
       if (self$nested_key_exists(input_json_struct[[1]], keys_to_check)) {
-
-        # Extract the calibration factors from the JSON structure.
-        calibration_factors <- self$convert_json_to_3d_array(input_json_struct[[1]]$config$sensorHead$additionalInfo$multi_calibration)
-        # Get the dimensions of the reflectance input and calibration factors.
-        dims_sensor <- dim(reflectance_input)
-        dims_cal <- dim(calibration_factors)
-        # Ensure the calibration factors are of the correct size.
-        if (length(dims_cal) != 3 ||
-            !all(dims_sensor == dims_cal[1:2]) || dims_cal[3] != 3) {
-          stop("Calibration data not of correct size for this sensor.")
-        }
-        self$calibration_factors <- calibration_factors
+        device_sensor_info <- input_json_struct[[1]]$config$sensorHead$additionalInfo
+      } else {
+        stop("Cannot find sensor information in sample file.")
       }
 
-      # Ensure calibration factors are now defined.
-      if (is.null(self$calibration_factors)) {
+      # Try to find sensor external information from package
+      keys_to_check <- c("config", "sensorHead", "name")
+      if (self$nested_key_exists(input_json_struct[[1]], keys_to_check)) {
+        external_sensor_info <- find_sensor_metadata(input_json_struct[[1]]$config$sensorHead$name)
+      } else {
+        external_sensor_info = NULL
+      }
+
+      multi_calibration <- get_field_base(device_sensor_info, external_sensor_info, "multi_calibration")
+      if (is.null(multi_calibration)) {
         stop("Calibration factors are not defined.")
       }
 
+      # Extract the calibration factors from the JSON structure.
+      calibration_factors <- self$convert_json_to_3d_array(multi_calibration)
+      # Get the dimensions of the reflectance input and calibration factors.
+      dims_sensor <- dim(reflectance_input)
+      dims_cal <- dim(calibration_factors)
+      # Ensure the calibration factors are of the correct size.
+      if (length(dims_cal) != 3 || dims_sensor[2] != dims_cal[2] || dims_cal[3] != 3) {
+        stop("Calibration data not of correct size for this sensor.")
+      }
+      self$calibration_factors <- calibration_factors
       # Run the calibration.
       transform_output <- self$multi_point_calibration(reflectance_input)
       # We convert back to a list of samples (row vectors)

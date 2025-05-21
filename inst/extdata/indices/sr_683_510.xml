@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>DWSI4</Name>
+    <Name>SR[683,510]</Name>
     <Wavelengths>
-        <Band name="R550" min="550" max="550" unit="nm"/>
-        <Band name="R680" min="680" max="680" unit="nm"/>
+        <Band name="R510" min="510" max="510" unit="nm"/>
+        <Band name="R683" min="683" max="683" unit="nm"/>
     </Wavelengths>
     <MathML>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <divide/>
-                <cn>R550</cn>
-                <ci>R680</ci>
+                <ci>R683</ci>
+                <ci>R510</ci>
             </apply>
         </math>
     </MathML>
     <Metadata>
-        <Description>Disease-Water Stress Index 4 (DWSI4)</Description>
+        <Description>Simple Ratio 683/510 (SR[683,510])</Description>
     </Metadata>
 </SpectralIndex>

@@ -51,6 +51,8 @@ output <- decoder$score(json_input)
 \item \href{#method-DecodeCompolyticsRegularScanner-multi_point_calibration}{\code{DecodeCompolyticsRegularScanner$multi_point_calibration()}}
 \item \href{#method-DecodeCompolyticsRegularScanner-convert_json_to_vector}{\code{DecodeCompolyticsRegularScanner$convert_json_to_vector()}}
 \item \href{#method-DecodeCompolyticsRegularScanner-convert_json_to_matrix}{\code{DecodeCompolyticsRegularScanner$convert_json_to_matrix()}}
+\item \href{#method-DecodeCompolyticsRegularScanner-ensure_list}{\code{DecodeCompolyticsRegularScanner$ensure_list()}}
+\item \href{#method-DecodeCompolyticsRegularScanner-flatten_sample_json}{\code{DecodeCompolyticsRegularScanner$flatten_sample_json()}}
 \item \href{#method-DecodeCompolyticsRegularScanner-score}{\code{DecodeCompolyticsRegularScanner$score()}}
 \item \href{#method-DecodeCompolyticsRegularScanner-clone}{\code{DecodeCompolyticsRegularScanner$clone()}}
 }
@@ -130,6 +132,24 @@ output <- decoder$score(json_input)
   json_data,
   type = as.numeric
 )}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-DecodeCompolyticsRegularScanner-ensure_list"></a>}}
+\if{latex}{\out{\hypertarget{method-DecodeCompolyticsRegularScanner-ensure_list}{}}}
+\subsection{Method \code{ensure_list()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{DecodeCompolyticsRegularScanner$ensure_list(x)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-DecodeCompolyticsRegularScanner-flatten_sample_json"></a>}}
+\if{latex}{\out{\hypertarget{method-DecodeCompolyticsRegularScanner-flatten_sample_json}{}}}
+\subsection{Method \code{flatten_sample_json()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{DecodeCompolyticsRegularScanner$flatten_sample_json(input_json)}\if{html}{\out{</div>}}
 }
 
 }

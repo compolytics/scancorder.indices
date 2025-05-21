@@ -13,10 +13,10 @@
 #' @importFrom pkgload pkg_path
 #' @importFrom xml2 read_xml xml_find_first xml_text
 #' @export
-calculate_indices_table <- function(wavelengths, reflectance_list) {
+calculate_indices_table <- function(wavelengths, reflectance_list, fwhm) {
+
   # Locate the indices directory in the package source
-  pkg_root    <- pkgload::pkg_path()
-  indices_dir <- file.path(pkg_root, "indices")
+  indices_dir <- system.file("extdata", "indices", package = "scancorder.indices")
   if (!dir.exists(indices_dir)) {
     stop("Indices directory not found in package source: ", indices_dir)
   }
@@ -38,7 +38,7 @@ calculate_indices_table <- function(wavelengths, reflectance_list) {
   # For each XML, compute index values for all reflectance vectors
   results <- lapply(seq_along(xml_files), function(i) {
     xml_file <- xml_files[i]
-    vals <- calculate_index(xml_file, wavelengths, reflectance_list)
+    vals <- calculate_index(xml_file, wavelengths, reflectance_list, fwhm)
     # ensure a numeric vector
     unlist(vals, use.names = FALSE)
   })

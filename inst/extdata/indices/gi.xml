@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>RGI</Name>
+    <Name>GI</Name>
     <Wavelengths>
-        <Band name="R550" min="550" max="550" unit="nm"/>
-        <Band name="R690" min="690" max="690" unit="nm"/>
+        <Band name="R554" min="554" max="554" unit="nm"/>
+        <Band name="R677" min="677" max="677" unit="nm"/>
     </Wavelengths>
     <MathML>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <divide/>
-                <cn>R690</cn>
-                <ci>R550</ci>
+                <ci>R554</ci>
+                <ci>R677</ci>
             </apply>
         </math>
     </MathML>
     <Metadata>
-        <Description>Relative Greenness Index (RGI)</Description>
+        <Description>Greenness Index 2 (GI)</Description>
     </Metadata>
 </SpectralIndex>
