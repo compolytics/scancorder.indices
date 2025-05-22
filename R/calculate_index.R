@@ -68,9 +68,12 @@ calculate_index <- function(xml_file, wavelengths, reflectance_list, fwhm = NULL
     names(refl_vals) <- names(bands)
 
     # evaluate the MathML formula with those band means
-    tryCatch(
+    result <- tryCatch(
       evaluate_mathml(mathml_node, refl_vals),
-      error = function(e) NA_real_
+      error = function(e) {
+        message("MathML evaluation error: ", e$message)
+        NA_real_
+      }
     )
   }
 

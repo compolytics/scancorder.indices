@@ -1,7 +1,5 @@
 test_that("test calculating available indices for a CICADA json sample",
           {
-            # What to expect, a list of NDVI
-            expected_table = list(c(0.202269581))
             # Load the XML file with the NDVI index definition
             json_path <- testthat::test_path(
               "data/20250121_003131_Agave_B8861_S4343_018d5378-9186-4336-8511-1d5b14a15144_R0001.json"

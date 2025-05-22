@@ -31,6 +31,8 @@ calibReflectance <- calibrator$score(data$reflectance, json_input)
 
 # Step 3: Calculate Indices table from all available data
 # ------------------------------------------------------------------------------
+print(data)
+ndvi_value <- calculate_index(get_index_xml("NDVI"), data$wavelength, calibReflectance, data$fwhm)
 index_table <- calculate_indices_table(data$wavelength, calibReflectance, data$fwhm)
 table_file_path <- file.path(current_dir, "example", "data", "S0001_20250121_003131_018d5378-9186-4336-8511-1d5b14a15144_R0001.csv")
 write_indices_csv(index_table, table_file_path, row.names = FALSE)
