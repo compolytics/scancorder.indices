@@ -46,11 +46,6 @@ current_dir <- getwd()
 # Build file
 data_file_path <- file.path(current_dir, "example", "data", "2025-02-20_11-57-59_exampleDataFiles.json")
 
-# For spectral indices we use in this example the broadband sensor only
-# channel_mask <- matrix(0, nrow = 12, ncol = 10)
-# channel_mask[, 10] <- 1
-# channel_mask = channel_mas
-
 # Step 1: Load Json file and extract data
 # ------------------------------------------------------------------------------
 # Load the JSON file with the sensor reading
