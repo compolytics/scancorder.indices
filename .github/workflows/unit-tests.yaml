@@ -17,9 +17,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          R -e install.packages("devtools")
-          R -e devtools::install_deps(dependencies = TRUE)
+          R -e "install.packages("devtools")"
+          R -e "devtools::install_deps(dependencies = TRUE)"
 
       - name: Run tests
         run: |
-          R -e devtools::test()
+          R -e "devtools::test()"
