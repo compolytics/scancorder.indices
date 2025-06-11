@@ -45,7 +45,6 @@ jobs:
       - name: Install dependencies
         run: |
           R -e "install.packages(c('knitr','rmarkdown'), repos='https://cloud.r-project.org')"
-          R -e "install.packages(c('dplyr','ggplot2'))"
           
       # 4) Knit the README
       - name: Render README.Rmd → README.md
