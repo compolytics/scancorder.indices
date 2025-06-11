@@ -1,0 +1,14 @@
+{
+	"led_wl_nom": [415,445,480,515,555,590,630,680,910],
+	
+	"led_fwhm_nom": [26,30,36,39,39,40,50,52,100],
+	
+	"led_wl_real": [],
+	
+	"led_fwhm_real": [],
+	
+	"sensor_serial": 8861,
+	
+	"note": "Peak and Fwhm available from data sheet, sensor system actually based on filters, using peak and fwhm sensitivity"
+}
+ 
