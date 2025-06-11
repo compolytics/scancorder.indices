@@ -47,8 +47,8 @@ jobs:
       - name: Install dependencies
         run: |
           R -e "install.packages(c('knitr','rmarkdown'), repos='https://cloud.r-project.org')"
-          R -e "install.packages('scancorder.indices')"
-          R -e "scancorder.indices::install_deps(dependencies = TRUE)"
+          R -e "install.packages('pak')"
+          R -e "pak::pak('compolytics/scancorder.indices')"
           
       # 4) Knit the README
       - name: Render README.Rmd → README.md
