@@ -1,13 +1,18 @@
 # File: .github/workflows/render-readme.yml
 name: Render README.Rmd
 
-# 1) When to run
+# When to run
 on:
   push:
     # only when Rmd or workflow itself changes:
     paths:
       - README.Rmd
       - .github/workflows/render-readme.yml
+    branches: [main, master]
+ 
+  pull_request:
+    branches: [main, master]
+    
   workflow_dispatch:    # also allow manual runs from the Actions tab
 
 jobs:
@@ -39,10 +44,8 @@ jobs:
       # 3) Install some of the million pieces source from the cheapest supplier
       - name: Install dependencies
         run: |
-          R -e "install.packages('devtools')"
           R -e "install.packages(c('knitr','rmarkdown'), repos='https://cloud.r-project.org')"
           R -e "install.packages(c('dplyr','ggplot2'))"
-          R -e "devtools::install_deps(dependencies = TRUE)"
           
       # 4) Knit the README
       - name: Render README.Rmd → README.md
