@@ -11,48 +11,46 @@ on:
   workflow_dispatch:    # also allow manual runs from the Actions tab
 
 jobs:
-  render:
+  render-README:
     runs-on: ubuntu-latest
-
+    
     steps:
-      # 2) Check out your repo
-      - name: Checkout code
-        uses: actions/checkout@v3
+      # 1) Which actions to use
+      - uses: actions/checkout@v3
 
-      # 3) Setup R (and Pandoc)
-      - name: Setup R
-        uses: actions/download-artifact@v4
-        uses: actions/upload-artifact@v4
-        uses: r-lib/actions/setup-r@v3
-        with:
-          r-version: '4.5'   # pick the major.minor you need
+      - uses: r-lib/actions/setup-r@v2
 
-      - name: Setup Pandoc
-        uses: r-lib/actions/setup-pandoc@v3
-
-      # 4) Cache R package library (optional but speeds up runs)
-      - name: Cache R packages
-        uses: actions/cache@v3
-        with:
-          path: ${{ env.R_LIBS_USER }}
-          key: ${{ runner.os }}-r-${{ hashFiles('**/*.Rproj','**/*.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-r-
-
-      # 5) Install R dependencies
-      - name: Install R dependencies
+      # 2) Install system dependencies
+      - name: Install system dependencies
         run: |
-          Rscript -e 'install.packages(c("knitr","rmarkdown"), repos="https://cloud.r-project.org")'
-          # plus any other packages your README.Rmd needs:
-          # Rscript -e 'install.packages(c("dplyr","ggplot2"))'
+          sudo apt-get update
+          sudo apt-get install -y \
+            libcurl4-openssl-dev \
+            libssl-dev \
+            libxml2-dev \
+            libfontconfig1-dev \
+            libharfbuzz-dev \
+            libfribidi-dev \
+            libfreetype6-dev \
+            libpng-dev \
+            libtiff5-dev \
+            libjpeg-dev
 
-      # 6) Knit the README
+      # 3) Install some of the million pieces source from the cheapest supplier
+      - name: Install dependencies
+        run: |
+          R -e "install.packages('devtools')"
+          R -e "install.packages(c('knitr','rmarkdown'), repos='https://cloud.r-project.org')"
+          R -e "install.packages(c('dplyr','ggplot2'))"
+          R -e "devtools::install_deps(dependencies = TRUE)"
+          
+      # 4) Knit the README
       - name: Render README.Rmd → README.md
         run: |
-          Rscript -e 'rmarkdown::render("README.Rmd", output_format = "md_document",
-                                          output_options = list(variant = "markdown_github"))'
+          R -e "rmarkdown::render('README.Rmd', output_format='md_document',
+                                          output_options = list(variant = 'markdown_github'))"
 
-      # 7) Commit & push back if README.md changed
+      # 5) Commit & push back if README.md changed
       - name: Commit & Push changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
@@ -61,3 +59,4 @@ jobs:
           # optionally set a user/email:
           # author_name: github-actions
           # author_email: actions@github.com
+   
