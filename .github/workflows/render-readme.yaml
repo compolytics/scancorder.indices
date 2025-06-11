@@ -46,9 +46,9 @@ jobs:
       # 3) Install some of the million pieces source from the cheapest supplier
       - name: Install dependencies
         run: |
+          R -e "install.packages('devtools')"
           R -e "install.packages(c('knitr','rmarkdown'), repos='https://cloud.r-project.org')"
-          R -e "install.packages('pak')"
-          R -e "pak::pak('compolytics/scancorder.indices')"
+          R -e "devtools::install_deps(dependencies = TRUE)"
           
       # 4) Knit the README
       - name: Render README.Rmd → README.md
