@@ -4,11 +4,12 @@ name: Render README.Rmd
 # When to run
 on:
   push:
-    # only when Rmd or workflow itself changes:
+    # if changes occur on any branch for these files
+    branches:
+      - "**"
     paths:
-      - README.Rmd
-      - .github/workflows/render-readme.yml
-    branches: [main, master]
+      - "README.Rmd"
+      - ".github/workflows/render-readme.yml"
 
   pull_request:
     branches: [main, master]
@@ -67,5 +68,5 @@ jobs:
           git config --global user.name "GitHub Actions"
           git add README.md
           git commit -m "Re-render README" || echo "No changes to commit"
-          git push
+          git push origin HEAD:${GITHUB_REF#refs/heads/}
 
