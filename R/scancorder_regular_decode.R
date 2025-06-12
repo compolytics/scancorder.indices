@@ -192,6 +192,8 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
       flat_list <- list()
       for (entry in input_json) {
         if ("data" %in% names(entry)) {
+          # If 'data' is a list, we need to preserve the metadata
+          entry$data$meta <- entry$store$meta
           # If 'data' field exists, append all entries inside 'data'
           flat_list <- c(flat_list, entry$data)
         } else {
@@ -207,7 +209,7 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
 
       # Parse the JSON input (expects either a single object or a list of objects)
       input_json_struct <- fromJSON(transform_input, simplifyVector = FALSE)
-
+      # Ensure we do have a list
       input_json_struct <- self$ensure_list(input_json_struct)
 
       # Flatten the input JSON if it contains a 'data' field
