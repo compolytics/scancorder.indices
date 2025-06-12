@@ -12,7 +12,7 @@ using CICADA and subsequently calculate well known spectral indices.
 
 ### From Github Repository
 
-You can install the development version of scancorder.indices from
+You can install the development version of `scancorder.indices` from
 [GitHub](https://github.com/) with:
 
 ``` r
@@ -22,7 +22,7 @@ pak::pak("compolytics/scancorder.indices")
 
 ### From R Package Repository
 
-Install from CRAN:
+Install from CRAN package manager:
 
 ``` r
 install.packages("scancroder.indices")
