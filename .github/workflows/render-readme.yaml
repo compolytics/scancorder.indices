@@ -11,9 +11,6 @@ on:
       - "README.Rmd"
       - ".github/workflows/render-readme.yml"
 
-  pull_request:
-    branches: [main, master]
-
   workflow_dispatch:    # also allow manual runs from the Actions tab
 
 permissions:
