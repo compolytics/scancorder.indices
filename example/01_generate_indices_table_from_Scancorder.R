@@ -21,7 +21,6 @@ json_input <- readChar(data_file_path, nchars = file.info(data_file_path)$size)
 decoder <- DecodeCompolyticsRegularScanner$new(average_sensor_values = TRUE, channel_mask = channel_mask)
 # Decode the JSON input to get the reflectance values
 data <- decoder$score(json_input)
-print(data$reflectance)
 
 # Step 2: Run multi calibration for improved reflectance
 # ------------------------------------------------------------------------------
@@ -32,7 +31,7 @@ calibReflectance <- calibrator$score(data$reflectance, json_input)
 
 # Step 3: Calculate Indices table from all available data
 # ------------------------------------------------------------------------------
-index_table <- calculate_indices_table(data$wavelength, calibReflectance, data$fwhm)
+index_table <- calculate_indices_table(data$wavelength, calibReflectance, data$fwhm, data$meta_table)
 table_file_path <- file.path(current_dir, "example", "data", "2025-02-20_11-57-59_exampleDataFiles_Indices.csv")
 write_indices_csv(index_table, table_file_path, row.names = FALSE)
 

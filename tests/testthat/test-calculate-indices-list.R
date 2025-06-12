@@ -2,7 +2,7 @@ test_that("test calculating available indices for a CICADA json sample",
           {
             # Load the XML file with the NDVI index definition
             json_path <- testthat::test_path(
-              "data/20250121_003131_Agave_B8861_S4343_018d5378-9186-4336-8511-1d5b14a15144_R0001.json"
+              "data/2025-05-23_ColorChecker_B7696_S3956.json"
             )
 
             # Step 1: Load Json file and extract data
@@ -23,8 +23,8 @@ test_that("test calculating available indices for a CICADA json sample",
             # ------------------------------------------------------------------
             index_table <- calculate_indices_table(data$wavelength, calibReflectance, data$fwhm, data$meta_table)
             # In case we need to write the table
-            # write_indices_csv(index_table, "data/test-calculate-indices-avail_expectedTable.csv", row.names = FALSE)
-            expected_table <- read_indices_csv(testthat::test_path("data/test-calculate-indices-avail_expectedTable.csv"))
+            # write_indices_csv(index_table, "data/test-calculate-indices-list_expectedTable.csv", row.names = FALSE)
+            expected_table <- read_indices_csv(testthat::test_path("data/test-calculate-indices-list_expectedTable.csv"))
             # Check if the table values are as expected
             expect_equal(as.data.frame(index_table), as.data.frame(expected_table))
           })

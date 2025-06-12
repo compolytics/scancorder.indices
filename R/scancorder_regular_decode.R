@@ -192,16 +192,55 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
       flat_list <- list()
       for (entry in input_json) {
         if ("data" %in% names(entry)) {
-          # If 'data' is a list, we need to preserve the metadata
-          entry$data$meta <- entry$store$meta
-          # If 'data' field exists, append all entries inside 'data'
-          flat_list <- c(flat_list, entry$data)
+          # Extract metadata if available
+          info <- tryCatch(entry$store$meta$meta$info, error = function(e) NULL)
+          # delete field includeInFilename from info
+          if (!is.null(info) && "includeInFilename" %in% names(info)) {
+            info$includeInFilename <- NULL
+          }
+          filename <- tryCatch(entry$filename, error = function(e) NULL)
+          # Loop over each data element
+          for (d in entry$data) {
+            # Add metadata into the data entry
+            combined <- c(d, list(info = info, filename = filename))
+            # Add entry to flat list
+            flat_list <- c(flat_list, list(combined))
+          }
         } else {
           # Otherwise, append the entry itself
           flat_list <- c(flat_list, list(entry))
         }
       }
       return(flat_list)
+    },
+
+    add_row_by_kv = function(df, kv_list) {
+
+      all_cols <- union(names(df), names(kv_list))
+
+      # Ensure missing columns in df are added with the right number of NAs
+      for (col in setdiff(all_cols, names(df))) {
+        df[[col]] <- rep(NA, nrow(df))
+      }
+
+      # Ensure missing columns in kv_list are filled with NA
+      for (col in setdiff(all_cols, names(kv_list))) {
+        kv_list[[col]] <- NA
+      }
+
+      # Create new row and bind
+      new_row <- as.data.frame(kv_list, stringsAsFactors = FALSE)
+      df <- rbind(df[all_cols], new_row[all_cols])
+      rownames(df) <- NULL
+      return(df)
+    },
+
+    trim_list_names = function(x) {
+      if (is.list(x)) {
+        names(x) <- trimws(names(x))
+        x <- lapply(x, self$trim_list_names)
+      }
+      return(x)
     },
 
     # The main method: given a JSON string with sensor data, generate a reflectance vector.
@@ -211,17 +250,39 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
       input_json_struct <- fromJSON(transform_input, simplifyVector = FALSE)
       # Ensure we do have a list
       input_json_struct <- self$ensure_list(input_json_struct)
-
       # Flatten the input JSON if it contains a 'data' field
       input_json_struct <- self$flatten_sample_json(input_json_struct)
 
       transform_global_output <- list()
+      sample_meta_table <- data.frame()
       for (input_json in input_json_struct) {
 
         # Check if the input JSON contains the required "values" field.
         if (!("values" %in% names(input_json))) {
           stop("Regular Scanner input json needs to contain a 'values' key containing sensor data")
         }
+
+        # Extract metadata if available
+        kv_list <- list()
+        keys_to_check <- c("uuid")
+        if (self$nested_key_exists(input_json, keys_to_check)) {
+          kv_list$uuid <- input_json$uuid
+        }
+
+        keys_to_check <- c("filename")
+        if (self$nested_key_exists(input_json, keys_to_check)) {
+          kv_list$filename <- input_json$filename
+        }
+
+        keys_to_check <- c("info")
+        if (self$nested_key_exists(input_json, keys_to_check)) {
+          # Trim away any white spaces from names
+          info <- self$trim_list_names(input_json$info)
+          kv_list <- c(kv_list, info)
+        }
+
+        # Add key-value pairs to the metadata data frame
+        sample_meta_table <- self$add_row_by_kv(sample_meta_table, kv_list)
 
         # Convert the "values" field to a numeric matrix
         sensor_values <- self$convert_json_to_matrix(input_json$values)
@@ -358,7 +419,7 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
       }
 
       # Return the list of reflectance vectors (one per input structure), the center wavelengths and FHWM of LEDs
-      list(reflectance = transform_global_output, wavelength=led_wavelengths, fwhm=led_fwhm)
+      list(meta_table = sample_meta_table, reflectance = transform_global_output, wavelength=led_wavelengths, fwhm=led_fwhm)
     }
   )
 )
