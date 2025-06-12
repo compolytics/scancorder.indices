@@ -34,7 +34,7 @@ pak::pak("compolytics/scancorder.indices")
 
 ### From R Package Repository
 
-Install from CRAN:
+Install from CRAN package manager:
 
 ```r
 install.packages("scancroder.indices")
