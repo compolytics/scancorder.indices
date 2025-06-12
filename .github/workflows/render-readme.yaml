@@ -48,7 +48,7 @@ jobs:
         run: |
           R -e "install.packages('devtools')"
           R -e "install.packages(c('knitr','rmarkdown'), repos='https://cloud.r-project.org')"
-          R -e "devtools::install_deps(".", dependencies = TRUE)"
+          R -e "devtools::install_deps('.', dependencies = TRUE)"
           
       # 4) Knit the README
       - name: Render README.Rmd → README.md
