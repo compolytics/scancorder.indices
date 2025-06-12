@@ -24,7 +24,9 @@ test_that("test calculating available indices for a CICADA json sample",
             # Step 3: Calculate Indices table from all available data
             # ------------------------------------------------------------------
             index_table <- calculate_indices_table(data$wavelength, calibReflectance, data$fwhm)
-            write_indices_csv(index_table, "expectedTable.csv", row.names = FALSE)
+            # In case we need to write the table
+            # write_indices_csv(index_table, "expectedTable.csv", row.names = FALSE)
+            expected_table <- read_indices_csv(testthat::test_path("expectedTable.csv"))
             # Check if the table values are as expected
-            # expect_equal(expected_table, index_table)
+            expect_equal(as.data.frame(index_table), as.data.frame(expected_table))
           })
