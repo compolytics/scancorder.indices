@@ -1,0 +1,97 @@
+name: R-publish-to-GitLab-package-registry
+
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'  # Matches v1.0.0, v2.1.3, etc.
+
+jobs:
+  render-README:
+    runs-on: ubuntu-latest
+    container:
+      image: rocker/verse:latest
+
+    steps:
+      # 1) Which actions to use
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}  # 👈 Enables authenticated push
+
+      # 2) Install system dependencies
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libcurl4-openssl-dev \
+            libssl-dev \
+            libxml2-dev \
+            libfontconfig1-dev \
+            libharfbuzz-dev \
+            libfribidi-dev \
+            libfreetype6-dev \
+            libpng-dev \
+            libtiff5-dev \
+            libjpeg-dev
+
+      # 3) Install R dependencies
+      - name: Install dependencies
+        run: |
+          Rscript  -e "devtools::install_deps('.', dependencies = TRUE)"
+
+      # 4) Install R dependencies
+      - name: Install package
+        run: |
+          Rscript  -e "devtools::install('.', build_vignettes = FALSE)"
+
+      - name: Extract version from tag
+        id: version
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "tag=$GITHUB_REF_NAME" >> $GITHUB_OUTPUT
+
+      - name: Extract package name
+        id: package
+        run: |
+          PACKAGE_NAME=$(R -e "cat(desc::desc_get('Package'))" --slave)
+          echo "name=$PACKAGE_NAME" >> $GITHUB_OUTPUT
+
+      - name: Build R package
+        id: build
+        run: |
+          # Build source package (tar.gz)
+          Rscript -e "
+          built_path <- devtools::build(path = '.', dest_path = '.', binary = FALSE, manual = FALSE)
+          cat('package_file=', basename(built_path), sep='')
+          " > build_output.txt
+          
+          # Extract the filename from R output
+          PACKAGE_FILE=$(grep "package_file=" build_output.txt | cut -d'=' -f2)
+          echo "filename=$PACKAGE_FILE" >> $GITHUB_OUTPUT
+          
+          # Verify file exists
+          if [ ! -f "$PACKAGE_FILE" ]; then
+            echo "Error: Package file $PACKAGE_FILE not found"
+            exit 1
+          fi
+          
+          echo "Built package: $PACKAGE_FILE"
+          ls -la *.tar.gz
+
+      - name: Upload to GitLab Package Registry
+        env:
+          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+          GITLAB_PROJECT_ID: ${{ secrets.GITLAB_PROJECT_ID }}
+          GITLAB_URL: ${{ vars.GITLAB_URL || 'https://gitlab.com' }}
+        run: |
+          PACKAGE_FILE="${{ steps.build.outputs.filename }}"
+          PACKAGE_NAME="${{ steps.package.outputs.name }}"
+          VERSION="${{ steps.version.outputs.version }}"
+          
+          # Upload to GitLab Generic Package Registry
+          curl --fail --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
+               --upload-file "$PACKAGE_FILE" \
+               "$GITLAB_URL/api/v4/projects/$GITLAB_PROJECT_ID/packages/generic/$PACKAGE_NAME/$VERSION/$PACKAGE_FILE"
+          
+          echo "Successfully uploaded $PACKAGE_FILE to GitLab Package Registry"
+
