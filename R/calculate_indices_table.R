@@ -13,7 +13,7 @@
 #' @importFrom pkgload pkg_path
 #' @importFrom xml2 read_xml xml_find_first xml_text
 #' @export
-calculate_indices_table <- function(wavelengths, reflectance_list, fwhm) {
+calculate_indices_table <- function(wavelengths, reflectance_list, fwhm, meta_table) {
 
   # Locate the indices directory in the package source
   indices_dir <- system.file("extdata", "indices", package = "scancorder.indices")
@@ -50,5 +50,16 @@ calculate_indices_table <- function(wavelengths, reflectance_list, fwhm) {
     as.data.frame(results, check.names = FALSE),
     row.names = NULL
   )
-  df
+
+  # If meta_table is provided, bind it to the results
+  if (!missing(meta_table) && is.data.frame(meta_table)) {
+    if (nrow(meta_table) != nrow(df)) {
+      stop("meta_table must have the same number of rows as reflectance_list.")
+    }
+    df <- cbind(meta_table, df)
+  }
+  else
+  {
+    df <- df
+  }
 }
