@@ -16,6 +16,9 @@ on:
 
   workflow_dispatch:    # also allow manual runs from the Actions tab
 
+permissions:
+  contents: write
+
 jobs:
   render-README:
     runs-on: ubuntu-latest
