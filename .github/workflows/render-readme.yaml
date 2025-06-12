@@ -46,13 +46,18 @@ jobs:
         run: |
           Rscript  -e "devtools::install_deps('.', dependencies = TRUE)"
 
-      # 4) Knit the README
+      # 4) Install R dependencies
+      - name: Install package
+        run: |
+          Rscript  -e "devtools::install('.', build_vignettes = FALSE)"
+
+      # 5) Knit the README
       - name: Render README.Rmd → README.md
         run: |
           Rscript -e "rmarkdown::render('README.Rmd', output_format='md_document',
                                           output_options = list(variant = 'markdown_github'))"
 
-      # 5) Commit & push back if README.md changed
+      # 6) Commit & push back if README.md changed
       - name: Commit & Push changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
