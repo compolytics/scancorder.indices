@@ -9,7 +9,7 @@ on:
       - "**"
     paths:
       - "README.Rmd"
-      - ".github/workflows/render-readme.yml"
+      - ".github/workflows/render-readme.yaml"
 
   workflow_dispatch:    # also allow manual runs from the Actions tab
 
