@@ -20,9 +20,12 @@ You can install the development version of `scancorder.indices` from
 pak::pak("compolytics/scancorder.indices")
 ```
 
+For private repository, valid github colaborator credentials are
+required.
+
 ### From R Package Repository
 
-Install from CRAN package manager:
+Install from CRAN package manager (available soon):
 
 ``` r
 install.packages("scancorder.indices")
