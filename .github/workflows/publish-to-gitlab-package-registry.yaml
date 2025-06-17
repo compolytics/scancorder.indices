@@ -131,7 +131,7 @@ jobs:
         run: |
           # Build binary package
           Rscript -e "
-          built_path <- devtools::build(pkg = '.', path = '.', binary = TRUE, manual = FALSE)
+          built_path <- pkgbuild::build('.', dest_path = '.', binary = TRUE)
           cat('package_file=', basename(built_path), sep='')
           " > build_output.txt
           
@@ -146,7 +146,11 @@ jobs:
           fi
           
           echo "Built package: $PACKAGE_FILE"
-          ls -la *.tar.gz
+          if [ "${{ runner.os }}" == "Windows" ]; then
+            ls -la *.zip *.tar.gz 2>/dev/null || true
+          else
+            ls -la *.tar.gz *.tgz 2>/dev/null || true
+          fi
 
       # 14) Upload to GitLab Package Registry
       - name: Upload to GitLab Package Registry
