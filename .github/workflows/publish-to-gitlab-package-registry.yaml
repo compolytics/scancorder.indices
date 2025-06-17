@@ -7,18 +7,36 @@ on:
 
 jobs:
   publish-binary-to-GitLab:
-    runs-on: ubuntu-latest
-    container:
-      image: rocker/verse:latest
+    runs-on: ${{ matrix.config.os }}
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - {os: ubuntu-latest,   platform: linux,   r: 'release'}
+          - {os: windows-latest,  platform: windows, r: 'release'}
+          - {os: macos-latest,    platform: macos,   r: 'release'}
 
     steps:
-      # 1) Which actions to use
+      # 1) Checkout code
       - uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      # 2) Install system dependencies
-      - name: Install system dependencies
+      # 2) Setup R for each platform
+      - name: Setup R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: ${{ matrix.config.r }}
+          use-public-rspm: true
+
+      # 3) Setup Pandoc (needed for some packages)
+      - name: Setup Pandoc
+        uses: r-lib/actions/setup-pandoc@v2
+
+      # 4) Install system dependencies (Linux only)
+      - name: Install system dependencies (Linux)
+        if: runner.os == 'Linux'
         run: |
           sudo apt-get update
           sudo apt-get install -y \
@@ -33,43 +51,84 @@ jobs:
             libtiff5-dev \
             libjpeg-dev
 
-      # 3) Extract version from tag
+      # 5) Install system dependencies (macOS)
+      - name: Install system dependencies (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          # Install common dependencies via Homebrew if needed
+          # brew install libxml2 openssl curl
+          echo "macOS dependencies installed"
+
+      # 6) Install system dependencies (Windows)
+      - name: Install system dependencies (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          # Windows dependencies are usually handled by Rtools
+          echo "Windows dependencies handled by Rtools"
+
+      # 7) Extract version from tag
       - name: Extract version from tag and update DESCRIPTION
         id: version
+        shell: bash
         run: |
           VERSION=${GITHUB_REF#refs/tags/v}
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "tag=$GITHUB_REF_NAME" >> $GITHUB_OUTPUT
+          echo "Extracted version: $VERSION"
       
-      # 4) Generate DESCRIPTION from tag and template
+      # 8) Generate DESCRIPTION from tag and template
       - name: Generate DESCRIPTION from tag and template
+        shell: bash
         run: |
-          mv DESCRIPTION-template DESCRIPTION
+          if [ "${{ runner.os }}" == "Windows" ]; then
+            cp DESCRIPTION-template DESCRIPTION
+          else
+            mv DESCRIPTION-template DESCRIPTION
+          fi
           VERSION="${{ steps.version.outputs.version }}"
-          Rscript -e "desc::desc_set_version('$VERSION')"
+          Rscript -e "if (!requireNamespace('desc', quietly = TRUE)) install.packages('desc'); desc::desc_set_version('$VERSION')"
       
-      # 5) Install dependencies
-      - name: Install dependencies
+      # 9) Install R dependencies
+      - name: Install R dependencies
         run: |
-          Rscript  -e "devtools::install_deps('.', dependencies = TRUE)"
+          Rscript -e "install.packages(c('devtools', 'desc', 'pkgbuild'))"
+          Rscript -e "devtools::install_deps('.', dependencies = TRUE)"
 
-      # 6) Install package
+      # 10) Install package
       - name: Install package
         run: |
-          Rscript  -e "devtools::install('.', build_vignettes = FALSE)"
+          Rscript -e "devtools::install('.', build_vignettes = FALSE)"
 
-      # 7) Extract package name
+      # 11) Extract package name
       - name: Extract package name
         id: package
         run: |
-          PACKAGE_NAME=$(R -e "cat(desc::desc_get('Package'))" --slave)
-          echo "name=$PACKAGE_NAME" >> $GITHUB_OUTPUT
+          Rscript -e "cat('name=', desc::desc_get('Package'), sep='')" --slave >> $GITHUB_OUTPUT
 
-      # 8) Build R package
+      # 12) Get platform info
+      - name: Get platform info
+        id: platform
+        shell: bash
+        run: |
+          if [ "${{ runner.os }}" == "Linux" ]; then
+            PLATFORM_NAME="linux"
+            R_PLATFORM=$(Rscript -e "cat(R.version\$platform)" --slave)
+          elif [ "${{ runner.os }}" == "Windows" ]; then
+            PLATFORM_NAME="windows"
+            R_PLATFORM=$(Rscript -e "cat(R.version\$platform)" --slave)
+          elif [ "${{ runner.os }}" == "macOS" ]; then
+            PLATFORM_NAME="macos"
+            R_PLATFORM=$(Rscript -e "cat(R.version\$platform)" --slave)
+          fi
+          echo "name=$PLATFORM_NAME" >> $GITHUB_OUTPUT
+          echo "r_platform=$R_PLATFORM" >> $GITHUB_OUTPUT
+
+      # 13) Build R package
       - name: Build R package
         id: build
+        shell: bash
         run: |
-          # Build source package (tar.gz)
+          # Build binary package
           Rscript -e "
           built_path <- devtools::build(pkg = '.', path = '.', binary = TRUE, manual = FALSE)
           cat('package_file=', basename(built_path), sep='')
@@ -88,8 +147,9 @@ jobs:
           echo "Built package: $PACKAGE_FILE"
           ls -la *.tar.gz
 
-      # 9) Upload to GitLab Package Registry
+      # 14) Upload to GitLab Package Registry
       - name: Upload to GitLab Package Registry
+        shell: bash
         env:
           GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
           GITLAB_PROJECT_ID: ${{ secrets.GITLAB_PROJECT_ID }}
@@ -98,11 +158,12 @@ jobs:
           PACKAGE_FILE="${{ steps.build.outputs.filename }}"
           PACKAGE_NAME="${{ steps.package.outputs.name }}"
           VERSION="${{ steps.version.outputs.version }}"
+          PLATFORM="${{ steps.platform.outputs.name }}"
           
-          # Upload to GitLab Generic Package Registry
+          # Create platform-specific directory structure in GitLab
+          # Upload to GitLab Generic Package Registry with platform prefix
           curl --fail --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
                --upload-file "$PACKAGE_FILE" \
-               "$GITLAB_URL/api/v4/projects/$GITLAB_PROJECT_ID/packages/generic/$PACKAGE_NAME/$VERSION/$PACKAGE_FILE"
+               "$GITLAB_URL/api/v4/projects/$GITLAB_PROJECT_ID/packages/generic/$PACKAGE_NAME/$VERSION/$PLATFORM/$PACKAGE_FILE"
           
-          echo "Successfully uploaded $PACKAGE_FILE to GitLab Package Registry"
-
+          echo "Successfully uploaded $PACKAGE_FILE to GitLab Package Registry ($PLATFORM)"
