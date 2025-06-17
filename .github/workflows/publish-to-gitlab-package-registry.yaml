@@ -64,7 +64,7 @@ jobs:
           PACKAGE_NAME=$(R -e "cat(desc::desc_get('Package'))" --slave)
           echo "name=$PACKAGE_NAME" >> $GITHUB_OUTPUT
 
-      # 7) Install dependencies
+      # 7) Build R package
       - name: Build R package
         id: build
         run: |
@@ -87,7 +87,7 @@ jobs:
           echo "Built package: $PACKAGE_FILE"
           ls -la *.tar.gz
 
-      # 8) Install dependencies
+      # 8) Upload to GitLab Package Registry
       - name: Upload to GitLab Package Registry
         env:
           GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
