@@ -13,9 +13,9 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: ubuntu-latest,   platform: linux,   r: 'release'}
+          # - {os: ubuntu-latest,   platform: linux,   r: 'release'}
           - {os: windows-latest,  platform: windows, r: 'release'}
-          - {os: macos-latest,    platform: macos,   r: 'release'}
+          # - {os: macos-latest,    platform: macos,   r: 'release'}
 
     steps:
       # 1) Checkout code
@@ -63,6 +63,7 @@ jobs:
       - name: Install system dependencies (Windows)
         if: runner.os == 'Windows'
         run: |
+          Rscript -e "options(repos = c(CRAN = 'https://cloud.r-project.org/'))"
           # Windows dependencies are usually handled by Rtools
           echo "Windows dependencies handled by Rtools"
 
