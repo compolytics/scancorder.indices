@@ -87,7 +87,7 @@ jobs:
             mv DESCRIPTION-template DESCRIPTION
           fi
           VERSION="${{ steps.version.outputs.version }}"
-          Rscript -e "if (!requireNamespace('desc', quietly = TRUE)) install.packages('desc'); desc::desc_set_version('$VERSION')"
+          Rscript -e "install.packages('desc', repos = 'https://cloud.r-project.org/'); desc::desc_set_version('$VERSION')"
       
       # 9) Install R dependencies
       - name: Install R dependencies
