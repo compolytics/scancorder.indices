@@ -1,61 +1,72 @@
 # File: .github/workflows/render-readme.yml
 name: Render README.Rmd
 
-# 1) When to run
+# When to run
 on:
   push:
-    # only when Rmd or workflow itself changes:
+    # if changes occur on any branch for these files
+    branches:
+      - "**"
     paths:
-      - README.Rmd
-      - .github/workflows/render-readme.yml
+      - "README.Rmd"
+      - ".github/workflows/render-readme.yaml"
+
   workflow_dispatch:    # also allow manual runs from the Actions tab
 
+permissions:
+  contents: write
+
 jobs:
-  render:
+  render-README:
     runs-on: ubuntu-latest
+    container:
+      image: rocker/verse:latest
 
     steps:
-      # 2) Check out your repo
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      # 3) Setup R (and Pandoc)
-      - name: Setup R
-        uses: r-lib/actions/setup-r@v3
+      # 1) Which actions to use
+      - uses: actions/checkout@v4
         with:
-          r-version: '4.5'   # pick the major.minor you need
-          
-      - name: Setup Pandoc
-        uses: r-lib/actions/setup-pandoc@v3
+          token: ${{ secrets.GITHUB_TOKEN }}  # 👈 Enables authenticated push
 
-      # 4) Cache R package library (optional but speeds up runs)
-      - name: Cache R packages
-        uses: actions/cache@v3
-        with:
-          path: ${{ env.R_LIBS_USER }}
-          key: ${{ runner.os }}-r-${{ hashFiles('**/*.Rproj','**/*.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-r-
-
-      # 5) Install R dependencies
-      - name: Install R dependencies
+      # 2) Install system dependencies
+      - name: Install system dependencies
         run: |
-          Rscript -e 'install.packages(c("knitr","rmarkdown"), repos="https://cloud.r-project.org")'
-          # plus any other packages your README.Rmd needs:
-          # Rscript -e 'install.packages(c("dplyr","ggplot2"))'
+          sudo apt-get update
+          sudo apt-get install -y \
+            libcurl4-openssl-dev \
+            libssl-dev \
+            libxml2-dev \
+            libfontconfig1-dev \
+            libharfbuzz-dev \
+            libfribidi-dev \
+            libfreetype6-dev \
+            libpng-dev \
+            libtiff5-dev \
+            libjpeg-dev
 
-      # 6) Knit the README
+      # 3) Install R dependencies
+      - name: Install dependencies
+        run: |
+          Rscript  -e "devtools::install_deps('.', dependencies = TRUE)"
+
+      # 4) Install R dependencies
+      - name: Install package
+        run: |
+          Rscript  -e "devtools::install('.', build_vignettes = FALSE)"
+
+      # 5) Knit the README
       - name: Render README.Rmd → README.md
         run: |
-          Rscript -e 'rmarkdown::render("README.Rmd", output_format = "md_document", 
-                                          output_options = list(variant = "markdown_github"))'
+          Rscript -e "rmarkdown::render('README.Rmd', output_format='md_document',
+                                          output_options = list(variant = 'markdown_github'))"
 
-      # 7) Commit & push back if README.md changed
-      - name: Commit & Push changes
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: "ci: auto-render README.md from README.Rmd"
-          file_pattern: README.md
-          # optionally set a user/email:
-          # author_name: github-actions
-          # author_email: actions@github.com
+      # 6) Commit & push back if README.md changed
+      - name: Commit rendered README.md
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git add README.md
+          git commit -m "Re-render README" || echo "No changes to commit"
+          git push origin HEAD:${GITHUB_REF#refs/heads/}
+

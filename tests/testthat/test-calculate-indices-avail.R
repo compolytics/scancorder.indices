@@ -7,24 +7,24 @@ test_that("test calculating available indices for a CICADA json sample",
 
             # Step 1: Load Json file and extract data
             # ------------------------------------------------------------------
-            # Load the JSON file with the sensor reading
-            json_input <- paste(readLines(json_path), collapse = "\n")
             # Setup a decoder that will average the reflectance per LED across sensor channels
             decoder <- DecodeCompolyticsRegularScanner$new(average_sensor_values = TRUE)
             # Decode the JSON input to get the reflectance values
-            data <- decoder$score(json_input)
+            data <- decoder$score(json_path)
 
             # Step 2: Run multi calibration for improved reflectance
             # ------------------------------------------------------------------
             # Setup multi-calibration tool
             calibrator <- CalibrationReflectanceMultipoint$new()
             # Run multi-calibration with sensor provided factors
-            calibReflectance <- calibrator$score(data$reflectance, json_input)
+            calibReflectance <- calibrator$score(data$reflectance, json_path)
 
             # Step 3: Calculate Indices table from all available data
             # ------------------------------------------------------------------
-            index_table <- calculate_indices_table(data$wavelength, calibReflectance, data$fwhm)
-            write_indices_csv(index_table, "expectedTable.csv", row.names = FALSE)
+            index_table <- calculate_indices_table(data$wavelength, calibReflectance, data$fwhm, data$meta_table)
+            # In case we need to write the table
+            # write_indices_csv(index_table, "data/test-calculate-indices-avail_expectedTable.csv", row.names = FALSE)
+            expected_table <- read_indices_csv(testthat::test_path("data/test-calculate-indices-avail_expectedTable.csv"))
             # Check if the table values are as expected
-            # expect_equal(expected_table, index_table)
+            expect_equal(as.data.frame(index_table), as.data.frame(expected_table))
           })
