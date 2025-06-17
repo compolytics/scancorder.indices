@@ -17,6 +17,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      # 2) Install system dependencies
       - name: Install system dependencies
         run: |
           sudo apt-get update
@@ -32,17 +33,7 @@ jobs:
             libtiff5-dev \
             libjpeg-dev
 
-      # 2) Install dependencies
-      - name: Install dependencies
-        run: |
-          Rscript  -e "devtools::install_deps('.', dependencies = TRUE)"
-
-      # 3) Install package
-      - name: Install package
-        run: |
-          Rscript  -e "devtools::install('.', build_vignettes = FALSE)"
-
-      # 4) Extract version from tag
+      # 3) Extract version from tag
       - name: Extract version from tag and update DESCRIPTION
         id: version
         run: |
@@ -50,21 +41,31 @@ jobs:
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "tag=$GITHUB_REF_NAME" >> $GITHUB_OUTPUT
       
-      # 5) Generate DESCRIPTION from tag and template
+      # 4) Generate DESCRIPTION from tag and template
       - name: Generate DESCRIPTION from tag and template
         run: |
           mv DESCRIPTION-template DESCRIPTION
           VERSION="${{ steps.version.outputs.version }}"
           Rscript -e "desc::desc_set_version('$VERSION')"
+      
+      # 5) Install dependencies
+      - name: Install dependencies
+        run: |
+          Rscript  -e "devtools::install_deps('.', dependencies = TRUE)"
 
-      # 6) Install dependencies
+      # 6) Install package
+      - name: Install package
+        run: |
+          Rscript  -e "devtools::install('.', build_vignettes = FALSE)"
+
+      # 7) Extract package name
       - name: Extract package name
         id: package
         run: |
           PACKAGE_NAME=$(R -e "cat(desc::desc_get('Package'))" --slave)
           echo "name=$PACKAGE_NAME" >> $GITHUB_OUTPUT
 
-      # 7) Build R package
+      # 8) Build R package
       - name: Build R package
         id: build
         run: |
@@ -87,7 +88,7 @@ jobs:
           echo "Built package: $PACKAGE_FILE"
           ls -la *.tar.gz
 
-      # 8) Upload to GitLab Package Registry
+      # 9) Upload to GitLab Package Registry
       - name: Upload to GitLab Package Registry
         env:
           GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
