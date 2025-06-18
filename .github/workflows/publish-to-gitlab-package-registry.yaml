@@ -103,6 +103,7 @@ jobs:
       # 11) Extract package name
       - name: Extract package name
         id: package
+        shell: bash
         run: |
           PACKAGE_NAME=$(Rscript -e "cat(desc::desc_get('Package'))" --slave)
           echo "name=$PACKAGE_NAME" >> $GITHUB_OUTPUT
