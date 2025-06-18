@@ -136,18 +136,15 @@ jobs:
           VERSION="${{ steps.version.outputs.version }}"
 
           echo "PACKAGE_NAME=$PACKAGE_NAME"
-          
-          # Create local lib path
-          mkdir -p ./r-lib
-          R CMD INSTALL . --library=./r-lib
-
-          # Build binary
-          R CMD INSTALL --build ./r-lib/$PACKAGE_NAME
+    
+          R CMD INSTALL --build
 
           # Extract output file
-          PACKAGE_FILE=$(ls $PACKAGE_NAME*.*zip $PACKAGE_NAME*.*tgz 2>/dev/null | head -n 1)
+          PACKAGE_FILE=$(ls $PACKAGE_NAME*.*zip | head -n 1)
 
           echo "filename=$PACKAGE_FILE" >> $GITHUB_OUTPUT
+
+          echo "Built Package=$PACKAGE_FILE"
 
           if [ ! -f "$PACKAGE_FILE" ]; then
             echo "Error: Package file $PACKAGE_FILE not found"
