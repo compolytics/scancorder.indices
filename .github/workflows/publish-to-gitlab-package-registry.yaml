@@ -104,7 +104,8 @@ jobs:
       - name: Extract package name
         id: package
         run: |
-          Rscript -e "cat('name=', desc::desc_get('Package'), sep='')" --slave >> $GITHUB_OUTPUT
+          PACKAGE_NAME=$(Rscript -e "cat(desc::desc_get('Package'))" --slave)
+          echo "name=$PACKAGE_NAME" >> $GITHUB_OUTPUT
 
       # 12) Get platform info
       - name: Get platform info
