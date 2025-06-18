@@ -132,6 +132,8 @@ jobs:
           # Build binary package
           PACKAGE_NAME="${{ steps.package.outputs.name }}"
           VERSION="${{ steps.version.outputs.version }}"
+
+          echo "PACKAGE_NAME=$PACKAGE_NAME"
           
           # Create local lib path
           mkdir -p ./r-lib
