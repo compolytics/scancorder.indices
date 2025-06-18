@@ -188,7 +188,7 @@ jobs:
             fi
             
             echo "Built package: $PACKAGE_FILE"
-            ls -la *.tar.gz
+            ls -la $PACKAGE_FILE
           fi
 
       # 14) Upload to GitLab Package Registry
