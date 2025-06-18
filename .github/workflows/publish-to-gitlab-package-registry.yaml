@@ -13,7 +13,7 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          # - {os: ubuntu-latest,   platform: linux,   r: 'release'}
+          - {os: ubuntu-latest,   platform: linux,   r: 'release'}
           - {os: windows-latest,  platform: windows, r: 'release'}
           # - {os: macos-latest,    platform: macos,   r: 'release'}
 
@@ -136,27 +136,44 @@ jobs:
           VERSION="${{ steps.version.outputs.version }}"
 
           echo "PACKAGE_NAME=$PACKAGE_NAME"
-    
-          R CMD INSTALL --build .
 
-          # Extract output file
-          PACKAGE_FILE=$(ls $PACKAGE_NAME*.*zip | head -n 1)
+          if [ "${{ runner.os }}" == "Linux" ]; then
+            Rscript -e "
+            built_path <- devtools::build(pkg = '.', path = '.', binary = TRUE, manual = FALSE)
+            cat('package_file=', basename(built_path), sep='')
+            " > build_output.txt
+            
+            # Extract the filename from R output
+            PACKAGE_FILE=$(grep "package_file=" build_output.txt | cut -d'=' -f2)
+            echo "filename=$PACKAGE_FILE" >> $GITHUB_OUTPUT
+            
+            # Verify file exists
+            if [ ! -f "$PACKAGE_FILE" ]; then
+              echo "Error: Package file $PACKAGE_FILE not found"
+              exit 1
+            fi
+            
+            echo "Built package: $PACKAGE_FILE"
+            ls -la *.tar.gz
+          elif [ "${{ runner.os }}" == "Windows" ]; then
+            R CMD INSTALL --build .
+            # Extract output file
+            PACKAGE_FILE=$(ls $PACKAGE_NAME*.*zip | head -n 1)
 
-          echo "filename=$PACKAGE_FILE" >> $GITHUB_OUTPUT
+            echo "filename=$PACKAGE_FILE" >> $GITHUB_OUTPUT
 
-          echo "Built Package=$PACKAGE_FILE"
+            echo "Built Package=$PACKAGE_FILE"
 
-          if [ ! -f "$PACKAGE_FILE" ]; then
-            echo "Error: Package file $PACKAGE_FILE not found"
-            exit 1
-          fi
+            if [ ! -f "$PACKAGE_FILE" ]; then
+              echo "Error: Package file $PACKAGE_FILE not found"
+              exit 1
+            fi
 
-          echo "Built package: $PACKAGE_FILE"
-          ls -la $PACKAGE_FILE
-          if [ "${{ runner.os }}" == "Windows" ]; then
-            ls -la *.zip *.tar.gz 2>/dev/null || true
-          else
-            ls -la *.tar.gz *.tgz 2>/dev/null || true
+            echo "Built package: $PACKAGE_FILE"
+            ls -la $PACKAGE_FILE
+          elif [ "${{ runner.os }}" == "macOS" ]; then
+            PLATFORM_NAME="macos"
+            R_PLATFORM=$(Rscript -e "cat(R.version\$platform)" --slave)
           fi
 
       # 14) Upload to GitLab Package Registry
