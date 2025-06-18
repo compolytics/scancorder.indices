@@ -137,7 +137,7 @@ jobs:
 
           echo "PACKAGE_NAME=$PACKAGE_NAME"
     
-          R CMD INSTALL --build
+          R CMD INSTALL --build .
 
           # Extract output file
           PACKAGE_FILE=$(ls $PACKAGE_NAME*.*zip | head -n 1)
