@@ -13,9 +13,9 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: ubuntu-latest,   platform: linux,   r: 'release'}
-          - {os: windows-latest,  platform: windows, r: 'release'}
-          # - {os: macos-latest,    platform: macos,   r: 'release'}
+          # - {os: ubuntu-latest,   platform: linux,   r: 'release'}
+          # - {os: windows-latest,  platform: windows, r: 'release'}
+          - {os: macos-latest,    platform: macos,   r: 'release'}
 
     steps:
       # 1) Checkout code
@@ -56,7 +56,7 @@ jobs:
         if: runner.os == 'macOS'
         run: |
           # Install common dependencies via Homebrew if needed
-          # brew install libxml2 openssl curl
+          brew install libxml2 openssl curl
           echo "macOS dependencies installed"
 
       # 6) Install system dependencies (Windows)
@@ -172,8 +172,23 @@ jobs:
             echo "Built package: $PACKAGE_FILE"
             ls -la $PACKAGE_FILE
           elif [ "${{ runner.os }}" == "macOS" ]; then
-            PLATFORM_NAME="macos"
-            R_PLATFORM=$(Rscript -e "cat(R.version\$platform)" --slave)
+            Rscript -e "
+            built_path <- devtools::build(pkg = '.', path = '.', binary = TRUE, manual = FALSE)
+            cat('package_file=', basename(built_path), sep='')
+            " > build_output.txt
+            
+            # Extract the filename from R output
+            PACKAGE_FILE=$(grep "package_file=" build_output.txt | cut -d'=' -f2)
+            echo "filename=$PACKAGE_FILE" >> $GITHUB_OUTPUT
+            
+            # Verify file exists
+            if [ ! -f "$PACKAGE_FILE" ]; then
+              echo "Error: Package file $PACKAGE_FILE not found"
+              exit 1
+            fi
+            
+            echo "Built package: $PACKAGE_FILE"
+            ls -la *.tar.gz
           fi
 
       # 14) Upload to GitLab Package Registry
