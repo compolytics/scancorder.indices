@@ -15,16 +15,17 @@ using CICADA and subsequently calculate well known spectral indices.
 You can install compiled platform-specific version of
 `scancorder.indices` from
 [GitLab](https://gitlab.com/compolytics-public/scancorder.indices/-/packages/).
+
 Currently supported platforms are: Windows, Linux and MacOS
 
 ``` r
 # Define the direct URL to the package
-package_url <- "https://gitlab.com/api/v4/projects/70774833/packages/generic/scancorder.indices/**<version in X.X.X format>**/**<windows|linux|macos>**/scancorder.indices**<.zip|.tar.gz|.tgz>**"
+package_url <- "https://gitlab.com/api/v4/projects/70774833/packages/generic/scancorder.indices/<version in X.X.X format>/<windows|linux|macos>/scancorder.indices<.zip|.tar.gz|.tgz>"
 
 # Install the binary package
 install.packages(package_url,
                  repos=NULL,
-                 type = "**<win.binary|binary|mac.binary>**")
+                 type = "<win.binary|binary|mac.binary>")
 ```
 
 ### From Github Repository
