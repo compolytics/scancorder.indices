@@ -126,69 +126,92 @@ jobs:
           echo "name=$PLATFORM_NAME" >> $GITHUB_OUTPUT
           echo "r_platform=$R_PLATFORM" >> $GITHUB_OUTPUT
 
-      # 13) Build R package
-      - name: Build R package
+      # 13) Build R package and rename to desired format  
+      - name: Build R package and rename
         id: build
         shell: bash
         run: |
           # Build binary package
           PACKAGE_NAME="${{ steps.package.outputs.name }}"
           VERSION="${{ steps.version.outputs.version }}"
+          PLATFORM="${{ steps.platform.outputs.name }}"
 
           echo "PACKAGE_NAME=$PACKAGE_NAME"
+          echo "PLATFORM=$PLATFORM"
 
           if [ "${{ runner.os }}" == "Linux" ]; then
+            # Build binary package
             Rscript -e "
             built_path <- devtools::build(pkg = '.', path = '.', binary = TRUE, manual = FALSE)
-            cat('package_file=', basename(built_path), sep='')
+            cat('original_file=', basename(built_path), sep='')
             " > build_output.txt
             
-            # Extract the filename from R output
-            PACKAGE_FILE=$(grep "package_file=" build_output.txt | cut -d'=' -f2)
-            echo "filename=$PACKAGE_FILE" >> $GITHUB_OUTPUT
+            # Extract the original filename from R output
+            ORIGINAL_FILE=$(grep "original_file=" build_output.txt | cut -d'=' -f2)
+            
+            # Create simplified filename
+            SIMPLE_FILE="${PACKAGE_NAME}.tar.gz"
+            
+            # Rename the file
+            mv "$ORIGINAL_FILE" "$SIMPLE_FILE"
+            echo "filename=$SIMPLE_FILE" >> $GITHUB_OUTPUT
             
             # Verify file exists
-            if [ ! -f "$PACKAGE_FILE" ]; then
-              echo "Error: Package file $PACKAGE_FILE not found"
+            if [ ! -f "$SIMPLE_FILE" ]; then
+              echo "Error: Package file $SIMPLE_FILE not found"
               exit 1
             fi
             
-            echo "Built package: $PACKAGE_FILE"
+            echo "Built and renamed package: $SIMPLE_FILE"
             ls -la *.tar.gz
+            
           elif [ "${{ runner.os }}" == "Windows" ]; then
+            # Build binary package
             R CMD INSTALL --build .
-            # Extract output file
-            PACKAGE_FILE=$(ls $PACKAGE_NAME*.*zip | head -n 1)
+            
+            # Find the original built file
+            ORIGINAL_FILE=$(ls $PACKAGE_NAME*.zip | head -n 1)
+            
+            # Create simplified filename
+            SIMPLE_FILE="${PACKAGE_NAME}.zip"
+            
+            # Rename the file
+            mv "$ORIGINAL_FILE" "$SIMPLE_FILE"
+            echo "filename=$SIMPLE_FILE" >> $GITHUB_OUTPUT
 
-            echo "filename=$PACKAGE_FILE" >> $GITHUB_OUTPUT
-
-            echo "Built Package=$PACKAGE_FILE"
-
-            if [ ! -f "$PACKAGE_FILE" ]; then
-              echo "Error: Package file $PACKAGE_FILE not found"
+            if [ ! -f "$SIMPLE_FILE" ]; then
+              echo "Error: Package file $SIMPLE_FILE not found"
               exit 1
             fi
 
-            echo "Built package: $PACKAGE_FILE"
-            ls -la $PACKAGE_FILE
+            echo "Built and renamed package: $SIMPLE_FILE"
+            ls -la *.zip
+            
           elif [ "${{ runner.os }}" == "macOS" ]; then
+            # Build binary package
             Rscript -e "
             built_path <- devtools::build(pkg = '.', path = '.', binary = TRUE, manual = FALSE)
-            cat('package_file=', basename(built_path), sep='')
+            cat('original_file=', basename(built_path), sep='')
             " > build_output.txt
             
-            # Extract the filename from R output
-            PACKAGE_FILE=$(grep "package_file=" build_output.txt | cut -d'=' -f2)
-            echo "filename=$PACKAGE_FILE" >> $GITHUB_OUTPUT
+            # Extract the original filename from R output
+            ORIGINAL_FILE=$(grep "original_file=" build_output.txt | cut -d'=' -f2)
+            
+            # Create simplified filename with .tgz extension
+            SIMPLE_FILE="${PACKAGE_NAME}.tgz"
+            
+            # Rename the file
+            mv "$ORIGINAL_FILE" "$SIMPLE_FILE"
+            echo "filename=$SIMPLE_FILE" >> $GITHUB_OUTPUT
             
             # Verify file exists
-            if [ ! -f "$PACKAGE_FILE" ]; then
-              echo "Error: Package file $PACKAGE_FILE not found"
+            if [ ! -f "$SIMPLE_FILE" ]; then
+              echo "Error: Package file $SIMPLE_FILE not found"
               exit 1
             fi
             
-            echo "Built package: $PACKAGE_FILE"
-            ls -la $PACKAGE_FILE
+            echo "Built and renamed package: $SIMPLE_FILE"
+            ls -la $SIMPLE_FILE
           fi
 
       # 14) Upload to GitLab Package Registry
