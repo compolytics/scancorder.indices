@@ -137,11 +137,7 @@ jobs:
 
           echo "PACKAGE_NAME=$PACKAGE_NAME"
 
-          # Create platform-specific build directory and extract package
           if [ "${{ runner.os }}" == "Linux" ]; then
-            BUILD_DIR="build/Linux"
-            mkdir -p "$BUILD_DIR"
-            
             Rscript -e "
             built_path <- devtools::build(pkg = '.', path = '.', binary = TRUE, manual = FALSE)
             cat('package_file=', basename(built_path), sep='')
@@ -149,6 +145,7 @@ jobs:
             
             # Extract the filename from R output
             PACKAGE_FILE=$(grep "package_file=" build_output.txt | cut -d'=' -f2)
+            echo "filename=$PACKAGE_FILE" >> $GITHUB_OUTPUT
             
             # Verify file exists
             if [ ! -f "$PACKAGE_FILE" ]; then
@@ -156,44 +153,25 @@ jobs:
               exit 1
             fi
             
-            # Extract package contents to build directory
-            tar -xzf "$PACKAGE_FILE" -C "$BUILD_DIR"
-            
-            echo "filename=$PACKAGE_FILE" >> $GITHUB_OUTPUT
-            echo "builddir=$BUILD_DIR" >> $GITHUB_OUTPUT
-            
             echo "Built package: $PACKAGE_FILE"
-            echo "Extracted to: $BUILD_DIR"
-            ls -la "$BUILD_DIR"
-            
+            ls -la *.tar.gz
           elif [ "${{ runner.os }}" == "Windows" ]; then
-            BUILD_DIR="build/Windows"
-            mkdir -p "$BUILD_DIR"
-            
             R CMD INSTALL --build .
             # Extract output file
             PACKAGE_FILE=$(ls $PACKAGE_NAME*.*zip | head -n 1)
 
-            # Verify file exists
+            echo "filename=$PACKAGE_FILE" >> $GITHUB_OUTPUT
+
+            echo "Built Package=$PACKAGE_FILE"
+
             if [ ! -f "$PACKAGE_FILE" ]; then
               echo "Error: Package file $PACKAGE_FILE not found"
               exit 1
             fi
 
-            # Extract package contents to build directory
-            unzip -q "$PACKAGE_FILE" -d "$BUILD_DIR"
-            
-            echo "filename=$PACKAGE_FILE" >> $GITHUB_OUTPUT
-            echo "builddir=$BUILD_DIR" >> $GITHUB_OUTPUT
-
             echo "Built package: $PACKAGE_FILE"
-            echo "Extracted to: $BUILD_DIR"
-            ls -la "$BUILD_DIR"
-            
+            ls -la $PACKAGE_FILE
           elif [ "${{ runner.os }}" == "macOS" ]; then
-            BUILD_DIR="build/MacOS"
-            mkdir -p "$BUILD_DIR"
-            
             Rscript -e "
             built_path <- devtools::build(pkg = '.', path = '.', binary = TRUE, manual = FALSE)
             cat('package_file=', basename(built_path), sep='')
@@ -201,6 +179,7 @@ jobs:
             
             # Extract the filename from R output
             PACKAGE_FILE=$(grep "package_file=" build_output.txt | cut -d'=' -f2)
+            echo "filename=$PACKAGE_FILE" >> $GITHUB_OUTPUT
             
             # Verify file exists
             if [ ! -f "$PACKAGE_FILE" ]; then
@@ -208,18 +187,11 @@ jobs:
               exit 1
             fi
             
-            # Extract package contents to build directory
-            tar -xzf "$PACKAGE_FILE" -C "$BUILD_DIR"
-            
-            echo "filename=$PACKAGE_FILE" >> $GITHUB_OUTPUT
-            echo "builddir=$BUILD_DIR" >> $GITHUB_OUTPUT
-            
             echo "Built package: $PACKAGE_FILE"
-            echo "Extracted to: $BUILD_DIR"
-            ls -la "$BUILD_DIR"
+            ls -la $PACKAGE_FILE
           fi
 
-      # 14) Upload to GitLab Package Registry  
+      # 14) Upload to GitLab Package Registry
       - name: Upload to GitLab Package Registry
         shell: bash
         env:
@@ -227,46 +199,15 @@ jobs:
           GITLAB_PROJECT_ID: ${{ secrets.GITLAB_PROJECT_ID }}
           GITLAB_URL: ${{ vars.GITLAB_URL || 'https://gitlab.com' }}
         run: |
+          PACKAGE_FILE="${{ steps.build.outputs.filename }}"
           PACKAGE_NAME="${{ steps.package.outputs.name }}"
           VERSION="${{ steps.version.outputs.version }}"
           PLATFORM="${{ steps.platform.outputs.name }}"
-          BUILD_DIR="${{ steps.build.outputs.builddir }}"
           
-          echo "Uploading files from build directory: $BUILD_DIR"
-          echo "Platform: $PLATFORM"
+          # Create platform-specific directory structure in GitLab
+          # Upload to GitLab Generic Package Registry with platform prefix
+          curl --fail --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
+               --upload-file "$PACKAGE_FILE" \
+               "$GITLAB_URL/api/v4/projects/$GITLAB_PROJECT_ID/packages/generic/$PACKAGE_NAME/$VERSION/$PLATFORM/$PACKAGE_FILE"
           
-          # Upload all files preserving directory structure
-          find "$BUILD_DIR" -type f | while read -r file; do
-            # Get relative path from build directory
-            if [[ "$OSTYPE" == "darwin"* ]] || [[ "${{ runner.os }}" == "macOS" ]]; then
-              rel_path="${file#$BUILD_DIR/}"
-            else
-              if command -v realpath &> /dev/null && realpath --help 2>&1 | grep -q "\-\-relative-to"; then
-                rel_path=$(realpath --relative-to="$BUILD_DIR" "$file")
-              else
-                rel_path="${file#$BUILD_DIR/}"
-              fi
-            fi
-            
-            # URL encode the path for GitLab (replace spaces and special chars)
-            url_path=$(echo "$rel_path" | sed 's/ /%20/g' | sed 's/#/%23/g')
-            filename=$(basename "$file")
-            
-            echo "Uploading: $file to path: $url_path"
-            
-            # Create the nested URL structure
-            curl --fail --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
-                 --upload-file "$file" \
-                 "$GITLAB_URL/api/v4/projects/$GITLAB_PROJECT_ID/packages/generic/$PACKAGE_NAME/$VERSION/$PLATFORM/$url_path"
-          done
-          
-          echo "Successfully uploaded all files from $BUILD_DIR to GitLab Package Registry ($PLATFORM)"
-          
-          # Also upload the original package file
-          ORIGINAL_PACKAGE="${{ steps.build.outputs.filename }}"
-          if [ -f "$ORIGINAL_PACKAGE" ]; then
-            curl --fail --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
-                 --upload-file "$ORIGINAL_PACKAGE" \
-                 "$GITLAB_URL/api/v4/projects/$GITLAB_PROJECT_ID/packages/generic/$PACKAGE_NAME/$VERSION/$PLATFORM/$ORIGINAL_PACKAGE"
-            echo "Also uploaded original package: $ORIGINAL_PACKAGE"
-          fi
+          echo "Successfully uploaded $PACKAGE_FILE to GitLab Package Registry ($PLATFORM)"
