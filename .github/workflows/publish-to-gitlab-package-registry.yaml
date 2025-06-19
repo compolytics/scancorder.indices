@@ -219,7 +219,7 @@ jobs:
             ls -la "$BUILD_DIR"
           fi
 
-      # 14) Upload to GitLab Package Registry
+      # 14) Upload to GitLab Package Registry  
       - name: Upload to GitLab Package Registry
         shell: bash
         env:
@@ -235,22 +235,26 @@ jobs:
           echo "Uploading files from build directory: $BUILD_DIR"
           echo "Platform: $PLATFORM"
           
-          # Upload all files from the build directory
+          # Upload all files preserving directory structure
           find "$BUILD_DIR" -type f | while read -r file; do
-            # Get relative path from build directory (cross-platform approach)
-            if [[ "$OSTYPE" == "darwin"* ]]; then
-                # macOS approach
-                rel_path="${file#$BUILD_DIR/}"
+            # Get relative path from build directory
+            if [[ "$OSTYPE" == "darwin"* ]] || [[ "${{ runner.os }}" == "macOS" ]]; then
+              rel_path="${file#$BUILD_DIR/}"
             else
-                # Linux approach
+              if command -v realpath &> /dev/null && realpath --help 2>&1 | grep -q "\-\-relative-to"; then
                 rel_path=$(realpath --relative-to="$BUILD_DIR" "$file")
+              else
+                rel_path="${file#$BUILD_DIR/}"
+              fi
             fi
-            # Replace path separators for URL
-            url_path=$(echo "$rel_path" | sed 's|/|_|g')
+            
+            # URL encode the path for GitLab (replace spaces and special chars)
+            url_path=$(echo "$rel_path" | sed 's/ /%20/g' | sed 's/#/%23/g')
             filename=$(basename "$file")
             
-            echo "Uploading: $file as $url_path"
+            echo "Uploading: $file to path: $url_path"
             
+            # Create the nested URL structure
             curl --fail --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
                  --upload-file "$file" \
                  "$GITLAB_URL/api/v4/projects/$GITLAB_PROJECT_ID/packages/generic/$PACKAGE_NAME/$VERSION/$PLATFORM/$url_path"
@@ -258,7 +262,7 @@ jobs:
           
           echo "Successfully uploaded all files from $BUILD_DIR to GitLab Package Registry ($PLATFORM)"
           
-          # Also upload the original package file for compatibility
+          # Also upload the original package file
           ORIGINAL_PACKAGE="${{ steps.build.outputs.filename }}"
           if [ -f "$ORIGINAL_PACKAGE" ]; then
             curl --fail --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
