@@ -13,8 +13,8 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          # - {os: ubuntu-latest,   platform: linux,   r: 'release'}
-          # - {os: windows-latest,  platform: windows, r: 'release'}
+          - {os: ubuntu-latest,   platform: linux,   r: 'release'}
+          - {os: windows-latest,  platform: windows, r: 'release'}
           - {os: macos-latest,    platform: macos,   r: 'release'}
 
     steps:
