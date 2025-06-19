@@ -13,8 +13,8 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: ubuntu-latest,   platform: linux,   r: 'release'}
-          - {os: windows-latest,  platform: windows, r: 'release'}
+          # - {os: ubuntu-latest,   platform: linux,   r: 'release'}
+          # - {os: windows-latest,  platform: windows, r: 'release'}
           - {os: macos-latest,    platform: macos,   r: 'release'}
 
     steps:
@@ -237,8 +237,14 @@ jobs:
           
           # Upload all files from the build directory
           find "$BUILD_DIR" -type f | while read -r file; do
-            # Get relative path from build directory
-            rel_path=$(realpath --relative-to="$BUILD_DIR" "$file")
+            # Get relative path from build directory (cross-platform approach)
+            if [[ "$OSTYPE" == "darwin"* ]]; then
+                # macOS approach
+                rel_path="${file#$BUILD_DIR/}"
+            else
+                # Linux approach
+                rel_path=$(realpath --relative-to="$BUILD_DIR" "$file")
+            fi
             # Replace path separators for URL
             url_path=$(echo "$rel_path" | sed 's|/|_|g')
             filename=$(basename "$file")
