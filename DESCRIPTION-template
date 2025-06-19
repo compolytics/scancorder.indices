@@ -1,6 +1,6 @@
 Package: scancorder.indices
 Title: Compolytics (C) Scancorder: Spectral Indices
-Version: 0.1.0.0
+Version: 1.0.0
 Authors@R: 
     person("Andreas", "Backhaus", , "andreas.backhaus@compolytics.com", role = c("aut", "cre"))
     person("Udo", "Seiffert", , "udo.seiffert@compolytics.com", role = c("aut", "cre"))
