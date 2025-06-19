@@ -36,5 +36,5 @@ table_file_path <- file.path(current_dir, "example", "data", "S0001_20250219_234
 write_indices_csv(index_table, table_file_path, row.names = FALSE)
 
 # ------------------------------------------------------------------------------
-# Then End
+# The End
 

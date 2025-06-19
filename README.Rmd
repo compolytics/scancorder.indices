@@ -18,49 +18,82 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-This package provides an implementation to decode sample files recorded using 
-CICADA and subsequent spectral indices calculation. 
+This package provides an implementation to decode sample files recorded
+using CICADA and subsequently calculate well known spectral indices. 
 
 ## Installation
 
 ### From Github Repository
 
-You can install the development version of scancorder.indices from [GitHub](https://github.com/) with:
+You can install the development version of `scancorder.indices` from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("pak")
 pak::pak("compolytics/scancorder.indices")
 ```
+For private repository, valid github colaborator credentials are required.
 
 ### From R Package Repository
 
-Install from CRAN:
+Install from CRAN package manager (available soon):
 
 ```r
-install.packages("scancroder.indices")
+install.packages("scancorder.indices")
 ```
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example to calculate a table of spectral indices from a 
+CICADA json data file holding Scancorder sensor data.
 
 ```{r example}
 library(scancorder.indices)
-## basic example code
+
+# First rule of programming: clean it
+rm(list = ls())
+# Step 0: What data file to process
+# ------------------------------------------------------------------------------
+# Get current directory
+current_dir <- getwd()
+# Build file
+data_file_path <- file.path(current_dir, "example", "data", "2025-02-20_11-57-59_exampleDataFiles.json")
+
+# Step 1: Load Json file and extract data
+# ------------------------------------------------------------------------------
+# Load the JSON file with the sensor reading
+json_input <- readChar(data_file_path, nchars = file.info(data_file_path)$size)
+# Setup a decoder that will average the reflectance per LED across sensor channels
+decoder <- DecodeCompolyticsRegularScanner$new(average_sensor_values = TRUE)
+# Decode the JSON input to get the reflectance values
+data <- decoder$score(json_input)
+
+# Step 2: Run multi calibration for improved reflectance
+# ------------------------------------------------------------------------------
+# Setup multi-calibration tool
+calibrator <- CalibrationReflectanceMultipoint$new()
+# Run multi-calibration with sensor provided factors
+calibReflectance <- calibrator$score(data$reflectance, json_input)
+
+# Step 3: Calculate Indices table from all available data
+# ------------------------------------------------------------------------------
+index_table <- calculate_indices_table(data$wavelength, calibReflectance, data$fwhm, data$meta_table)
+table_file_path <- file.path(current_dir, "example", "data", "2025-02-20_11-57-59_exampleDataFiles_Indices.csv")
+write_indices_csv(index_table, table_file_path, row.names = FALSE)
+
+# ------------------------------------------------------------------------------
+# The End
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+<div style="overflow-x:auto;">
 
-```{r cars}
-summary(cars)
+```{r print‐my‐table, echo=FALSE}
+first10 <- head(index_table, 10)
+# (1) Assume `my_table` already exists
+knitr::kable(
+  first10,
+  caption = "Spectral indices calculated from CICADA data.",
+  format  = "markdown"
+)
 ```
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this.
 
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.
