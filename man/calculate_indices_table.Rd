@@ -4,7 +4,7 @@
 \alias{calculate_indices_table}
 \title{Calculate all available spectral indices for a list of reflectance vectors}
 \usage{
-calculate_indices_table(wavelengths, reflectance_list, fwhm)
+calculate_indices_table(wavelengths, reflectance_list, fwhm, meta_table)
 }
 \arguments{
 \item{wavelengths}{Numeric vector of wavelengths (same length as each reflectance vector).}

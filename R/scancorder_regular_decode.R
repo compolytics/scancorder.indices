@@ -15,29 +15,32 @@ library(jsonlite)
 #' @section Methods:
 #' \describe{
 #'   \item{\code{new(average_sensor_values = FALSE, channel_mask = NULL)}}{Creates a new instance of the decoder.}
+#'   \item{\code{initialize(average_sensor_values = FALSE, channel_mask = NULL)}}{Initializes the decoder with optional averaging and channel mask.}
 #'   \item{\code{nested_key_exists(lst, keys)}}{Check if a nested key exists within a list.}
 #'   \item{\code{calculate_calibration(calibration_map)}}{Fit quadratic calibration model across multiple reference measurements.}
 #'   \item{\code{two_point_calibration(sensor_values, calibration_map)}}{Apply single-reference (two-point) calibration.}
 #'   \item{\code{multi_point_calibration(sensor_values, calibration_map)}}{Apply quadratic multipoint calibration from multiple reference measurements.}
+#'   \item{\code{convert_json_to_vector(json_data, type = as.numeric)}}{Convert a nested JSON structure to a numeric vector.}
 #'   \item{\code{convert_json_to_matrix(json_data, type = as.numeric)}}{Convert nested JSON arrays to a numeric matrix.}
-#'   \item{\code{score(transform_input)}}{Main method. Decodes a JSON string with sensor data and returns a reflectance vector.}
+#'   \item{\code{ensure_list(x)}}{Ensure the input is a list, wrapping it if necessary.}
+#'   \item{\code{flatten_sample_json(input_json)}}{Flatten a JSON structure containing sample data, extracting metadata if available.}
+#'   \item{\code{add_row_by_kv(df, kv_list)}}{Add a new row to a data frame using key-value pairs.}
+#'   \item{\code{trim_list_names(x)}}{Trim whitespace from names in a list.}
+#'   \item{\code{score(transform_input)}}{Main method. Decodes a JSON string or file with sensor data and returns a reflectance vector.}
 #' }
 #'
-#' @examples
-#' \dontrun{
-#' decoder <- DecodeCompolyticsRegularScanner$new(average_sensor_values = TRUE)
-#' json_input <- '{"values": [[100, 200], [300, 400]], "darkCurrent": [[10, 10], [10, 10]]}'
-#' output <- decoder$score(json_input)
-#' }
 #'
 #' @export
-#' @importFrom xml2 read_xml
 #' @importFrom jsonlite fromJSON
 DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
   public = list(
     average_sensor_values = FALSE,
     channel_mask = NULL,
 
+    # Constructor: initializes the decoder with optional averaging and channel mask
+    # @param average_sensor_values Logical. Whether to average sensor readings per LED's across sensor elements.
+    # @param channel_mask Matrix. A binary mask indicating which channels are valid. If provided it will overwrite potentially sensor supplied info.
+    # @return A new instance of the decoder.
     initialize = function(average_sensor_values = FALSE, channel_mask = NULL) {
       self$average_sensor_values <- average_sensor_values
       if (!is.null(channel_mask)) {
@@ -177,6 +180,7 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
       return(matrix_data)
     },
 
+    # Ensure the input is a list, wrapping it if necessary
     ensure_list = function(x) {
       # if it's not a list, or it's a named list (i.e. a JSON object),
       # then wrap it in a one-element list
@@ -188,6 +192,8 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
       }
     },
 
+    # Flatten a JSON structure containing multiple sample data,
+    # extracting metadata if available
     flatten_sample_json = function(input_json) {
       flat_list <- list()
       for (entry in input_json) {
@@ -214,6 +220,7 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
       return(flat_list)
     },
 
+    # Add a new row to a data frame using key-value pairs
     add_row_by_kv = function(df, kv_list) {
 
       all_cols <- union(names(df), names(kv_list))
@@ -235,6 +242,7 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
       return(df)
     },
 
+    # Trim white space from names in a list
     trim_list_names = function(x) {
       if (is.list(x)) {
         names(x) <- trimws(names(x))

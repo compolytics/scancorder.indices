@@ -2,7 +2,6 @@ library(R6)
 library(jsonlite)
 
 #' @export
-#' @importFrom xml2 read_xml
 #' @importFrom jsonlite fromJSON
 CalibrationReflectanceMultipoint <- R6Class(
   "CalibrationReflectanceMultipoint",
@@ -11,6 +10,7 @@ CalibrationReflectanceMultipoint <- R6Class(
 
     calibration_factors = NULL,
 
+    #' Initialize the CalibrationReflectanceMultipoint object.
     initialize = function(calibration_factors = NULL) {
 
       # If calibration_factors is provided, store it as an array.
@@ -20,6 +20,7 @@ CalibrationReflectanceMultipoint <- R6Class(
       }
     },
 
+    # Helper function to slice the last dimension of a 3D array
     slice_keep_first = function(x, k) {
       # 1) slice, keeping even singleton dims
       y <- x[,, k, drop = FALSE]
@@ -99,6 +100,7 @@ CalibrationReflectanceMultipoint <- R6Class(
       return(array_data)
     },
 
+    # Ensure input is a list, wrapping if necessary
     ensure_list = function(x) {
       # if it's not a list, or it's a named list (i.e. a JSON object),
       # then wrap it in a one-element list
@@ -110,6 +112,7 @@ CalibrationReflectanceMultipoint <- R6Class(
       }
     },
 
+    # Flatten JSON input, extracting 'data' field if it exists
     flatten_sample_json = function(input_json) {
       flat_list <- list()
       for (entry in input_json) {
@@ -124,9 +127,7 @@ CalibrationReflectanceMultipoint <- R6Class(
       return(flat_list)
     },
 
-    # The score method expects two inputs:
-    #   1. A reflectance input (matrix or array)
-    #   2. A JSON string representing the sensor configuration.
+    # Perform multi-point calibration on reflectance data.
     score = function(reflectance, json_input) {
 
       # First input: reflectance data (as matrix).

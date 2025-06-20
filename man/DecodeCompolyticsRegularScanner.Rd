@@ -15,12 +15,18 @@ It supports JSON input, various calibration modes (two-point and multipoint), an
 
 \describe{
 \item{\code{new(average_sensor_values = FALSE, channel_mask = NULL)}}{Creates a new instance of the decoder.}
+\item{\code{initialize(average_sensor_values = FALSE, channel_mask = NULL)}}{Initializes the decoder with optional averaging and channel mask.}
 \item{\code{nested_key_exists(lst, keys)}}{Check if a nested key exists within a list.}
 \item{\code{calculate_calibration(calibration_map)}}{Fit quadratic calibration model across multiple reference measurements.}
 \item{\code{two_point_calibration(sensor_values, calibration_map)}}{Apply single-reference (two-point) calibration.}
 \item{\code{multi_point_calibration(sensor_values, calibration_map)}}{Apply quadratic multipoint calibration from multiple reference measurements.}
+\item{\code{convert_json_to_vector(json_data, type = as.numeric)}}{Convert a nested JSON structure to a numeric vector.}
 \item{\code{convert_json_to_matrix(json_data, type = as.numeric)}}{Convert nested JSON arrays to a numeric matrix.}
-\item{\code{score(transform_input)}}{Main method. Decodes a JSON string with sensor data and returns a reflectance vector.}
+\item{\code{ensure_list(x)}}{Ensure the input is a list, wrapping it if necessary.}
+\item{\code{flatten_sample_json(input_json)}}{Flatten a JSON structure containing sample data, extracting metadata if available.}
+\item{\code{add_row_by_kv(df, kv_list)}}{Add a new row to a data frame using key-value pairs.}
+\item{\code{trim_list_names(x)}}{Trim whitespace from names in a list.}
+\item{\code{score(transform_input)}}{Main method. Decodes a JSON string or file with sensor data and returns a reflectance vector.}
 }
 }
 
@@ -53,6 +59,8 @@ output <- decoder$score(json_input)
 \item \href{#method-DecodeCompolyticsRegularScanner-convert_json_to_matrix}{\code{DecodeCompolyticsRegularScanner$convert_json_to_matrix()}}
 \item \href{#method-DecodeCompolyticsRegularScanner-ensure_list}{\code{DecodeCompolyticsRegularScanner$ensure_list()}}
 \item \href{#method-DecodeCompolyticsRegularScanner-flatten_sample_json}{\code{DecodeCompolyticsRegularScanner$flatten_sample_json()}}
+\item \href{#method-DecodeCompolyticsRegularScanner-add_row_by_kv}{\code{DecodeCompolyticsRegularScanner$add_row_by_kv()}}
+\item \href{#method-DecodeCompolyticsRegularScanner-trim_list_names}{\code{DecodeCompolyticsRegularScanner$trim_list_names()}}
 \item \href{#method-DecodeCompolyticsRegularScanner-score}{\code{DecodeCompolyticsRegularScanner$score()}}
 \item \href{#method-DecodeCompolyticsRegularScanner-clone}{\code{DecodeCompolyticsRegularScanner$clone()}}
 }
@@ -150,6 +158,24 @@ output <- decoder$score(json_input)
 \subsection{Method \code{flatten_sample_json()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DecodeCompolyticsRegularScanner$flatten_sample_json(input_json)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-DecodeCompolyticsRegularScanner-add_row_by_kv"></a>}}
+\if{latex}{\out{\hypertarget{method-DecodeCompolyticsRegularScanner-add_row_by_kv}{}}}
+\subsection{Method \code{add_row_by_kv()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{DecodeCompolyticsRegularScanner$add_row_by_kv(df, kv_list)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-DecodeCompolyticsRegularScanner-trim_list_names"></a>}}
+\if{latex}{\out{\hypertarget{method-DecodeCompolyticsRegularScanner-trim_list_names}{}}}
+\subsection{Method \code{trim_list_names()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{DecodeCompolyticsRegularScanner$trim_list_names(x)}\if{html}{\out{</div>}}
 }
 
 }

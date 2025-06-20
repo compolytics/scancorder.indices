@@ -7,8 +7,11 @@
 #' files <- list.files("indices", pattern = "\\.xml$", full.names = TRUE)
 #' get_index_names(files)
 #' #> [1] "NDVI" "NDWI"
+#' @export
+#' @importFrom pkgload pkg_path
+#' @importFrom xml2 read_xml xml_find_first xml_text
 get_index_names <- function() {
-  
+
   # Locate the indices directory in the package source
   pkg_root    <- pkgload::pkg_path()
   indices_dir <- file.path(pkg_root, "indices")
@@ -25,10 +28,10 @@ get_index_names <- function() {
   }
   if (!length(xml_files)) stop("No XML files supplied or found.")
 
-  # Read each file, pull the first <Name> element, strip whitespace
+  # Read each file, pull the first <Name> element, strip white space
   vapply(xml_files, function(f) {
-    doc <- xml2::read_xml(f)
-    name_node <- xml2::xml_find_first(doc, ".//Name")
-    trimws(xml2::xml_text(name_node))
+    doc <- read_xml(f)
+    name_node <- xml_find_first(doc, ".//Name")
+    trimws(xml_text(name_node))
   }, character(1L), USE.NAMES = FALSE)
 }
