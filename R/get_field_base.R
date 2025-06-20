@@ -1,4 +1,5 @@
 # base-R version
+
 # pluck_base(x, path) returns NULL if any step is missing
 pluck_base <- function(x, path) {
   for (nm in path) {
@@ -20,9 +21,3 @@ get_field_base <- function(master, slave, ..., .default = NULL) {
   # neither had a value → return default
   .default
 }
-
-# Example:
-# get_field_base(m, s, "a", "b")         # 1
-# get_field_base(m, s, "x")              # 5
-# get_field_base(m, s, "z")              # NULL
-# get_field_base(m, s, "z", .default=NA) # NA

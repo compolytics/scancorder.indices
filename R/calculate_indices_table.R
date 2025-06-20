@@ -31,8 +31,8 @@ calculate_indices_table <- function(wavelengths, reflectance_list, fwhm, meta_ta
 
   # Extract index names from each XML
   index_names <- vapply(xml_files, function(f) {
-    doc <- xml2::read_xml(f)
-    xml2::xml_text(xml2::xml_find_first(doc, "//Name"))
+    doc <- read_xml(f)
+    xml_text(xml_find_first(doc, "//Name"))
   }, character(1), USE.NAMES = FALSE)
 
   # For each XML, compute index values for all reflectance vectors

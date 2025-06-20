@@ -6,40 +6,14 @@
 \title{DecodeCompolyticsRegularScanner: Decodes Sensor data from Compolytics Regular ScanCorder}
 \format{
 \code{\link[R6]{R6Class}} object.
+
+Create a new instance of the decoder.
+
+This method initializes the decoder with optional parameters for averaging sensor values and a channel mask.
 }
 \description{
 An R6 class designed to decode and calibrate raw sensor data from Compolytics scanners.
 It supports JSON input, various calibration modes (two-point and multipoint), and optional sensor value masking and averaging.
-}
-\section{Methods}{
-
-\describe{
-\item{\code{new(average_sensor_values = FALSE, channel_mask = NULL)}}{Creates a new instance of the decoder.}
-\item{\code{nested_key_exists(lst, keys)}}{Check if a nested key exists within a list.}
-\item{\code{calculate_calibration(calibration_map)}}{Fit quadratic calibration model across multiple reference measurements.}
-\item{\code{two_point_calibration(sensor_values, calibration_map)}}{Apply single-reference (two-point) calibration.}
-\item{\code{multi_point_calibration(sensor_values, calibration_map)}}{Apply quadratic multipoint calibration from multiple reference measurements.}
-\item{\code{convert_json_to_matrix(json_data, type = as.numeric)}}{Convert nested JSON arrays to a numeric matrix.}
-\item{\code{score(transform_input)}}{Main method. Decodes a JSON string with sensor data and returns a reflectance vector.}
-}
-}
-
-\examples{
-\dontrun{
-decoder <- DecodeCompolyticsRegularScanner$new(average_sensor_values = TRUE)
-json_input <- '{"values": [[100, 200], [300, 400]], "darkCurrent": [[10, 10], [10, 10]]}'
-output <- decoder$score(json_input)
-}
-
-}
-\section{Public fields}{
-\if{html}{\out{<div class="r6-fields">}}
-\describe{
-\item{\code{average_sensor_values}}{Logical. Whether to average sensor readings per LED's across sensor elements.}
-
-\item{\code{channel_mask}}{Matrix. A binary mask indicating which channels are valid. If provided it will overwrite potentially sensor supplied info.}
-}
-\if{html}{\out{</div>}}
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -53,6 +27,8 @@ output <- decoder$score(json_input)
 \item \href{#method-DecodeCompolyticsRegularScanner-convert_json_to_matrix}{\code{DecodeCompolyticsRegularScanner$convert_json_to_matrix()}}
 \item \href{#method-DecodeCompolyticsRegularScanner-ensure_list}{\code{DecodeCompolyticsRegularScanner$ensure_list()}}
 \item \href{#method-DecodeCompolyticsRegularScanner-flatten_sample_json}{\code{DecodeCompolyticsRegularScanner$flatten_sample_json()}}
+\item \href{#method-DecodeCompolyticsRegularScanner-add_row_by_kv}{\code{DecodeCompolyticsRegularScanner$add_row_by_kv()}}
+\item \href{#method-DecodeCompolyticsRegularScanner-trim_list_names}{\code{DecodeCompolyticsRegularScanner$trim_list_names()}}
 \item \href{#method-DecodeCompolyticsRegularScanner-score}{\code{DecodeCompolyticsRegularScanner$score()}}
 \item \href{#method-DecodeCompolyticsRegularScanner-clone}{\code{DecodeCompolyticsRegularScanner$clone()}}
 }
@@ -68,6 +44,18 @@ output <- decoder$score(json_input)
 )}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{average_sensor_values}}{Logical. Whether to average sensor readings per LED's across sensor elements.}
+
+\item{\code{channel_mask}}{Matrix. A binary mask indicating which channels are valid. If provided it will overwrite potentially sensor supplied info.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+A new instance of DecodeCompolyticsRegularScanner.
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-DecodeCompolyticsRegularScanner-nested_key_exists"></a>}}
@@ -150,6 +138,24 @@ output <- decoder$score(json_input)
 \subsection{Method \code{flatten_sample_json()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DecodeCompolyticsRegularScanner$flatten_sample_json(input_json)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-DecodeCompolyticsRegularScanner-add_row_by_kv"></a>}}
+\if{latex}{\out{\hypertarget{method-DecodeCompolyticsRegularScanner-add_row_by_kv}{}}}
+\subsection{Method \code{add_row_by_kv()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{DecodeCompolyticsRegularScanner$add_row_by_kv(df, kv_list)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-DecodeCompolyticsRegularScanner-trim_list_names"></a>}}
+\if{latex}{\out{\hypertarget{method-DecodeCompolyticsRegularScanner-trim_list_names}{}}}
+\subsection{Method \code{trim_list_names()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{DecodeCompolyticsRegularScanner$trim_list_names(x)}\if{html}{\out{</div>}}
 }
 
 }

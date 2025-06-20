@@ -6,9 +6,10 @@
 #'
 #' @param index_name Character. Name of the index to find (e.g. "NDVI").
 #' @return Character. Full file path to the matching XML.
+#' @export
 #' @importFrom pkgload pkg_path
 #' @importFrom xml2 read_xml xml_find_first xml_text
-#' @export
+#'
 get_index_xml <- function(index_name) {
   # Locate the package source path
   indices_dir <- system.file("extdata", "indices", package = "scancorder.indices")
@@ -26,8 +27,8 @@ get_index_xml <- function(index_name) {
 
   # Extract <Name> from each XML to find matches
   index_names <- vapply(xml_files, function(f) {
-    doc <- xml2::read_xml(f)
-    nm  <- xml2::xml_text(xml2::xml_find_first(doc, "//Name"))
+    doc <- read_xml(f)
+    nm  <- xml_text(xml2::xml_find_first(doc, "//Name"))
     if (nzchar(nm)) nm else NA_character_
   }, character(1), USE.NAMES = FALSE)
 

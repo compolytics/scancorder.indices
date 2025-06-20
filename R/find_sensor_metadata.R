@@ -1,4 +1,3 @@
-# install.packages("jsonlite")
 library(jsonlite)
 
 #' Find sensor metadata by a 4-digit serial embedded in sensor_serial
@@ -7,6 +6,8 @@ library(jsonlite)
 #' @param directory Path to folder containing .json files.
 #'   Defaults to the "sensors" sub directory of the installed scancorder.indices package.
 #' @return Parsed JSON (as an R list) for the first file whose sensor_serial contains that 4-digit code, or NULL
+#'
+#' @importFrom jsonlite fromJSON
 find_sensor_metadata <- function(
     serial_name,
     directory = system.file("extdata", "sensors", package = "scancorder.indices")
@@ -37,7 +38,7 @@ find_sensor_metadata <- function(
     if (is.null(obj)) next
 
     if (!is.null(obj[["sensor_serial"]])) {
-      txt     <- paste(unlist(obj[["sensor_serial"]]), collapse = " ")
+      txt <- paste(unlist(obj[["sensor_serial"]]), collapse = " ")
       matches <- regmatches(txt, gregexpr("\\d{4}", txt))[[1]]
       if (serial_code %in% matches) {
         return(obj)
