@@ -6,38 +6,14 @@
 \title{DecodeCompolyticsRegularScanner: Decodes Sensor data from Compolytics Regular ScanCorder}
 \format{
 \code{\link[R6]{R6Class}} object.
+
+Create a new instance of the decoder.
+
+This method initializes the decoder with optional parameters for averaging sensor values and a channel mask.
 }
 \description{
 An R6 class designed to decode and calibrate raw sensor data from Compolytics scanners.
 It supports JSON input, various calibration modes (two-point and multipoint), and optional sensor value masking and averaging.
-}
-\section{Methods}{
-
-\describe{
-\item{\code{new(average_sensor_values = FALSE, channel_mask = NULL)}}{Creates a new instance of the decoder.}
-\item{\code{initialize(average_sensor_values = FALSE, channel_mask = NULL)}}{Initializes the decoder with optional averaging and channel mask.}
-\item{\code{nested_key_exists(lst, keys)}}{Check if a nested key exists within a list.}
-\item{\code{calculate_calibration(calibration_map)}}{Fit quadratic calibration model across multiple reference measurements.}
-\item{\code{two_point_calibration(sensor_values, calibration_map)}}{Apply single-reference (two-point) calibration.}
-\item{\code{multi_point_calibration(sensor_values, calibration_map)}}{Apply quadratic multipoint calibration from multiple reference measurements.}
-\item{\code{convert_json_to_vector(json_data, type = as.numeric)}}{Convert a nested JSON structure to a numeric vector.}
-\item{\code{convert_json_to_matrix(json_data, type = as.numeric)}}{Convert nested JSON arrays to a numeric matrix.}
-\item{\code{ensure_list(x)}}{Ensure the input is a list, wrapping it if necessary.}
-\item{\code{flatten_sample_json(input_json)}}{Flatten a JSON structure containing sample data, extracting metadata if available.}
-\item{\code{add_row_by_kv(df, kv_list)}}{Add a new row to a data frame using key-value pairs.}
-\item{\code{trim_list_names(x)}}{Trim whitespace from names in a list.}
-\item{\code{score(transform_input)}}{Main method. Decodes a JSON string or file with sensor data and returns a reflectance vector.}
-}
-}
-
-\section{Public fields}{
-\if{html}{\out{<div class="r6-fields">}}
-\describe{
-\item{\code{average_sensor_values}}{Logical. Whether to average sensor readings per LED's across sensor elements.}
-
-\item{\code{channel_mask}}{Matrix. A binary mask indicating which channels are valid. If provided it will overwrite potentially sensor supplied info.}
-}
-\if{html}{\out{</div>}}
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -68,6 +44,18 @@ It supports JSON input, various calibration modes (two-point and multipoint), an
 )}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{average_sensor_values}}{Logical. Whether to average sensor readings per LED's across sensor elements.}
+
+\item{\code{channel_mask}}{Matrix. A binary mask indicating which channels are valid. If provided it will overwrite potentially sensor supplied info.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+A new instance of DecodeCompolyticsRegularScanner.
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-DecodeCompolyticsRegularScanner-nested_key_exists"></a>}}
