@@ -6,7 +6,7 @@ library(jsonlite)
 #' @param directory Path to folder containing .json files.
 #'   Defaults to the "sensors" sub directory of the installed scancorder.indices package.
 #' @return Parsed JSON (as an R list) for the first file whose sensor_serial contains that 4-digit code, or NULL
-#' @export
+#'
 #' @importFrom jsonlite fromJSON
 find_sensor_metadata <- function(
     serial_name,

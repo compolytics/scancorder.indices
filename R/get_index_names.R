@@ -3,11 +3,7 @@
 #' @param xml_files  Character vector with paths to the XML files **or**
 #'                   a single directory that contains only index XMLs.
 #' @return           A character vector of index names.
-#' @examples
-#' files <- list.files("indices", pattern = "\\.xml$", full.names = TRUE)
-#' get_index_names(files)
-#' #> [1] "NDVI" "NDWI"
-#' @export
+#'
 #' @importFrom pkgload pkg_path
 #' @importFrom xml2 read_xml xml_find_first xml_text
 get_index_names <- function() {

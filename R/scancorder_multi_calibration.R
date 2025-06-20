@@ -1,17 +1,57 @@
 library(R6)
 library(jsonlite)
 
-#' @export
-#' @importFrom jsonlite fromJSON
+#' CalibrationReflectanceMultipoint R6 Class
 #'
-CalibrationReflectanceMultipoint <- R6Class(
-  "CalibrationReflectanceMultipoint",
+#' Performs multi-point reflectance calibration based on a 3D array of
+#' calibration factors, typically loaded from JSON data from CICADA sensor
+#' reading.
+#'
+#' @export
+#' @docType class
+#' @name CalibrationReflectanceMultipoint
+#' @section Methods:
+#' \describe{
+#'   \item{\code{initialize(calibration_factors = NULL)}}{
+#'     Initialize the object with optional calibration factors (3D array).
+#'   }
+#'   \item{\code{multi_point_calibration(sensor_values)}}{
+#'     Apply the calibration formula using quadratic coefficients.
+#'   }
+#'   \item{\code{slice_keep_first(x, k)}}{
+#'     Helper function to extract the k-th slice from a 3D array while preserving dimensions.
+#'   }
+#'   \item{\code{nested_key_exists(dictionary, keys)}}{
+#'     Check whether a nested sequence of keys exists in a list.
+#'   }
+#'   \item{\code{convert_json_to_matrix(json_data, type = as.numeric)}}{
+#'     Convert a nested JSON list to a numeric matrix.
+#'   }
+#'   \item{\code{convert_json_to_3d_array(json_data, type = as.numeric)}}{
+#'     Convert nested JSON structures to a 3D numeric array.
+#'   }
+#'   \item{\code{ensure_list(x)}}{
+#'     Ensure the input is an unnamed list (wraps if necessary).
+#'   }
+#'   \item{\code{flatten_sample_json(input_json)}}{
+#'     Flatten JSON input by extracting "data" fields if present.
+#'   }
+#'   \item{\code{score(reflectance, json_input)}}{
+#'     Perform full calibration pipeline:
+#'     flatten JSON input, extract calibration, apply multi-point transformation,
+#'     and return the calibrated reflectance as a list.
+#'   }
+#' }
+#'
+#' @importFrom jsonlite fromJSON
+#' @importFrom R6 R6Class
+CalibrationReflectanceMultipoint <- R6Class("CalibrationReflectanceMultipoint",
 
   public = list(
 
     calibration_factors = NULL,
 
-    #' Initialize the CalibrationReflectanceMultipoint object.
+    # Initialize the CalibrationReflectanceMultipoint object.
     initialize = function(calibration_factors = NULL) {
 
       # If calibration_factors is provided, store it as an array.

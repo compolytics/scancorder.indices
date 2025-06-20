@@ -6,6 +6,7 @@ library(jsonlite)
 #' An R6 class designed to decode and calibrate raw sensor data from Compolytics scanners.
 #' It supports JSON input, various calibration modes (two-point and multipoint), and optional sensor value masking and averaging.
 #'
+#' @export
 #' @docType class
 #' @format \code{\link[R6]{R6Class}} object.
 #'
@@ -30,17 +31,12 @@ library(jsonlite)
 #' }
 #'
 #'
-#' @export
 #' @importFrom jsonlite fromJSON
 DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
   public = list(
     average_sensor_values = FALSE,
     channel_mask = NULL,
 
-    # Constructor: initializes the decoder with optional averaging and channel mask
-    # @param average_sensor_values Logical. Whether to average sensor readings per LED's across sensor elements.
-    # @param channel_mask Matrix. A binary mask indicating which channels are valid. If provided it will overwrite potentially sensor supplied info.
-    # @return A new instance of the decoder.
     initialize = function(average_sensor_values = FALSE, channel_mask = NULL) {
       self$average_sensor_values <- average_sensor_values
       if (!is.null(channel_mask)) {
@@ -48,7 +44,6 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
       }
     },
 
-    # Check if a nested key exists in a list
     nested_key_exists = function(lst, keys) {
       current <- lst
       for (k in keys) {
@@ -61,7 +56,6 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
       return(TRUE)
     },
 
-    # Calculate calibration coefficients using a quadratic model
     calculate_calibration = function(calibration_map) {
       ref_keys <- names(calibration_map)
       num_ref <- length(ref_keys)

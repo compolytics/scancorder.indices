@@ -17,8 +17,3 @@ a single directory that contains only index XMLs.}
 \description{
 Extract the \if{html}{\out{<Name>}} element from one or more spectral-index XML files
 }
-\examples{
-files <- list.files("indices", pattern = "\\\\.xml$", full.names = TRUE)
-get_index_names(files)
-#> [1] "NDVI" "NDWI"
-}

@@ -8,7 +8,6 @@ library(xml2)
 #' @param values Named list of variable identifiers and their numeric values.
 #' @return Numeric value resulting from the evaluation of the MathML expression.
 #'
-#' @export
 #' @importFrom xml2 xml_children xml_name xml_text
 evaluate_mathml <- function(node, values) {
 
