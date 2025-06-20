@@ -7,6 +7,14 @@ This function expects an XML node and a named list 'values' with numeric values.
 \usage{
 evaluate_mathml(node, values)
 }
+\arguments{
+\item{node}{XML node representing a MathML element.}
+
+\item{values}{Named list of variable identifiers and their numeric values.}
+}
+\value{
+Numeric value resulting from the evaluation of the MathML expression.
+}
 \description{
 Recursive function to evaluate MathML expressions.
 This function expects an XML node and a named list 'values' with numeric values.

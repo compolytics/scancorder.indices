@@ -3,6 +3,7 @@ library(jsonlite)
 
 #' @export
 #' @importFrom jsonlite fromJSON
+#'
 CalibrationReflectanceMultipoint <- R6Class(
   "CalibrationReflectanceMultipoint",
 

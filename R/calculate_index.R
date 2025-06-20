@@ -13,7 +13,7 @@ library(xml2)
 #' #' @return A list of computed index values for each reflectance vector.
 #'
 #' @export
-#' @importFrom xml2 xml_attr xml_text xml_name xml_find_first
+#' @importFrom xml2 xml_attr xml_text xml_name xml_find_first xml_find_all
 calculate_index <- function(xml_file, wavelengths, reflectance_list, fwhm = NULL) {
   # --- 1. Parse XML once ----------------------------------------------------
   doc           <- read_xml(xml_file)

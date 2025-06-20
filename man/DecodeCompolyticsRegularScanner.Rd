@@ -30,14 +30,6 @@ It supports JSON input, various calibration modes (two-point and multipoint), an
 }
 }
 
-\examples{
-\dontrun{
-decoder <- DecodeCompolyticsRegularScanner$new(average_sensor_values = TRUE)
-json_input <- '{"values": [[100, 200], [300, 400]], "darkCurrent": [[10, 10], [10, 10]]}'
-output <- decoder$score(json_input)
-}
-
-}
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
