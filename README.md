@@ -16,16 +16,49 @@ You can install compiled platform-specific version of
 `scancorder.indices` from
 [GitLab](https://gitlab.com/compolytics-public/scancorder.indices/-/packages/).
 
-Currently supported platforms are: Windows, Linux and MacOS
+#### Windows
 
 ``` r
+# Install dependencies of scancorder.indices
+install.packages(c("xml2", "R6", "jsonlite", "pkgload"))
+
 # Define the direct URL to the package
-package_url <- "https://gitlab.com/api/v4/projects/70774833/packages/generic/scancorder.indices/<version in X.X.X format>/<windows|linux|macos>/scancorder.indices<.zip|.tar.gz|.tgz>"
+package_url <- "https://gitlab.com/api/v4/projects/70774833/packages/generic/scancorder.indices/1.0.0/windows/scancorder.indices.zip"
 
 # Install the binary package
 install.packages(package_url,
                  repos=NULL,
-                 type = "<win.binary|binary|mac.binary>")
+                 type = "win.binary")
+```
+
+#### Linux
+
+``` r
+# Install dependencies of scancorder.indices
+install.packages(c("xml2", "R6", "jsonlite", "pkgload"))
+
+# Define the direct URL to the package
+package_url <- "https://gitlab.com/api/v4/projects/70774833/packages/generic/scancorder.indices/1.0.0/linux/scancorder.indices.tar.gz"
+
+# Install the binary package
+install.packages(package_url,
+                 repos=NULL,
+                 type = "binary")
+```
+
+#### MacOs
+
+``` r
+# Install dependencies of scancorder.indices
+install.packages(c("xml2", "R6", "jsonlite", "pkgload"))
+
+# Define the direct URL to the package
+package_url <- "https://gitlab.com/api/v4/projects/70774833/packages/generic/scancorder.indices/1.0.0/macos/scancorder.indices.tgz"
+
+# Install the binary package
+install.packages(package_url,
+                 repos=NULL,
+                 type = "mac.binary")
 ```
 
 ### From Github Repository
