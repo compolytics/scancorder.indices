@@ -23,7 +23,7 @@ You can install compiled platform-specific version of
 install.packages(c("xml2", "R6", "jsonlite", "pkgload"))
 
 # Define the direct URL to the package
-package_url <- "https://gitlab.com/api/v4/projects/70774833/packages/generic/scancorder.indices/1.1.0/windows/scancorder.indices.zip"
+package_url <- "https://gitlab.com/api/v4/projects/70774833/packages/generic/scancorder.indices/1.1.1/windows/scancorder.indices.zip"
 
 # Install the binary package
 install.packages(package_url,
@@ -38,7 +38,7 @@ install.packages(package_url,
 install.packages(c("xml2", "R6", "jsonlite", "pkgload"))
 
 # Define the direct URL to the package
-package_url <- "https://gitlab.com/api/v4/projects/70774833/packages/generic/scancorder.indices/1.1.0/linux/scancorder.indices.tar.gz"
+package_url <- "https://gitlab.com/api/v4/projects/70774833/packages/generic/scancorder.indices/1.1.1/linux/scancorder.indices.tar.gz"
 
 # Install the binary package
 install.packages(package_url,
@@ -53,7 +53,7 @@ install.packages(package_url,
 install.packages(c("xml2", "R6", "jsonlite", "pkgload"))
 
 # Define the direct URL to the package
-package_url <- "https://gitlab.com/api/v4/projects/70774833/packages/generic/scancorder.indices/1.1.0/macos/scancorder.indices.tgz"
+package_url <- "https://gitlab.com/api/v4/projects/70774833/packages/generic/scancorder.indices/1.1.1/macos/scancorder.indices.tgz"
 
 # Install the binary package
 install.packages(package_url,
