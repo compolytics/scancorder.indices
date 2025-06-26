@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>SR[555,675]</Name>
+    <Name>SR[675,555]</Name>
     <Wavelengths>
         <Band name="R555" min="555" max="555" unit="nm"/>
         <Band name="R675" min="675" max="675" unit="nm"/>
@@ -15,6 +15,6 @@
         </math>
     </MathML>
     <Metadata>
-        <Description>Simple Ratio 555/675 (SR[555,675])</Description>
+        <Description>Simple Ratio 675/555 (SR[675,555])</Description>
     </Metadata>
 </SpectralIndex>
