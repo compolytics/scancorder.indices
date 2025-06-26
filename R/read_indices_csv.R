@@ -7,6 +7,7 @@
 #' @param row.names Logical. Whether the CSV includes row names (default: FALSE).
 #' @return A data.frame containing the index values.
 #' @export
+#' @importFrom utils read.table
 read_indices_csv <- function(file, row.names = FALSE) {
   if (row.names) {
     df <- utils::read.table(file, sep = ";", dec = ".", header = TRUE, row.names = 1)

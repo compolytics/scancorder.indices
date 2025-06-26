@@ -30,6 +30,31 @@ jobs:
             libpng-dev \
             libtiff5-dev \
             libjpeg-dev
+      
+      - name: Extract version from tag and update DESCRIPTION
+        id: version
+        shell: bash
+        run: |
+          # the version is set to 0.0.0 if there is no tag
+          VERSION=${GITHUB_REF#refs/tags/v}
+          if [[ "$VERSION" == "$GITHUB_REF" || -z "$VERSION" ]]; then
+              VERSION="0.0.0"
+          fi
+
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "tag=$GITHUB_REF_NAME" >> $GITHUB_OUTPUT
+          echo "Extracted version: $VERSION"
+      
+      - name: Generate DESCRIPTION from tag and template
+        shell: bash
+        run: |
+          if [ "${{ runner.os }}" == "Windows" ]; then
+            cp DESCRIPTION-template DESCRIPTION
+          else
+            mv DESCRIPTION-template DESCRIPTION
+          fi
+          VERSION="${{ steps.version.outputs.version }}"
+          Rscript -e "install.packages('desc', repos = 'https://cloud.r-project.org/'); desc::desc_set_version('$VERSION')"
 
       - name: Install dependencies
         run: |

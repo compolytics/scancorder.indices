@@ -2,10 +2,17 @@
 % Please edit documentation in R/calculate_index.R
 \name{calculate_index}
 \alias{calculate_index}
-\title{Main function to calculate the spectral index based on an XML definition.}
+\title{Calculate the spectral index based on an XML definition.}
 \usage{
 calculate_index(xml_file, wavelengths, reflectance_list, fwhm = NULL)
 }
 \description{
-Main function to calculate the spectral index based on an XML definition.
+This function reads an XML file containing the index definition,
+extracts the band ranges and MathML expression,
+and computes the index for each reflectance vector.
+#' @param xml_file Path to the XML file defining the index.
+#' @param wavelengths Numeric vector of wavelengths corresponding to the reflectance data.
+#' @param reflectance_list List of numeric vectors, each representing reflectance values for a sample.
+#' @param fwhm Optional numeric vector of full width at half maximum (FWHM) values for each wavelength.
+#' @return A list of computed index values for each reflectance vector.
 }

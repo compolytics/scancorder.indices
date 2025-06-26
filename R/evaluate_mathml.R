@@ -3,7 +3,12 @@ library(xml2)
 
 #' Recursive function to evaluate MathML expressions.
 #' This function expects an XML node and a named list 'values' with numeric values.
-#' @export
+#'
+#' @param node XML node representing a MathML element.
+#' @param values Named list of variable identifiers and their numeric values.
+#' @return Numeric value resulting from the evaluation of the MathML expression.
+#'
+#' @importFrom xml2 xml_children xml_name xml_text
 evaluate_mathml <- function(node, values) {
 
   # If the node is a <math> element, evaluate its first child.
