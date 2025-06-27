@@ -26,9 +26,7 @@ install.packages(c("xml2", "R6", "jsonlite", "pkgload"))
 package_url <- "https://gitlab.com/api/v4/projects/70774833/packages/generic/scancorder.indices/1.1.1/windows/scancorder.indices.zip"
 
 # Install the binary package
-install.packages(package_url,
-                 repos=NULL,
-                 type = "win.binary")
+install.packages(package_url, repos=NULL, type = "win.binary")
 ```
 
 #### Linux
@@ -41,9 +39,7 @@ install.packages(c("xml2", "R6", "jsonlite", "pkgload"))
 package_url <- "https://gitlab.com/api/v4/projects/70774833/packages/generic/scancorder.indices/1.1.1/linux/scancorder.indices.tar.gz"
 
 # Install the binary package
-install.packages(package_url,
-                 repos=NULL,
-                 type = "binary")
+install.packages(package_url, repos=NULL, type = "binary")
 ```
 
 #### MacOs
@@ -56,9 +52,7 @@ install.packages(c("xml2", "R6", "jsonlite", "pkgload"))
 package_url <- "https://gitlab.com/api/v4/projects/70774833/packages/generic/scancorder.indices/1.1.1/macos/scancorder.indices.tgz"
 
 # Install the binary package
-install.packages(package_url,
-                 repos=NULL,
-                 type = "mac.binary")
+install.packages(package_url, repos=NULL, type = "mac.binary")
 
 ### From Github Repository
 
