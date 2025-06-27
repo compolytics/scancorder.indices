@@ -19,6 +19,9 @@ You can install compiled platform-specific version of
 #### Windows
 
 ``` r
+# (Optional) Set CRAN package server
+options(repos = c(CRAN = "https://cloud.r-project.org"))
+
 # Install dependencies of scancorder.indices
 install.packages(c("xml2", "R6", "jsonlite", "pkgload"))
 
@@ -32,6 +35,9 @@ install.packages(package_url, repos=NULL, type = "win.binary")
 #### Linux
 
 ``` r
+# (Optional) Set CRAN package server
+options(repos = c(CRAN = "https://cloud.r-project.org"))
+
 # Install dependencies of scancorder.indices
 install.packages(c("xml2", "R6", "jsonlite", "pkgload"))
 
@@ -45,6 +51,9 @@ install.packages(package_url, repos=NULL, type = "binary")
 #### MacOs
 
 ``` r
+# (Optional) Set CRAN package server
+options(repos = c(CRAN = "https://cloud.r-project.org"))
+
 # Install dependencies of scancorder.indices
 install.packages(c("xml2", "R6", "jsonlite", "pkgload"))
 
