@@ -135,7 +135,7 @@ calibReflectance <- calibrator$score(data$reflectance, sensor_file_path)
 # ------------------------------------------------------------------------------
 index_table <- calculate_indices_table(data$wavelength, calibReflectance, data$fwhm, data$meta_table)
 
-# Step 4: Save
+# Step 4: Save spectral indices in CSV file
 # ------------------------------------------------------------------------------
 # Generate an output file name based on the input file name
 # ------------------------------------------------------------------------------
