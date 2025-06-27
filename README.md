@@ -19,6 +19,9 @@ You can install compiled platform-specific version of
 #### Windows
 
 ``` r
+# (Optional) Set CRAN package server
+options(repos = c(CRAN = "https://cloud.r-project.org"))
+
 # Install dependencies of scancorder.indices
 install.packages(c("xml2", "R6", "jsonlite", "pkgload"))
 
@@ -32,6 +35,9 @@ install.packages(package_url, repos=NULL, type = "win.binary")
 #### Linux
 
 ``` r
+# (Optional) Set CRAN package server
+options(repos = c(CRAN = "https://cloud.r-project.org"))
+
 # Install dependencies of scancorder.indices
 install.packages(c("xml2", "R6", "jsonlite", "pkgload"))
 
@@ -45,6 +51,9 @@ install.packages(package_url, repos=NULL, type = "binary")
 #### MacOs
 
 ``` r
+# (Optional) Set CRAN package server
+options(repos = c(CRAN = "https://cloud.r-project.org"))
+
 # Install dependencies of scancorder.indices
 install.packages(c("xml2", "R6", "jsonlite", "pkgload"))
 
@@ -53,10 +62,12 @@ package_url <- "https://gitlab.com/api/v4/projects/70774833/packages/generic/sca
 
 # Install the binary package
 install.packages(package_url, repos=NULL, type = "mac.binary")
+```
 
 ### From Github Repository
 
-You can install the development version of `scancorder.indices` from [GitHub](https://github.com/) with:
+You can install the development version of `scancorder.indices` from
+[GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("pak")
@@ -86,30 +97,40 @@ library(scancorder.indices)
 rm(list = ls())
 # Step 0: What data file to process
 # ------------------------------------------------------------------------------
+# Please change this to the path and file name of your CICADA json data file.
+# ------------------------------------------------------------------------------
+# Change this name to the actual file you exported from the CICADA measurement app
+cicada_file_name = "2025-02-20_11-57-59_exampleDataFiles.json"
 # Get current directory
 current_dir <- getwd()
-# Build file
-data_file_path <- file.path(current_dir, "example", "data", "2025-02-20_11-57-59_exampleDataFiles.json")
+# Build full path + file name to the data file, changes this location to the
+# location of your actual file
+sensor_file_path <- file.path(current_dir, "example", "data", cicada_file_name)
 
 # Step 1: Load Json file and extract data
 # ------------------------------------------------------------------------------
-# Load the JSON file with the sensor reading
-json_input <- readChar(data_file_path, nchars = file.info(data_file_path)$size)
 # Setup a decoder that will average the reflectance per LED across sensor channels
 decoder <- DecodeCompolyticsRegularScanner$new(average_sensor_values = TRUE)
-# Decode the JSON input to get the reflectance values
-data <- decoder$score(json_input)
+# Decode the sensor data file reflectance values
+data <- decoder$score(sensor_file_path)
 
 # Step 2: Run multi calibration for improved reflectance
 # ------------------------------------------------------------------------------
 # Setup multi-calibration tool
 calibrator <- CalibrationReflectanceMultipoint$new()
 # Run multi-calibration with sensor provided factors
-calibReflectance <- calibrator$score(data$reflectance, json_input)
+calibReflectance <- calibrator$score(data$reflectance, sensor_file_path)
 
 # Step 3: Calculate Indices table from all available data
 # ------------------------------------------------------------------------------
 index_table <- calculate_indices_table(data$wavelength, calibReflectance, data$fwhm, data$meta_table)
+
+# Step 4: Save spectral indices in CSV file
+# ------------------------------------------------------------------------------
+# Generate an output file name based on the input file name
+# ------------------------------------------------------------------------------
+# Change this file and path to the location where you want to save the indices table
+# ------------------------------------------------------------------------------
 table_file_path <- file.path(current_dir, "example", "data", "2025-02-20_11-57-59_exampleDataFiles_Indices.csv")
 write_indices_csv(index_table, table_file_path, row.names = FALSE)
 
