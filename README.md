@@ -53,10 +53,12 @@ package_url <- "https://gitlab.com/api/v4/projects/70774833/packages/generic/sca
 
 # Install the binary package
 install.packages(package_url, repos=NULL, type = "mac.binary")
+```
 
 ### From Github Repository
 
-You can install the development version of `scancorder.indices` from [GitHub](https://github.com/) with:
+You can install the development version of `scancorder.indices` from
+[GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("pak")
