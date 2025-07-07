@@ -56,7 +56,6 @@ index_table <- calculate_indices_table(data$wavelength, calibReflectance, data$f
 # ------------------------------------------------------------------------------
 # Generate an output file name based on the input file name
 # Change this file and path to the location where you want to save the indices table
-#table_file_path <- file.path(current_dir, "2025-02-20_11-57-59_exampleDataFiles_Indices.csv")
 table_file_path <- paste0(
   tools::file_path_sans_ext(sensor_file_path),
   "_IndexTable.csv"
