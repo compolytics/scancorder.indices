@@ -8,17 +8,34 @@ rm(list = ls())
 # Please change this to the path and file name of your CICADA json data file.
 #
 # Change this name to the actual file you exported from the CICADA measurement app
-cicada_file_name = "2025-02-20_11-57-59_exampleDataFiles.json"
+cicada_file_name = "2025-07-01_Vegetation_Test_Data.json"
 # Get current directory, make sure the R working directory is the one with
 # the CICADA data file
 current_dir <- getwd()
 # We assume the data file is in the current directory
 sensor_file_path <- file.path(current_dir, cicada_file_name)
 
+# We setup the optimized channel selection mask for indices
+# ---------------------------------------------------------
+channel_mask <- matrix(c(
+  1,0,0,0,0,0,0,0,0,1,
+  0,1,0,0,0,0,0,0,0,0,
+  0,0,1,1,0,0,0,0,0,1,
+  0,0,0,0,1,0,0,0,0,1,
+  0,0,0,0,0,1,0,0,0,1,
+  0,0,0,0,0,0,1,0,0,1,
+  0,0,0,0,0,0,0,1,0,0,
+  0,0,0,0,0,0,0,0,0,1,
+  0,0,0,0,0,0,0,0,0,1,
+  0,0,0,0,0,0,0,0,0,1,
+  0,0,0,0,0,0,0,0,1,1,
+  0,0,0,0,0,0,0,0,1,1
+), nrow = 12, byrow = TRUE)
+
 # Step 1: Load Json file and extract data
 # ------------------------------------------------------------------------------
 # Setup a decoder that will average the reflectance per LED across sensor channels
-decoder <- DecodeCompolyticsRegularScanner$new(average_sensor_values = TRUE)
+decoder <- DecodeCompolyticsRegularScanner$new(average_sensor_values = TRUE, channel_mask=channel_mask)
 # Decode the sensor data file reflectance values
 data <- decoder$score(sensor_file_path)
 
@@ -39,7 +56,10 @@ index_table <- calculate_indices_table(data$wavelength, calibReflectance, data$f
 # ------------------------------------------------------------------------------
 # Generate an output file name based on the input file name
 # Change this file and path to the location where you want to save the indices table
-table_file_path <- file.path(current_dir, "2025-02-20_11-57-59_exampleDataFiles_Indices.csv")
+table_file_path <- paste0(
+  tools::file_path_sans_ext(sensor_file_path),
+  "_IndexTable.csv"
+)
 write_indices_csv(index_table, table_file_path, row.names = FALSE)
 
 # ------------------------------------------------------------------------------
