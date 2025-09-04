@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>Ctr5</Name>
+    <Wavelengths>
+        <Band name="R695" min="695" max="695" unit="nm"/>
+        <Band name="R670" min="670" max="670" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R695</ci>
+                <ci>R670</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio 695/670, Carter5 (Ctr5)</Description>
+    </Metadata>
+</SpectralIndex>

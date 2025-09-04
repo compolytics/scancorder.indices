@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>AI</Name>
+    <Wavelengths>
+        <Band name="R500" min="500" max="500" unit="nm"/>
+        <Band name="R599" min="599" max="599" unit="nm"/>
+        <Band name="R600" min="600" max="600" unit="nm"/>
+        <Band name="R699" min="699" max="699" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <minus/>
+                    <ci>R600</ci>
+                    <ci>R699</ci>
+                </apply>
+                <apply>
+                    <minus/>
+                    <ci>R500</ci>
+                    <ci>R599</ci>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Anthocyanin Index (AI)</Description>
+    </Metadata>
+</SpectralIndex>

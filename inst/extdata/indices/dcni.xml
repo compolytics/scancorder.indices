@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>DCNI</Name>
+    <Wavelengths>
+        <Band name="R670" min="670" max="670" unit="nm"/>
+        <Band name="R700" min="700" max="700" unit="nm"/>
+        <Band name="R720" min="720" max="720" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <minus/>
+                        <ci>R720</ci>
+                        <ci>R700</ci>
+                    </apply>
+                    <apply>
+                        <minus/>
+                        <ci>R700</ci>
+                        <ci>R670</ci>
+                    </apply>
+                </apply>
+                <apply>
+                    <plus/>
+                    <apply>
+                        <minus/>
+                        <ci>R720</ci>
+                        <ci>R670</ci>
+                    </apply>
+                    <cn>0.003</cn>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Double-peak canopy N index (DCNI)</Description>
+    </Metadata>
+</SpectralIndex>

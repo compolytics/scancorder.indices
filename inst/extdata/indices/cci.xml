@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>CCI</Name>
+    <Wavelengths>
+        <Band name="R531" min="531" max="531" unit="nm"/>
+        <Band name="R645" min="645" max="645" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <minus/>
+                    <ci>R531</ci>
+                    <ci>R645</ci>
+                </apply>
+                <apply>
+                    <plus/>
+                    <ci>R531</ci>
+                    <ci>R645</ci>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Chlorophyll/Carotenoid Index (CCI)</Description>
+    </Metadata>
+</SpectralIndex>

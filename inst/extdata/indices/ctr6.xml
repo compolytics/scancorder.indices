@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>Ctr6</Name>
+    <Wavelengths>
+        <Band name="R550" min="550" max="550" unit="nm"/>
+        <Band name="R420" min="420" max="420" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R550</ci>
+                <ci>R420</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio 550/420, Carter6 (Ctr6)</Description>
+    </Metadata>
+</SpectralIndex>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>Datt3</Name>
+    <Wavelengths>
+        <Band name="R754" min="754" max="754" unit="nm"/>
+        <Band name="R704" min="704" max="704" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R754</ci>
+                <ci>R704</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio 754/704 Datt3 (Datt3)</Description>
+    </Metadata>
+</SpectralIndex>
