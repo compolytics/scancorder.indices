@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>WBI4</Name>
+    <Wavelengths>
+        <Band name="R895" min="895" max="895" unit="nm"/>
+        <Band name="R992" min="992" max="992" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R895</ci>
+                <ci>R992</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio 895/972, Water band index 4 (WBI4)</Description>
+    </Metadata>
+</SpectralIndex>

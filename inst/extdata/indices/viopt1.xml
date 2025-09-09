@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>VIopt1</Name>
+    <Wavelengths>
+        <Band name="R760" min="760" max="760" unit="nm"/>
+        <Band name="R730" min="730" max="730" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R760</ci>
+                <ci>R730</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio Pigment Specific 1 (VIopt1)</Description>
+    </Metadata>
+</SpectralIndex>

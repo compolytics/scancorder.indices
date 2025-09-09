@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>WBI2</Name>
+    <Wavelengths>
+        <Band name="R970" min="970" max="970" unit="nm"/>
+        <Band name="R900" min="900" max="900" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R970</ci>
+                <ci>R900</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio, Zarco-Tejada & Miller (WBI2)</Description>
+    </Metadata>
+</SpectralIndex>
