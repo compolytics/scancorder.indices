@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>NDRE</Name>
+    <Wavelengths>
+        <Band name="R717" min="717" max="717" unit="nm"/>
+        <Band name="R840" min="840" max="840" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <minus/>
+                    <ci>R840</ci>
+                    <ci>R717</ci>
+                </apply>
+                <apply>
+                    <plus/>
+                    <ci>R840</ci>
+                    <ci>R717</ci>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Normalized Difference Red Edge Index (NDRE)</Description>
+    </Metadata>
+</SpectralIndex>

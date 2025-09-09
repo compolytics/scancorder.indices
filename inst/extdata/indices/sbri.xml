@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>SBRI</Name>
+    <Wavelengths>
+        <Band name="R570" min="570" max="570" unit="nm"/>
+        <Band name="R513" min="513" max="513" unit="nm"/>
+        <Band name="R704" min="704" max="704" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <plus/>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <minus/>
+                        <ci>R570</ci>
+                        <ci>R513</ci>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <ci>R570</ci>
+                        <ci>R513</ci>
+                    </apply>
+                </apply>
+                <apply>
+                    <times/>
+                    <cn>0.5</cn>
+                    <ci>R704</ci>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Sugar Beet Rust Index (SBRI)</Description>
+    </Metadata>
+</SpectralIndex>

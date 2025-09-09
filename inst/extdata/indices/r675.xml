@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>R675</Name>
+    <Wavelengths>
+        <Band name="R675" min="675" max="675" unit="nm"/>
+        <Band name="R700" min="700" max="700" unit="nm"/>
+        <Band name="R650" min="650" max="650" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R675</ci>
+                <apply>
+                    <times/>
+                    <ci>R700</ci>
+                    <ci>R650</ci>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Ratio 675/700/650 (R675)</Description>
+    </Metadata>
+</SpectralIndex>

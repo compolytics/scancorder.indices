@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>Lic1</Name>
+    <Name>SR[833,658]</Name>
     <Wavelengths>
-        <Band name="R690" min="690" max="690" unit="nm"/>
-        <Band name="R440" min="440" max="440" unit="nm"/>
+        <Band name="R833" min="833" max="833" unit="nm"/>
+        <Band name="R658" min="658" max="658" unit="nm"/>
     </Wavelengths>
     <MathML>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <divide/>
-                <ci>R690</ci>
-                <ci>R440</ci>
+                <ci>R833</ci>
+                <ci>R658</ci>
             </apply>
         </math>
     </MathML>
     <Metadata>
-        <Description>Simple Ratio 690/440, Lichtenthaler indices 1 (Lic1)</Description>
+        <Description>Simple Ratio 833/658 (SR[833,658])</Description>
     </Metadata>
 </SpectralIndex>

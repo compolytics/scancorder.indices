@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>PMI</Name>
+    <Wavelengths>
+        <Band name="R520" min="520" max="520" unit="nm"/>
+        <Band name="R584" min="584" max="584" unit="nm"/>
+        <Band name="R724" min="724" max="724" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <plus/>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <minus/>
+                        <ci>R520</ci>
+                        <ci>R584</ci>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <ci>R520</ci>
+                        <ci>R584</ci>
+                    </apply>
+                </apply>
+                <ci>R724</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Powdery Mildew Index (sugar beet) (PMI)</Description>
+    </Metadata>
+</SpectralIndex>

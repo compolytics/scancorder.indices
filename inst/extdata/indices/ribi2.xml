@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>RIBI2</Name>
+    <Wavelengths>
+        <Band name="R753" min="753" max="753" unit="nm"/>
+        <Band name="R665" min="665" max="665" unit="nm"/>
+        <Band name="R1102" min="1102" max="1102" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <minus/>
+                    <ci>R753</ci>
+                    <ci>R665</ci>
+                </apply>
+                <apply>
+                    <plus/>
+                    <ci>R665</ci>
+                    <ci>R1102</ci>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Rice blast index 2 (RIBI2)</Description>
+    </Metadata>
+</SpectralIndex>

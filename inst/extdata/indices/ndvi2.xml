@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>NDVI2</Name>
+    <Wavelengths>
+        <Band name="R600" min="600" max="600" unit="nm"/>
+        <Band name="R800" min="800" max="800" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <minus/>
+                    <ci>R800</ci>
+                    <ci>R600</ci>
+                </apply>
+                <apply>
+                    <plus/>
+                    <ci>R800</ci>
+                    <ci>R600</ci>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Normalized Difference Vegetation Index 2 (NDVI2)</Description>
+    </Metadata>
+</SpectralIndex>

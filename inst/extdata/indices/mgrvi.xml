@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>MGRVI</Name>
+    <Wavelengths>
+        <Band name="R490" min="490" max="490" unit="nm"/>
+        <Band name="R570" min="570" max="570" unit="nm"/>
+        <Band name="R640" min="640" max="640" unit="nm"/>
+        <Band name="R760" min="760" max="760" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <minus/>
+                    <apply>
+                        <divide/>
+                        <ci>R490</ci>
+                        <apply>
+                            <power/>
+                            <ci>R570</ci>
+                            <cn>2.0</cn>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <divide/>
+                        <ci>R640</ci>
+                        <apply>
+                            <power/>
+                            <ci>R760</ci>
+                            <cn>2.0</cn>
+                        </apply>
+                    </apply>
+                </apply>
+                <apply>
+                    <plus/>
+                    <apply>
+                        <divide/>
+                        <ci>R490</ci>
+                        <apply>
+                            <power/>
+                            <ci>R570</ci>
+                            <cn>2.0</cn>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <divide/>
+                        <ci>R640</ci>
+                        <apply>
+                            <power/>
+                            <ci>R760</ci>
+                            <cn>2.0</cn>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Modified Green Red Vegetation Index (MGRVI)</Description>
+    </Metadata>
+</SpectralIndex>
