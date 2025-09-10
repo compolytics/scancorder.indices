@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>EVI2</Name>
+    <Wavelengths>
+        <Band name="NIR" min="780" max="1400" unit="nm" select="min-distance"/>
+        <Band name="RED" min="640" max="760" unit="nm" select="min-distance"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <times/>
+                <cn>2.5</cn>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <minus/>
+                        <ci>NIR</ci>
+                        <ci>RED</ci>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <ci>NIR</ci>
+                        <apply>
+                            <times/>
+                            <cn>2.4</cn>
+                            <ci>RED</ci>
+                        </apply>
+                        <cn>1</cn>
+                    </apply>
+                    </apply>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Enhanced Vegetation Index 2 (EVI2)</Description>
+    </Metadata>
+</SpectralIndex>

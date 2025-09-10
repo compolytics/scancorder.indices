@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>TGI2</Name>
+    <Wavelengths>
+        <Band name="GREEN" min="480" max="570" unit="nm" select="min-distance"/>
+        <Band name="RED" min="640" max="760" unit="nm" select="min-distance"/>
+        <Band name="BLUE" min="420" max="480" unit="nm" select="min-distance"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <minus/>
+                <ci>GREEN</ci>
+                <apply>
+                    <plus/>
+                    <apply>
+                        <times/>
+                        <cn>0.39</cn>
+                        <ci>RED</ci>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <cn>0.61</cn>
+                        <ci>BLUE</ci>
+                    </apply>
+                    </apply>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Triangular Greenness Index (TGI) 2 (TGI2)</Description>
+    </Metadata>
+</SpectralIndex>

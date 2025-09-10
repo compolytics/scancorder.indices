@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>MSRNir/Red</Name>
+    <Wavelengths>
+        <Band name="NIR" min="780" max="1400" unit="nm" select="min-distance"/>
+        <Band name="RED" min="640" max="760" unit="nm" select="min-distance"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <minus/>
+                    <apply>
+                        <divide/>
+                        <ci>NIR</ci>
+                        <ci>RED</ci>
+                    </apply>
+                    <cn>1</cn>
+                </apply>
+                <apply>
+                    <root/>
+                    <apply>
+                        <plus/>
+                        <apply>
+                            <divide/>
+                            <ci>NIR</ci>
+                            <ci>RED</ci>
+                        </apply>
+                        <cn>1</cn>
+                    </apply>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Modified Simple Ratio NIR/RED (MSRNir/Red)</Description>
+    </Metadata>
+</SpectralIndex>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>MCARI2</Name>
+    <Wavelengths>
+        <Band name="R800" min="800" max="800" unit="nm"/>
+        <Band name="R670" min="670" max="670" unit="nm"/>
+        <Band name="R550" min="550" max="550" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <minus/>
+                <apply>
+                    <times/>
+                    <cn>1.5</cn>
+                    <apply>
+                        <minus/>
+                        <apply>
+                            <times/>
+                            <cn>2.5</cn>
+                            <apply>
+                                <minus/>
+                                <ci>R800</ci>
+                                <ci>R670</ci>
+                            </apply>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <cn>1.3</cn>
+                            <apply>
+                                <minus/>
+                                <ci>R800</ci>
+                                <ci>R550</ci>
+                            </apply>
+                        </apply>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <minus/>
+                        <apply>
+                            <power/>
+                            <apply>
+                                <plus/>
+                                <apply>
+                                    <times/>
+                                    <cn>2</cn>
+                                    <ci>R800</ci>
+                                </apply>
+                                <cn>1</cn>
+                                </apply>
+                            <cn>2</cn>
+                        </apply>
+                        <apply>
+                            <minus/>
+                            <apply>
+                                <times/>
+                                <cn>6</cn>
+                                <ci>R800</ci>
+                            </apply>
+                            <apply>
+                                <times/>
+                                <cn>5</cn>
+                                <ci>R670</ci>
+                            </apply>
+                        </apply>
+                        <cn>0.5</cn>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Modified Chlorophyll Absorption in Reflectance Index 2 (MCARI2)</Description>
+    </Metadata>
+</SpectralIndex>

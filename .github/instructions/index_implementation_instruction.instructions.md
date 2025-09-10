@@ -8,7 +8,7 @@ Requirements:
 Lowercase the abbreviation and use it as the filename: inst/extdata/indices/[abbreviation_lowercase].xml.
 The XML file must contain:
 <Name>: The abbreviation.
-<Wavelengths>: List all unique wavelengths used in the formula as <Band name="Rxxx" min="xxx" max="xxx" unit="nm"/>.
+<Wavelengths>: List all unique wavelengths used in the formula as <Band name="Rxxx" min="xxx" max="xxx" unit="nm"/>. There are also ranges like R400:R450, which should be represented as min="400" max="450" select="min-distance". BLUE is R420:R480, GREEN is R480:R570, RED is R640:R760, NIR is R780:R1400.
 <MathML>: Serialize the formula in MathML format. Oncly constants and variables can be operands.
 <Metadata>: <Description> tag with the index name and abbreviation.
 Use the following XML structure:

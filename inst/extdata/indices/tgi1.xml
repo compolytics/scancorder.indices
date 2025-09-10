@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>TGI1</Name>
+    <Wavelengths>
+        <Band name="R670" min="670" max="670" unit="nm"/>
+        <Band name="R550" min="550" max="550" unit="nm"/>
+        <Band name="R480" min="480" max="480" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <times/>
+                <cn>-0.5</cn>
+                <apply>
+                    <minus/>
+                    <apply>
+                        <times/>
+                        <cn>190</cn>
+                        <apply>
+                            <minus/>
+                            <ci>R670</ci>
+                            <ci>R550</ci>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <cn>220</cn>
+                        <apply>
+                            <minus/>
+                            <ci>R670</ci>
+                            <ci>R480</ci>
+                        </apply>
+                    </apply>
+                    </apply>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Triangular Greenness Index (TGI) 1 (TGI1)</Description>
+    </Metadata>
+</SpectralIndex>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>WDRVIa</Name>
+    <Wavelengths>
+        <Band name="NIR" min="780" max="1400" unit="nm" select="min-distance"/>
+        <Band name="RED" min="640" max="760" unit="nm" select="min-distance"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <minus/>
+                    <apply>
+                        <times/>
+                        <cn>0.05</cn>
+                        <ci>NIR</ci>
+                    </apply>
+                    <ci>RED</ci>
+                </apply>
+                <apply>
+                    <plus/>
+                    <apply>
+                        <times/>
+                        <cn>0.05</cn>
+                        <ci>NIR</ci>
+                    </apply>
+                    <ci>RED</ci>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Wide Dynamic Range Vegetation Index alpha=0.05 (WDRVIa)</Description>
+    </Metadata>
+</SpectralIndex>
