@@ -33,7 +33,6 @@
                                 <ci>R550</ci>
                             </apply>
                         </apply>
-                        </apply>
                     </apply>
                     <apply>
                         <minus/>
@@ -47,7 +46,7 @@
                                     <ci>R800</ci>
                                 </apply>
                                 <cn>1</cn>
-                                </apply>
+                            </apply>
                             <cn>2</cn>
                         </apply>
                         <apply>
@@ -64,7 +63,6 @@
                             </apply>
                         </apply>
                         <cn>0.5</cn>
-                        </apply>
                     </apply>
                 </apply>
             </apply>

@@ -37,7 +37,7 @@
                                     <ci>R550</ci>
                                 </apply>
                             </apply>
-                            </apply>
+                        </apply>
                         <apply>
                             <minus/>
                             <apply>
@@ -50,7 +50,7 @@
                                         <ci>R800</ci>
                                     </apply>
                                     <cn>1</cn>
-                                    </apply>
+                                </apply>
                                 <cn>2</cn>
                             </apply>
                             <apply>
@@ -71,7 +71,6 @@
                                 <ci>R670</ci>
                             </apply>
                             <cn>0.5</cn>
-                            </apply>
                         </apply>
                     </apply>
                 </apply>
@@ -81,7 +80,7 @@
                         <plus/>
                         <cn>1</cn>
                         <cn>0.16</cn>
-                        </apply>
+                    </apply>
                     <apply>
                         <divide/>
                         <apply>
@@ -94,7 +93,6 @@
                             <ci>R750</ci>
                             <ci>R705</ci>
                             <cn>0.16</cn>
-                        </apply>
                         </apply>
                     </apply>
                 </apply>
