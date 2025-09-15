@@ -1,6 +1,6 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Compolytics (C) Scancorder Indices R-Package
+# Compolytics (R) Scancorder Indices R-Package
 
 <!-- badges: start -->
 <!-- badges: end -->
