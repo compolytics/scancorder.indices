@@ -64,8 +64,6 @@ calculate_index <- function(xml_file, wavelengths, reflectance_list, fwhm = NULL
       center <- (rng$min + rng$max) / 2
       idx <- which((wavelengths+margin) >= rng$min & (wavelengths-margin) <= rng$max)
       if (length(idx) == 0) {
-        message(sprintf("No reflectance data found in the range [%s, %s] nm with margins applied.",
-                        rng$min, rng$max))
         return(NULL)
       }
       # pick the one whose wavelength is closest to the band center

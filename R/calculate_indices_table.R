@@ -51,6 +51,23 @@ calculate_indices_table <- function(wavelengths, reflectance_list, fwhm, meta_ta
     row.names = NULL
   )
 
+  # Remove index columns with all NaN/NA values (keep sample column)
+  # Index columns are all columns except the first one (sample column)
+  index_cols <- 2:ncol(df)  # columns 2 onwards are index columns
+  
+  # Check which index columns have all NaN or NA values
+  all_invalid_cols <- sapply(index_cols, function(col_idx) {
+    col_values <- df[, col_idx]
+    # Check if all values are either NaN or NA
+    all(is.nan(col_values) | is.na(col_values))
+  })
+  
+  # Remove columns that are all NaN/NA
+  cols_to_remove <- index_cols[all_invalid_cols]
+  if (length(cols_to_remove) > 0) {
+    df <- df[, -cols_to_remove, drop = FALSE]
+  }
+
   # If meta_table is provided, bind it to the results
   if (!missing(meta_table) && is.data.frame(meta_table)) {
     if (nrow(meta_table) != nrow(df)) {
@@ -58,8 +75,6 @@ calculate_indices_table <- function(wavelengths, reflectance_list, fwhm, meta_ta
     }
     df <- cbind(meta_table, df)
   }
-  else
-  {
-    df <- df
-  }
+  
+  return(df)
 }
