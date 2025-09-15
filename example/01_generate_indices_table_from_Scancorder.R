@@ -8,7 +8,7 @@ rm(list = ls())
 # Please change this to the path and file name of your CICADA json data file.
 #
 # Change this name to the actual file you exported from the CICADA measurement app
-cicada_file_name = "2025-02-20_11-57-59_exampleDataFiles.json"
+cicada_file_name = "Compolytics_R-Package_VI_Test_File.json"
 # Get current directory
 current_dir <- getwd()
 # Build full path + file name to the data file, changes this location to the
@@ -37,7 +37,7 @@ index_table <- calculate_indices_table(data$wavelength, calibReflectance, data$f
 # ------------------------------------------------------------------------------
 # Generate an output file name based on the input file name
 # Change this file and path to the location where you want to save the indices table
-table_file_path <- file.path(current_dir, "example", "data", "2025-02-20_11-57-59_exampleDataFiles_Indices.csv")
+table_file_path <- file.path(current_dir, "example", "data", "Compolytics_R-Package_VI_Test_File_Indices.csv")
 write_indices_csv(index_table, table_file_path, row.names = FALSE)
 
 # ------------------------------------------------------------------------------

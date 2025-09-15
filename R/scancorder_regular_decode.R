@@ -170,6 +170,49 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
       }
     },
 
+    # Sanitize field names by replacing problematic characters
+    sanitize_field_name = function(field_name) {
+      # First trim leading and trailing whitespace
+      sanitized <- trimws(field_name)
+      # Replace hyphens with underscores and remove other problematic characters
+      sanitized <- gsub("-", "_", sanitized)
+      # Replace dots with underscores (R converts dots to column names)
+      sanitized <- gsub("\\.", "_", sanitized)
+      # Remove any other special characters except letters, numbers, and underscores
+      sanitized <- gsub("[^A-Za-z0-9_]", "_", sanitized)
+      # Ensure it doesn't start with a number
+      if (grepl("^[0-9]", sanitized)) {
+        sanitized <- paste0("X", sanitized)
+      }
+      return(sanitized)
+    },
+
+    # Filter info fields to keep only numeric or single string values
+    filter_info_fields = function(info) {
+      if (is.null(info) || !is.list(info)) {
+        return(info)
+      }
+
+      # Create a new info list with only valid fields
+      filtered_info <- list()
+      for (field_name in names(info)) {
+        field_value <- info[[field_name]]
+        # Check if field is numeric (including vectors of numbers)
+        if (is.numeric(field_value)) {
+          # Sanitize the field name and add to filtered info
+          sanitized_name <- self$sanitize_field_name(field_name)
+          filtered_info[[sanitized_name]] <- field_value
+        } else if (is.character(field_value) && length(field_value) == 1) {
+          # Check if field is a single character string (length 1)
+          # Sanitize the field name and add to filtered info
+          sanitized_name <- self$sanitize_field_name(field_name)
+          filtered_info[[sanitized_name]] <- field_value
+        }
+        # Skip all other types (lists, multi-element vectors, etc.)
+      }
+      return(filtered_info)
+    },
+
     # Flatten a JSON structure containing multiple sample data,
     # extracting metadata if available
     flatten_sample_json = function(input_json) {
@@ -178,10 +221,8 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
         if ("data" %in% names(entry)) {
           # Extract metadata if available
           info <- tryCatch(entry$store$meta$meta$info, error = function(e) NULL)
-          # delete field includeInFilename from info
-          if (!is.null(info) && "includeInFilename" %in% names(info)) {
-            info$includeInFilename <- NULL
-          }
+          # Filter info to keep only numeric or single string fields
+          info <- self$filter_info_fields(info)
           filename <- tryCatch(entry$filename, error = function(e) NULL)
           # Loop over each data element
           for (d in entry$data) {
@@ -278,7 +319,7 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
         if (self$nested_key_exists(input_json, keys_to_check)) {
           external_sensor_info <- find_sensor_metadata(input_json$config$sensorHead$name)
         } else {
-          external_sensor_info = NULL
+          external_sensor_info <- NULL
         }
 
         # Get nested substructure with sensor information
