@@ -105,7 +105,7 @@ rm(list = ls())
 cicada_file_name = "Compolytics_R-Package_VI_Test_File.json"
 # Get current directory
 current_dir <- getwd()
-# Build full path + file name to the data file, changes this location to the
+# Build full path + file name to the data file, change this location to the
 # location of your actual file
 sensor_file_path <- file.path(current_dir, "example", "data", cicada_file_name)
 
