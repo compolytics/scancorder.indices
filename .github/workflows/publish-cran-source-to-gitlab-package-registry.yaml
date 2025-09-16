@@ -122,7 +122,7 @@ jobs:
           for file in upload/src/contrib/*; do
             FILENAME=$(basename "$file")
             echo "Uploading $FILENAME"
-            curl --header "JOB-TOKEN: $GITLAB_TOKEN" \
+            curl --fail --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
                  --upload-file "$file" \
                  "${GITLAB_URL}/api/v4/projects/${GITLAB_PROJECT_ID}/packages/generic/${PACKAGE_NAME}/${VERSION}/src/contrib/${FILENAME}"
           done
