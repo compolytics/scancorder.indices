@@ -86,20 +86,15 @@ jobs:
           # Extract the original filename from R output
           ORIGINAL_FILE=$(grep "original_file=" build_output.txt | cut -d'=' -f2)
           
-          # Create simplified filename
-          SIMPLE_FILE="${PACKAGE_NAME}.tar.gz"
-          
-          # Rename the file
-          mv "$ORIGINAL_FILE" "$SIMPLE_FILE"
-          echo "filename=$SIMPLE_FILE" >> $GITHUB_OUTPUT
-          
+          echo "filename=$ORIGINAL_FILE" >> $GITHUB_OUTPUT
+
           # Verify file exists
-          if [ ! -f "$SIMPLE_FILE" ]; then
-            echo "Error: Package file $SIMPLE_FILE not found"
+          if [ ! -f "$ORIGINAL_FILE" ]; then
+            echo "Error: Package file $ORIGINAL_FILE not found"
             exit 1
           fi
-          
-          echo "Built and renamed package: $SIMPLE_FILE"
+
+          echo "Built: $ORIGINAL_FILE"
           ls -la *.tar.gz
           
           mkdir -p upload/src/contrib
