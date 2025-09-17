@@ -2,18 +2,14 @@
 % Please edit documentation in R/get_index_names.R
 \name{get_index_names}
 \alias{get_index_names}
-\title{Extract the \if{html}{\out{<Name>}} element from one or more spectral-index XML files}
+\title{Extract the \\<Name\\> element from spectral-index XML files in the package}
 \usage{
 get_index_names()
 }
-\arguments{
-\item{xml_files}{Character vector with paths to the XML files \strong{or}
-a single directory that contains only index XMLs.}
-}
 \value{
-\if{html}{\out{<div class="sourceCode">}}\preformatted{      A character vector of index names.
-}\if{html}{\out{</div>}}
+A character vector of index names.
 }
 \description{
-Extract the \if{html}{\out{<Name>}} element from one or more spectral-index XML files
+This function automatically discovers XML files in the package's indices directory
+and extracts the index names from each file.
 }

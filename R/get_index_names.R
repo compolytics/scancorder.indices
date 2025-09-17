@@ -1,8 +1,9 @@
-#' Extract the <Name> element from one or more spectral-index XML files
+#' Extract the \\<Name\\> element from spectral-index XML files in the package
 #'
-#' @param xml_files  Character vector with paths to the XML files **or**
-#'                   a single directory that contains only index XMLs.
-#' @return           A character vector of index names.
+#' This function automatically discovers XML files in the package's indices directory
+#' and extracts the index names from each file.
+#'
+#' @return A character vector of index names.
 #'
 #' @importFrom pkgload pkg_path
 #' @importFrom xml2 read_xml xml_find_first xml_text

@@ -10,6 +10,10 @@ calculate_indices_table(wavelengths, reflectance_list, fwhm, meta_table)
 \item{wavelengths}{Numeric vector of wavelengths (same length as each reflectance vector).}
 
 \item{reflectance_list}{List of numeric reflectance vectors.}
+
+\item{fwhm}{Optional numeric vector of full width at half maximum (FWHM) values for each wavelength.}
+
+\item{meta_table}{Optional data frame containing metadata for each sample.}
 }
 \value{
 A data.frame with columns:

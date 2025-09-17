@@ -10,6 +10,7 @@ library(jsonlite)
 #' @docType class
 #' @export
 #' @name CalibrationReflectanceMultipoint
+#' @field calibration_factors A 3D array containing calibration factors, initialized to NULL.
 #'
 CalibrationReflectanceMultipoint <- R6Class("CalibrationReflectanceMultipoint",
 
@@ -18,7 +19,8 @@ CalibrationReflectanceMultipoint <- R6Class("CalibrationReflectanceMultipoint",
     # Calibration factors as a 3D array, initialized to NULL.
     calibration_factors = NULL,
 
-    # Initialize the CalibrationReflectanceMultipoint object:
+    #' Initialize the CalibrationReflectanceMultipoint object
+    #' @param calibration_factors A 3D array of calibration factors. If provided, it will be stored as an array.
     initialize = function(calibration_factors = NULL) {
 
       # If calibration_factors is provided, store it as an array.
@@ -28,7 +30,10 @@ CalibrationReflectanceMultipoint <- R6Class("CalibrationReflectanceMultipoint",
       }
     },
 
-    # Helper function to slice the last dimension of a 3D array
+    #' Helper function to slice the last dimension of a 3D array
+    #' @param x A 3D array to slice
+    #' @param k The index for the last dimension to slice
+    #' @return A 2D matrix with the last dimension sliced
     slice_keep_first = function(x, k) {
       # 1) slice, keeping even singleton dims
       y <- x[,, k, drop = FALSE]
@@ -38,7 +43,9 @@ CalibrationReflectanceMultipoint <- R6Class("CalibrationReflectanceMultipoint",
       y
     },
 
-    # Applies the multi-point calibration to sensor reading
+    #' Applies the multi-point calibration to sensor reading
+    #' @param sensor_values A numeric matrix containing sensor values to calibrate
+    #' @return A calibrated numeric matrix
     multi_point_calibration = function(sensor_values) {
 
       if (is.null(self$calibration_factors)) {
@@ -67,7 +74,10 @@ CalibrationReflectanceMultipoint <- R6Class("CalibrationReflectanceMultipoint",
       return(calibrated)
     },
 
-    # Helper: Check if a nested key exists in a list.
+    #' Check if a nested key exists in a list
+    #' @param dictionary A list or nested list structure to check
+    #' @param keys A vector of keys representing the nested path to check
+    #' @return Logical value indicating whether the nested key path exists
     nested_key_exists = function(dictionary, keys) {
       current <- dictionary
       for (key in keys) {
@@ -80,14 +90,20 @@ CalibrationReflectanceMultipoint <- R6Class("CalibrationReflectanceMultipoint",
       return(TRUE)
     },
 
-    # Convert json data frame to numeric matrix
+    #' Convert JSON data frame to numeric matrix
+    #' @param json_data A list or data frame structure from JSON
+    #' @param type Function to convert data type (default: as.numeric)
+    #' @return A numeric matrix
     convert_json_to_matrix = function(json_data, type = as.numeric) {
       df <- do.call(rbind, json_data)
       matrix_data <- apply(df, c(1, 2), type)
       return(matrix_data)
     },
 
-    # Convert json data frame to 3D array
+    #' Convert JSON data frame to 3D array
+    #' @param json_data A list structure from JSON to convert to 3D array
+    #' @param type Function to convert data type (default: as.numeric)
+    #' @return A 3D numeric array
     convert_json_to_3d_array = function(json_data, type = as.numeric) {
       matrix_list <- lapply(json_data, function(mat) {
         mat_df <- do.call(rbind, lapply(mat, unlist))  # ensures 2D shape
@@ -108,7 +124,9 @@ CalibrationReflectanceMultipoint <- R6Class("CalibrationReflectanceMultipoint",
       return(array_data)
     },
 
-    # Ensure input is a list, wrapping if necessary
+    #' Ensure input is a list, wrapping if necessary
+    #' @param x Input object to ensure is a list
+    #' @return A list, either the original if already a list, or wrapped in a list
     ensure_list = function(x) {
       # if it's not a list, or it's a named list (i.e. a JSON object),
       # then wrap it in a one-element list
@@ -120,7 +138,9 @@ CalibrationReflectanceMultipoint <- R6Class("CalibrationReflectanceMultipoint",
       }
     },
 
-    # Flatten JSON input, extracting 'data' field if it exists
+    #' Flatten JSON input, extracting 'data' field if it exists
+    #' @param input_json A list structure from parsed JSON
+    #' @return A flattened list with data fields extracted
     flatten_sample_json = function(input_json) {
       flat_list <- list()
       for (entry in input_json) {
@@ -135,7 +155,10 @@ CalibrationReflectanceMultipoint <- R6Class("CalibrationReflectanceMultipoint",
       return(flat_list)
     },
 
-    # Perform multi-point calibration on reflectance data.
+    #' Perform multi-point calibration on reflectance data
+    #' @param reflectance A list or matrix of reflectance data
+    #' @param json_input A JSON string containing sensor configuration and calibration data
+    #' @return A list of calibrated reflectance values
     score = function(reflectance, json_input) {
 
       # First input: reflectance data (as matrix).
