@@ -2,9 +2,9 @@ Package: scancorder.indices
 Title: Compolytics (C) Scancorder: Spectral Indices
 Version: 1.0.0
 Authors@R: 
-    person("Andreas", "Backhaus", , email = "andreas.backhaus@compolytics.com", role = c("aut", "cre"))
-    person("Udo", "Seiffert", , email = "udo.seiffert@compolytics.com", role = c("aut", "cre"))
-Description: This R-library calculate suitable spectral indices from a ScanCorder acquired sample data stored in json files.
+    c(person("Andreas", "Backhaus", , email = "andreas.backhaus@compolytics.com", role = c("aut", "cre")),
+    person("Udo", "Seiffert", , email = "udo.seiffert@compolytics.com", role = c("aut", "cre")))
+Description: This R-library calculates suitable spectral indices from a ScanCorder acquired sample data stored in json files.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
