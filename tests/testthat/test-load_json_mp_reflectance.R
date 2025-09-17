@@ -19,7 +19,7 @@ test_that("test CICADA json with sensor set multi point reflectance and sensor a
             )
 
             json_path <- testthat::test_path(
-              "data/20250303_150545_SA1211_B3009_S5221_08445c21-184a-4082-8597-e11f62e3561e_0001.json"
+              "data/20250303_150545_SA1211_B3009_S5221.json"
             )
             # Load the JSON file with the sensor reading
             json_input <- paste(readLines(json_path), collapse = "\n")
