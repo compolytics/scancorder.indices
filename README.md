@@ -16,52 +16,14 @@ You can install compiled platform-specific version of
 `scancorder.indices` from
 [GitLab](https://gitlab.com/compolytics-public/scancorder.indices/-/packages/).
 
-#### Windows
+#### Windows/Linux
 
 ``` r
-# (Optional) Set CRAN package server
-options(repos = c(CRAN = "https://cloud.r-project.org"))
-
-# Install dependencies of scancorder.indices
-install.packages(c("xml2", "R6", "jsonlite", "pkgload"))
-
-# Define the direct URL to the package
-package_url <- "https://gitlab.com/api/v4/projects/70774833/packages/generic/scancorder.indices/1.1.2/windows/scancorder.indices.zip"
-
-# Install the binary package
-install.packages(package_url, repos=NULL, type = "win.binary")
-```
-
-#### Linux
-
-``` r
-# (Optional) Set CRAN package server
-options(repos = c(CRAN = "https://cloud.r-project.org"))
-
-# Install dependencies of scancorder.indices
-install.packages(c("xml2", "R6", "jsonlite", "pkgload"))
-
-# Define the direct URL to the package
-package_url <- "https://gitlab.com/api/v4/projects/70774833/packages/generic/scancorder.indices/1.1.2/linux/scancorder.indices.tar.gz"
-
-# Install the binary package
-install.packages(package_url, repos=NULL, type = "binary")
-```
-
-#### MacOs
-
-``` r
-# (Optional) Set CRAN package server
-options(repos = c(CRAN = "https://cloud.r-project.org"))
-
-# Install dependencies of scancorder.indices
-install.packages(c("xml2", "R6", "jsonlite", "pkgload"))
-
-# Define the direct URL to the package
-package_url <- "https://gitlab.com/api/v4/projects/70774833/packages/generic/scancorder.indices/1.1.2/macos/scancorder.indices.tgz"
-
-# Install the binary package
-install.packages(package_url, repos=NULL, type = "mac.binary")
+options(repos = c(
+  gitlab = "https://gitlab.com/api/v4/projects/70774833/packages/generic/scancorder.indices/__VERSION__/",
+  CRAN   = "https://cloud.r-project.org"
+))
+install.packages("scancorder.indices")
 ```
 
 ### From Github Repository
