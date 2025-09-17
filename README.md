@@ -1,12 +1,13 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Compolytics (C) Scancorder Indices R-Package
+# COMPOLYTICS® ScanCorder Vegetation Indices R Package
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-This package provides an implementation to decode sample files recorded
-using CICADA and subsequently calculate well known spectral indices.
+This package provides tools to process spectral data from plant samples
+recorded with the ScanCorder using CICADA, and to calculate a wide range
+of vegetation indices.
 
 ## Installation
 
@@ -64,7 +65,7 @@ package_url <- "https://gitlab.com/api/v4/projects/70774833/packages/generic/sca
 install.packages(package_url, repos=NULL, type = "mac.binary")
 ```
 
-### From Github Repository
+### From GitHub Repository
 
 You can install the development version of `scancorder.indices` from
 [GitHub](https://github.com/) with:
@@ -74,7 +75,7 @@ You can install the development version of `scancorder.indices` from
 pak::pak("compolytics/scancorder.indices")
 ```
 
-For private repository, valid github colaborator credentials are
+For private repository, valid GitHub colaborator credentials are
 required.
 
 ### From R Package Repository
@@ -87,8 +88,8 @@ install.packages("scancorder.indices")
 
 ## Example
 
-This is a basic example to calculate a table of spectral indices from a
-CICADA json data file holding Scancorder sensor data.
+This basic example demonstrates how to calculate a table of spectral
+indices from a CICADA json file containing ScanCorder sensor data.
 
 ``` r
 library(scancorder.indices)
@@ -100,14 +101,15 @@ rm(list = ls())
 # Please change this to the path and file name of your CICADA json data file.
 # ------------------------------------------------------------------------------
 # Change this name to the actual file you exported from the CICADA measurement app
+# This file is also available from the Compolytics website (https://compolytics.com/vi-ppda)
 cicada_file_name = "Compolytics_R-Package_VI_Test_File.json"
 # Get current directory
 current_dir <- getwd()
-# Build full path + file name to the data file, changes this location to the
+# Build full path + file name to the data file, change this location to the
 # location of your actual file
 sensor_file_path <- file.path(current_dir, "example", "data", cicada_file_name)
 
-# Step 1: Load Json file and extract data
+# Step 1: Load the json file and extract data
 # ------------------------------------------------------------------------------
 # Setup a decoder that will average the reflectance per LED across sensor channels
 decoder <- DecodeCompolyticsRegularScanner$new(average_sensor_values = TRUE)
