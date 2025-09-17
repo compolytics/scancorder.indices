@@ -121,3 +121,17 @@ jobs:
                  --upload-file "$file" \
                  "${GITLAB_URL}/api/v4/projects/${GITLAB_PROJECT_ID}/packages/generic/${PACKAGE_NAME}/${VERSION}/src/contrib/${FILENAME}"
           done
+      
+      - name: Update version in the installation instructions in README.rmd and commit
+        shell: bash
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          # Replace version in GitLab package link in README.rmd
+          sed -i -E "s|(packages/generic/[^/]+/)[0-9]+\.[0-9]+\.[0-9]+|\1${VERSION}|g" README.rmd
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git add README.rmd
+          git commit -m "Update README.rmd with package version ${VERSION}" || echo "No changes to commit"
+          git push origin HEAD:${GITHUB_REF#refs/heads/}
+  
