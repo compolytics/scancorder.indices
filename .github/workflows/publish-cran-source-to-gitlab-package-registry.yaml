@@ -138,5 +138,7 @@ jobs:
           git config --global user.name "GitHub Actions"
           git add README.Rmd
           git commit -m "Update README.Rmd with package version ${VERSION}" || echo "No changes to commit"
-          git push origin HEAD:refs/tags/${GITHUB_REF#refs/tags/}
+          # Get the branch that the tag was created from
+          BRANCH=$(git branch -r --contains "${GITHUB_REF}" | grep -v '\->' | head -n 1 | sed 's|origin/||')
+          git push origin HEAD:$BRANCH
   
