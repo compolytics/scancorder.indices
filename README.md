@@ -13,7 +13,7 @@ of vegetation indices.
 
 ### From GitLab package registry
 
-You can install compiled platform-specific version of
+You can install the compiled platform-specific version of
 `scancorder.indices` from
 [GitLab](https://gitlab.com/compolytics-public/scancorder.indices/-/packages/).
 
@@ -92,6 +92,7 @@ This basic example demonstrates how to calculate a table of spectral
 indices from a CICADA json file containing ScanCorder sensor data.
 
 ``` r
+# include scancorder.indices package
 library(scancorder.indices)
 
 # First rule of programming: clean it
