@@ -14,6 +14,7 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
   public = list(
     average_sensor_values = FALSE,
     channel_mask = NULL,
+    helpers = NULL,
 
     #' Create a new instance of the decoder.
     #'
@@ -26,6 +27,8 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
       if (!is.null(channel_mask)) {
         self$channel_mask <- as.matrix(channel_mask)
       }
+      # Initialize the helpers instance
+      self$helpers <- ScanCorderHelpers$new()
     },
 
     nested_key_exists = function(lst, keys) {
@@ -314,56 +317,23 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
         # Convert the "values" field to a numeric matrix
         sensor_values <- self$convert_json_to_matrix(input_json$values)
 
-        # Try to find sensor external information from package
-        keys_to_check <- c("config", "sensorHead", "name")
-        if (self$nested_key_exists(input_json, keys_to_check)) {
-          external_sensor_info <- find_sensor_metadata(input_json$config$sensorHead$name)
-        } else {
-          external_sensor_info <- NULL
-        }
+        # Extract sensor configuration using helper function
+        sensor_config <- self$helpers$extract_sensor_configuration(input_json)
+        device_sensor_info <- sensor_config$device_sensor_info
+        external_sensor_info <- sensor_config$external_sensor_info
 
-        # Get nested substructure with sensor information
-        keys_to_check <- c("config", "sensorHead", "additionalInfo")
-        if (self$nested_key_exists(input_json, keys_to_check)) {
-          device_sensor_info <- input_json$config$sensorHead$additionalInfo
-        } else {
-          stop("Cannot find sensor information in sample file.")
-        }
+        # Extract and validate channel mask using helper function
+        self$channel_mask <- self$helpers$extract_channel_mask(input_json, device_sensor_info, external_sensor_info, 
+                                                               sensor_values, self$channel_mask)
 
-        # if channel mask was not set in constructor, try to find one
-        if (is.null(self$channel_mask)) {
-
-          # Check if the channel mask is present in sensor description external
-          # or device info
-          channel_mask <- get_field_base(device_sensor_info, external_sensor_info, "channel_mask")
-          if (is.null(channel_mask)) {
-            stop("Cannot find valid channel mask")
-          }
-          channel_mask <- self$convert_json_to_matrix(channel_mask)
-          if (!all(dim(channel_mask) == dim(sensor_values))) {
-            stop("Channel mask is not of equal size to values field")
-          }
-          self$channel_mask <- channel_mask
-        }
-
-        led_wavelengths <- get_field_base(device_sensor_info, external_sensor_info, "led_wl_real")
-        if (is.null(led_wavelengths)) {
-          led_wavelengths <- get_field_base(device_sensor_info, external_sensor_info, "led_wl")
-        }
-        if (is.null(led_wavelengths)) {
-          stop("Cannot load center wavelength")
-        }
-        led_wavelengths <- self$convert_json_to_vector(led_wavelengths)
-
-        led_fwhm <- get_field_base(device_sensor_info, external_sensor_info, "led_fwhm_real")
-        if (is.null(led_fwhm)) {
-          led_fwhm <- get_field_base(device_sensor_info, external_sensor_info, "led_fwhm_nom")
-        }
-        if (is.null(led_fwhm)) {
-          led_fwhm = NULL
-        } else {
-          led_fwhm <- self$convert_json_to_vector(led_fwhm)
-        }
+        # Extract LED wavelengths for flattened mode
+        led_wavelengths <- self$helpers$extract_led_wavelengths(input_json, device_sensor_info, external_sensor_info)
+        
+        # Extract feature wavelengths and FWHM considering splitting
+        feature_info <- self$helpers$extract_feature_wavelengths(input_json, device_sensor_info, external_sensor_info, self$channel_mask, self$average_sensor_values)
+        feature_wavelengths <- feature_info$wavelengths
+        feature_fwhm <- self$helpers$extract_feature_fwhm(input_json, device_sensor_info, external_sensor_info, 
+                                                         self$channel_mask, feature_info)
 
         # Subtract dark current if provided.
         if (!is.null(input_json$perLEDDarkCurrent)) {
@@ -431,22 +401,53 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
           }
         }
 
-        # Optionally average sensor values over LED if requested.
-        if (self$average_sensor_values) {
-          if (!is.null(self$channel_mask)) {
-            sensor_values[self$channel_mask == 0] <- NA
+        # Process sensor values with splitting support
+        processing_result <- self$helpers$process_sensor_values_with_splitting(
+          sensor_values, self$channel_mask, feature_info, self$average_sensor_values, led_wavelengths
+        )
+        
+        # Update wavelengths if we got them from flattened processing
+        if (!is.null(processing_result$wavelengths)) {
+          feature_wavelengths <- processing_result$wavelengths
+          # Also need to update FWHM for flattened case - use LED FWHM
+          led_fwhm <- self$helpers$extract_led_fwhm(input_json, device_sensor_info, external_sensor_info)
+          if (!is.null(led_fwhm) && !self$average_sensor_values) {
+            if (is.null(self$channel_mask)) {
+              # No channel mask: repeat LED FWHM for each sensor
+              feature_fwhm <- rep(led_fwhm, each = ncol(sensor_values))
+            } else {
+              # Channel mask exists: LED FWHM for each mask > 0 entry  
+              flattened_fwhm <- c()
+              for (led_idx in seq_len(nrow(self$channel_mask))) {
+                for (sensor_idx in seq_len(ncol(self$channel_mask))) {
+                  if (self$channel_mask[led_idx, sensor_idx] > 0) {
+                    flattened_fwhm <- c(flattened_fwhm, led_fwhm[led_idx])
+                  }
+                }
+              }
+              feature_fwhm <- flattened_fwhm
+            }
           }
-          # Average across columns (i.e. LED wavelengths) for each sensor row.
-          sensor_values <- matrix(apply(sensor_values, 1, mean, na.rm = TRUE), ncol = 1)
         }
-
-        # Flatten the sensor matrix in column–major order (as.vector does this by default in R)
-        reflectance_vector <- as.vector(sensor_values)
-        transform_global_output[[length(transform_global_output) + 1]] <- reflectance_vector
+        
+        # Extract reflectance values
+        reflectance_values <- processing_result$values
+        
+        # Handle the result - could be a single matrix or list of matrices
+        if (is.list(reflectance_values) && !is.data.frame(reflectance_values)) {
+          # Multiple samples - add each one separately (convert matrices to vectors)
+          for (sample_matrix in reflectance_values) {
+            transform_global_output[[length(transform_global_output) + 1]] <- as.vector(sample_matrix)
+          }
+        } else {
+          # Single sample - add it directly (convert matrix to vector)
+          transform_global_output[[length(transform_global_output) + 1]] <- as.vector(reflectance_values)
+        }
       }
 
-      # Return the list of reflectance vectors (one per input structure), the center wavelengths and FHWM of LEDs
-      list(meta_table = sample_meta_table, reflectance = transform_global_output, wavelength=led_wavelengths, fwhm=led_fwhm)
+      # Return the list of reflectance vectors, feature wavelengths, and FWHM
+      list(meta_table = sample_meta_table, reflectance = transform_global_output, 
+           wavelength = feature_wavelengths, fwhm = feature_fwhm)
     }
   )
 )

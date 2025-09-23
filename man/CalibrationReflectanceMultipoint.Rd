@@ -15,11 +15,7 @@ reading.
 \item \href{#method-CalibrationReflectanceMultipoint-new}{\code{CalibrationReflectanceMultipoint$new()}}
 \item \href{#method-CalibrationReflectanceMultipoint-slice_keep_first}{\code{CalibrationReflectanceMultipoint$slice_keep_first()}}
 \item \href{#method-CalibrationReflectanceMultipoint-multi_point_calibration}{\code{CalibrationReflectanceMultipoint$multi_point_calibration()}}
-\item \href{#method-CalibrationReflectanceMultipoint-nested_key_exists}{\code{CalibrationReflectanceMultipoint$nested_key_exists()}}
-\item \href{#method-CalibrationReflectanceMultipoint-convert_json_to_matrix}{\code{CalibrationReflectanceMultipoint$convert_json_to_matrix()}}
 \item \href{#method-CalibrationReflectanceMultipoint-convert_json_to_3d_array}{\code{CalibrationReflectanceMultipoint$convert_json_to_3d_array()}}
-\item \href{#method-CalibrationReflectanceMultipoint-ensure_list}{\code{CalibrationReflectanceMultipoint$ensure_list()}}
-\item \href{#method-CalibrationReflectanceMultipoint-flatten_sample_json}{\code{CalibrationReflectanceMultipoint$flatten_sample_json()}}
 \item \href{#method-CalibrationReflectanceMultipoint-score}{\code{CalibrationReflectanceMultipoint$score()}}
 \item \href{#method-CalibrationReflectanceMultipoint-clone}{\code{CalibrationReflectanceMultipoint$clone()}}
 }
@@ -52,27 +48,6 @@ reading.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-CalibrationReflectanceMultipoint-nested_key_exists"></a>}}
-\if{latex}{\out{\hypertarget{method-CalibrationReflectanceMultipoint-nested_key_exists}{}}}
-\subsection{Method \code{nested_key_exists()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{CalibrationReflectanceMultipoint$nested_key_exists(dictionary, keys)}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-CalibrationReflectanceMultipoint-convert_json_to_matrix"></a>}}
-\if{latex}{\out{\hypertarget{method-CalibrationReflectanceMultipoint-convert_json_to_matrix}{}}}
-\subsection{Method \code{convert_json_to_matrix()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{CalibrationReflectanceMultipoint$convert_json_to_matrix(
-  json_data,
-  type = as.numeric
-)}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-CalibrationReflectanceMultipoint-convert_json_to_3d_array"></a>}}
 \if{latex}{\out{\hypertarget{method-CalibrationReflectanceMultipoint-convert_json_to_3d_array}{}}}
 \subsection{Method \code{convert_json_to_3d_array()}}{
@@ -81,24 +56,6 @@ reading.
   json_data,
   type = as.numeric
 )}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-CalibrationReflectanceMultipoint-ensure_list"></a>}}
-\if{latex}{\out{\hypertarget{method-CalibrationReflectanceMultipoint-ensure_list}{}}}
-\subsection{Method \code{ensure_list()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{CalibrationReflectanceMultipoint$ensure_list(x)}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-CalibrationReflectanceMultipoint-flatten_sample_json"></a>}}
-\if{latex}{\out{\hypertarget{method-CalibrationReflectanceMultipoint-flatten_sample_json}{}}}
-\subsection{Method \code{flatten_sample_json()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{CalibrationReflectanceMultipoint$flatten_sample_json(input_json)}\if{html}{\out{</div>}}
 }
 
 }

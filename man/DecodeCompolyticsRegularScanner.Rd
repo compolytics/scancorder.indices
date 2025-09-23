@@ -26,6 +26,8 @@ It supports JSON input, various calibration modes (two-point and multipoint), an
 \item \href{#method-DecodeCompolyticsRegularScanner-convert_json_to_vector}{\code{DecodeCompolyticsRegularScanner$convert_json_to_vector()}}
 \item \href{#method-DecodeCompolyticsRegularScanner-convert_json_to_matrix}{\code{DecodeCompolyticsRegularScanner$convert_json_to_matrix()}}
 \item \href{#method-DecodeCompolyticsRegularScanner-ensure_list}{\code{DecodeCompolyticsRegularScanner$ensure_list()}}
+\item \href{#method-DecodeCompolyticsRegularScanner-sanitize_field_name}{\code{DecodeCompolyticsRegularScanner$sanitize_field_name()}}
+\item \href{#method-DecodeCompolyticsRegularScanner-filter_info_fields}{\code{DecodeCompolyticsRegularScanner$filter_info_fields()}}
 \item \href{#method-DecodeCompolyticsRegularScanner-flatten_sample_json}{\code{DecodeCompolyticsRegularScanner$flatten_sample_json()}}
 \item \href{#method-DecodeCompolyticsRegularScanner-add_row_by_kv}{\code{DecodeCompolyticsRegularScanner$add_row_by_kv()}}
 \item \href{#method-DecodeCompolyticsRegularScanner-trim_list_names}{\code{DecodeCompolyticsRegularScanner$trim_list_names()}}
@@ -129,6 +131,24 @@ A new instance of DecodeCompolyticsRegularScanner.
 \subsection{Method \code{ensure_list()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{DecodeCompolyticsRegularScanner$ensure_list(x)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-DecodeCompolyticsRegularScanner-sanitize_field_name"></a>}}
+\if{latex}{\out{\hypertarget{method-DecodeCompolyticsRegularScanner-sanitize_field_name}{}}}
+\subsection{Method \code{sanitize_field_name()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{DecodeCompolyticsRegularScanner$sanitize_field_name(field_name)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-DecodeCompolyticsRegularScanner-filter_info_fields"></a>}}
+\if{latex}{\out{\hypertarget{method-DecodeCompolyticsRegularScanner-filter_info_fields}{}}}
+\subsection{Method \code{filter_info_fields()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{DecodeCompolyticsRegularScanner$filter_info_fields(info)}\if{html}{\out{</div>}}
 }
 
 }

@@ -17,6 +17,7 @@ CalibrationReflectanceMultipoint <- R6Class("CalibrationReflectanceMultipoint",
 
     # Calibration factors as a 3D array, initialized to NULL.
     calibration_factors = NULL,
+    helpers = NULL,
 
     # Initialize the CalibrationReflectanceMultipoint object:
     initialize = function(calibration_factors = NULL) {
@@ -26,6 +27,8 @@ CalibrationReflectanceMultipoint <- R6Class("CalibrationReflectanceMultipoint",
         # Ensure calibration_factors is numeric and preserve its dimensions.
         self$calibration_factors <- as.array(calibration_factors)
       }
+      # Initialize the helpers instance
+      self$helpers <- ScanCorderHelpers$new()
     },
 
     # Helper function to slice the last dimension of a 3D array
@@ -67,25 +70,7 @@ CalibrationReflectanceMultipoint <- R6Class("CalibrationReflectanceMultipoint",
       return(calibrated)
     },
 
-    # Helper: Check if a nested key exists in a list.
-    nested_key_exists = function(dictionary, keys) {
-      current <- dictionary
-      for (key in keys) {
-        if (is.list(current) && !is.null(current[[key]])) {
-          current <- current[[key]]
-        } else {
-          return(FALSE)
-        }
-      }
-      return(TRUE)
-    },
 
-    # Convert json data frame to numeric matrix
-    convert_json_to_matrix = function(json_data, type = as.numeric) {
-      df <- do.call(rbind, json_data)
-      matrix_data <- apply(df, c(1, 2), type)
-      return(matrix_data)
-    },
 
     # Convert json data frame to 3D array
     convert_json_to_3d_array = function(json_data, type = as.numeric) {
@@ -108,32 +93,7 @@ CalibrationReflectanceMultipoint <- R6Class("CalibrationReflectanceMultipoint",
       return(array_data)
     },
 
-    # Ensure input is a list, wrapping if necessary
-    ensure_list = function(x) {
-      # if it's not a list, or it's a named list (i.e. a JSON object),
-      # then wrap it in a one-element list
-      if (!is.list(x) || !is.null(names(x))) {
-        list(x)
-      } else {
-        # otherwise it's an unnamed list (JSON array), leave as is
-        x
-      }
-    },
 
-    # Flatten JSON input, extracting 'data' field if it exists
-    flatten_sample_json = function(input_json) {
-      flat_list <- list()
-      for (entry in input_json) {
-        if ("data" %in% names(entry)) {
-          # If 'data' field exists, append all entries inside 'data'
-          flat_list <- c(flat_list, entry$data)
-        } else {
-          # Otherwise, append the entry itself
-          flat_list <- c(flat_list, list(entry))
-        }
-      }
-      return(flat_list)
-    },
 
     # Perform multi-point calibration on reflectance data.
     score = function(reflectance, json_input) {
@@ -146,28 +106,17 @@ CalibrationReflectanceMultipoint <- R6Class("CalibrationReflectanceMultipoint",
       input_json_struct <- jsonlite::fromJSON(config_json, simplifyVector = FALSE)
 
       # If the JSON is a single object, wrap it into a list.
-      input_json_struct <- self$ensure_list(input_json_struct)
+      input_json_struct <- self$helpers$ensure_list(input_json_struct)
 
       # Flatten the input JSON if it contains a 'data' field
-      input_json_struct <- self$flatten_sample_json(input_json_struct)
+      input_json_struct <- self$helpers$flatten_sample_json(input_json_struct)
 
-      # Get nested substructure with sensor information
-      keys_to_check <- c("config", "sensorHead", "additionalInfo")
-      if (self$nested_key_exists(input_json_struct[[1]], keys_to_check)) {
-        device_sensor_info <- input_json_struct[[1]]$config$sensorHead$additionalInfo
-      } else {
-        stop("Cannot find sensor information in sample file.")
-      }
+      # Extract sensor configuration using helper function
+      sensor_config <- self$helpers$extract_sensor_configuration(input_json_struct[[1]])
+      device_sensor_info <- sensor_config$device_sensor_info
+      external_sensor_info <- sensor_config$external_sensor_info
 
-      # Try to find sensor external information from package
-      keys_to_check <- c("config", "sensorHead", "name")
-      if (self$nested_key_exists(input_json_struct[[1]], keys_to_check)) {
-        external_sensor_info <- find_sensor_metadata(input_json_struct[[1]]$config$sensorHead$name)
-      } else {
-        external_sensor_info = NULL
-      }
-
-      multi_calibration <- get_field_base(device_sensor_info, external_sensor_info, "multi_calibration")
+      multi_calibration <- self$helpers$get_field_base(device_sensor_info, external_sensor_info, "multi_calibration")
       if (is.null(multi_calibration)) {
         stop("Calibration factors are not defined.")
       }
