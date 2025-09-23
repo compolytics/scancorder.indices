@@ -131,6 +131,8 @@ jobs:
         shell: bash
         run: |
           VERSION="${{ steps.version.outputs.version }}"
+          git fetch --all
+          
           # Replace version in GitLab package link in README.Rmd
           sed -i -E "s|(packages/generic/[^/]+/)[0-9]+\.[0-9]+\.[0-9]+|\1${VERSION}|g" README.Rmd
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
@@ -138,7 +140,14 @@ jobs:
           git config --global user.name "GitHub Actions"
           git add README.Rmd
           git commit -m "Update README.Rmd with package version ${VERSION}" || echo "No changes to commit"
-          # Get the branch that the tag was created from
-          BRANCH=$(git branch -r --contains "${GITHUB_REF}" | grep -v '\->' | head -n 1 | sed 's|origin/||')
-          git push origin HEAD:$BRANCH
+          
+          # Find the remote branch containing the tag
+          BRANCH=$(git branch -r --contains "${GITHUB_REF#refs/tags/}" | grep -v '\->' | head -n 1 | sed 's|origin/||' | xargs)
+
+          if [ -n "$BRANCH" ]; then
+            echo "Pushing to branch: $BRANCH"
+            git push origin HEAD:$BRANCH
+          else
+            echo "No containing branch found for tag ${GITHUB_REF#refs/tags/}. Skipping push."
+          fi
   
