@@ -4,7 +4,8 @@ Version: 1.0.0
 Authors@R: 
     c(
         person("Andreas", "Backhaus", email = "andreas.backhaus@compolytics.com", role = c("aut", "cre")),
-        person("Udo", "Seiffert", email = "udo.seiffert@compolytics.com", role = "aut")
+        person("Udo", "Seiffert", email = "udo.seiffert@compolytics.com", role = "aut"),
+        person("Mykola", "Raivakhovskyi", email = "mykola.raivakhovskyi@compolytics.com", role = "ctb")
     )
 Description: This R-library calculates suitable spectral indices from a ScanCorder acquired sample data stored in json files.
 License: MIT + file LICENSE
