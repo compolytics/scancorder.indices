@@ -24,7 +24,7 @@ This package provides tools to process spectral data from plant samples recorded
 
 ### From GitLab package registry
 
-You can install the compiled platform-specific version of `scancorder.indices` from [GitLab](https://gitlab.com/compolytics-public/scancorder.indices/-/packages/).
+You can install the source package from [GitLab](https://gitlab.com/compolytics-public/scancorder.indices/-/packages/).
 
 #### Windows/Linux
 
