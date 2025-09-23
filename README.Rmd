@@ -24,9 +24,7 @@ This package provides tools to process spectral data from plant samples recorded
 
 ### From GitLab package registry
 
-You can install compiled platform-specific version of
-`scancorder.indices` from
-[GitLab](https://gitlab.com/compolytics-public/scancorder.indices/-/packages/).
+You can install the compiled platform-specific version of `scancorder.indices` from [GitLab](https://gitlab.com/compolytics-public/scancorder.indices/-/packages/).
 
 #### Windows
 
@@ -99,6 +97,7 @@ install.packages("scancorder.indices")
 This basic example demonstrates how to calculate a table of spectral indices from a CICADA json file containing ScanCorder sensor data.
 
 ```{r example}
+# include scancorder.indices package
 library(scancorder.indices)
 
 # First rule of programming: clean it
