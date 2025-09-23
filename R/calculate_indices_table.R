@@ -7,6 +7,8 @@
 #'
 #' @param wavelengths Numeric vector of wavelengths (same length as each reflectance vector).
 #' @param reflectance_list List of numeric reflectance vectors.
+#' @param fwhm Optional numeric vector of full width at half maximum (FWHM) values for each wavelength.
+#' @param meta_table Optional data frame containing metadata for each sample.
 #' @return A data.frame with columns:
 #'   - `sample`: integer sample number (1 to length of `reflectance_list`)
 #'   - one column per index (named by the index, e.g. `NDVI`, `NDWI`)
