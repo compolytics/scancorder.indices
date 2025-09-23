@@ -3,14 +3,14 @@
     <Name>FWBI1b</Name>
     <Wavelengths>
         <Band name="R920" min="920" max="920" unit="nm"/>
-        <Band name="BAND" min="960" max="1000" unit="nm" select="min-reflectance"/>
+        <Band name="R960:R1000" min="960" max="1000" unit="nm" select="min-reflectance"/>
     </Wavelengths>
     <MathML>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <divide/>
                 <ci>R920</ci>
-                <ci>BAND</ci>
+                <ci>R960:R1000</ci>
             </apply>
         </math>
     </MathML>

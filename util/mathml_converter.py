@@ -53,100 +53,82 @@ class MathMLConverter:
             return ""
     
     def _convert_to_sympy(self, elem):
-        """Recursively convert MathML elements to SymPy expressions."""
+        """Recursively convert MathML elements to SymPy expressions, without simplification."""
         if elem is None:
             return None
-            
+
+        from sympy import Mul, Add, Pow, Rational
+
         # Remove namespace prefix for easier handling
         tag = elem.tag.split('}')[-1] if '}' in elem.tag else elem.tag
-        
+
         if tag == 'math':
-            # Root math element, process children
             children = list(elem)
             if children:
                 return self._convert_to_sympy(children[0])
             return None
-        
+
         elif tag == 'apply':
-            # Mathematical operation
             children = list(elem)
             if len(children) < 2:
                 return None
-                
+
             operation = children[0].tag.split('}')[-1] if '}' in children[0].tag else children[0].tag
             operands = children[1:]
-            
-            # Convert all operands to SymPy expressions
+
             sympy_operands = []
             for operand in operands:
                 converted = self._convert_to_sympy(operand)
                 if converted is not None:
                     sympy_operands.append(converted)
-            
+
             if not sympy_operands:
                 return None
-            
-            # Handle different operations
+
+            # Use unevaluated operations to avoid simplification
             if operation == 'divide' and len(sympy_operands) == 2:
-                return sympy_operands[0] / sympy_operands[1]
-            
+                # Use unevaluated Mul for division
+                return Mul(sympy_operands[0], Pow(sympy_operands[1], -1, evaluate=False), evaluate=False)
+
             elif operation == 'times':
-                result = sympy_operands[0]
-                for operand in sympy_operands[1:]:
-                    result = result * operand
-                return result
-            
+                return Mul(*sympy_operands, evaluate=False)
+
             elif operation == 'plus':
-                result = sympy_operands[0]
-                for operand in sympy_operands[1:]:
-                    result = result + operand
-                return result
-            
+                return Add(*sympy_operands, evaluate=False)
+
             elif operation == 'minus':
                 if len(sympy_operands) == 1:
-                    # Unary minus
-                    return -sympy_operands[0]
+                    return Mul(-1, sympy_operands[0], evaluate=False)
                 else:
-                    # Binary minus (subtraction)
-                    result = sympy_operands[0]
-                    for operand in sympy_operands[1:]:
-                        result = result - operand
-                    return result
-            
+                    # Subtraction: a - b - c ...
+                    first = sympy_operands[0]
+                    rest = [Mul(-1, op, evaluate=False) for op in sympy_operands[1:]]
+                    return Add(first, *rest, evaluate=False)
+
             elif operation == 'power' and len(sympy_operands) == 2:
-                return sympy_operands[0] ** sympy_operands[1]
-            
+                return Pow(sympy_operands[0], sympy_operands[1], evaluate=False)
+
             elif operation == 'root':
-                # Handle square root (most common case)
+                # Square root (most common case)
                 if len(sympy_operands) == 1:
-                    return sqrt(sympy_operands[0])
+                    return Pow(sympy_operands[0], Rational(1, 2), evaluate=False)
                 elif len(sympy_operands) == 2:
-                    # nth root: operands[1] ** (1/operands[0])
-                    # But in MathML, <root> usually means square root with one operand
-                    return sqrt(sympy_operands[0])
-        
+                    # nth root: x ** (1/n)
+                    return Pow(sympy_operands[0], Pow(sympy_operands[1], -1, evaluate=False), evaluate=False)
+
         elif tag == 'ci':
-            # Variable/identifier
             text = elem.text.strip() if elem.text else ''
             if not text:
                 return None
-                
-            # Handle variables with special characters like colons
-            # Store original name for later LaTeX processing
             if text not in self.variables:
-                # Create SymPy symbol - SymPy can handle most characters
                 try:
-                    # Try to create symbol with original name
                     self.variables[text] = Symbol(text)
                 except:
-                    # Fallback: replace problematic characters
                     safe_name = text.replace(':', '_colon_').replace('-', '_dash_')
                     self.variables[text] = Symbol(safe_name)
-            
             return self.variables[text]
-        
+
         elif tag == 'cn':
-            # Numeric constant
             text = elem.text.strip() if elem.text else '0'
             try:
                 if '.' in text:
@@ -155,15 +137,13 @@ class MathMLConverter:
                     return Integer(text)
             except:
                 return Float(0)
-        
+
         elif tag == 'mi':
-            # Mathematical identifier (similar to ci)
             text = elem.text.strip() if elem.text else ''
             if text:
                 return Symbol(text)
-        
+
         elif tag == 'mn':
-            # Mathematical number (similar to cn)
             text = elem.text.strip() if elem.text else '0'
             try:
                 if '.' in text:
@@ -172,12 +152,12 @@ class MathMLConverter:
                     return Integer(text)
             except:
                 return Float(0)
-        
+
         # For unhandled elements, try to process children
         children = list(elem)
         if len(children) == 1:
             return self._convert_to_sympy(children[0])
-        
+
         return None
     
     def _fix_variable_names(self, latex_str: str) -> str:

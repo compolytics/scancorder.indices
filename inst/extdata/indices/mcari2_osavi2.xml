@@ -2,11 +2,11 @@
 <SpectralIndex>
     <Name>MCARI2/OSAVI2</Name>
     <Wavelengths>
-        <Band name="R800" min="800" max="800" unit="nm"/>
-        <Band name="R670" min="670" max="670" unit="nm"/>
         <Band name="R550" min="550" max="550" unit="nm"/>
-        <Band name="R750" min="750" max="750" unit="nm"/>
+        <Band name="R670" min="670" max="670" unit="nm"/>
         <Band name="R705" min="705" max="705" unit="nm"/>
+        <Band name="R750" min="750" max="750" unit="nm"/>
+        <Band name="R800" min="800" max="800" unit="nm"/>
     </Wavelengths>
     <MathML>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -39,38 +39,40 @@
                             </apply>
                         </apply>
                         <apply>
-                            <minus/>
-                            <apply>
-                                <power/>
-                                <apply>
-                                    <plus/>
-                                    <apply>
-                                        <times/>
-                                        <cn>2</cn>
-                                        <ci>R800</ci>
-                                    </apply>
-                                    <cn>1</cn>
-                                </apply>
-                                <cn>2</cn>
-                            </apply>
+                            <root/>
                             <apply>
                                 <minus/>
                                 <apply>
-                                    <times/>
-                                    <cn>6</cn>
-                                    <ci>R800</ci>
+                                    <power/>
+                                    <apply>
+                                        <plus/>
+                                        <apply>
+                                            <times/>
+                                            <cn>2</cn>
+                                            <ci>R800</ci>
+                                        </apply>
+                                        <cn>1</cn>
+                                    </apply>
+                                    <cn>2</cn>
                                 </apply>
                                 <apply>
-                                    <times/>
-                                    <cn>5</cn>
-                                    <ci>R670</ci>
+                                    <minus/>
+                                    <apply>
+                                        <times/>
+                                        <cn>6</cn>
+                                        <ci>R800</ci>
+                                    </apply>
+                                    <apply>
+                                        <times/>
+                                        <cn>5</cn>
+                                        <apply>
+                                            <root/>
+                                            <ci>R670</ci>
+                                        </apply>
+                                    </apply>
                                 </apply>
+                                <cn>0.5</cn>
                             </apply>
-                            <apply>
-                                <root/>
-                                <ci>R670</ci>
-                            </apply>
-                            <cn>0.5</cn>
                         </apply>
                     </apply>
                 </apply>
