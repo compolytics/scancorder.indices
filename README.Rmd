@@ -76,7 +76,7 @@ install.packages(package_url, repos=NULL, type = "mac.binary")
 
 ### From GitHub Repository
 
-You can install the development version of `scancorder.indices` from [GitHub](https://github.com/) with:
+You can install the development version of `scancorder.indices` from [GitHub](https://github.com/) with (available soon):
 
 ``` r
 # install.packages("pak")
