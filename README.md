@@ -13,8 +13,7 @@ of vegetation indices.
 
 ### From GitLab package registry
 
-You can install the compiled platform-specific version of
-`scancorder.indices` from
+You can install the source package from
 [GitLab](https://gitlab.com/compolytics-public/scancorder.indices/-/packages/).
 
 #### Windows/Linux
