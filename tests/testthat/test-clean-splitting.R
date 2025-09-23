@@ -26,22 +26,21 @@ test_that("Channel mask splitting functionality works correctly", {
   decoder <- DecodeCompolyticsRegularScanner$new(average_sensor_values = TRUE)
   result <- decoder$score(splitting_json)
   
-  # Should return 5 features based on actual implementation:
-  # LED1 creates 2 features (both binary), LED2 creates 2 features (split), LED3 creates 1 feature (binary)
+  # Should return 4 features based on corrected implementation (no binary duplicates):
+  # LED1 creates 1 feature (binary avg), LED2 creates 2 features (split), LED3 creates 1 feature (binary)
   expect_length(result$reflectance, 1)
-  expect_length(result$reflectance[[1]], 5)
+  expect_length(result$reflectance[[1]], 4)
   
-  # Check wavelengths: LED1 (binary), LED1 (binary), LED2 (sensor 2), LED2 (sensor 3), LED3 (binary)
-  expected_wavelengths <- c(650, 650, 670, 845, 850)
+  # Check wavelengths: LED1 (binary), LED2 (sensor 2), LED2 (sensor 3), LED3 (binary)
+  expected_wavelengths <- c(650, 670, 845, 850)
   expect_equal(result$wavelength, expected_wavelengths)
   
-  # Check values based on actual implementation:
-  # Feature 1: LED 1 binary = avg(100,120) = 110
-  # Feature 2: LED 1 binary = avg(100,120) = 110  
-  # Feature 3: LED 2 sensor 2 = 250 (splitting mode)
-  # Feature 4: LED 2 sensor 3 = 160 (splitting mode)
-  # Feature 5: LED 3 sensor 4 = 360 (binary mode)
-  expected_values <- c(110, 110, 250, 160, 360)
+  # Check values based on corrected implementation:
+  # Feature 1: LED 1 binary = avg(100,120) = 110 (one feature, not duplicated)
+  # Feature 2: LED 2 sensor 2 = 250 (splitting mode)
+  # Feature 3: LED 2 sensor 3 = 160 (splitting mode)
+  # Feature 4: LED 3 sensor 4 = 360 (binary mode)
+  expected_values <- c(110, 250, 160, 360)
   expect_equal(result$reflectance[[1]], expected_values)
 })
 
@@ -146,7 +145,7 @@ test_that("Binary-only mode works correctly", {
   
   # Check the actual values returned (averaged per LED)
   # LED 1: sensors 1,2 = (100+150)/2 = 125
-  # LED 2: sensors 3,4 = (160+240)/2 = 200  
+  # LED 2: sensors 3,4 = (160+240)/2 = 200
   # LED 3: sensors 1,4 = (300+360)/2 = 330
   expected_values <- c(125, 200, 330)
   expect_equal(result$reflectance[[1]], expected_values)

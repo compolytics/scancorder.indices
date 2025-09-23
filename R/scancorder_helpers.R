@@ -235,22 +235,31 @@ ScanCorderHelpers <- R6Class("ScanCorderHelpers",
       led_indices <- c()
       sensor_indices <- c()
       
+      binary_leds_processed <- c()  # Track which LEDs already have binary features
+      
       for (led_idx in seq_len(nrow(channel_mask))) {
+        # Check if this LED has any binary sensors (mask == 1)
+        binary_sensors <- which(channel_mask[led_idx, ] == 1)
+        if (length(binary_sensors) > 0 && !(led_idx %in% binary_leds_processed)) {
+          # Create one binary feature for this LED (averages all binary sensors)
+          feature_wavelengths <- c(feature_wavelengths, led_wavelengths[led_idx])
+          led_indices <- c(led_indices, led_idx)
+          sensor_indices <- c(sensor_indices, NA)
+          binary_leds_processed <- c(binary_leds_processed, led_idx)
+        }
+        
+        # Process splitting sensors (mask > 1) for this LED
         for (sensor_idx in seq_len(ncol(channel_mask))) {
           mask_value <- channel_mask[led_idx, sensor_idx]
           
-          if (mask_value == 1) {
-            # Binary mode - use LED wavelength
-            feature_wavelengths <- c(feature_wavelengths, led_wavelengths[led_idx])
-            led_indices <- c(led_indices, led_idx)
-            sensor_indices <- c(sensor_indices, NA)
-          } else if (mask_value > 1) {
+          if (mask_value > 1) {
             # Splitting mode - use sensor wavelength
             feature_wavelengths <- c(feature_wavelengths, sensor_wavelengths[sensor_idx])
             led_indices <- c(led_indices, led_idx)
             sensor_indices <- c(sensor_indices, sensor_idx)
           }
           # mask_value == 0: ignore (skip)
+          # mask_value == 1: already handled above for the entire LED
         }
       }
       

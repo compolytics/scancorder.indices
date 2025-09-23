@@ -31,24 +31,24 @@ test_that("Channel mask splitting functionality works correctly", {
   expect_type(result_split, "list")
   expect_named(result_split, c("meta_table", "reflectance", "wavelength", "fwhm"))
   
-  # Check feature wavelengths (should include both LED and sensor wavelengths)
-  expected_wavelengths <- c(650, 650, 670, 845, 850)
+  # Check feature wavelengths (should include both LED and sensor wavelengths, no duplicates)
+  expected_wavelengths <- c(650, 670, 845, 850)
   expect_equal(result_split$wavelength, expected_wavelengths)
   
-  # Check feature FWHM (should include both LED and sensor FWHM)
-  expected_fwhm <- c(10, 10, 8, 6, 12)
+  # Check feature FWHM (should include both LED and sensor FWHM, no duplicates)
+  expected_fwhm <- c(10, 8, 6, 12)
   expect_equal(result_split$fwhm, expected_fwhm)
   
   # Check number of samples and features
   expect_length(result_split$reflectance, 1)
-  expect_length(result_split$reflectance[[1]], 5)
+  expect_length(result_split$reflectance[[1]], 4)
   
-  # Check reflectance values based on new matrix
-  # Feature 1 & 2: LED 1 binary (sensors 1,4) = avg(100,120) = 110
-  # Feature 3: LED 2 split (sensor 2) = 250
-  # Feature 4: LED 2 split (sensor 3) = 160  
-  # Feature 5: LED 3 binary (sensor 4) = 360
-  expected_reflectance <- c(110, 110, 250, 160, 360)
+  # Check reflectance values based on new matrix (no duplicates)
+  # Feature 1: LED 1 binary (sensors 1,4) = avg(100,120) = 110
+  # Feature 2: LED 2 split (sensor 2) = 250
+  # Feature 3: LED 2 split (sensor 3) = 160  
+  # Feature 4: LED 3 binary (sensor 4) = 360
+  expected_reflectance <- c(110, 250, 160, 360)
   expect_equal(result_split$reflectance[[1]], expected_reflectance)
 })
 
@@ -92,7 +92,8 @@ test_that("Backward compatibility with traditional mode (no channel mask)", {
 
 test_that("Multi-sample splitting processing works correctly", {
   # Test with multiple samples
-  multi_json <- '{
+  multi_json <- '[
+  {
     "values": [
       [100, 150, 80, 120],
       [200, 300, 160, 240],
@@ -113,7 +114,29 @@ test_that("Multi-sample splitting processing works correctly", {
         }
       }
     }
-  }'
+  },
+  {
+    "values": [
+      [150, 100, 120,  80],
+      [300, 200, 240, 160],
+      [270, 180, 216, 144]
+    ],
+    "config": {
+      "sensorHead": {
+        "additionalInfo": {
+          "led_wl": [650, 750, 850],
+          "sensor_wl": [655, 670, 845, 860],
+          "channel_mask": [
+            [1, 0, 0, 1],
+            [0, 2, 3, 0],
+            [0, 0, 0, 1]
+          ],
+          "led_fwhm_nom": [10, 15, 12],
+          "sensor_fwhm": [5, 8, 6, 7]
+        }
+      }
+    }
+  }]'
   
   decoder_multi <- DecodeCompolyticsRegularScanner$new(average_sensor_values = TRUE)
   result_multi <- decoder_multi$score(multi_json)
@@ -122,18 +145,24 @@ test_that("Multi-sample splitting processing works correctly", {
   expect_type(result_multi, "list")
   
   # Check single sample was processed  
-  expect_length(result_multi$reflectance, 1)
+  expect_length(result_multi$reflectance, 2)
   
-  # Sample should have 5 features (based on channel mask)
-  expect_length(result_multi$reflectance[[1]], 5)
+  # Sample should have 4 features (based on channel mask, no duplicates)
+  expect_length(result_multi$reflectance[[1]], 4)
   
-  # Calculate expected values based on channel mask:
-  # LED 1: mask [1,0,0,1] -> avg sensors 1,4 -> avg(100,120) = 110 (binary feature)
-  # LED 1: mask [1,0,0,1] -> avg sensors 1,4 -> avg(100,120) = 110 (binary feature duplicate)  
-  # LED 2: mask [0,2,3,0] -> sensor 2 = 300, sensor 3 = 160 (splitting features)
-  # LED 3: mask [0,0,0,1] -> sensor 4 = 216 (binary feature)
-  expected_values <- c(110, 110, 300, 160, 216)
+  # Calculate expected values based on channel mask (fixed logic - no duplicates):
+  # LED 1: mask [1,0,0,1] -> avg sensors 1,4 -> avg(100,120) = 110 (one binary feature)
+  # LED 2: mask [0,2,3,0] -> sensor 2 = 300, sensor 3 = 160 (two splitting features)
+  # LED 3: mask [0,0,0,1] -> sensor 4 = 216 (one binary feature)
+  expected_values <- c(110, 300, 160, 216)
   expect_equal(result_multi$reflectance[[1]], expected_values)
+
+  # Calculate expected values based on channel mask (fixed logic - no duplicates):
+  # LED 1: mask [1,0,0,1] -> avg sensors 1,4 -> avg(150,80) = 115 (one binary feature)
+  # LED 2: mask [0,2,3,0] -> sensor 2 = 200, sensor 3 = 240 (two splitting features)
+  # LED 3: mask [0,0,0,1] -> sensor 4 = 144 (one binary feature)
+  expected_values <- c(115, 200, 240, 144)
+  expect_equal(result_multi$reflectance[[2]], expected_values)
 })
 
 test_that("Binary-only mode (channel mask with only 0s and 1s) works correctly", {
@@ -242,11 +271,11 @@ test_that("Shared helper functions work correctly", {
   expect_type(feature_info, "list")
   expect_named(feature_info, c("wavelengths", "led_indices", "sensor_indices", "mixed_mode", "flattened_mode"))
   expect_true(feature_info$mixed_mode)
-  expect_equal(feature_info$wavelengths, c(650, 650, 670, 845, 850))
+  expect_equal(feature_info$wavelengths, c(650, 670, 845, 850))
   
   # Test FWHM extraction
   feature_fwhm <- helpers$extract_feature_fwhm(input_json, device_info, external_info, channel_mask, feature_info)
-  expect_equal(feature_fwhm, c(10, 10, 8, 6, 12))
+  expect_equal(feature_fwhm, c(10, 8, 6, 12))
 })
 
 test_that("Error handling works correctly", {
