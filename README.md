@@ -21,7 +21,7 @@ You can install the compiled platform-specific version of
 
 ``` r
 options(repos = c(
-  gitlab = "https://gitlab.com/api/v4/projects/70774833/packages/generic/scancorder.indices/1.1.5/",
+  gitlab = "https://gitlab.com/api/v4/projects/70774833/packages/generic/scancorder.indices/1.1.6/",
   CRAN   = "https://cloud.r-project.org"
 ))
 install.packages("scancorder.indices")
