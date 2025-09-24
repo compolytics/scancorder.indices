@@ -127,7 +127,7 @@ ScanCorderHelpers <- R6Class("ScanCorderHelpers",
     #' @param external_sensor_info External sensor information
     #' @return Numeric vector of sensor FWHM values or NULL
     extract_sensor_fwhm = function(input_json, device_sensor_info, external_sensor_info) {
-      sensor_fwhm <- self$get_field_base(device_sensor_info, external_sensor_info, "sensor_fwhm")
+      sensor_fwhm <- self$get_field_base(device_sensor_info, external_sensor_info, "sensor_fwhm_nom")
       if (is.null(sensor_fwhm)) {
         return(NULL)
       }
@@ -141,7 +141,7 @@ ScanCorderHelpers <- R6Class("ScanCorderHelpers",
     #' @param sensor_values Sensor values matrix for dimension checking
     #' @param provided_mask Optional externally provided channel mask
     #' @return Channel mask matrix
-    extract_channel_mask = function(input_json, device_sensor_info, external_sensor_info, 
+    extract_channel_mask = function(input_json, device_sensor_info, external_sensor_info,
                                    sensor_values, provided_mask = NULL) {
       if (!is.null(provided_mask)) {
         channel_mask <- as.matrix(provided_mask)
@@ -157,12 +157,12 @@ ScanCorderHelpers <- R6Class("ScanCorderHelpers",
           channel_mask <- self$convert_json_to_matrix(channel_mask)
         }
       }
-      
+
       if (ncol(channel_mask) != ncol(sensor_values)) {
-        stop("Channel mask number of sensors (", ncol(channel_mask), 
+        stop("Channel mask number of sensors (", ncol(channel_mask),
              ") does not match sensor values number of sensors (", ncol(sensor_values), ")")
       }
-      
+
       return(channel_mask)
     },
 
@@ -182,7 +182,7 @@ ScanCorderHelpers <- R6Class("ScanCorderHelpers",
     extract_feature_wavelengths = function(input_json, device_sensor_info, external_sensor_info, channel_mask, average_sensor_values = FALSE) {
       led_wavelengths <- self$extract_led_wavelengths(input_json, device_sensor_info, external_sensor_info)
       sensor_wavelengths <- self$extract_sensor_wavelengths(input_json, device_sensor_info, external_sensor_info)
-      
+
       if (!average_sensor_values) {
         # Flattened mode - wavelengths are always LED wavelengths for flattened vector
         if (is.null(channel_mask)) {
@@ -214,7 +214,7 @@ ScanCorderHelpers <- R6Class("ScanCorderHelpers",
           ))
         }
       }
-      
+
       if (!self$has_splitting(channel_mask)) {
         # No splitting - return LED wavelengths only
         return(list(
@@ -225,18 +225,18 @@ ScanCorderHelpers <- R6Class("ScanCorderHelpers",
           flattened_mode = FALSE
         ))
       }
-      
+
       # Splitting mode - combine LED and sensor wavelengths
       if (is.null(sensor_wavelengths)) {
         stop("Channel mask splitting requires sensor wavelengths")
       }
-      
+
       feature_wavelengths <- c()
       led_indices <- c()
       sensor_indices <- c()
-      
+
       binary_leds_processed <- c()  # Track which LEDs already have binary features
-      
+
       for (led_idx in seq_len(nrow(channel_mask))) {
         # Check if this LED has any binary sensors (mask == 1)
         binary_sensors <- which(channel_mask[led_idx, ] == 1)
@@ -247,11 +247,11 @@ ScanCorderHelpers <- R6Class("ScanCorderHelpers",
           sensor_indices <- c(sensor_indices, NA)
           binary_leds_processed <- c(binary_leds_processed, led_idx)
         }
-        
+
         # Process splitting sensors (mask > 1) for this LED
         for (sensor_idx in seq_len(ncol(channel_mask))) {
           mask_value <- channel_mask[led_idx, sensor_idx]
-          
+
           if (mask_value > 1) {
             # Splitting mode - use sensor wavelength
             feature_wavelengths <- c(feature_wavelengths, sensor_wavelengths[sensor_idx])
@@ -262,10 +262,10 @@ ScanCorderHelpers <- R6Class("ScanCorderHelpers",
           # mask_value == 1: already handled above for the entire LED
         }
       }
-      
+
       # Sort by wavelength
       sort_order <- order(feature_wavelengths)
-      
+
       return(list(
         wavelengths = feature_wavelengths[sort_order],
         led_indices = led_indices[sort_order],
@@ -282,23 +282,23 @@ ScanCorderHelpers <- R6Class("ScanCorderHelpers",
     #' @param channel_mask Channel mask matrix
     #' @param feature_info Feature information from extract_feature_wavelengths
     #' @return Numeric vector of FWHM values corresponding to features
-    extract_feature_fwhm = function(input_json, device_sensor_info, external_sensor_info, 
+    extract_feature_fwhm = function(input_json, device_sensor_info, external_sensor_info,
                                    channel_mask, feature_info) {
       led_fwhm <- self$extract_led_fwhm(input_json, device_sensor_info, external_sensor_info)
       sensor_fwhm <- self$extract_sensor_fwhm(input_json, device_sensor_info, external_sensor_info)
-      
+
       if (!feature_info$mixed_mode) {
         # No splitting - return LED FWHM
         return(led_fwhm)
       }
-      
+
       # Splitting mode - combine LED and sensor FWHM
       feature_fwhm <- c()
-      
+
       for (i in seq_along(feature_info$led_indices)) {
         led_idx <- feature_info$led_indices[i]
         sensor_idx <- feature_info$sensor_indices[i]
-        
+
         if (is.na(sensor_idx)) {
           # Binary mode - use LED FWHM
           if (!is.null(led_fwhm)) {
@@ -315,7 +315,7 @@ ScanCorderHelpers <- R6Class("ScanCorderHelpers",
           }
         }
       }
-      
+
       return(feature_fwhm)
     },
 
@@ -326,9 +326,9 @@ ScanCorderHelpers <- R6Class("ScanCorderHelpers",
     #' @param average_sensor_values Whether to average across sensors per LED for binary channels
     #' @return Processed feature values vector for one sample
     process_sensor_values_with_splitting = function(sensor_values, channel_mask, feature_info, average_sensor_values = FALSE, led_wavelengths = NULL) {
-      
+
       # Always expect LED × SENSOR matrix format (N_LEDs × N_SENSORS)
-      
+
       if (!average_sensor_values) {
         # No averaging: return flattened matrix (F-style, column-major order)
         if (is.null(channel_mask)) {
@@ -364,7 +364,7 @@ ScanCorderHelpers <- R6Class("ScanCorderHelpers",
           ))
         }
       }
-      
+
       # Averaging mode: process according to channel mask and feature info
       if (is.null(channel_mask)) {
         # No channel mask: average all sensors per LED
@@ -374,18 +374,18 @@ ScanCorderHelpers <- R6Class("ScanCorderHelpers",
         }
         return(matrix(feature_values, nrow = 1))
       }
-      
+
       # Channel mask exists: use splitting/binary logic
       n_features <- length(feature_info$led_indices)
       feature_values <- numeric(n_features)
-      
+
       if (!feature_info$mixed_mode) {
         # Binary-only mode - process each LED according to channel mask
         for (i in seq_along(feature_info$led_indices)) {
           led_idx <- feature_info$led_indices[i]
           # Find active sensors for this LED (where mask > 0)
           active_sensors <- which(channel_mask[led_idx, ] > 0)
-          
+
           if (length(active_sensors) > 0) {
             if (length(active_sensors) > 1) {
               # Average across active sensors for this LED
@@ -401,7 +401,7 @@ ScanCorderHelpers <- R6Class("ScanCorderHelpers",
         for (i in seq_along(feature_info$led_indices)) {
           led_idx <- feature_info$led_indices[i]
           sensor_idx <- feature_info$sensor_indices[i]
-          
+
           if (is.na(sensor_idx)) {
             # Binary mode within splitting - use active sensors for this LED
             active_sensors <- which(channel_mask[led_idx, ] == 1)
@@ -420,7 +420,7 @@ ScanCorderHelpers <- R6Class("ScanCorderHelpers",
           }
         }
       }
-      
+
       # Return as 1×N matrix (averaging mode uses original feature_info wavelengths)
       return(list(
         values = matrix(feature_values, nrow = 1),
@@ -438,7 +438,7 @@ ScanCorderHelpers <- R6Class("ScanCorderHelpers",
       if (self$nested_key_exists(input_json, keys_to_check)) {
         external_sensor_info <- find_sensor_metadata(input_json$config$sensorHead$name)
       }
-      
+
       # Get nested substructure with sensor information
       keys_to_check <- c("config", "sensorHead", "additionalInfo")
       if (self$nested_key_exists(input_json, keys_to_check)) {
@@ -446,7 +446,7 @@ ScanCorderHelpers <- R6Class("ScanCorderHelpers",
       } else {
         stop("Cannot find sensor information in sample file.")
       }
-      
+
       return(list(
         device_sensor_info = device_sensor_info,
         external_sensor_info = external_sensor_info
