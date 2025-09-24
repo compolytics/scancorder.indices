@@ -2,9 +2,9 @@
 <SpectralIndex>
     <Name>TGI1</Name>
     <Wavelengths>
-        <Band name="R670" min="670" max="670" unit="nm"/>
-        <Band name="R550" min="550" max="550" unit="nm"/>
-        <Band name="R480" min="480" max="480" unit="nm"/>
+        <Band name="RED" min="640" max="760" unit="nm" select="min-distance"/>
+        <Band name="GREEN" min="480" max="570" unit="nm" select="min-distance"/>
+        <Band name="BLUE" min="420" max="480" unit="nm" select="min-distance"/>
     </Wavelengths>
     <MathML>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -18,17 +18,17 @@
                         <cn>190</cn>
                         <apply>
                             <minus/>
-                            <ci>R670</ci>
-                            <ci>R550</ci>
+                            <ci>RED</ci>
+                            <ci>GREEN</ci>
                         </apply>
                     </apply>
                     <apply>
                         <times/>
-                        <cn>220</cn>
+                        <cn>120</cn>
                         <apply>
                             <minus/>
-                            <ci>R670</ci>
-                            <ci>R480</ci>
+                            <ci>RED</ci>
+                            <ci>BLUE</ci>
                         </apply>
                     </apply>
                 </apply>

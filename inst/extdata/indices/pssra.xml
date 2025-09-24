@@ -2,7 +2,7 @@
 <SpectralIndex>
     <Name>PSSRa</Name>
     <Wavelengths>
-        <Band name="R675" min="675" max="675" unit="nm"/>
+        <Band name="R680" min="680" max="680" unit="nm"/>
         <Band name="R800" min="800" max="800" unit="nm"/>
     </Wavelengths>
     <MathML>
@@ -10,7 +10,7 @@
             <apply>
                 <divide/>
                 <ci>R800</ci>
-                <ci>R675</ci>
+                <ci>R680</ci>
             </apply>
         </math>
     </MathML>
