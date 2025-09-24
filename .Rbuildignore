@@ -1,3 +1,9 @@
 ^scancorder\.indices\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
+^DESCRIPTION-template$
+^ProblemXML\.txt$
+^README\.Rmd$
+^README\.html$
+^example$
+^\.github$

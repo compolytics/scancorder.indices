@@ -2,7 +2,7 @@ library(jsonlite)
 
 #' Find sensor metadata by a 4-digit serial embedded in sensor_serial
 #'
-#' @param serial_number A 4-digit serial (character or numeric)
+#' @param serial_name A 4-digit serial (character or numeric)
 #' @param directory Path to folder containing .json files.
 #'   Defaults to the "sensors" sub directory of the installed scancorder.indices package.
 #' @return Parsed JSON (as an R list) for the first file whose sensor_serial contains that 4-digit code, or NULL

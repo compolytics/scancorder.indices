@@ -2,7 +2,7 @@
 #'
 #' This function locates XML files shipped in the `inst/indices/` folder of the
 #' `scancorder.indices` package and returns the full file path of the XML whose
-#' <Name> element matches `index_name`.
+#' \\<Name\\> element matches `index_name`.
 #'
 #' @param index_name Character. Name of the index to find (e.g. "NDVI").
 #' @return Character. Full file path to the matching XML.

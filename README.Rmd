@@ -13,79 +13,38 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Compolytics (C) Scancorder Indices R-Package
+# COMPOLYTICS® ScanCorder Vegetation Indices R Package
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-This package provides an implementation to decode sample files recorded
-using CICADA and subsequently calculate well known spectral indices. 
+This package provides tools to process spectral data from plant samples recorded with the ScanCorder using CICADA, and to calculate a wide range of vegetation indices. 
 
 ## Installation
 
 ### From GitLab package registry
 
-You can install compiled platform-specific version of
-`scancorder.indices` from
-[GitLab](https://gitlab.com/compolytics-public/scancorder.indices/-/packages/).
+You can install the source package from [GitLab](https://gitlab.com/compolytics-public/scancorder.indices/-/packages/).
 
-#### Windows
+#### Windows/Linux
 
 ``` r
-# (Optional) Set CRAN package server
-options(repos = c(CRAN = "https://cloud.r-project.org"))
-
-# Install dependencies of scancorder.indices
-install.packages(c("xml2", "R6", "jsonlite", "pkgload"))
-
-# Define the direct URL to the package
-package_url <- "https://gitlab.com/api/v4/projects/70774833/packages/generic/scancorder.indices/1.1.1/windows/scancorder.indices.zip"
-
-# Install the binary package
-install.packages(package_url, repos=NULL, type = "win.binary")
+options(repos = c(
+  gitlab = "https://gitlab.com/api/v4/projects/70774833/packages/generic/scancorder.indices/1.1.6/",
+  CRAN   = "https://cloud.r-project.org"
+))
+install.packages("scancorder.indices")
 ```
 
-#### Linux
+### From GitHub Repository
 
-``` r
-# (Optional) Set CRAN package server
-options(repos = c(CRAN = "https://cloud.r-project.org"))
-
-# Install dependencies of scancorder.indices
-install.packages(c("xml2", "R6", "jsonlite", "pkgload"))
-
-# Define the direct URL to the package
-package_url <- "https://gitlab.com/api/v4/projects/70774833/packages/generic/scancorder.indices/1.1.1/linux/scancorder.indices.tar.gz"
-
-# Install the binary package
-install.packages(package_url, repos=NULL, type = "binary")
-```
-
-#### MacOs
-
-``` r
-# (Optional) Set CRAN package server
-options(repos = c(CRAN = "https://cloud.r-project.org"))
-
-# Install dependencies of scancorder.indices
-install.packages(c("xml2", "R6", "jsonlite", "pkgload"))
-
-# Define the direct URL to the package
-package_url <- "https://gitlab.com/api/v4/projects/70774833/packages/generic/scancorder.indices/1.1.1/macos/scancorder.indices.tgz"
-
-# Install the binary package
-install.packages(package_url, repos=NULL, type = "mac.binary")
-```
-
-### From Github Repository
-
-You can install the development version of `scancorder.indices` from [GitHub](https://github.com/) with:
+You can install the development version of `scancorder.indices` from [GitHub](https://github.com/) with (available soon):
 
 ``` r
 # install.packages("pak")
 pak::pak("compolytics/scancorder.indices")
 ```
-For private repository, valid github colaborator credentials are required.
+For private repository, valid GitHub colaborator credentials are required.
 
 ### From R Package Repository
 
@@ -97,10 +56,10 @@ install.packages("scancorder.indices")
 
 ## Example
 
-This is a basic example to calculate a table of spectral indices from a 
-CICADA json data file holding Scancorder sensor data.
+This basic example demonstrates how to calculate a table of spectral indices from a CICADA json file containing ScanCorder sensor data.
 
 ```{r example}
+# include scancorder.indices package
 library(scancorder.indices)
 
 # First rule of programming: clean it
@@ -110,14 +69,15 @@ rm(list = ls())
 # Please change this to the path and file name of your CICADA json data file.
 # ------------------------------------------------------------------------------
 # Change this name to the actual file you exported from the CICADA measurement app
-cicada_file_name = "2025-02-20_11-57-59_exampleDataFiles.json"
+# This file is also available from the Compolytics website (https://compolytics.com/vi-ppda)
+cicada_file_name = "Compolytics_R-Package_VI_Test_File.json"
 # Get current directory
 current_dir <- getwd()
-# Build full path + file name to the data file, changes this location to the
+# Build full path + file name to the data file, change this location to the
 # location of your actual file
 sensor_file_path <- file.path(current_dir, "example", "data", cicada_file_name)
 
-# Step 1: Load Json file and extract data
+# Step 1: Load the json file and extract data
 # ------------------------------------------------------------------------------
 # Setup a decoder that will average the reflectance per LED across sensor channels
 decoder <- DecodeCompolyticsRegularScanner$new(average_sensor_values = TRUE)
@@ -141,7 +101,7 @@ index_table <- calculate_indices_table(data$wavelength, calibReflectance, data$f
 # ------------------------------------------------------------------------------
 # Change this file and path to the location where you want to save the indices table
 # ------------------------------------------------------------------------------
-table_file_path <- file.path(current_dir, "example", "data", "2025-02-20_11-57-59_exampleDataFiles_Indices.csv")
+table_file_path <- file.path(current_dir, "example", "data", "Compolytics_R-Package_VI_Test_File_Indices.csv")
 write_indices_csv(index_table, table_file_path, row.names = FALSE)
 
 # ------------------------------------------------------------------------------

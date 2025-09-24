@@ -15,5 +15,5 @@ Character. Full file path to the matching XML.
 \description{
 This function locates XML files shipped in the \verb{inst/indices/} folder of the
 \code{scancorder.indices} package and returns the full file path of the XML whose
-\if{html}{\out{<Name>}} element matches \code{index_name}.
+\\<Name\\> element matches \code{index_name}.
 }

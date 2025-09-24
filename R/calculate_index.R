@@ -6,14 +6,15 @@ library(xml2)
 #' This function reads an XML file containing the index definition,
 #' extracts the band ranges and MathML expression,
 #' and computes the index for each reflectance vector.
-#' #' @param xml_file Path to the XML file defining the index.
-#' #' @param wavelengths Numeric vector of wavelengths corresponding to the reflectance data.
-#' #' @param reflectance_list List of numeric vectors, each representing reflectance values for a sample.
-#' #' @param fwhm Optional numeric vector of full width at half maximum (FWHM) values for each wavelength.
-#' #' @return A list of computed index values for each reflectance vector.
+#' @param xml_file Path to the XML file defining the index.
+#' @param wavelengths Numeric vector of wavelengths corresponding to the reflectance data.
+#' @param reflectance_list List of numeric vectors, each representing reflectance values for a sample.
+#' @param fwhm Optional numeric vector of full width at half maximum (FWHM) values for each wavelength.
+#' @return A list of computed index values for each reflectance vector.
 #'
 #' @export
 #' @importFrom xml2 xml_attr xml_text xml_name xml_find_first xml_find_all
+#' @importFrom stats na.omit setNames
 calculate_index <- function(xml_file, wavelengths, reflectance_list, fwhm = NULL) {
   # --- 1. Parse XML once ----------------------------------------------------
   doc           <- read_xml(xml_file)
@@ -64,8 +65,6 @@ calculate_index <- function(xml_file, wavelengths, reflectance_list, fwhm = NULL
       center <- (rng$min + rng$max) / 2
       idx <- which((wavelengths+margin) >= rng$min & (wavelengths-margin) <= rng$max)
       if (length(idx) == 0) {
-        message(sprintf("No reflectance data found in the range [%s, %s] nm with margins applied.",
-                        rng$min, rng$max))
         return(NULL)
       }
       # pick the one whose wavelength is closest to the band center

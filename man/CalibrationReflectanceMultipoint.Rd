@@ -9,6 +9,15 @@ Performs multi-point reflectance calibration based on a 3D array of
 calibration factors, typically loaded from JSON data from CICADA sensor
 reading.
 }
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{calibration_factors}}{A 3D array containing calibration factors, initialized to NULL.
+
+Initialize the CalibrationReflectanceMultipoint object}
+}
+\if{html}{\out{</div>}}
+}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
@@ -32,6 +41,14 @@ reading.
 \if{html}{\out{<div class="r">}}\preformatted{CalibrationReflectanceMultipoint$new(calibration_factors = NULL)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{calibration_factors}}{A 3D array of calibration factors. If provided, it will be stored as an array.
+Helper function to slice the last dimension of a 3D array}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-CalibrationReflectanceMultipoint-slice_keep_first"></a>}}
@@ -41,6 +58,19 @@ reading.
 \if{html}{\out{<div class="r">}}\preformatted{CalibrationReflectanceMultipoint$slice_keep_first(x, k)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{x}}{A 3D array to slice}
+
+\item{\code{k}}{The index for the last dimension to slice}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+A 2D matrix with the last dimension sliced
+Applies the multi-point calibration to sensor reading
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-CalibrationReflectanceMultipoint-multi_point_calibration"></a>}}
@@ -50,6 +80,17 @@ reading.
 \if{html}{\out{<div class="r">}}\preformatted{CalibrationReflectanceMultipoint$multi_point_calibration(sensor_values)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{sensor_values}}{A numeric matrix containing sensor values to calibrate}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+A calibrated numeric matrix
+Check if a nested key exists in a list
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-CalibrationReflectanceMultipoint-nested_key_exists"></a>}}
@@ -59,6 +100,19 @@ reading.
 \if{html}{\out{<div class="r">}}\preformatted{CalibrationReflectanceMultipoint$nested_key_exists(dictionary, keys)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{dictionary}}{A list or nested list structure to check}
+
+\item{\code{keys}}{A vector of keys representing the nested path to check}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+Logical value indicating whether the nested key path exists
+Convert JSON data frame to numeric matrix
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-CalibrationReflectanceMultipoint-convert_json_to_matrix"></a>}}
@@ -71,6 +125,19 @@ reading.
 )}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{json_data}}{A list or data frame structure from JSON}
+
+\item{\code{type}}{Function to convert data type (default: as.numeric)}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+A numeric matrix
+Convert JSON data frame to 3D array
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-CalibrationReflectanceMultipoint-convert_json_to_3d_array"></a>}}
@@ -83,6 +150,19 @@ reading.
 )}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{json_data}}{A list structure from JSON to convert to 3D array}
+
+\item{\code{type}}{Function to convert data type (default: as.numeric)}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+A 3D numeric array
+Ensure input is a list, wrapping if necessary
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-CalibrationReflectanceMultipoint-ensure_list"></a>}}
@@ -92,6 +172,17 @@ reading.
 \if{html}{\out{<div class="r">}}\preformatted{CalibrationReflectanceMultipoint$ensure_list(x)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{x}}{Input object to ensure is a list}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+A list, either the original if already a list, or wrapped in a list
+Flatten JSON input, extracting 'data' field if it exists
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-CalibrationReflectanceMultipoint-flatten_sample_json"></a>}}
@@ -101,6 +192,17 @@ reading.
 \if{html}{\out{<div class="r">}}\preformatted{CalibrationReflectanceMultipoint$flatten_sample_json(input_json)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{input_json}}{A list structure from parsed JSON}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+A flattened list with data fields extracted
+Perform multi-point calibration on reflectance data
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-CalibrationReflectanceMultipoint-score"></a>}}
@@ -110,6 +212,18 @@ reading.
 \if{html}{\out{<div class="r">}}\preformatted{CalibrationReflectanceMultipoint$score(reflectance, json_input)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{reflectance}}{A list or matrix of reflectance data}
+
+\item{\code{json_input}}{A JSON string containing sensor configuration and calibration data}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+A list of calibrated reflectance values
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-CalibrationReflectanceMultipoint-clone"></a>}}
