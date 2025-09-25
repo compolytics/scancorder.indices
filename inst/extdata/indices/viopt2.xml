@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>VIopt2</Name>
+    <Wavelengths>
+        <Band name="R760" min="760" max="760" unit="nm"/>
+        <Band name="R730" min="730" max="730" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <times/>
+                <cn>100</cn>
+                <apply>
+                    <minus/>
+                    <apply>
+                        <ln/>
+                        <ci>R760</ci>
+                    </apply>
+                    <apply>
+                        <ln/>
+                        <ci>R730</ci>
+                    </apply>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Optimized Vegetation Index 2 (VIopt2)</Description>
+    </Metadata>
+</SpectralIndex>

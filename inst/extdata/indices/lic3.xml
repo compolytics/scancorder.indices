@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>Lic3</Name>
+    <Wavelengths>
+        <Band name="R440" min="440" max="440" unit="nm"/>
+        <Band name="R740" min="740" max="740" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R440</ci>
+                <ci>R740</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio 440/740, Lichtenthaler indices 3 (Lic3)</Description>
+    </Metadata>
+</SpectralIndex>

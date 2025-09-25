@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>SR[560,658]</Name>
+    <Wavelengths>
+        <Band name="R560" min="560" max="560" unit="nm"/>
+        <Band name="R658" min="658" max="658" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R560</ci>
+                <ci>R658</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio 560/658, GRVIhyper (SR[560,658])</Description>
+    </Metadata>
+</SpectralIndex>

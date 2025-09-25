@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>REP</Name>
+    <Wavelengths>
+        <Band name="R670" min="670" max="670" unit="nm"/>
+        <Band name="R700" min="700" max="700" unit="nm"/>
+        <Band name="R740" min="740" max="740" unit="nm"/>
+        <Band name="R780" min="780" max="780" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <plus/>
+                <cn>700</cn>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <times/>
+                        <cn>40</cn>
+                        <apply>
+                            <minus/>
+                            <apply>
+                                <divide/>
+                                <apply>
+                                    <plus/>
+                                    <ci>R670</ci>
+                                    <ci>R780</ci>
+                                    </apply>
+                                <cn>2</cn>
+                                </apply>
+                            <cn>700</cn>
+                            </apply>
+                        </apply>
+                    <apply>
+                        <minus/>
+                        <cn>740</cn>
+                        <cn>700</cn>
+                    </apply>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Red Edge Position (REP)</Description>
+    </Metadata>
+</SpectralIndex>

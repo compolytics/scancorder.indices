@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>NPCI</Name>
+    <Wavelengths>
+        <Band name="R430" min="430" max="430" unit="nm"/>
+        <Band name="R680" min="680" max="680" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <minus/>
+                    <ci>R680</ci>
+                    <ci>R430</ci>
+                </apply>
+                <apply>
+                    <plus/>
+                    <ci>R680</ci>
+                    <ci>R430</ci>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Normalized Pigments Chlorophyll Ratio Index (NPCI)</Description>
+    </Metadata>
+</SpectralIndex>

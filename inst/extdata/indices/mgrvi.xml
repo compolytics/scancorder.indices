@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>MGRVI</Name>
+    <Wavelengths>
+        <Band name="R490:R570" min="490" max="570" unit="nm" select="min-distance"/>
+        <Band name="R640:R760" min="640" max="760" unit="nm" select="min-distance"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <minus/>
+                    <apply>
+                        <power/>
+                        <ci>R490:R570</ci>
+                        <cn>2</cn>
+                    </apply>
+                    <apply>
+                        <power/>
+                        <ci>R640:R760</ci>
+                        <cn>2</cn>
+                    </apply>
+                </apply>
+                <apply>
+                    <plus/>
+                    <apply>
+                        <power/>
+                        <ci>R490:R570</ci>
+                        <cn>2</cn>
+                    </apply>
+                    <apply>
+                        <power/>
+                        <ci>R640:R760</ci>
+                        <cn>2</cn>
+                    </apply>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Modified Green Red Vegetation Index (MGRVI)</Description>
+    </Metadata>
+</SpectralIndex>

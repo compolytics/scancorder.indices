@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>BGI2</Name>
+    <Wavelengths>
+        <Band name="R450" min="450" max="450" unit="nm"/>
+        <Band name="R550" min="550" max="550" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R450</ci>
+                <ci>R550</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio 450/550, Blue Green Pigment Index (BGI2)</Description>
+    </Metadata>
+</SpectralIndex>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>NGRDI</Name>
+    <Wavelengths>
+        <Band name="R490:R570" min="490" max="570" unit="nm" select="min-distance"/>
+        <Band name="R640:R760" min="640" max="760" unit="nm" select="min-distance"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <minus/>
+                    <ci>R490:R570</ci>
+                    <ci>R640:R760</ci>
+                </apply>
+                <apply>
+                    <plus/>
+                    <ci>R490:R570</ci>
+                    <ci>R640:R760</ci>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Normalized green red difference index (NGRDI)</Description>
+    </Metadata>
+</SpectralIndex>

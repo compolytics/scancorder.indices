@@ -2,8 +2,8 @@
 <SpectralIndex>
     <Name>NDVI</Name>
     <Wavelengths>
-        <Band name="Red" min="620" max="670" unit="nm"/>
-        <Band name="NIR" min="750" max="810" unit="nm"/>
+        <Band name="Red" min="620" max="670" unit="nm" select="min-distance"/>
+        <Band name="NIR" min="750" max="810" unit="nm" select="min-distance"/>
     </Wavelengths>
     <MathML>
         <math xmlns="http://www.w3.org/1998/Math/MathML">

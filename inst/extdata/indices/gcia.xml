@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>GCIa</Name>
+    <Wavelengths>
+        <Band name="NIR" min="780" max="1400" unit="nm" select="min-distance"/>
+        <Band name="R520:R585" min="520" max="585" unit="nm" select="min-distance"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <minus/>
+                <apply>
+                    <divide/>
+                    <ci>NIR</ci>
+                    <ci>R520:R585</ci>
+                </apply>
+                <cn>1.0</cn>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Green Chlorophyll Index a (GCIa)</Description>
+    </Metadata>
+</SpectralIndex>

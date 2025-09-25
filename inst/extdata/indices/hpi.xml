@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>HPI</Name>
+    <Wavelengths>
+        <Band name="R534" min="534" max="534" unit="nm"/>
+        <Band name="R698" min="698" max="698" unit="nm"/>
+        <Band name="R704" min="704" max="704" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <minus/>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <minus/>
+                        <ci>R534</ci>
+                        <ci>R698</ci>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <ci>R534</ci>
+                        <ci>R698</ci>
+                    </apply>
+                </apply>
+                <apply>
+                    <times/>
+                    <cn>0.5</cn>
+                    <ci>R704</ci>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Healthy Plant Index (HPI)</Description>
+    </Metadata>
+</SpectralIndex>

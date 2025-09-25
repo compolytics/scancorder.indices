@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>FD_VI3</Name>
+    <Wavelengths>
+        <Band name="R475" min="475" max="475" unit="nm"/>
+        <Band name="R668" min="668" max="668" unit="nm"/>
+        <Band name="R717" min="717" max="717" unit="nm"/>
+        <Band name="R840" min="840" max="840" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <plus/>
+                    <apply>
+                        <plus/>
+                        <ci>R840</ci>
+                        <ci>R717</ci>
+                    </apply>
+                    <apply>
+                        <minus/>
+                        <cn>0.0</cn>
+                        <ci>R668</ci>
+                    </apply>
+                </apply>
+                <apply>
+                    <plus/>
+                    <apply>
+                        <minus/>
+                        <apply>
+                            <plus/>
+                            <apply>
+                                <plus/>
+                                <ci>R840</ci>
+                                <ci>R717</ci>
+                            </apply>
+                            <apply>
+                                <times/>
+                                <cn>6.0</cn>
+                                <ci>R668</ci>
+                            </apply>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <cn>7.5</cn>
+                            <ci>R475</ci>
+                        </apply>
+                    </apply>
+                    <cn>25.0</cn>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Frost Damage Vegetation Index 3 (FD_VI3)</Description>
+    </Metadata>
+</SpectralIndex>

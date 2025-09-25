@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>CLSI</Name>
+    <Wavelengths>
+        <Band name="R570" min="570" max="570" unit="nm"/>
+        <Band name="R698" min="698" max="698" unit="nm"/>
+        <Band name="R734" min="734" max="734" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <minus/>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <minus/>
+                        <ci>R698</ci>
+                        <ci>R570</ci>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <ci>R698</ci>
+                        <ci>R570</ci>
+                    </apply>
+                </apply>
+                <ci>R734</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Cercospora Leaf Spot Index (CLSI)</Description>
+    </Metadata>
+</SpectralIndex>

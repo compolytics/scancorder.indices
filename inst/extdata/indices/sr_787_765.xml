@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>SR[787,765]</Name>
+    <Wavelengths>
+        <Band name="R787" min="787" max="787" unit="nm"/>
+        <Band name="R765" min="765" max="765" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R787</ci>
+                <ci>R765</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio Pigment Specific 3 (SR[787,765])</Description>
+    </Metadata>
+</SpectralIndex>

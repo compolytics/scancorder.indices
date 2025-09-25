@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>RVI1</Name>
+    <Wavelengths>
+        <Band name="R810" min="810" max="810" unit="nm"/>
+        <Band name="R660" min="660" max="660" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R810</ci>
+                <ci>R660</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Ratio Vegetation Index 1 (RVI1)</Description>
+    </Metadata>
+</SpectralIndex>

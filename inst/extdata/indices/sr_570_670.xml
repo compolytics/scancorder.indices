@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>SR[570,670]</Name>
+    <Wavelengths>
+        <Band name="R570" min="570" max="570" unit="nm"/>
+        <Band name="R670" min="670" max="670" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R570</ci>
+                <ci>R670</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio 570/670, Greenness Index (SR[570,670])</Description>
+    </Metadata>
+</SpectralIndex>

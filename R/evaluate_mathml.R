@@ -9,8 +9,18 @@ library(xml2)
 #' @return Numeric value resulting from the evaluation of the MathML expression.
 #'
 #' @importFrom xml2 xml_children xml_name xml_text
-evaluate_mathml <- function(node, values) {
 
+# Helper function: Convert RGB to HSV and extract Hue channel
+rgb2hue <- function(r, g, b) {
+  # Normalize to [0,1]
+  rgb <- c(r, g, b) / max(c(r, g, b), 1)
+  hsv <- grDevices::rgb2hsv(rgb[1], rgb[2], rgb[3])
+  # Hue is in [0,1], convert to degrees [0,360)
+  hue <- as.numeric(hsv[1, 1]) * 360
+  return(hue)
+}
+
+evaluate_mathml <- function(node, values) {
   # If the node is a <math> element, evaluate its first child.
   if (xml_name(node) == "math") {
     children <- xml_children(node)
@@ -38,7 +48,12 @@ evaluate_mathml <- function(node, values) {
   if (xml_name(node) == "apply") {
     children <- xml_children(node)
     # The first child is the operator.
-    operator <- xml_name(children[[1]])
+    op_node <- children[[1]]
+    operator <- xml_name(op_node)
+    # For csymbol, use the text as the operator name
+    if (operator == "csymbol") {
+      operator <- xml_text(op_node)
+    }
     # Evaluate each argument recursively.
     args <- lapply(children[-1], function(child) evaluate_mathml(child, values))
 
@@ -66,6 +81,33 @@ evaluate_mathml <- function(node, values) {
         return(args[[1]]^args[[2]])
       } else {
         stop("The power operator expects exactly 2 arguments.")
+      }
+    } else if (operator == "root") {
+      # root(x) or root(x, n)
+      if (length(args) == 1) {
+        return(sqrt(args[[1]]))
+      } else if (length(args) == 2) {
+        return(args[[1]]^(1/args[[2]]))
+      } else {
+        stop("The root operator expects 1 or 2 arguments.")
+      }
+    } else if (operator == "abs") {
+      if (length(args) == 1) {
+        return(abs(args[[1]]))
+      } else {
+        stop("The abs operator expects 1 argument.")
+      }
+    } else if (operator == "ln") {
+      if (length(args) == 1) {
+        return(log(args[[1]]))
+      } else {
+        stop("The ln operator expects 1 argument.")
+      }
+    } else if (operator == "rgb2hue") {
+      if (length(args) == 3) {
+        return(rgb2hue(args[[1]], args[[2]], args[[3]]))
+      } else {
+        stop("The rgb2hue operator expects 3 arguments (R, G, B).")
       }
     } else {
       stop(sprintf("Unsupported MathML operator: %s", operator))

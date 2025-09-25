@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>MSAVI1</Name>
+    <Wavelengths>
+        <Band name="NIR" min="780" max="1400" unit="nm" select="min-distance"/>
+        <Band name="RED" min="640" max="760" unit="nm" select="min-distance"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <minus/>
+                    <apply>
+                        <plus/>
+                        <apply>
+                            <times/>
+                            <cn>2</cn>
+                            <ci>NIR</ci>
+                        </apply>
+                        <cn>1</cn>
+                    </apply>
+                    <apply>
+                        <root/>
+                        <apply>
+                            <minus/>
+                            <apply>
+                                <power/>
+                                <apply>
+                                    <plus/>
+                                    <apply>
+                                        <times/>
+                                        <cn>2</cn>
+                                        <ci>NIR</ci>
+                                    </apply>
+                                    <cn>1</cn>
+                                </apply>
+                                <cn>2</cn>
+                            </apply>
+                            <apply>
+                                <times/>
+                                <cn>8</cn>
+                                <apply>
+                                    <minus/>
+                                    <ci>NIR</ci>
+                                    <ci>RED</ci>
+                                </apply>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+                <cn>2</cn>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Modified Soil Adjusted Vegetation Index 1 (MSAVI1)</Description>
+    </Metadata>
+</SpectralIndex>

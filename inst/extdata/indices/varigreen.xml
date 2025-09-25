@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>VARIgreen</Name>
+    <Wavelengths>
+        <Band name="GREEN" min="480" max="570" unit="nm" select="min-distance"/>
+        <Band name="RED" min="640" max="760" unit="nm" select="min-distance"/>
+        <Band name="BLUE" min="420" max="480" unit="nm" select="min-distance"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <minus/>
+                    <ci>GREEN</ci>
+                    <ci>RED</ci>
+                </apply>
+                <apply>
+                    <minus/>
+                    <apply>
+                        <plus/>
+                        <ci>GREEN</ci>
+                        <ci>RED</ci>
+                    </apply>
+                    <ci>BLUE</ci>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Visible Atmospherically Resistant Index (VARIgreen)</Description>
+    </Metadata>
+</SpectralIndex>

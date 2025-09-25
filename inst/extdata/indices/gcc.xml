@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>GCC</Name>
+    <Wavelengths>
+        <Band name="R470" min="470" max="470" unit="nm"/>
+        <Band name="R530" min="530" max="530" unit="nm"/>
+        <Band name="R670" min="670" max="670" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R530</ci>
+                <apply>
+                    <plus/>
+                    <apply>
+                        <plus/>
+                        <ci>R530</ci>
+                        <ci>R670</ci>
+                    </apply>
+                    <ci>R470</ci>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Green Chromatic Coordinate (GCC)</Description>
+    </Metadata>
+</SpectralIndex>

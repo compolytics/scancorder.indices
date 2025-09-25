@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>SRPI</Name>
+    <Wavelengths>
+        <Band name="R430" min="430" max="430" unit="nm"/>
+        <Band name="R680" min="680" max="680" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R430</ci>
+                <ci>R680</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio Pigment Index (SRPI)</Description>
+    </Metadata>
+</SpectralIndex>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>MSAVI</Name>
+    <Wavelengths>
+        <Band name="R670" min="670" max="670" unit="nm"/>
+        <Band name="R800" min="800" max="800" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <times/>
+                <cn>0.5</cn>
+                <apply>
+                    <minus/>
+                    <apply>
+                        <plus/>
+                        <apply>
+                            <times/>
+                            <cn>2.0</cn>
+                            <ci>R800</ci>
+                        </apply>
+                        <cn>1.0</cn>
+                    </apply>
+                    <apply>
+                        <root/>
+                        <apply>
+                            <minus/>
+                            <apply>
+                                <power/>
+                                <apply>
+                                    <plus/>
+                                    <apply>
+                                        <times/>
+                                        <cn>2.0</cn>
+                                        <ci>R800</ci>
+                                    </apply>
+                                    <cn>1.0</cn>
+                                </apply>
+                                <cn>2.0</cn>
+                            </apply>
+                            <apply>
+                                <times/>
+                                <cn>8.0</cn>
+                                <apply>
+                                    <minus/>
+                                    <ci>R800</ci>
+                                    <ci>R670</ci>
+                                </apply>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Modified Soil Adjusted Vegetation Index (Hyper) (MSAVI)</Description>
+    </Metadata>
+</SpectralIndex>

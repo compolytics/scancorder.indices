@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>DVI</Name>
+    <Wavelengths>
+        <Band name="R800" min="800" max="800" unit="nm"/>
+        <Band name="R680" min="680" max="680" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <minus/>
+                <ci>R800</ci>
+                <ci>R680</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Difference Vegetation Index (DVI)</Description>
+    </Metadata>
+</SpectralIndex>

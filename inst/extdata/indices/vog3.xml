@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>Vog3</Name>
+    <Wavelengths>
+        <Band name="R734" min="734" max="734" unit="nm"/>
+        <Band name="R747" min="747" max="747" unit="nm"/>
+        <Band name="R715" min="715" max="715" unit="nm"/>
+        <Band name="R720" min="720" max="720" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <minus/>
+                    <ci>R734</ci>
+                    <ci>R747</ci>
+                </apply>
+                <apply>
+                    <plus/>
+                    <ci>R715</ci>
+                    <ci>R720</ci>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Normalized Differenz, Vogelmann indices 3 (Vog3)</Description>
+    </Metadata>
+</SpectralIndex>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>Datt5</Name>
+    <Wavelengths>
+        <Band name="R672" min="672" max="672" unit="nm"/>
+        <Band name="R550" min="550" max="550" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R672</ci>
+                <ci>R550</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio 672/550, Datt5 (Datt5)</Description>
+    </Metadata>
+</SpectralIndex>

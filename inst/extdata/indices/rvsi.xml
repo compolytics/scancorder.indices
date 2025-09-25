@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>RVSI</Name>
+    <Wavelengths>
+        <Band name="R712" min="712" max="712" unit="nm"/>
+        <Band name="R752" min="752" max="752" unit="nm"/>
+        <Band name="R732" min="732" max="732" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <minus/>
+                <apply>
+                    <times/>
+                    <cn>0.5</cn>
+                    <apply>
+                        <plus/>
+                        <ci>R712</ci>
+                        <ci>R752</ci>
+                    </apply>
+                    </apply>
+                <ci>R732</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Red-Edge Vegetation Stress Index, Wheat (RVSI)</Description>
+    </Metadata>
+</SpectralIndex>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>MCARI/OSAVI750</Name>
+    <Wavelengths>
+        <Band name="R750" min="750" max="750" unit="nm"/>
+        <Band name="R705" min="705" max="705" unit="nm"/>
+        <Band name="R550" min="550" max="550" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <times/>
+                    <apply>
+                        <minus/>
+                        <apply>
+                            <minus/>
+                            <ci>R750</ci>
+                            <ci>R705</ci>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <cn>0.2</cn>
+                            <apply>
+                                <minus/>
+                                <ci>R750</ci>
+                                <ci>R550</ci>
+                            </apply>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <divide/>
+                        <ci>R750</ci>
+                        <ci>R705</ci>
+                    </apply>
+                </apply>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <times/>
+                        <cn>1.16</cn>
+                        <apply>
+                            <minus/>
+                            <ci>R750</ci>
+                            <ci>R705</ci>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <ci>R750</ci>
+                        <ci>R705</ci>
+                        <cn>0.16</cn>
+                    </apply>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Ratio between MCARI and OSAVI 750 (MCARI/OSAVI750)</Description>
+    </Metadata>
+</SpectralIndex>

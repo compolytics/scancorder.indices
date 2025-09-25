@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>SR[678,750]</Name>
+    <Wavelengths>
+        <Band name="R678" min="678" max="678" unit="nm"/>
+        <Band name="R750" min="750" max="750" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R678</ci>
+                <ci>R750</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio 678/750 (SR[678,750])</Description>
+    </Metadata>
+</SpectralIndex>

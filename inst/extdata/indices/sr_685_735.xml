@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>SR[685,735]</Name>
+    <Wavelengths>
+        <Band name="R685" min="685" max="685" unit="nm"/>
+        <Band name="R735" min="735" max="735" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R685</ci>
+                <ci>R735</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio 685/735 (SR[685,735])</Description>
+    </Metadata>
+</SpectralIndex>

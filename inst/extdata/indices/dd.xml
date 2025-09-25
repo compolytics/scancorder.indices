@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>DD</Name>
+    <Wavelengths>
+        <Band name="R749" min="749" max="749" unit="nm"/>
+        <Band name="R720" min="720" max="720" unit="nm"/>
+        <Band name="R701" min="701" max="701" unit="nm"/>
+        <Band name="R672" min="672" max="672" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <minus/>
+                    <ci>R749</ci>
+                    <ci>R720</ci>
+                </apply>
+                <apply>
+                    <minus/>
+                    <ci>R701</ci>
+                    <ci>R672</ci>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Double Difference Index (DD)</Description>
+    </Metadata>
+</SpectralIndex>

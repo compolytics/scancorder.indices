@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>PRIn</Name>
+    <Wavelengths>
+        <Band name="R570" min="570" max="570" unit="nm"/>
+        <Band name="R531" min="531" max="531" unit="nm"/>
+        <Band name="R800" min="800" max="800" unit="nm"/>
+        <Band name="R670" min="670" max="670" unit="nm"/>
+        <Band name="R700" min="700" max="700" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <minus/>
+                        <ci>R570</ci>
+                        <ci>R531</ci>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <ci>R570</ci>
+                        <ci>R531</ci>
+                    </apply>
+                </apply>
+                <apply>
+                    <times/>
+                    <apply>
+                        <divide/>
+                        <apply>
+                            <minus/>
+                            <ci>R800</ci>
+                            <ci>R670</ci>
+                        </apply>
+                        <apply>
+                            <root/>
+                            <apply>
+                                <plus/>
+                                <ci>R800</ci>
+                                <ci>R670</ci>
+                            </apply>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <divide/>
+                        <ci>R700</ci>
+                        <ci>R670</ci>
+                    </apply>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Photochemical Reflectance Index (PRIn)</Description>
+    </Metadata>
+</SpectralIndex>

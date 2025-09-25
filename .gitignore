@@ -49,4 +49,5 @@ po/*~
 rsconnect/
 DESCRIPTION
 
+# output of utility functions
 util/images/*

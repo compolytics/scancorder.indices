@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>PSSRc2</Name>
+    <Wavelengths>
+        <Band name="R470" min="470" max="470" unit="nm"/>
+        <Band name="R800" min="800" max="800" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R800</ci>
+                <ci>R470</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio 800/470, Green Ratio Vegetation Index, Pigment Specific Simple Ratio C2 (PSSRc2)</Description>
+    </Metadata>
+</SpectralIndex>
