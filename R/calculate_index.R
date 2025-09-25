@@ -63,30 +63,38 @@ calculate_index <- function(xml_file, wavelengths, reflectance_list, fwhm = NULL
 
     # ensure it's a numeric vector
     reflectance <- unlist(reflectance)
-    # for each band, find indices & mean‐aggregate or select minimum reflectance value
-    refl_vals <- lapply(bands, function(rng) {
+    # store the indices of the selected bands to assure no repetitions
+    selected_indices <- vector("integer", length(bands))
+    refl_vals <- vector("double", length(bands))
+    band_names <- names(bands)
+    for (i in seq_along(bands)) {
+      rng <- bands[[i]]
       center <- (rng$min + rng$max) / 2
       idx <- which((wavelengths+margin) >= rng$min & (wavelengths-margin) <= rng$max)
       if (length(idx) == 0) {
-        return(NULL)
+        selected_indices[i] <- NA_integer_
+        refl_vals[i] <- NA
+        next
       }
-
       if (rng$select == "min-distance") {
-        # pick the one whose wavelength is closest to the band center
         dists <- abs(wavelengths[idx] - center)
         best <- idx[which.min(dists)]
-        return(reflectance[best])
+        selected_indices[i] <- best
+        refl_vals[i] <- reflectance[best]
       } else if (rng$select == "min-reflectance") {
-        # pick the one with minimum reflectance in the range
         best <- idx[which.min(reflectance[idx])]
-        return(reflectance[best])
+        selected_indices[i] <- best
+        refl_vals[i] <- reflectance[best]
       } else {
         stop(paste0('Unknown select attribute value: ', rng$select))
       }
-    })
+    }
+    names(refl_vals) <- band_names
 
     # if any band is missing data → NA
-    if (any(sapply(refl_vals, is.null))) return(NA_real_)
+    if (any(sapply(refl_vals, is.na))) return(NA_real_)
+    # if any band is duplicated (same wavelength selected for two bands) → NA
+    if (any(duplicated(selected_indices))) return(NA_real_)
     names(refl_vals) <- names(bands)
 
     # evaluate the MathML formula with those band means
