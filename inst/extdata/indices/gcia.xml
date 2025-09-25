@@ -2,7 +2,7 @@
 <SpectralIndex>
     <Name>GCIa</Name>
     <Wavelengths>
-        <Band name="NIR" min="780" max="1400" unit="nm"/>
+        <Band name="NIR" min="780" max="1400" unit="nm" select="min-distance"/>
         <Band name="R520:R585" min="520" max="585" unit="nm" select="min-distance"/>
     </Wavelengths>
     <MathML>

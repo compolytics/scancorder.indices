@@ -2,87 +2,95 @@
 <SpectralIndex>
     <Name>MCARI/MTVI2</Name>
     <Wavelengths>
-        <Band name="R550" min="550" max="550" unit="nm"/>
-        <Band name="R670" min="670" max="670" unit="nm"/>
-        <Band name="R700" min="700" max="700" unit="nm"/>
-        <Band name="R800" min="800" max="800" unit="nm"/>
+        <Band name="R550" min="550" max="550" unit="nm" />
+        <Band name="R670" min="670" max="670" unit="nm" />
+        <Band name="R700" min="700" max="700" unit="nm" />
+        <Band name="R800" min="800" max="800" unit="nm" />
     </Wavelengths>
     <MathML>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
-                <divide/>
+                <divide />
                 <apply>
-                    <times/>
+                    <times />
                     <apply>
-                        <minus/>
+                        <minus />
                         <apply>
-                            <minus/>
+                            <minus />
                             <ci>R700</ci>
                             <ci>R670</ci>
                         </apply>
                         <apply>
-                            <times/>
+                            <times />
                             <cn>0.2</cn>
                             <apply>
-                                <minus/>
+                                <minus />
                                 <ci>R700</ci>
                                 <ci>R550</ci>
                             </apply>
                         </apply>
                     </apply>
                     <apply>
-                        <divide/>
+                        <divide />
                         <ci>R700</ci>
                         <ci>R670</ci>
                     </apply>
                 </apply>
                 <apply>
-                    <times/>
+                    <times />
                     <cn>1.5</cn>
                     <apply>
-                        <divide/>
+                        <divide />
                         <apply>
-                            <minus/>
+                            <minus />
                             <apply>
-                                <times/>
+                                <times />
                                 <cn>1.2</cn>
                                 <apply>
-                                    <minus/>
+                                    <minus />
                                     <ci>R800</ci>
                                     <ci>R550</ci>
                                 </apply>
                             </apply>
                             <apply>
-                                <times/>
+                                <times />
                                 <cn>2.5</cn>
                                 <apply>
-                                    <minus/>
+                                    <minus />
                                     <ci>R670</ci>
                                     <ci>R550</ci>
                                 </apply>
                             </apply>
                         </apply>
                         <apply>
-                            <root/>
+                            <root />
                             <apply>
-                                <minus/>
+                                <minus />
                                 <apply>
-                                    <power/>
+                                    <power />
                                     <apply>
-                                        <plus/>
-                                        <ci>R2800</ci>
+                                        <plus />
+                                        <apply>
+                                            <times />
+                                            <cn>2</cn>
+                                            <ci>R800</ci>
+                                        </apply>
                                         <cn>1</cn>
                                     </apply>
                                     <cn>2</cn>
                                 </apply>
                                 <apply>
-                                    <minus/>
-                                    <ci>R6800</ci>
+                                    <minus />
                                     <apply>
-                                        <times/>
+                                        <times />
+                                        <cn>6</cn>
+                                        <ci>R800</ci>
+                                    </apply>
+                                    <apply>
+                                        <times />
                                         <cn>5</cn>
                                         <apply>
-                                            <root/>
+                                            <root />
                                             <ci>R670</ci>
                                         </apply>
                                     </apply>

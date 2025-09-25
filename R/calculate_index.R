@@ -22,13 +22,17 @@ calculate_index <- function(xml_file, wavelengths, reflectance_list, fwhm = NULL
   if (is.na(index_name)) {
     stop("No <Name> element found in XML.")
   }
-  # Build a named list of band ranges
+  # Build a named list of band ranges with their selection strategy
   band_nodes    <- xml_find_all(doc, "//Wavelengths/Band")
   bands <- setNames(
     lapply(band_nodes, function(node) {
+      sel <- xml_attr(node, "select")
+      # Default selection strategy is "min-distance"
+      if (is.null(sel) || is.na(sel) || sel == "") sel <- "min-distance"
       list(
         min = as.numeric(xml_attr(node, "min")),
-        max = as.numeric(xml_attr(node, "max"))
+        max = as.numeric(xml_attr(node, "max")),
+        select = sel
       )
     }),
     xml_attr(band_nodes, "name")
@@ -59,18 +63,26 @@ calculate_index <- function(xml_file, wavelengths, reflectance_list, fwhm = NULL
 
     # ensure it's a numeric vector
     reflectance <- unlist(reflectance)
-    # for each band, find indices & mean‐aggregate
+    # for each band, find indices & mean‐aggregate or select minimum reflectance value
     refl_vals <- lapply(bands, function(rng) {
-
       center <- (rng$min + rng$max) / 2
       idx <- which((wavelengths+margin) >= rng$min & (wavelengths-margin) <= rng$max)
       if (length(idx) == 0) {
         return(NULL)
       }
-      # pick the one whose wavelength is closest to the band center
-      dists <- abs(wavelengths[idx] - center)
-      best <- idx[which.min(dists)]
-      return(reflectance[best])
+
+      if (rng$select == "min-distance") {
+        # pick the one whose wavelength is closest to the band center
+        dists <- abs(wavelengths[idx] - center)
+        best <- idx[which.min(dists)]
+        return(reflectance[best])
+      } else if (rng$select == "min-reflectance") {
+        # pick the one with minimum reflectance in the range
+        best <- idx[which.min(reflectance[idx])]
+        return(reflectance[best])
+      } else {
+        stop(paste0('Unknown select attribute value: ', rng$select))
+      }
     })
 
     # if any band is missing data → NA

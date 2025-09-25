@@ -2,7 +2,7 @@
 <SpectralIndex>
     <Name>GCIb</Name>
     <Wavelengths>
-        <Band name="NIR" min="780" max="1400" unit="nm"/>
+        <Band name="NIR" min="780" max="1400" unit="nm" select="min-distance"/>
         <Band name="R695:R740" min="695" max="740" unit="nm" select="min-distance"/>
     </Wavelengths>
     <MathML>
