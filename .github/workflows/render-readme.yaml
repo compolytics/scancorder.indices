@@ -10,8 +10,13 @@ on:
     paths:
       - "README.Rmd"
       - ".github/workflows/render-readme.yaml"
-
-  workflow_dispatch:    # also allow manual runs from the Actions tab
+  # also allow manual runs from the Actions tab
+  workflow_dispatch:    
+  # also run after the new version publishing action completes
+  workflow_run:
+    workflows: ["R-publish-CRAN-source-to-GitLab-package-registry"]
+    types:
+      - completed
 
 permissions:
   contents: write
