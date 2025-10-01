@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 542/750, Chl (SR[542,750])</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Maccioni, Andrea; Agati, Giovanni; Mazzinghi, Piero - New vegetation indices for remote measurement of chlorophylls based on leaf directional reflectance spectra, 2001</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=416</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

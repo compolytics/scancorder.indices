@@ -16,5 +16,10 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio Pigment Index (SRPI)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Wheat</Species>
+        <Reference>Tan et al., 2018; Penuelas et al., 1994</Reference>
     </Metadata>
 </SpectralIndex>

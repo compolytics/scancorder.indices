@@ -25,5 +25,11 @@
     </MathML>
     <Metadata>
         <Description>Structure Intensive Pigment Index 1 (SIPI2)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Wheat</Species>
+        <Reference>Tan et al., 2018</Reference>
+        <AdditionalInformation>https://www.nv5geospatialsoftware.com/docs/alphabeticallistspectralindices.html, https://www.indexdatabase.de/db/i-single.php?id=90</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

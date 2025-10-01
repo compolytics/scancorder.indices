@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 895/972, Water band index 4 (WBI4)</Description>
+        <ApplicationGroup>Plant health</ApplicationGroup>
+        <ApplicationMolecularTarget>Water content</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Moisture, Drought stress</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Serrano, Lydia; Ustin, Susan L.; Roberts, Dar A.; Gamon, John A.; PeÃ±uelas, Josep - Deriving Water Content of Chaparral Vegetation from AVIRIS Data, 2000</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=545</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

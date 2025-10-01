@@ -21,5 +21,10 @@
     </MathML>
     <Metadata>
         <Description>Excess Greenness (EG)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>W. Nijland, R. de Jong, S.M. de Jong, M.A. Wulder, C.W. Bater, N.C. Coops, Monitoring plant condition and phenology using infrared sensitive consumer grade digital cameras, Agric. For. Meteorol., 184 (2014), pp. 98-106</Reference>
     </Metadata>
 </SpectralIndex>

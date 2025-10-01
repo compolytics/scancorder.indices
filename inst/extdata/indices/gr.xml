@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Green Red Ratio, Green Red Vegetation Index (GR)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Gamon &amp; Surfus 1999, verwiesen in Biro et al., 2024, Comparison of RGB Indices used for Vegetation Studies based on Structured Similarity Index (SSIM)</Reference>
+        <AdditionalInformation>https://www.plantsciencejournal.com/articles/jpsp-aid1124.php</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

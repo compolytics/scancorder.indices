@@ -24,5 +24,10 @@
     </MathML>
     <Metadata>
         <Description>Photochemical reflectance index (PRI515)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Carotenoids</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Hernández-Clemente et al., 2012</Reference>
     </Metadata>
 </SpectralIndex>

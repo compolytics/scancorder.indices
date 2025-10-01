@@ -29,5 +29,11 @@
     </MathML>
     <Metadata>
         <Description>Carotenoid Reflectance Index 700 nm with NIR correction (CARrededge)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Carotenoids</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Gitelson, A., et al. "Assessing Carotenoid Content in Plant Leaves with Reflectance Spectroscopy." Photochemistry and Photobiology 75 (2002): 272-281.</Reference>
+        <AdditionalInformation>https://ieeexplore.ieee.org/document/8519389; https://agupubs.onlinelibrary.wiley.com/doi/epdf/10.1029/2006GL026457</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

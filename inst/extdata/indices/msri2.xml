@@ -35,5 +35,11 @@
     </MathML>
     <Metadata>
         <Description>Modified Simple Ratio 2 (mSRI2)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Tan et al., 2018</Reference>
+        <AdditionalInformation>https://www.nv5geospatialsoftware.com/docs/alphabeticallistspectralindices.html</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

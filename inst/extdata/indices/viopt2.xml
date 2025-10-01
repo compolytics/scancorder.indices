@@ -26,5 +26,10 @@
     </MathML>
     <Metadata>
         <Description>Optimized Vegetation Index 2 (VIopt2)</Description>
+        <ApplicationGroup>Nutrition</ApplicationGroup>
+        <ApplicationMolecularTarget>Compound</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Nitrogen</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Tan et al., 2018; Tan, C., Samanta, A., Jin, X., Tong, L., Ma, C., Guo, W., … Myneni, R. B. (2013). Using hyperspectral vegetation indices to estimate the fraction of photosynthetically active radiation absorbed by corn canopies. International Journal of Remote Sensing, 34(24), 8789–8802. https://doi.org/10.1080/01431161.2013.853143</Reference>
     </Metadata>
 </SpectralIndex>

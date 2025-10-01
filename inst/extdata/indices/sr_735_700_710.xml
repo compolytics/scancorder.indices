@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 735/710 (SR[735,700:710])</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Gitelson, Anatoly A.; Buschmann, Claus; Lichtenthaler, Hartmut K. - The Chlorophyll Fluorescence Ratio F735/F700 as an Accurate Measure of the Chlorophyll Content in Plants, 1999</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=409</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

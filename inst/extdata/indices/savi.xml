@@ -33,5 +33,11 @@
     </MathML>
     <Metadata>
         <Description>Soil Adjusted Vegetation Index, N-content (early-mid period) (SAVI)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments, Compound</ApplicationMolecularTarget>
+        <ApplicationSubtarget>RGB, Nitrogen</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Huete, A. "A Soil-Adjusted Vegetation Index (SAVI)." Remote Sensing of Environment 25 (1988): 295-309.</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=87</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

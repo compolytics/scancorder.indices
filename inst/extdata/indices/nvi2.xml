@@ -21,5 +21,10 @@
     </MathML>
     <Metadata>
         <Description>New Vegetation Index 2 (NVI2)</Description>
+        <ApplicationGroup>Nutrition</ApplicationGroup>
+        <ApplicationMolecularTarget>Compound</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Nitrogen</ApplicationSubtarget>
+        <Species>Rice</Species>
+        <Reference>Tian, Y. C., et al. "Assessing newly developed and published vegetation indices for estimating rice leaf nitrogen concentration with ground-and space-based hyperspectral reflectance." Field Crops Research 120.2 (2011): 299-310.</Reference>
     </Metadata>
 </SpectralIndex>

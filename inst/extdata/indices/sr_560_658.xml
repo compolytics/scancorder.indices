@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 560/658, GRVIhyper (SR[560,658])</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Shibayama, Michio; Salli, Arto; HÃ¤me, Tuomas; Iso-Iivari, Lasse; Heino, Saini; Alanen, Marjaana; Morinaga, Shinsuke; Inoue, Yoshio; Akiyama, Tsuyoshi - Detecting Phenophases of Subarctic Shrub Canopies by Using Automated Reflectance Measurements, 1999</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=552</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

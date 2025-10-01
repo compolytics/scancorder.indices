@@ -21,5 +21,11 @@
     </MathML>
     <Metadata>
         <Description>New Vegetation Index 1 (NVI1)</Description>
+        <ApplicationGroup>Nutrition</ApplicationGroup>
+        <ApplicationMolecularTarget>Compound</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Nitrogen</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Bagherian et al., 2022, Peñuelas, J.; Gamon, J.A.; Griffin, K.L.; Field, C.B. Assessing Community Type, Plant Biomass, Pigment Composition, and
+Photosynthetic Efficiency of Aquatic Vegetation from Spectral Reflectance. Remote Sens. Environ. 1993, 46, 110–118</Reference>
     </Metadata>
 </SpectralIndex>

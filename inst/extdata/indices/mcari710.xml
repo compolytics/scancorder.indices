@@ -37,5 +37,11 @@
     </MathML>
     <Metadata>
         <Description>Modified Chlorophyll Absorption in Reflectance Index 710 (MCARI710)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Wu, Chaoyang; Niu, Zheng; Tang, Quan; Huang, Wenjiang; Rivard, Benoit; Feng, Jilu - Remote estimation of gross primary production in wheat using chlorophyll-related vegetation indices, 2009</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=189</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

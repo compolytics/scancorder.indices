@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 760/500, Ratio Analysis of Reflectance Spectra (RARS)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Carotenoids</ApplicationSubtarget>
+        <Species>Soybean</Species>
+        <Reference>Chappelle, E.W.; Kim, M.S.; McMurtrey, J.E. - Ratio analysis of reflectance spectra (RARS): an algorithm for the remote estimation of the concentrations of chlorophyll a, chlorophyll b, and carotenoids in soybean leaves, 1992</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=228</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

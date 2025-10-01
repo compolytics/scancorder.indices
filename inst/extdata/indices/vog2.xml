@@ -26,5 +26,11 @@
     </MathML>
     <Metadata>
         <Description>Vogelmann indices 2 (Vog2)</Description>
+        <ApplicationGroup>Vegetation, Plant health</ApplicationGroup>
+        <ApplicationMolecularTarget>Red Edge, Water content</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll, Moisture</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Vogelmann (1993), Bagherian et al., 2022</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=101</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

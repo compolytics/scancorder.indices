@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 750/710 Zarco-Tejada and Miller (ZM), Combined Index (CI)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Red Edge</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Tan et al., 2018</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=182</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

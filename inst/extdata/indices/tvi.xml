@@ -37,5 +37,10 @@
     </MathML>
     <Metadata>
         <Description>Transformed Vegetation Index, Triangular Vegetation Index (TVI)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Wheat</Species>
+        <Reference>Tan et al., 2018</Reference>
     </Metadata>
 </SpectralIndex>

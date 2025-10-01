@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 800/675, Pigment specific simple ratio A1 (PSSRa1)</Description>
+        <ApplicationGroup>Plant health</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Senescence</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Blackburn, G. A. - Spectral indices for estimating photosynthetic pigment concentrations: A test using senescent tree leaves, 1998</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=282</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

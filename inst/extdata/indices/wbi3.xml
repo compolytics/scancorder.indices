@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio, Water Band Index 3, Water Index, Plant Water Index (WBI3)</Description>
+        <ApplicationGroup>Plant health</ApplicationGroup>
+        <ApplicationMolecularTarget>Water content</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Moisture, Drought stress, WUE</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Xu et al., 2007, PeÃ±uelas, Josep; Gamon, John A.; Griffin, Kevin L.; Field, Christopher B. - Assessing community type, plant biomass, pigment composition, and photosynthetic efficiency of aquatic vegetation from spectral reflectance, 1993</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=532</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

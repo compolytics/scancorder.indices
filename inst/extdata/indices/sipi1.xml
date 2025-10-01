@@ -25,5 +25,11 @@
     </MathML>
     <Metadata>
         <Description>Structure Independent Pigment Index (SIPI1)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll a, Carotenoids</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Penuelas, J., F. Baret, and I. Filella. "Semi-Empirical Indices to Assess Carotenoids/Chlorophyll-a Ratio from Leaf Spectral Reflectance. " Photosynthetica 31 (1995): 221-230.</Reference>
+        <AdditionalInformation>https://www.nv5geospatialsoftware.com/docs/alphabeticallistspectralindices.html</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 774/677 (SR[774,677])</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Red Edge</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Zarco-Tejada, P. J.; Miller, J. R.; Noland, T. L.; Mohammed, G. H.; Sampson, P. H. - Scaling-up and model inversion methods with narrow-band optical indices for chlorophyll content estimation in closed forest canopies with hyperspectral data, 2001</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=562</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

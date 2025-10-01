@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 695/420, Carter1 (Ctr1)</Description>
+        <ApplicationGroup>Plant health</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Stress general, LUE, PS activity</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Carter, Gregory A. - Ratios of leaf reflectances in narrow wavebands as indicators of plant stress, 1994</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=266</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

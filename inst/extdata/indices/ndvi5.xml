@@ -24,5 +24,11 @@
     </MathML>
     <Metadata>
         <Description>Normalized Difference Vegetation Index 5 (NDVI5)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Tan et al., 2018</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=543</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

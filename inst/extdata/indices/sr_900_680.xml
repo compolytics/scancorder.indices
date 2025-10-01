@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio, Water Band Index 1 (SR[900,680])</Description>
+        <ApplicationGroup>Plant health</ApplicationGroup>
+        <ApplicationMolecularTarget>Water content</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Moisture</ApplicationSubtarget>
+        <Species>Wheat</Species>
+        <Reference>Tan et al., 2018</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=542</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

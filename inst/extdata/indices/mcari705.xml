@@ -37,5 +37,11 @@
     </MathML>
     <Metadata>
         <Description>Modified Chlorophyll Absorption in Reflectance Index 705, 750 (MCARI705)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Wu, Chaoyang; Niu, Zheng; Tang, Quan; Huang, Wenjiang - Estimating chlorophyll content from hyperspectral vegetation indices: Modeling and validation, 2008</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=163</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

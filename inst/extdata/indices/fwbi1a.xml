@@ -16,5 +16,10 @@
     </MathML>
     <Metadata>
         <Description>Floating-position Water Band Index 1 (FWBI1a)</Description>
+        <ApplicationGroup>Plant health</ApplicationGroup>
+        <ApplicationMolecularTarget>Water content</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Moisture, Drought stress</ApplicationSubtarget>
+        <Species>Maize</Species>
+        <Reference>Strachan, I.B., Pattey, E., Boisvert, J.B., 2002. Impact of nitrogen and environmental conditions on corn as detected by hyperspectral reflectance. Remote Sens. Environ. 80 (2), 213–224</Reference>
     </Metadata>
 </SpectralIndex>

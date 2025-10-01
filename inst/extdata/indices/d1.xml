@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 730/706 (D1)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Main, Russell; Cho, Moses Azong; Mathieu, Renaud; Oâ€™Kennedy, Martha M.; Ramoelo, Abel; Koch, Susan - An investigation into robust spectral indices for leaf chlorophyll estimation, 2011</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=159</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 800/550 (SR[800,550])</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Buschmann, C.; Nagel, E. - In vivo spectroscopy and internal optics of leaves as basis for remote sensing of vegetation</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=123</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

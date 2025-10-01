@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 800/600 (SR[800,600])</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Serrano, Lydia; Filella, Iolanda; PeÃ±uelas, Josep - Remote Sensing of Biomass and Yield of Winter Wheat under Different Nitrogen Supplies, 2000</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=122</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

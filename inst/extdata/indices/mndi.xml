@@ -33,5 +33,10 @@
     </MathML>
     <Metadata>
         <Description>Modified Normalized Difference Index (mNDI)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Wheat</Species>
+        <Reference>Tan et al., 2018</Reference>
     </Metadata>
 </SpectralIndex>

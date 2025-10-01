@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>CRI2, CRI7003r</Name>
+    <Name>CRI2, CRI700</Name>
     <Wavelengths>
         <Band name="R510" min="510" max="510" unit="nm"/>
         <Band name="R700" min="700" max="700" unit="nm"/>
@@ -24,5 +24,11 @@
     </MathML>
     <Metadata>
         <Description>Carotenoid Reflectance Index 2 (CRI2)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Carotenoids</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Gitelson, A., et al. "Assessing Carotenoid Content in Plant Leaves with Reflectance Spectroscopy." Photochemistry and Photobiology 75 (2002): 272-281.</Reference>
+        <AdditionalInformation>https://www.nv5geospatialsoftware.com/docs/alphabeticallistspectralindices.html; https://www.indexdatabase.de/db/i-single.php?id=254</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

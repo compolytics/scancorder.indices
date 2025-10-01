@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 683/510 (SR[683,510])</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Underwood, Emma; Ustin, Susan; DiPietro, Deanne - Mapping nonnative plants using hyperspectral imagery, 2003</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=557</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

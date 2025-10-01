@@ -24,5 +24,10 @@
     </MathML>
     <Metadata>
         <Description>Kawashima and Nakatani (KN)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>SHIGETO KAWASHIMA, MAKOTO NAKATANI, An Algorithm for Estimating Chlorophyll Content in Leaves Using a Video Camera, Annals of Botany, Volume 81, Issue 1, 1998, Pages 49-54, ISSN 0305-7364, https://doi.org/10.1006/anbo.1997.0544. (https://www.sciencedirect.com/science/article/pii/S0305736497905448)</Reference>
     </Metadata>
 </SpectralIndex>

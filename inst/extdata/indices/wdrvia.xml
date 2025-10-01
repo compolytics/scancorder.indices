@@ -32,5 +32,11 @@
     </MathML>
     <Metadata>
         <Description>Wide Dynamic Range Vegetation Index alpha=0.05 (WDRVIa)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Tan et al., 2018</Reference>
+        <AdditionalInformation>https://www.nv5geospatialsoftware.com/docs/alphabeticallistspectralindices.html</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

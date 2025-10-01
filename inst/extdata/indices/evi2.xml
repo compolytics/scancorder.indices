@@ -33,5 +33,11 @@
     </MathML>
     <Metadata>
         <Description>Enhanced Vegetation Index 2 (EVI2)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>https://www.sciencedirect.com/science/article/abs/pii/S0034425708001971?via%3Dihub</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=237</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

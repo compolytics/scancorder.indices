@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Disease-Water Stress Index 4 (DWSI4)</Description>
+        <ApplicationGroup>Plant health</ApplicationGroup>
+        <ApplicationMolecularTarget>Water content</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Moisture, Drought stress</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Fensholt &amp; Sandholt 2003</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=271</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

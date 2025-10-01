@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 740/720, hyper Vogelmann indices 1 (Vog1)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Vogelmann (1993), Bagherian et al., 2022</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=100</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

@@ -26,5 +26,11 @@
     </MathML>
     <Metadata>
         <Description>Double Difference Index (DD)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>le Maire, G.; Francois, C.; Dufrene, E. - Towards universal broad leaf chlorophyll indices using PROSPECT simulated database and hyperspectral reflectance measurements, 2004</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=156</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

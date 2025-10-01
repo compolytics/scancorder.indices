@@ -25,5 +25,11 @@
     </MathML>
     <Metadata>
         <Description>Leaf Chlorophyll Index (LCI)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Datt, B. "Remote Sensing of Water Content in Eucalyptus Leaves." Journal of Plant Physiology 154, no. 1 (1999): 30-36.</Reference>
+        <AdditionalInformation>https://www.nv5geospatialsoftware.com/docs/alphabeticallistspectralindices.html, https://www.indexdatabase.de/db/i-single.php?id=150</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

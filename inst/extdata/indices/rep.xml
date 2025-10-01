@@ -25,12 +25,12 @@
                                     <plus/>
                                     <ci>R670</ci>
                                     <ci>R780</ci>
-                                    </apply>
-                                <cn>2</cn>
                                 </apply>
-                            <cn>700</cn>
+                                <cn>2</cn>
                             </apply>
+                            <cn>700</cn>
                         </apply>
+                    </apply>
                     <apply>
                         <minus/>
                         <cn>740</cn>
@@ -42,5 +42,11 @@
     </MathML>
     <Metadata>
         <Description>Red Edge Position (REP)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Red Edge</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Yongjun, Jingjing 2016 - Extration of REPs from leaves reflectance spectrum for estimation of chlorophyll</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=196</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

@@ -16,5 +16,12 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio, Zarco-Tejada and Miller (WBI2)</Description>
+        <ApplicationGroup>Plant health</ApplicationGroup>
+        <ApplicationMolecularTarget>Water content</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Moisture, Drought stress, WUE</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Penuelas, J., et al. "The Reflectance at the 950-970 Region as an Indicator of Plant Water Status." International Journal of Remote Sensing 14 (1993): 1887-1905.
+Champagne, C., et al. "Mapping Crop Water Status: Issues of Scale in the Detection of Crop Water Stress Using Hyperspectral Indices." Proceedings of the 8th International Symposium on Physical Measurements and Signatures in Remote Sensing, Aussois, France (2001): 79-84.</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=103</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

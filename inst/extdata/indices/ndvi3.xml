@@ -24,5 +24,11 @@
     </MathML>
     <Metadata>
         <Description>Normalized Difference Vegetation Index 3, GNDVIhyper (NDVI3)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Tan et al., 2018; Gitelson, Anatoly A.; Kaufman, Yoram J.; Merzlyak, Mark N. - Use of a green channel in remote sensing of global vegetation from EOS-MODIS, 1996</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=400</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

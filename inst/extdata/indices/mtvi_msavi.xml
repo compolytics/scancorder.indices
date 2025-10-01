@@ -48,7 +48,7 @@
                                 <ci>R800</ci>
                             </apply>
                             <cn>1</cn>
-                            </apply>
+                        </apply>
                         <apply>
                             <root/>
                             <apply>
@@ -63,7 +63,7 @@
                                             <ci>R800</ci>
                                         </apply>
                                         <cn>1</cn>
-                                        </apply>
+                                    </apply>
                                     <cn>2</cn>
                                 </apply>
                                 <apply>
@@ -84,5 +84,10 @@
     </MathML>
     <Metadata>
         <Description>Ratio between MTVI and MSAVI (MTVI/MSAVI)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Wheat</Species>
+        <Reference>Tan et al., 2018</Reference>
     </Metadata>
 </SpectralIndex>

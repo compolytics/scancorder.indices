@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Greenness Index 2 (GI)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll, Greenness, RGB</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Smith, Adams, Stephens, &amp; Hick, 1995, Zarco-Tejada et al. (2005)</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=32</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

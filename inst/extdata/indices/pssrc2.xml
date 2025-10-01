@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 800/470, Green Ratio Vegetation Index, Pigment Specific Simple Ratio C2 (PSSRc2)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Wheat</Species>
+        <Reference>Tan et al., 2018</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=303</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

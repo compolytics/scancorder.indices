@@ -24,5 +24,11 @@
     </MathML>
     <Metadata>
         <Description>Photochemical Reflectance Index (PRI)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Carotenoids</ApplicationSubtarget>
+        <Species>Wheat</Species>
+        <Reference>Tan et al., 2018</Reference>
+        <AdditionalInformation>https://www.nv5geospatialsoftware.com/docs/alphabeticallistspectralindices.html; https://www.indexdatabase.de/db/i-single.php?id=66</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

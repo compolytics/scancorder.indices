@@ -16,5 +16,10 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio, Chlorophyll Absorbance Reflectance (CAR)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Carotenoids</ApplicationSubtarget>
+        <Species>Conifers</Species>
+        <Reference>Hernández-Clemente et al., 2012</Reference>
     </Metadata>
 </SpectralIndex>

@@ -34,5 +34,10 @@
     </MathML>
     <Metadata>
         <Description>Ratio of PRI to Simple Ratio (DRIpri)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Carotenoids</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Dotzler et al. (2015)</Reference>
     </Metadata>
 </SpectralIndex>

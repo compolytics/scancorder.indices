@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 801/550, NIR/Green (SR[801,550])</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Maize</Species>
+        <Reference>Daughtry, C. S. T.; Walthall, C. L.; Kim, M. S.; de Colstoun, E. Brown; McMurtrey Iii, J. E. - Estimating Corn Leaf Chlorophyll Concentration from Leaf and Canopy Reflectance, 2000</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=346</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

@@ -24,5 +24,10 @@
     </MathML>
     <Metadata>
         <Description>Normalized Difference Vegetation Index 4 (NDVI4)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Tan et al., 2018; El-Hendawy, S.; Dewir, Y.H.; Elsayed, S.; Schmidhalter, U.; Al-Gaadi, K.; Tola, E.; Refay, Y.; Tahir, M.U.; Hassan, W.M. Combining Hyperspectral Reflectance Indices and Multivariate Analysis to Estimate Different Units of Chlorophyll Content of Spring Wheat under Salinity Conditions. Plants 2022, 11, 456. https://doi.org/10.3390/plants11030456</Reference>
     </Metadata>
 </SpectralIndex>

@@ -16,5 +16,10 @@
     </MathML>
     <Metadata>
         <Description>Disease-Water Stress Index 4 (RVI2)</Description>
+        <ApplicationGroup>Compound</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Ammonia</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Tilley, David Rogers, et al. "Hyperspectral reflectance of emergent macrophytes as an indicator of water column ammonia in an oligohaline, subtropical marsh." Ecological Engineering 21.2-3 (2003): 153-163.</Reference>
     </Metadata>
 </SpectralIndex>

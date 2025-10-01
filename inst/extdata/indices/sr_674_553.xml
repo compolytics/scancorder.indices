@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 674/553 (SR[674,553])</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Gandia, S.; FernÃ¡ndez, G.; GarcÃ­a, J. C.; &amp; Moreno, J. - Retrieval of vegetation biophysical variables from CHRIS/PROBA data in the SPARC campaing, 2004</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=355</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

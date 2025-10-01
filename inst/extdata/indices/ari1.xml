@@ -24,5 +24,11 @@
     </MathML>
     <Metadata>
         <Description>Anthocyanin Reflectance Index 1 (ARI1)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Anthocyanins</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Gitelson, A., M. Merzlyak, and O. Chivkunova. "Optical Properties and Nondestructive Estimation of Anthocyanin Content in Plant Leaves." Photochemistry and Photobiology 71 (2001): 38-45.</Reference>
+        <AdditionalInformation>https://www.nv5geospatialsoftware.com/docs/alphabeticallistspectralindices.html; https://www.indexdatabase.de/db/i-single.php?id=214</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

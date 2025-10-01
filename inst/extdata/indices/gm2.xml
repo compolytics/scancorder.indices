@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 750/700, Gitelson and Merzlyak Index 2 (GM2)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Red Edge</ApplicationMolecularTarget>
+        <ApplicationSubtarget>RGB, Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Anatoly A. Gitelson, Mark N. Merzlyak, "Signature Analysis of Leaf Reflectance Spectra: Algorithm Development for Remote Sensing of Chlorophyll", Journal of Plant Physiology, Volume 148, Issues 3–4, 1996,</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=177</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

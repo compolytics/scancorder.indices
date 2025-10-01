@@ -2,9 +2,9 @@
 <SpectralIndex>
     <Name>EVI</Name>
     <Wavelengths>
-    <Band name="NIR" min="780" max="1400" unit="nm" select="min-distance"/>
-    <Band name="RED" min="640" max="760" unit="nm" select="min-distance"/>
-    <Band name="BLUE" min="420" max="480" unit="nm" select="min-distance"/>
+        <Band name="NIR" min="780" max="1400" unit="nm" select="min-distance"/>
+        <Band name="RED" min="640" max="760" unit="nm" select="min-distance"/>
+        <Band name="BLUE" min="420" max="480" unit="nm" select="min-distance"/>
     </Wavelengths>
     <MathML>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -39,5 +39,11 @@
     </MathML>
     <Metadata>
         <Description>Enhanced Vegetation Index (EVI)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Huete, A., et al. "Overview of the Radiometric and Biophysical Performance of the MODIS Vegetation Indices." Remote Sensing of Environment 83 (2002):195–213.</Reference>
+        <AdditionalInformation>https://www.nv5geospatialsoftware.com/docs/alphabeticallistspectralindices.html; https://www.indexdatabase.de/db/i-single.php?id=16</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

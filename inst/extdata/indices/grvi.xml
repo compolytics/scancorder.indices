@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio, Green Difference Vegetation Index, Green Ratio Vegetation Index, Simple Ratio 1 (GRVI)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Maize</Species>
+        <Reference>Sripada, R., et al. "Aerial Color Infrared Photography for Determining Early In-season Nitrogen Requirements in Corn." Agronomy Journal 98 (2006): 968-977.</Reference>
+        <AdditionalInformation>https://www.nv5geospatialsoftware.com/docs/alphabeticallistspectralindices.html</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

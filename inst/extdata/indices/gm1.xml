@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description> Gitelson and Merzlyak Index 1 (GM1)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Red Edge</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Anatoly A. Gitelson, Mark N. Merzlyak, "Signature Analysis of Leaf Reflectance Spectra: Algorithm Development for Remote Sensing of Chlorophyll", Journal of Plant Physiology, Volume 148, Issues 3–4, 1996,</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=179</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

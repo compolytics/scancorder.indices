@@ -22,7 +22,7 @@
                         <ci>GREEN</ci>
                         <ci>BLUE</ci>
                     </apply>
-                    </apply>
+                </apply>
                 <apply>
                     <plus/>
                     <apply>
@@ -38,5 +38,11 @@
     </MathML>
     <Metadata>
         <Description>Green Leaf Index (GLI)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>RGB</ApplicationSubtarget>
+        <Species>Wheat</Species>
+        <Reference>Louhaichi, M., M. Borman, and D. Johnson. "Spatially Located Platform and Aerial Photography for Documentation of Grazing Impacts on Wheat." Geocarto International 16, No. 1 (2001): 65-70.</Reference>
+        <AdditionalInformation>https://www.nv5geospatialsoftware.com/docs/alphabeticallistspectralindices.html</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

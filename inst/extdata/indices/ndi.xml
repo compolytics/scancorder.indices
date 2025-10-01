@@ -24,5 +24,11 @@
     </MathML>
     <Metadata>
         <Description>Normalized Difference Index, Normalized Difference 800/680 Pigment specific normalised difference A2, Lichtenthaler indices 1, NDVIhyper (NDI)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll, LUE, Photosynthetic activity</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Tan et al., 2018; Lichtenthaler, Hartmut K. - Vegetation Stress: an Introduction to the Stress Concept in Plants, 1996</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=260</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

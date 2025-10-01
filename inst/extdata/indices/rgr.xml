@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Red/Green Index (RGR1)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Carotenoids</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Gamon, J. A.; Surfus, J. S. - Assessing leaf pigment content and activity with a reflectometer, 1999</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=213</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

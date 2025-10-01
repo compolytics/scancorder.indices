@@ -54,5 +54,10 @@
     </MathML>
     <Metadata>
         <Description>Photochemical Reflectance Index (PRIn)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Carotenoids</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Zarco-Tejada et al. (2013)</Reference>
     </Metadata>
 </SpectralIndex>

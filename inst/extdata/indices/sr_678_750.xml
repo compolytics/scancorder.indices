@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 678/750 (SR[678,750])</Description>
+        <ApplicationGroup>Plant health</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Senescence</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Merzlyak, Mark N.; Gitelson, Anatoly A.; Chivkunova, Olga B.; Rakitin, Victor Y. U. - Non-destructive optical detection of pigment changes during leaf senescence and fruit ripening, 1999</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=482</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

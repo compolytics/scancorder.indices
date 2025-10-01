@@ -103,5 +103,11 @@
     </MathML>
     <Metadata>
         <Description>Ratio between MCARI2 and OSAVI2 (MCARI2/OSAVI2)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Main, Russell; Cho, Moses Azong; Mathieu, Renaud; Oâ€™Kennedy, Martha M.; Ramoelo, Abel; Koch, Susan - An investigation into robust spectral indices for leaf chlorophyll estimation, 2011</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=420</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

@@ -33,5 +33,10 @@
     </MathML>
     <Metadata>
         <Description>Photochemical Reflectance Index (PRIm4)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Carotenoids</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Hernández-Clemente et al., 2011</Reference>
     </Metadata>
 </SpectralIndex>

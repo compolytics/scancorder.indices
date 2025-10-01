@@ -16,5 +16,10 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 570/670, Greenness Index (SR[570,670])</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll, Greenness, RGB</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Calderón et al. (2013)</Reference>
     </Metadata>
 </SpectralIndex>

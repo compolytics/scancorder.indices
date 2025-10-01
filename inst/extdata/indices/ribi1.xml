@@ -25,5 +25,10 @@
     </MathML>
     <Metadata>
         <Description>Rice blast index 1 (RIBI1)</Description>
+        <ApplicationGroup>Plant health</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Magnaporthe oryzae</ApplicationSubtarget>
+        <Species>Rice</Species>
+        <Reference>Long Tian, Ziyi Wang, Bowen Xue, Dong Li, Hengbiao Zheng, Xia Yao, Yan Zhu, Weixing Cao, Tao Cheng, A disease-specific spectral index tracks Magnaporthe oryzae infection in paddy rice from ground to space, Remote Sensing of Environment, Volume 285, 2023, 113384, ISSN 0034-4257, https://doi.org/10.1016/j.rse.2022.113384.</Reference>
     </Metadata>
 </SpectralIndex>

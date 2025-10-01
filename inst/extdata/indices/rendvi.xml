@@ -24,5 +24,11 @@
     </MathML>
     <Metadata>
         <Description>Red Edge Normalized Difference Vegetation Index (reNDVI)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Red Edge</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Biomass</ApplicationSubtarget>
+        <Species>feedstock</Species>
+        <Reference>Ahamed, T.; Tian, L.; Zhang, Y.; Ting, K. C. - A review of remote sensing methods for biomass feedstock production</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=126</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

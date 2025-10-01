@@ -25,5 +25,10 @@
     </MathML>
     <Metadata>
         <Description>Reflectance Curvature Index (CUR)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Fluorescence</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>https://acsess.onlinelibrary.wiley.com/doi/10.2134/jeq2002.1433</Reference>
     </Metadata>
 </SpectralIndex>
