@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>R675</Name>
+    <Name>R675/700/650</Name>
     <Wavelengths>
         <Band name="R675" min="675" max="675" unit="nm"/>
         <Band name="R700" min="700" max="700" unit="nm"/>
@@ -20,6 +20,6 @@
         </math>
     </MathML>
     <Metadata>
-        <Description>Ratio 675/700/650 (R675)</Description>
+        <Description>Ratio 675/700/650 (R675/700/650)</Description>
     </Metadata>
 </SpectralIndex>

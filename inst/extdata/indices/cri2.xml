@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>CRI2</Name>
+    <Name>CRI2, CRI7003r</Name>
     <Wavelengths>
         <Band name="R510" min="510" max="510" unit="nm"/>
         <Band name="R700" min="700" max="700" unit="nm"/>

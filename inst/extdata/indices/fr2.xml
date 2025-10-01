@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>FR2</Name>
+    <Name>FR2, SR[690,740]</Name>
     <Wavelengths>
         <Band name="R690" min="690" max="690" unit="nm"/>
         <Band name="R740" min="740" max="740" unit="nm"/>

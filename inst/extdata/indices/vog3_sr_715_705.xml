@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>Vog3,SR[715,705]</Name>
+    <Name>Vog3, SR[715,705]</Name>
     <Wavelengths>
         <Band name="R715" min="715" max="715" unit="nm"/>
         <Band name="R705" min="705" max="705" unit="nm"/>

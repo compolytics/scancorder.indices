@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>TVI</Name>
+    <Name>TVI2</Name>
     <Wavelengths>
         <Band name="R750" min="750" max="750" unit="nm"/>
         <Band name="R550" min="550" max="550" unit="nm"/>

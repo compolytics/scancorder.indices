@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>NDVI1</Name>
+    <Name>NDVI1[760, 708] </Name>
     <Wavelengths>
         <Band name="R708" min="708" max="708" unit="nm"/>
         <Band name="R760" min="760" max="760" unit="nm"/>

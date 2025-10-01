@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>BRI2</Name>
+    <Name>BRI2, SR[450,690]</Name>
     <Wavelengths>
         <Band name="R450" min="450" max="450" unit="nm"/>
         <Band name="R690" min="690" max="690" unit="nm"/>

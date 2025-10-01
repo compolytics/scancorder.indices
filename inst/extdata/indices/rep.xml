@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>REP</Name>
+    <Name>REP, REIP</Name>
     <Wavelengths>
         <Band name="R670" min="670" max="670" unit="nm"/>
         <Band name="R700" min="700" max="700" unit="nm"/>

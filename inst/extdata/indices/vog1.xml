@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>Vog1</Name>
+    <Name>Vog1, Vog1hyper, SR[740,720]</Name>
     <Wavelengths>
         <Band name="R740" min="740" max="740" unit="nm"/>
         <Band name="R720" min="720" max="720" unit="nm"/>

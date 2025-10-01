@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>RVI</Name>
+    <Name>RVI, SR[801,670]</Name>
     <Wavelengths>
         <Band name="R670" min="670" max="670" unit="nm"/>
         <Band name="R801" min="801" max="801" unit="nm"/>

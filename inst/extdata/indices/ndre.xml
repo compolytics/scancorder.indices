@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>NDRE</Name>
+    <Name>NDRE, RENDVI</Name>
     <Wavelengths>
         <Band name="R717" min="717" max="717" unit="nm"/>
         <Band name="R840" min="840" max="840" unit="nm"/>

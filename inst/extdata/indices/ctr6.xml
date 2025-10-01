@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>Ctr6</Name>
+    <Name>Ctr6, SR[550,420]</Name>
     <Wavelengths>
         <Band name="R550" min="550" max="550" unit="nm"/>
         <Band name="R420" min="420" max="420" unit="nm"/>

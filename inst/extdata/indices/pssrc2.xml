@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>PSSRc2</Name>
+    <Name>PSSRc2, SR[800,470]</Name>
     <Wavelengths>
         <Band name="R470" min="470" max="470" unit="nm"/>
         <Band name="R800" min="800" max="800" unit="nm"/>

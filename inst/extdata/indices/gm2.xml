@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>GM2</Name>
+    <Name>GM2, SR[750,700]</Name>
     <Wavelengths>
         <Band name="R700" min="700" max="700" unit="nm"/>
         <Band name="R750" min="750" max="750" unit="nm"/>
