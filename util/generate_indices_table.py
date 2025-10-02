@@ -4,7 +4,8 @@ XML Spectral Index to Excel Table Generator
 
 This script reads all XML files containing spectral index definitions and generates
 an Excel table with columns for VIs Name, Abbreviation Algorithm, Wavelengths used, 
-and Algorithm formula.
+Algorithm formula, and additional metadata fields (Application Group, Application 
+Molecular Target, Application Subtarget, Species, Reference, Additional Information).
 
 Usage: python generate_indices_table.py <path_to_xml_folder> [output_file.xlsx]
 
@@ -48,11 +49,25 @@ class SpectralIndexTableGenerator:
             if not algorithm_formula:
                 algorithm_formula = abbreviation
             
+            # Extract additional metadata fields
+            application_group = self._get_text(root.find('Metadata/ApplicationGroup'), '')
+            application_molecular_target = self._get_text(root.find('Metadata/ApplicationMolecularTarget'), '')
+            application_subtarget = self._get_text(root.find('Metadata/ApplicationSubtarget'), '')
+            species = self._get_text(root.find('Metadata/Species'), '')
+            reference = self._get_text(root.find('Metadata/Reference'), '')
+            additional_information = self._get_text(root.find('Metadata/AdditionalInformation'), '')
+            
             return {
                 'vis_name': vis_name,
                 'abbreviation': abbreviation,
                 'wavelengths': wavelengths_str,
-                'algorithm': algorithm_formula
+                'algorithm': algorithm_formula,
+                'application_group': application_group,
+                'application_molecular_target': application_molecular_target,
+                'application_subtarget': application_subtarget,
+                'species': species,
+                'reference': reference,
+                'additional_information': additional_information
             }
         
         except ET.ParseError as e:
@@ -173,7 +188,13 @@ class SpectralIndexTableGenerator:
                     'VIs Name': xml_data['vis_name'],
                     'Abbreviation Algorithm': xml_data['abbreviation'],
                     'Wavelengths used': xml_data['wavelengths'],
-                    'Algorithm': xml_data['algorithm']
+                    'Algorithm': xml_data['algorithm'],
+                    'Application Group': xml_data['application_group'],
+                    'Application Molecular Target': xml_data['application_molecular_target'],
+                    'Application Subtarget': xml_data['application_subtarget'],
+                    'Species': xml_data['species'],
+                    'Reference': xml_data['reference'],
+                    'Additional Information': xml_data['additional_information']
                 })
                 success_count += 1
             except Exception as e:
@@ -184,7 +205,13 @@ class SpectralIndexTableGenerator:
                     'VIs Name': f"Error: {xml_file.stem}",
                     'Abbreviation Algorithm': xml_file.stem.upper(),
                     'Wavelengths used': "",
-                    'Algorithm': f"Error: {str(e)}"
+                    'Algorithm': f"Error: {str(e)}",
+                    'Application Group': "",
+                    'Application Molecular Target': "",
+                    'Application Subtarget': "",
+                    'Species': "",
+                    'Reference': "",
+                    'Additional Information': ""
                 })
         
         # Create DataFrame and sort by Abbreviation Algorithm
