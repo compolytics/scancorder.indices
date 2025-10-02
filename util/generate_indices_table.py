@@ -3,9 +3,9 @@
 XML Spectral Index to Excel Table Generator
 
 This script reads all XML files containing spectral index definitions and generates
-an Excel table with columns for VIs Name, Abbreviation Algorithm, Wavelengths used, 
-Algorithm formula, and additional metadata fields (Application Group, Application 
-Molecular Target, Application Subtarget, Species, Reference, Additional Information).
+an Excel table with columns for VIs Name, Abbreviation Algorithm, Alternative names,
+Wavelengths used, Algorithm formula, and additional metadata fields (Application Group, 
+Application Molecular Target, Application Subtarget, Species, Reference, Additional Information).
 
 Usage: python generate_indices_table.py <path_to_xml_folder> [output_file.xlsx]
 
@@ -38,6 +38,9 @@ class SpectralIndexTableGenerator:
             # Extract Abbreviation Algorithm (Name)
             abbreviation = self._get_text(root.find('Name'), 'Unknown')
             
+            # Extract Alternative Names
+            alternative_names = self._extract_alternative_names(root)
+            
             # Extract wavelengths
             wavelengths_str = self._extract_wavelengths_formatted(root.find('Wavelengths'))
             
@@ -60,6 +63,7 @@ class SpectralIndexTableGenerator:
             return {
                 'vis_name': vis_name,
                 'abbreviation': abbreviation,
+                'alternative_names': alternative_names,
                 'wavelengths': wavelengths_str,
                 'algorithm': algorithm_formula,
                 'application_group': application_group,
@@ -78,6 +82,20 @@ class SpectralIndexTableGenerator:
     def _get_text(self, element, default: str = '') -> str:
         """Safely extract text from XML element."""
         return element.text.strip() if element is not None and element.text else default
+    
+    def _extract_alternative_names(self, root) -> str:
+        """Extract all alternative names and format as comma-separated string."""
+        alternative_elements = root.findall('AlternativeName')
+        if not alternative_elements:
+            return ""
+        
+        alternative_names = []
+        for element in alternative_elements:
+            name = self._get_text(element)
+            if name:
+                alternative_names.append(name)
+        
+        return ", ".join(alternative_names)
     
     def _extract_wavelengths_formatted(self, wavelengths_element) -> str:
         """Extract and format wavelength information as specified."""
@@ -187,6 +205,7 @@ class SpectralIndexTableGenerator:
                 table_data.append({
                     'VIs Name': xml_data['vis_name'],
                     'Abbreviation Algorithm': xml_data['abbreviation'],
+                    'Alternative names': xml_data['alternative_names'],
                     'Wavelengths used': xml_data['wavelengths'],
                     'Algorithm': xml_data['algorithm'],
                     'Application Group': xml_data['application_group'],
@@ -204,6 +223,7 @@ class SpectralIndexTableGenerator:
                 table_data.append({
                     'VIs Name': f"Error: {xml_file.stem}",
                     'Abbreviation Algorithm': xml_file.stem.upper(),
+                    'Alternative names': "",
                     'Wavelengths used': "",
                     'Algorithm': f"Error: {str(e)}",
                     'Application Group': "",
@@ -220,7 +240,32 @@ class SpectralIndexTableGenerator:
         
         # Save to Excel
         df.to_excel(output_file, index=False, engine='openpyxl')
-        
+
+        # Set larger column widths using openpyxl
+        try:
+            from openpyxl import load_workbook
+            wb = load_workbook(output_file)
+            ws = wb.active
+            # Define custom widths for each column (adjust as needed)
+            col_widths = {
+                'A': 56,  # VIs Name
+                'B': 20,  # Abbreviation Algorithm
+                'C': 20,  # Alternative names
+                'D': 32,  # Wavelengths used
+                'E': 32,  # Algorithm
+                'F': 20,  # Application Group
+                'G': 20,  # Application Molecular Target
+                'H': 20,  # Application Subtarget
+                'I': 20,  # Species
+                'J': 64,  # Reference
+                'K': 64,  # Additional Information
+            }
+            for col, width in col_widths.items():
+                ws.column_dimensions[col].width = width
+            wb.save(output_file)
+        except Exception as e:
+            print(f"⚠️ Could not set column widths: {e}")
+
         # Summary
         print(f"\n{'='*60}")
         print(f"✅ Successfully processed: {success_count} files")
