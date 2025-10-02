@@ -205,8 +205,8 @@ class SpectralIndexTableGenerator:
                 table_data.append({
                     'VIs Name': xml_data['vis_name'],
                     'Abbreviation Algorithm': xml_data['abbreviation'],
-                    'Alternative names': xml_data['alternative_names'],
-                    'Wavelengths used': xml_data['wavelengths'],
+                    'Alternative Names': xml_data['alternative_names'],
+                    'Wavelengths Used': xml_data['wavelengths'],
                     'Algorithm': xml_data['algorithm'],
                     'Application Group': xml_data['application_group'],
                     'Application Molecular Target': xml_data['application_molecular_target'],
@@ -223,8 +223,8 @@ class SpectralIndexTableGenerator:
                 table_data.append({
                     'VIs Name': f"Error: {xml_file.stem}",
                     'Abbreviation Algorithm': xml_file.stem.upper(),
-                    'Alternative names': "",
-                    'Wavelengths used': "",
+                    'Alternative Names': "",
+                    'Wavelengths Used': "",
                     'Algorithm': f"Error: {str(e)}",
                     'Application Group': "",
                     'Application Molecular Target': "",
@@ -241,11 +241,12 @@ class SpectralIndexTableGenerator:
         # Save to Excel
         df.to_excel(output_file, index=False, engine='openpyxl')
 
-        # Set larger column widths using openpyxl
+        # Set worksheet name and larger column widths using openpyxl
         try:
             from openpyxl import load_workbook
             wb = load_workbook(output_file)
             ws = wb.active
+            ws.title = 'Spectral Indices'
             # Define custom widths for each column (adjust as needed)
             col_widths = {
                 'A': 56,  # VIs Name
@@ -264,7 +265,7 @@ class SpectralIndexTableGenerator:
                 ws.column_dimensions[col].width = width
             wb.save(output_file)
         except Exception as e:
-            print(f"⚠️ Could not set column widths: {e}")
+            print(f"⚠️ Could not set column widths or sheet name: {e}")
 
         # Summary
         print(f"\n{'='*60}")
