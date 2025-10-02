@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>CAR, Srcar</Name>
+    <Name>CAR</Name>
+    <AlternativeName>Srcar</AlternativeName>
     <Wavelengths>
         <Band name="R515" min="515" max="515" unit="nm"/>
         <Band name="R570" min="570" max="570" unit="nm"/>

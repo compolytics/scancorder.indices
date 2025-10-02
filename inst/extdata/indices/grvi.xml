@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>GRVI, GDVI</Name>
+    <Name>GRVI</Name>
+    <AlternativeName>GDVI</AlternativeName>
     <Wavelengths>
         <Band name="NIR" min="780" max="1400" unit="nm" select="min-distance"/>
         <Band name="GREEN" min="480" max="570" unit="nm" select="min-distance"/>

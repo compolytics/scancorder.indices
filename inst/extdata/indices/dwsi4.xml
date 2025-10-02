@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>DWSI4, SR[550,680]</Name>
+    <Name>DWSI4</Name>
+    <AlternativeName>SR[550,680]</AlternativeName>
     <Wavelengths>
         <Band name="R550" min="550" max="550" unit="nm"/>
         <Band name="R680" min="680" max="680" unit="nm"/>

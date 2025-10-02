@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>D1, SR[730,706]</Name>
+    <Name>D1</Name>
+    <AlternativeName>SR[730,706]</AlternativeName>
     <Wavelengths>
         <Band name="R730" min="730" max="730" unit="nm"/>
         <Band name="R706" min="706" max="706" unit="nm"/>

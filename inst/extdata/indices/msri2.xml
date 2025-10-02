@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>mSRI2 , MSR</Name>
+    <Name>mSRI2</Name>
+    <AlternativeName>MSR</AlternativeName>
     <Wavelengths>
         <Band name="R670" min="670" max="670" unit="nm"/>
         <Band name="R800" min="800" max="800" unit="nm"/>

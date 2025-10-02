@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>RARS, SR[760,500]</Name>
+    <Name>RARS</Name>
+    <AlternativeName>SR[760,500]</AlternativeName>
     <Wavelengths>
         <Band name="R760" min="760" max="760" unit="nm"/>
         <Band name="R500" min="500" max="500" unit="nm"/>

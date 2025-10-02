@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>Datt3, SR[754,704]</Name>
+    <Name>Datt3</Name>
+    <AlternativeName>SR[754,704]</AlternativeName>
     <Wavelengths>
         <Band name="R754" min="754" max="754" unit="nm"/>
         <Band name="R704" min="704" max="704" unit="nm"/>

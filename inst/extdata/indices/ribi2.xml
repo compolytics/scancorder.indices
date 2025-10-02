@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>RIBI2, RIBIred</Name>
+    <Name>RIBI2</Name>
+    <AlternativeName>RIBIred</AlternativeName>
     <Wavelengths>
         <Band name="R753" min="753" max="753" unit="nm"/>
         <Band name="R665" min="665" max="665" unit="nm"/>

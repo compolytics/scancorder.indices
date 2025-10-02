@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>WBI2, WI, PWI</Name>
+    <Name>WBI2</Name>
+    <AlternativeName>WI</AlternativeName>
+    <AlternativeName>PWI</AlternativeName>
     <Wavelengths>
         <Band name="R970" min="970" max="970" unit="nm"/>
         <Band name="R900" min="900" max="900" unit="nm"/>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>PSSRb1, SR[800,650]</Name>
+    <Name>PSSRb1</Name>
+    <AlternativeName>SR[800,650]</AlternativeName>
     <Wavelengths>
         <Band name="R650" min="650" max="650" unit="nm"/>
         <Band name="R800" min="800" max="800" unit="nm"/>
