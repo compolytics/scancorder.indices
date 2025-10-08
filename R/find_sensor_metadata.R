@@ -38,7 +38,14 @@ find_sensor_metadata <- function(
     if (is.null(obj)) next
 
     if (!is.null(obj[["sensor_serial"]])) {
-      txt <- paste(unlist(obj[["sensor_serial"]]), collapse = " ")
+      # Handle both string and numeric sensor_serial values
+      sensor_val <- obj[["sensor_serial"]]
+      if (is.numeric(sensor_val)) {
+        # Convert numeric to 4-digit zero-padded string for comparison
+        txt <- sprintf("%04d", sensor_val)
+      } else {
+        txt <- paste(unlist(sensor_val), collapse = " ")
+      }
       matches <- regmatches(txt, gregexpr("\\d{4}", txt))[[1]]
       if (serial_code %in% matches) {
         return(obj)
