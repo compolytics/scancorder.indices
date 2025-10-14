@@ -26,5 +26,10 @@
     </MathML>
     <Metadata>
         <Description>Normalized Differenz, Vogelmann indices 3 (Vog3)</Description>
+        <ApplicationGroup>Vegetation, Plant health</ApplicationGroup>
+        <ApplicationMolecularTarget>Red Edge, Water content</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll, Moisture</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Vogelmann (1993), Bagherian et al., 2022</Reference>
     </Metadata>
 </SpectralIndex>

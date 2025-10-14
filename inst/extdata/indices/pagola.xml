@@ -54,5 +54,10 @@
     </MathML>
     <Metadata>
         <Description>Pagola Index (PAGOLA)</Description>
+        <ApplicationGroup>Nutrition</ApplicationGroup>
+        <ApplicationMolecularTarget>Compound</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Nitrogen</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Pagola, Miguel, et al. "New method to assess barley nitrogen nutrition status based on image colour analysis: Comparison with SPAD-502." Computers and electronics in agriculture 65.2 (2009): 213-218.</Reference>
     </Metadata>
 </SpectralIndex>

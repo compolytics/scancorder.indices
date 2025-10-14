@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
     <Name>Datt3</Name>
+    <AlternativeName>SR[754,704]</AlternativeName>
     <Wavelengths>
         <Band name="R754" min="754" max="754" unit="nm"/>
         <Band name="R704" min="704" max="704" unit="nm"/>
@@ -16,5 +17,10 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 754/704 Datt3 (Datt3)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Red Edge</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=152</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

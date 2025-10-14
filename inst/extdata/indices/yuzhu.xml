@@ -22,5 +22,10 @@
     </MathML>
     <Metadata>
         <Description>Yuzhu Index (YUZHU)</Description>
+        <ApplicationGroup>Nutrition</ApplicationGroup>
+        <ApplicationMolecularTarget>Compound</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Nitrogen</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>https://www.ajol.info/index.php/ajb/article/view/98244</Reference>
     </Metadata>
 </SpectralIndex>

@@ -29,5 +29,11 @@
     </MathML>
     <Metadata>
         <Description>Visible Atmospherically Resistant Index (VARIgreen)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Gitelson et al., 2002</Reference>
+        <AdditionalInformation>https://www.nv5geospatialsoftware.com/docs/broadbandgreenness.html#Visible</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

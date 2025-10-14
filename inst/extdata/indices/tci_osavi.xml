@@ -67,5 +67,10 @@
     </MathML>
     <Metadata>
         <Description>Ratio between TCI and OSAVI (TCI/OSAVI)</Description>
+        <ApplicationGroup>Plant health</ApplicationGroup>
+        <ApplicationMolecularTarget>Water content</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Moisture</ApplicationSubtarget>
+        <Species>Wheat</Species>
+        <Reference>Tan et al., 2018</Reference>
     </Metadata>
 </SpectralIndex>

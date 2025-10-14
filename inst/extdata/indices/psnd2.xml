@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>PSND2</Name>
+    <Name>PSND[800, 470]</Name>
     <Wavelengths>
         <Band name="R470" min="470" max="470" unit="nm"/>
         <Band name="R800" min="800" max="800" unit="nm"/>
@@ -24,5 +24,10 @@
     </MathML>
     <Metadata>
         <Description>Pigment Specific Normalized Difference 2 (PSND2)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Wheat</Species>
+        <Reference>Tan et al., 2018</Reference>
     </Metadata>
 </SpectralIndex>

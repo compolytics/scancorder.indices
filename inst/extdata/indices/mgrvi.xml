@@ -40,5 +40,11 @@
     </MathML>
     <Metadata>
         <Description>Modified Green Red Vegetation Index (MGRVI)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Bending, et al. 2015, verwiesen in  Biro et al., 2024, Comparison of RGB Indices used for Vegetation Studies based on Structured Similarity Index (SSIM)</Reference>
+        <AdditionalInformation>https://www.plantsciencejournal.com/articles/jpsp-aid1124.php</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

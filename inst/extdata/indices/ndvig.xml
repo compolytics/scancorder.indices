@@ -24,5 +24,11 @@
     </MathML>
     <Metadata>
         <Description>Normalized Difference 750/550 Green NDVI (NDVIg)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Metternicht, G. - Vegetation indices derived from high-resolution airborne videography for precision crop management, 2003</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=485</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

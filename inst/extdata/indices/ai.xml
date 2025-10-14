@@ -26,5 +26,10 @@
     </MathML>
     <Metadata>
         <Description>Anthocyanin Index (AI)</Description>
+        <ApplicationGroup>Compound</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Anthocyanins</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Gamon, J. A., and J. S. Surfus. "Assessing leaf pigment content and activity with a reflectometer." The New Phytologist 143.1 (1999): 105-117.</Reference>
     </Metadata>
 </SpectralIndex>

@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 556/750, Chl-b (SR[556,750])</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll b</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Maccioni, Andrea; Agati, Giovanni; Mazzinghi, Piero - New vegetation indices for remote measurement of chlorophylls based on leaf directional reflectance spectra, 2001</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=418</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

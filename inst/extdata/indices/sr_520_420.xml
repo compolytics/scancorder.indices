@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 520/420 (SR[520,420])</Description>
+        <ApplicationGroup>Plant health</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Stress general, LUE, PS activity</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Carter, Gregory A. - Ratios of leaf reflectances in narrow wavebands as indicators of plant stress, 1994;  	Carter, Gregory A.; Cibula, William G.; Miller, Richard L. - Narrow-band Reflectance Imagery Compared with ThermalImagery for Early Detection of Pl</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=319</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

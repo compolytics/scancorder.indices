@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
     <Name>MTVI</Name>
+    <AlternativeName>MTVI1</AlternativeName>
     <Wavelengths>
         <Band name="R550" min="550" max="550" unit="nm"/>
         <Band name="R670" min="670" max="670" unit="nm"/>
@@ -37,5 +38,11 @@
     </MathML>
     <Metadata>
         <Description>Modified Transformed Vegetation Index, Modified Triangular Vegetation Index 1 (MTVI)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Tan et al., 2018</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=46</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

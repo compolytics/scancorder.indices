@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 760/695 (SR[760,695])</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Red Edge</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Gitelson, A. A.; Merzlyak, M. N. - Remote estimation of chlorophyll content in higher plant leaves, 1997</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=360</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

@@ -18,5 +18,10 @@
     </MathML>
     <Metadata>
         <Description>HUE Value in HSV color space (HUE)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>RGB</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>https://www.sciencedirect.com/science/article/pii/S2214317315000347?via%3Dihub</Reference>
     </Metadata>
 </SpectralIndex>

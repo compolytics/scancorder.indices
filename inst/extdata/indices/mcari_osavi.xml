@@ -59,5 +59,11 @@
     </MathML>
     <Metadata>
         <Description>Ratio between MCARI and OSAVI (MCARI/OSAVI)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Tan et al., 2018</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/search/?s=MCARI%2FOSAVI+</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

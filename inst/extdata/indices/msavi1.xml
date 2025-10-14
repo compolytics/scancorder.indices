@@ -55,5 +55,11 @@
     </MathML>
     <Metadata>
         <Description>Modified Soil Adjusted Vegetation Index 1 (MSAVI1)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Bannari, A.; Morin, D.; Bonn, F.; Huete, A. R. - A review of vegetation indices, 1995</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=44</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

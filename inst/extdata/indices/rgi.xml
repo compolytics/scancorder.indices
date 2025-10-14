@@ -16,5 +16,10 @@
     </MathML>
     <Metadata>
         <Description>Relative Greenness Index (RGI)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Carotenoids</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Zarco-Tejada et al. (2005), Gamon, et al. 1997</Reference>
     </Metadata>
 </SpectralIndex>

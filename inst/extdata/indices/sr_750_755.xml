@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 750/555 (SR[750,755])</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Red Edge</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Gitelson, Anatoly; Merzlyak, Mark N. - Quantitative estimation of chlorophyll-a using reflectance spectra: Experiments with autumn chestnut and maple leaves, 1994</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=371</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

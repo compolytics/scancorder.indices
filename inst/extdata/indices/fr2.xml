@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
     <Name>FR2</Name>
+    <AlternativeName>SR[690,740]</AlternativeName>
     <Wavelengths>
         <Band name="R690" min="690" max="690" unit="nm"/>
         <Band name="R740" min="740" max="740" unit="nm"/>
@@ -16,5 +17,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 690/740, Fluorescence Ratio 2 (FR2)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Fluorescence</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Lichtenthaler, Hartmut K. - Vegetation Stress: an Introduction to the Stress Concept in Plants, 1996</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=414</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

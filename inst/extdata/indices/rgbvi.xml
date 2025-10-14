@@ -41,5 +41,10 @@
     </MathML>
     <Metadata>
         <Description>Red Green Blue Vegetation Index (RGBVI)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>RGB</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>https://www.plantsciencejournal.com/apdf/jpsp-aid1124.pdf</Reference>
     </Metadata>
 </SpectralIndex>

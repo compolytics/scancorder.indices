@@ -54,5 +54,10 @@
     </MathML>
     <Metadata>
         <Description>Frost Damage Vegetation Index 3 (FD_VI3)</Description>
+        <ApplicationGroup>Plant health</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Frost</ApplicationSubtarget>
+        <Species>Lettuce</Species>
+        <Reference>Liu et al., 2024, 10.3389/fpls.2023.1242948</Reference>
     </Metadata>
 </SpectralIndex>

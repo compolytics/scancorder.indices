@@ -37,5 +37,11 @@
     </MathML>
     <Metadata>
         <Description>Modified Chlorophyll Absorption in Reflectance Index 1 (MCARI1)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Haboudane, Driss; Miller, John R.; Pattey, Elizabeth; Zarco-Tejada, Pablo J.; Strachan, Ian B. - Hyperspectral vegetation indices and novel algorithms for predicting green LAI of crop canopies: Modeling and validation in the context of precision agriculture, 2004</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=42</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

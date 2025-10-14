@@ -25,5 +25,11 @@
     </MathML>
     <Metadata>
         <Description>Double Difference Index new (DDIn)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>le Maire et al., 2008</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=157</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

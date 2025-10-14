@@ -29,5 +29,10 @@
     </MathML>
     <Metadata>
         <Description>Triangular Greenness Index (TGI) 2 (TGI2)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Hunt, et al. 2013</Reference>
     </Metadata>
 </SpectralIndex>

@@ -24,5 +24,10 @@
     </MathML>
     <Metadata>
         <Description>Chlorophyll/Carotenoid Index (CCI)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll, Carotenoids</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Zeng et all., 2022, Sasagawa et al., 2022</Reference>
     </Metadata>
 </SpectralIndex>

@@ -29,5 +29,10 @@
     </MathML>
     <Metadata>
         <Description>Cercospora Leaf Spot Index (CLSI)</Description>
+        <ApplicationGroup>Plant health</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Cercospora</ApplicationSubtarget>
+        <Species>Sugar Beet</Species>
+        <Reference>Franzen, D.W., Miao, Y., Kitchen, N.R., Schepers, J.S., Scharf, P.C. (2021). Sensing for Health, Vigour and Disease Detection in Row and Grain Crops. In: Kerry, R., Escolà, A. (eds) Sensing Approaches for Precision Agriculture. Progress in Precision Agriculture. Springer, Cham. https://doi.org/10.1007/978-3-030-78431-7_6, Mahlein et al. (2013)</Reference>
     </Metadata>
 </SpectralIndex>

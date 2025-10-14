@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>DDI_MSAVI</Name>
+    <Name>DDI/MSAVI</Name>
     <Wavelengths>
         <Band name="R750" min="750" max="750" unit="nm"/>
         <Band name="R720" min="720" max="720" unit="nm"/>
@@ -73,6 +73,11 @@
         </math>
     </MathML>
     <Metadata>
-        <Description>Ratio between DDI and MSAVI (DDI_MSAVI)</Description>
+        <Description>Ratio between DDI and MSAVI (DDI/MSAVI)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Wheat</Species>
+        <Reference>Tan et al., 2018</Reference>
     </Metadata>
 </SpectralIndex>

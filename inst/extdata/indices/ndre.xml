@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
     <Name>NDRE</Name>
+    <AlternativeName>RENDVI</AlternativeName>
     <Wavelengths>
         <Band name="R717" min="717" max="717" unit="nm"/>
         <Band name="R840" min="840" max="840" unit="nm"/>
@@ -24,5 +25,10 @@
     </MathML>
     <Metadata>
         <Description>Normalized Difference Red Edge Index (NDRE)</Description>
+        <ApplicationGroup>Nutrition</ApplicationGroup>
+        <ApplicationMolecularTarget>Compound</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Nitrogen</ApplicationSubtarget>
+        <Species>Wheat</Species>
+        <Reference>Fitzgerald G., Rodriguez D., O'Leary G. (2010). Measuring and predicting canopy nitrogen nutrition in wheat using a spectral index-The canopy chlorophyll content index (CCCI). Field Crops Res. 116 (3), 318–324. doi:  10.1016/j.fcr.2010.01.010</Reference>
     </Metadata>
 </SpectralIndex>

@@ -8,73 +8,79 @@
     </Wavelengths>
     <MathML>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <times/>
+                <cn>1.5</cn>
                 <apply>
-                    <times/>
-                    <cn>1.5</cn>
+                    <divide/>
                     <apply>
-                        <divide/>
+                        <minus/>
                         <apply>
-                            <minus/>
+                            <times/>
+                            <cn>2.5</cn>
                             <apply>
-                                <times/>
-                                <cn>2.5</cn>
-                                <apply>
-                                    <minus/>
-                                    <ci>R800</ci>
-                                    <ci>R670</ci>
-                                </apply>
-                            </apply>
-                            <apply>
-                                <times/>
-                                <cn>1.3</cn>
-                                <apply>
-                                    <minus/>
-                                    <ci>R800</ci>
-                                    <ci>R550</ci>
-                                </apply>
+                                <minus/>
+                                <ci>R800</ci>
+                                <ci>R670</ci>
                             </apply>
                         </apply>
                         <apply>
-                            <root/>
+                            <times/>
+                            <cn>1.3</cn>
                             <apply>
                                 <minus/>
-                                <apply>
-                                    <power/>
-                                    <apply>
-                                        <plus/>
-                                        <apply>
-                                            <times/>
-                                            <cn>2</cn>
-                                            <ci>R800</ci>
-                                        </apply>
-                                        <cn>1</cn>
-                                    </apply>
-                                    <cn>2</cn>
-                                </apply>
-                                <apply>
-                                    <minus/>
-                                    <apply>
-                                        <times/>
-                                        <cn>6</cn>
-                                        <ci>R800</ci>
-                                    </apply>
-                                    <apply>
-                                        <times/>
-                                        <cn>5</cn>
-                                        <apply>
-                                            <root/>
-                                            <ci>R670</ci>
-                                        </apply>
-                                    </apply>
-                                </apply>
-                                <cn>0.5</cn>
+                                <ci>R800</ci>
+                                <ci>R550</ci>
                             </apply>
                         </apply>
                     </apply>
+                    <apply>
+                        <root/>
+                        <apply>
+                            <minus/>
+                            <apply>
+                                <power/>
+                                <apply>
+                                    <plus/>
+                                    <apply>
+                                        <times/>
+                                        <cn>2</cn>
+                                        <ci>R800</ci>
+                                    </apply>
+                                    <cn>1</cn>
+                                </apply>
+                                <cn>2</cn>
+                            </apply>
+                            <apply>
+                                <minus/>
+                                <apply>
+                                    <times/>
+                                    <cn>6</cn>
+                                    <ci>R800</ci>
+                                </apply>
+                                <apply>
+                                    <times/>
+                                    <cn>5</cn>
+                                    <apply>
+                                        <root/>
+                                        <ci>R670</ci>
+                                    </apply>
+                                </apply>
+                            </apply>
+                            <cn>0.5</cn>
+                        </apply>
+                    </apply>
                 </apply>
+            </apply>
         </math>
     </MathML>
     <Metadata>
         <Description>Modified Chlorophyll Absorption in Reflectance Index 2 (MCARI2)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Haboudane, Driss; Miller, John R.; Pattey, Elizabeth; Zarco-Tejada, Pablo J.; Strachan, Ian B. - Hyperspectral vegetation indices and novel algorithms for predicting green LAI of crop canopies: Modeling and validation in the context of precision agriculture, 2004</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=43</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

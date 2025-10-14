@@ -24,5 +24,11 @@
     </MathML>
     <Metadata>
         <Description>Normalized green red difference index (NGRDI)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Escadafal, R.; Huete, A. - Improvement in remote sensing of low vegetation cover in arid regions by correcting vegetation indices for soil "noise', 1991</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=74</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

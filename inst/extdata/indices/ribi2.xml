@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
     <Name>RIBI2</Name>
+    <AlternativeName>RIBIred</AlternativeName>
     <Wavelengths>
         <Band name="R753" min="753" max="753" unit="nm"/>
         <Band name="R665" min="665" max="665" unit="nm"/>
@@ -25,5 +26,10 @@
     </MathML>
     <Metadata>
         <Description>Rice blast index 2 (RIBI2)</Description>
+        <ApplicationGroup>Plant health</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Magnaporthe oryzae</ApplicationSubtarget>
+        <Species>Rice</Species>
+        <Reference>Long Tian, Ziyi Wang, Bowen Xue, Dong Li, Hengbiao Zheng, Xia Yao, Yan Zhu, Weixing Cao, Tao Cheng, A disease-specific spectral index tracks Magnaporthe oryzae infection in paddy rice from ground to space, Remote Sensing of Environment, Volume 285, 2023, 113384, ISSN 0034-4257, https://doi.org/10.1016/j.rse.2022.113384.</Reference>
     </Metadata>
 </SpectralIndex>

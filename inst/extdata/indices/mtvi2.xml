@@ -76,5 +76,11 @@
     </MathML>
     <Metadata>
         <Description>Modified Triangular Vegetation Index 2 (MTVI2)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Hunt Jr., E. Raymond; Daughtry, C. S. T.; Eitel, Jan U. H.; Long, D. S. - Remote Sensing Leaf Chlorophyll Content Using a Visible Band Index, 2011</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=47</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

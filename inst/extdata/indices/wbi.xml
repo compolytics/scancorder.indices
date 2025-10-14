@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 970/902, Water band index (WBI)</Description>
+        <ApplicationGroup>Plant health</ApplicationGroup>
+        <ApplicationMolecularTarget>Water content</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Moisture, Drought stress, WUE</ApplicationSubtarget>
+        <Species>Sunflower</Species>
+        <Reference>Penuelas, J.; Gamon, J. A.; Fredeen, A. L.; Merino, J.; Field, C. B. - Reflectance indices associated with physiological changes in nitrogen- and water-limited sunflower leaves, 1994</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=531</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

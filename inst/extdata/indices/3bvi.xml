@@ -41,5 +41,10 @@
     </MathML>
     <Metadata>
         <Description>Three-band vegetation index (3BVI)</Description>
+        <ApplicationGroup>Nutrition</ApplicationGroup>
+        <ApplicationMolecularTarget>Compound</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Nitrogen</ApplicationSubtarget>
+        <Species>Rice, Wheat</Species>
+        <Reference>W. Wang, X. Yao, X.F. Yao, Y.C. Tian, X.J. Liu, J. Ni, W.X. Cao, Y. Zhu, Estimating leaf nitrogen concentration with three-band vegetation indices in rice and wheat Field Crop Res., 129 (2012), pp. 90-98</Reference>
     </Metadata>
 </SpectralIndex>

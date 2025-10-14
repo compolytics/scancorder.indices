@@ -64,5 +64,11 @@
     </MathML>
     <Metadata>
         <Description>Ratio between TCARI and OSAVI (TCARI/OSAVI)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Tan et al., 2018</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=191</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

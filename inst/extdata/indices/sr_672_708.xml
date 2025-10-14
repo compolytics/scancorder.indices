@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 672/708 (SR[672,708])</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll a, Chlorophyll a+b, Carotenoids</ApplicationSubtarget>
+        <Species>Eucalyptus</Species>
+        <Reference>Datt, Bisun - Remote Sensing of Chlorophyll a, Chlorophyll b, Chlorophyll a+b, and Total Carotenoid Content in Eucalyptus Leaves, 1998</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=342</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

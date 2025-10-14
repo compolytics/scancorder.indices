@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Ratio Vegetation Index 1 (RVI1)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Wheat</Species>
+        <Reference>Zhu et al. (2008); Lin 2012 Hyperspectral vegetation indices …</Reference>
+        <AdditionalInformation>https://www.researchgate.net/publication/260293988_Hyperspectral_vegetation_indices_for_crop_chlorophyll_estimation_Assessment_modeling_and_validation</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

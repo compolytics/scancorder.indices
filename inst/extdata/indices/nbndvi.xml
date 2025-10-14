@@ -24,5 +24,10 @@
     </MathML>
     <Metadata>
         <Description>Narrow-band normalized differance vegetation Index (NBNDVI)</Description>
+        <ApplicationGroup>Plant health</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Mildew</ApplicationSubtarget>
+        <Species>Wheat</Species>
+        <Reference>Cao et al., 2015</Reference>
     </Metadata>
 </SpectralIndex>

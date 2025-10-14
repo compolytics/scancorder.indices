@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>Vog3,SR[715,705]</Name>
+    <Name>Vog3</Name>
+    <AlternativeName>SR[715,705]</AlternativeName>
     <Wavelengths>
         <Band name="R715" min="715" max="715" unit="nm"/>
         <Band name="R705" min="705" max="705" unit="nm"/>
@@ -16,5 +17,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 715/705, Vogelmann indices 3 (Vog3,SR[715,705])</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Vogelmann, J.E.; Rock, B.N.; Moss, D.M. - Red Edge Spectral Measurements from Sugar Maple Leaves, 1993</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=407</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

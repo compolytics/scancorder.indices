@@ -16,5 +16,10 @@
     </MathML>
     <Metadata>
         <Description>Floating-position Water Band Index 1 (FWBI1b)</Description>
+        <ApplicationGroup>Plant health</ApplicationGroup>
+        <ApplicationMolecularTarget>Water content</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Moisture, Drought stress, WUE</ApplicationSubtarget>
+        <Species>Spagnum, Wheat</Species>
+        <Reference>Harris et al., 2006; Feng et al., 2017</Reference>
     </Metadata>
 </SpectralIndex>

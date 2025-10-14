@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 700/670, Redness Index (SR[700,670])</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll, Redness, RGB</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>le Maire, G.; Francois, C.; Dufrene, E. - Towards universal broad leaf chlorophyll indices using PROSPECT simulated database and hyperspectral reflectance measurements, 2004</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=180</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

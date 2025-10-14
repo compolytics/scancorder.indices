@@ -33,5 +33,11 @@
     </MathML>
     <Metadata>
         <Description>Healthy-Index (HI)</Description>
+        <ApplicationGroup>Plant health</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Nitrogen Content</ApplicationSubtarget>
+        <Species>Rubber</Species>
+        <Reference>Rongnian T, Xupeng C, Chuang L. Detection of Nitrogen Content in Rubber Leaves Using Near-Infrared (NIR) Spectroscopy with Correlation-Based Successive Projections Algorithm (SPA)</Reference>
+        <AdditionalInformation>https://pmc.ncbi.nlm.nih.gov/articles/PMC8415606/</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 440/690, Lichtenthaler indices 2 (Lic2)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>LUE, Photosynthetic activity</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Lichtenthaler, Lang, Sowinska, Heisel, &amp; Miehé, 1996</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=183</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

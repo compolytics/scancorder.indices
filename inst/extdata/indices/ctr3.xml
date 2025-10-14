@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
     <Name>Ctr3</Name>
+    <AlternativeName>SR[605,760]</AlternativeName>
     <Wavelengths>
         <Band name="R605" min="605" max="605" unit="nm"/>
         <Band name="R760" min="760" max="760" unit="nm"/>
@@ -16,5 +17,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 605/760, Carter3 (Ctr3)</Description>
+        <ApplicationGroup>Plant health</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Stress general, LUE, PS activity</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Carter, Gregory A. - Ratios of leaf reflectances in narrow wavebands as indicators of plant stress, 1994</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=146</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

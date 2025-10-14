@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
     <Name>Lic3</Name>
+    <AlternativeName>SR[440,740]</AlternativeName>
     <Wavelengths>
         <Band name="R440" min="440" max="440" unit="nm"/>
         <Band name="R740" min="740" max="740" unit="nm"/>
@@ -16,5 +17,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 440/740, Lichtenthaler indices 3 (Lic3)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>LUE, Photosynthetic activity</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Lichtenthaler, Lang, Sowinska, Heisel, &amp; Miehé, 1996</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=415</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

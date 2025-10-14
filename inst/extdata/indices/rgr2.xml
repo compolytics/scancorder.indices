@@ -26,5 +26,11 @@
     </MathML>
     <Metadata>
         <Description>Red Green Ratio (RGR2)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>RGB</ApplicationSubtarget>
+        <Species>Wheat</Species>
+        <Reference>Tan et al., 2018; Steddom et al., 2003</Reference>
+        <AdditionalInformation>https://www.nv5geospatialsoftware.com/docs/alphabeticallistspectralindices.html</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

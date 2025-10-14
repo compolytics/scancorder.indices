@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
     <Name>CI</Name>
+    <AlternativeName>ZTM</AlternativeName>
+    <AlternativeName>SR[750,710]</AlternativeName>
     <Wavelengths>
         <Band name="R710" min="710" max="710" unit="nm"/>
         <Band name="R750" min="750" max="750" unit="nm"/>
@@ -16,5 +18,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 750/710 Zarco-Tejada and Miller (ZM), Combined Index (CI)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Red Edge</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Tan et al., 2018</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=182</AdditionalInformation>
     </Metadata>
 </SpectralIndex>
