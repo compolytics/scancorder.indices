@@ -2,6 +2,7 @@
 
 export(CalibrationReflectanceMultipoint)
 export(DecodeCompolyticsRegularScanner)
+export(DecodeReflectanceList)
 export(calculate_index)
 export(calculate_indices_table)
 export(get_index_xml)
