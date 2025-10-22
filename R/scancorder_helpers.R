@@ -23,10 +23,10 @@ ScanCorderHelpers <- R6Class("ScanCorderHelpers",
       # Nothing to initialize for static helper methods
     },
 
-    #' Check if nested keys exist in a list/dictionary structure
-    #' @param lst List or dictionary to check
-    #' @param keys Character vector of nested keys to check
-    #' @return Logical indicating if all nested keys exist
+    #' Check if a nested key exists in a list
+    #' @param dictionary A list or nested list structure to check
+    #' @param keys A vector of keys representing the nested path to check
+    #' @return Logical value indicating whether the nested key path exists
     nested_key_exists = function(lst, keys) {
       current <- lst
       for (k in keys) {
@@ -66,10 +66,10 @@ ScanCorderHelpers <- R6Class("ScanCorderHelpers",
       return(vec)
     },
 
-    #' Convert JSON data to numeric matrix
-    #' @param json_data JSON data structure
-    #' @param type Conversion function (default: as.numeric)
-    #' @return Numeric matrix
+    #' Convert JSON data frame to numeric matrix
+    #' @param json_data A list or data frame structure from JSON
+    #' @param type Function to convert data type (default: as.numeric)
+    #' @return A numeric matrix
     convert_json_to_matrix = function(json_data, type = as.numeric) {
       df <- do.call(rbind, json_data)
       matrix_data <- apply(df, c(1, 2), type)
@@ -453,9 +453,9 @@ ScanCorderHelpers <- R6Class("ScanCorderHelpers",
       ))
     },
 
-    #' Ensure input is a list, wrapping it if necessary
-    #' @param x Input object
-    #' @return List
+    #' Ensure input is a list, wrapping if necessary
+    #' @param x Input object to ensure is a list
+    #' @return A list, either the original if already a list, or wrapped in a list
     ensure_list = function(x) {
       # if it's not a list, or it's a named list (i.e. a JSON object),
       # then wrap it in a one-element list
@@ -514,9 +514,9 @@ ScanCorderHelpers <- R6Class("ScanCorderHelpers",
       return(filtered_info)
     },
 
-    #' Flatten a JSON structure containing multiple sample data, extracting metadata if available
-    #' @param input_json JSON input structure
-    #' @return Flattened list of samples
+    #' Flatten JSON input, extracting 'data' field if it exists
+    #' @param input_json A list structure from parsed JSON
+    #' @return A flattened list with data fields extracted
     flatten_sample_json = function(input_json) {
       flat_list <- list()
       for (entry in input_json) {
