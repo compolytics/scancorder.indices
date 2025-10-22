@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>GR</Name>
+    <Wavelengths>
+        <Band name="R490:R570" min="490" max="570" unit="nm" select="min-distance"/>
+        <Band name="R640:R760" min="640" max="760" unit="nm" select="min-distance"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R490:R570</ci>
+                <ci>R640:R760</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Green Red Ratio, Green Red Vegetation Index (GR)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Gamon &amp; Surfus 1999, verwiesen in Biro et al., 2024, Comparison of RGB Indices used for Vegetation Studies based on Structured Similarity Index (SSIM)</Reference>
+        <AdditionalInformation>https://www.plantsciencejournal.com/articles/jpsp-aid1124.php</AdditionalInformation>
+    </Metadata>
+</SpectralIndex>

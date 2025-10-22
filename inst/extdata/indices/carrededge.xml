@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>CARrededge</Name>
+    <Wavelengths>
+        <Band name="R510" min="510" max="510" unit="nm"/>
+        <Band name="R700" min="700" max="700" unit="nm"/>
+        <Band name="R770" min="770" max="770" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <times/>
+                <apply>
+                    <minus/>
+                    <apply>
+                        <divide/>
+                        <cn>1.0</cn>
+                        <ci>R510</ci>
+                    </apply>
+                    <apply>
+                        <divide/>
+                        <cn>1.0</cn>
+                        <ci>R700</ci>
+                    </apply>
+                </apply>
+                <ci>R770</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Carotenoid Reflectance Index 700 nm with NIR correction (CARrededge)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Carotenoids</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Gitelson, A., et al. "Assessing Carotenoid Content in Plant Leaves with Reflectance Spectroscopy." Photochemistry and Photobiology 75 (2002): 272-281.</Reference>
+        <AdditionalInformation>https://ieeexplore.ieee.org/document/8519389; https://agupubs.onlinelibrary.wiley.com/doi/epdf/10.1029/2006GL026457</AdditionalInformation>
+    </Metadata>
+</SpectralIndex>

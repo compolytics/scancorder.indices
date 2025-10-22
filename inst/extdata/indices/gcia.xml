@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>GCIa</Name>
+    <Wavelengths>
+        <Band name="NIR" min="780" max="1400" unit="nm" select="min-distance"/>
+        <Band name="R520:R585" min="520" max="585" unit="nm" select="min-distance"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <minus/>
+                <apply>
+                    <divide/>
+                    <ci>NIR</ci>
+                    <ci>R520:R585</ci>
+                </apply>
+                <cn>1.0</cn>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Green Chlorophyll Index a (GCIa)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Gitelson, A., Y. Gritz, and M. Merzlyak. "Relationships Between Leaf Chlorophyll Content and Spectral Reflectance and Algorithms for Non-Destructive Chlorophyll Assessment in Higher Plant Leaves." Journal of Plant Physiology 160 (2003): 271-282.</Reference>
+        <AdditionalInformation>https://www.nv5geospatialsoftware.com/docs/alphabeticallistspectralindices.html</AdditionalInformation>
+    </Metadata>
+</SpectralIndex>

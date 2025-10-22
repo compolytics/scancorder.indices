@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>PSND[800, 635]</Name>
+    <Wavelengths>
+        <Band name="R635" min="635" max="635" unit="nm"/>
+        <Band name="R800" min="800" max="800" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <minus/>
+                    <ci>R800</ci>
+                    <ci>R635</ci>
+                </apply>
+                <apply>
+                    <plus/>
+                    <ci>R800</ci>
+                    <ci>R635</ci>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Pigment Specific Normalized Difference 1 (PSND1)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Wheat</Species>
+        <Reference>Tan et al., 2018</Reference>
+    </Metadata>
+</SpectralIndex>

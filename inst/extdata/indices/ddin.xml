@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>DDIn</Name>
+    <Wavelengths>
+        <Band name="R710" min="710" max="710" unit="nm"/>
+        <Band name="R660" min="660" max="660" unit="nm"/>
+        <Band name="R760" min="760" max="760" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <times/>
+                <cn>2.0</cn>
+                <apply>
+                    <minus/>
+                    <apply>
+                        <minus/>
+                        <ci>R710</ci>
+                        <ci>R660</ci>
+                    </apply>
+                    <ci>R760</ci>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Double Difference Index new (DDIn)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>le Maire et al., 2008</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=157</AdditionalInformation>
+    </Metadata>
+</SpectralIndex>

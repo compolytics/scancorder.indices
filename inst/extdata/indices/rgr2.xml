@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>RGR2</Name>
+    <Wavelengths>
+        <Band name="R612" min="612" max="612" unit="nm"/>
+        <Band name="R660" min="660" max="660" unit="nm"/>
+        <Band name="R510" min="510" max="510" unit="nm"/>
+        <Band name="R560" min="560" max="560" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <plus/>
+                    <ci>R612</ci>
+                    <ci>R660</ci>
+                </apply>
+                <apply>
+                    <plus/>
+                    <ci>R510</ci>
+                    <ci>R560</ci>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Red Green Ratio (RGR2)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>RGB</ApplicationSubtarget>
+        <Species>Wheat</Species>
+        <Reference>Tan et al., 2018; Steddom et al., 2003</Reference>
+        <AdditionalInformation>https://www.nv5geospatialsoftware.com/docs/alphabeticallistspectralindices.html</AdditionalInformation>
+    </Metadata>
+</SpectralIndex>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>SR[801,550]</Name>
+    <Wavelengths>
+        <Band name="R801" min="801" max="801" unit="nm"/>
+        <Band name="R550" min="550" max="550" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R801</ci>
+                <ci>R550</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio 801/550, NIR/Green (SR[801,550])</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Maize</Species>
+        <Reference>Daughtry, C. S. T.; Walthall, C. L.; Kim, M. S.; de Colstoun, E. Brown; McMurtrey Iii, J. E. - Estimating Corn Leaf Chlorophyll Concentration from Leaf and Canopy Reflectance, 2000</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=346</AdditionalInformation>
+    </Metadata>
+</SpectralIndex>

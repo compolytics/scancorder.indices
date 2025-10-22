@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>FWBI1b</Name>
+    <Wavelengths>
+        <Band name="R920" min="920" max="920" unit="nm"/>
+        <Band name="R960:R1000" min="960" max="1000" unit="nm" select="min-reflectance"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R920</ci>
+                <ci>R960:R1000</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Floating-position Water Band Index 1 (FWBI1b)</Description>
+        <ApplicationGroup>Plant health</ApplicationGroup>
+        <ApplicationMolecularTarget>Water content</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Moisture, Drought stress, WUE</ApplicationSubtarget>
+        <Species>Spagnum, Wheat</Species>
+        <Reference>Harris et al., 2006; Feng et al., 2017</Reference>
+    </Metadata>
+</SpectralIndex>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>Vog2</Name>
+    <Wavelengths>
+        <Band name="R734" min="734" max="734" unit="nm"/>
+        <Band name="R747" min="747" max="747" unit="nm"/>
+        <Band name="R715" min="715" max="715" unit="nm"/>
+        <Band name="R726" min="726" max="726" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <minus/>
+                    <ci>R734</ci>
+                    <ci>R747</ci>
+                </apply>
+                <apply>
+                    <plus/>
+                    <ci>R715</ci>
+                    <ci>R726</ci>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Vogelmann indices 2 (Vog2)</Description>
+        <ApplicationGroup>Vegetation, Plant health</ApplicationGroup>
+        <ApplicationMolecularTarget>Red Edge, Water content</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll, Moisture</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Vogelmann (1993), Bagherian et al., 2022</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=101</AdditionalInformation>
+    </Metadata>
+</SpectralIndex>

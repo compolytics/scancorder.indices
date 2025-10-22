@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>R-M</Name>
+    <Wavelengths>
+        <Band name="R750" min="750" max="750" unit="nm"/>
+        <Band name="R720" min="720" max="720" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <minus/>
+                <apply>
+                    <divide/>
+                    <ci>R750</ci>
+                    <ci>R720</ci>
+                </apply>
+                <cn>1.0</cn>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Red-Edge Model Index (R-M)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Red Edge</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Wheat</Species>
+        <Reference>Tan et al., 2018; Cui, B.; Zhao, Q.; Huang, W.; Song, X.; Ye, H.; Zhou, X. A New Integrated Vegetation Index for the Estimation of Winter Wheat Leaf Chlorophyll Content. Remote Sens. 2019, 11, 974. https://doi.org/10.3390/rs11080974</Reference>
+    </Metadata>
+</SpectralIndex>

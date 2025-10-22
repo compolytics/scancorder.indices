@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>reNDVI</Name>
+    <Wavelengths>
+        <Band name="R750" min="750" max="750" unit="nm"/>
+        <Band name="R710" min="710" max="710" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <minus/>
+                    <ci>R750</ci>
+                    <ci>R710</ci>
+                </apply>
+                <apply>
+                    <plus/>
+                    <ci>R750</ci>
+                    <ci>R710</ci>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Red Edge Normalized Difference Vegetation Index (reNDVI)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Red Edge</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Biomass</ApplicationSubtarget>
+        <Species>feedstock</Species>
+        <Reference>Ahamed, T.; Tian, L.; Zhang, Y.; Ting, K. C. - A review of remote sensing methods for biomass feedstock production</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=126</AdditionalInformation>
+    </Metadata>
+</SpectralIndex>

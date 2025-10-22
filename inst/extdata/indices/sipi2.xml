@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>SIPI2</Name>
+    <Wavelengths>
+        <Band name="R800" min="800" max="800" unit="nm"/>
+        <Band name="R445" min="445" max="445" unit="nm"/>
+        <Band name="R680" min="680" max="680" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <minus/>
+                    <ci>R800</ci>
+                    <ci>R445</ci>
+                </apply>
+                <apply>
+                    <minus/>
+                    <ci>R800</ci>
+                    <ci>R680</ci>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Structure Intensive Pigment Index 1 (SIPI2)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Wheat</Species>
+        <Reference>Tan et al., 2018</Reference>
+        <AdditionalInformation>https://www.nv5geospatialsoftware.com/docs/alphabeticallistspectralindices.html, https://www.indexdatabase.de/db/i-single.php?id=90</AdditionalInformation>
+    </Metadata>
+</SpectralIndex>

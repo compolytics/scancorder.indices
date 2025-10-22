@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>NVI1</Name>
+    <Wavelengths>
+        <Band name="R673" min="673" max="673" unit="nm"/>
+        <Band name="R747" min="747" max="747" unit="nm"/>
+        <Band name="R777" min="777" max="777" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <plus/>
+                    <ci>R777</ci>
+                    <ci>R747</ci>
+                </apply>
+                <ci>R673</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>New Vegetation Index 1 (NVI1)</Description>
+        <ApplicationGroup>Nutrition</ApplicationGroup>
+        <ApplicationMolecularTarget>Compound</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Nitrogen</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Bagherian et al., 2022, Peñuelas, J.; Gamon, J.A.; Griffin, K.L.; Field, C.B. Assessing Community Type, Plant Biomass, Pigment Composition, and
+Photosynthetic Efficiency of Aquatic Vegetation from Spectral Reflectance. Remote Sens. Environ. 1993, 46, 110–118</Reference>
+    </Metadata>
+</SpectralIndex>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>WBI</Name>
+    <Wavelengths>
+        <Band name="R970" min="970" max="970" unit="nm"/>
+        <Band name="R902" min="902" max="902" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R970</ci>
+                <ci>R902</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio 970/902, Water band index (WBI)</Description>
+        <ApplicationGroup>Plant health</ApplicationGroup>
+        <ApplicationMolecularTarget>Water content</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Moisture, Drought stress, WUE</ApplicationSubtarget>
+        <Species>Sunflower</Species>
+        <Reference>Penuelas, J.; Gamon, J. A.; Fredeen, A. L.; Merino, J.; Field, C. B. - Reflectance indices associated with physiological changes in nitrogen- and water-limited sunflower leaves, 1994</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=531</AdditionalInformation>
+    </Metadata>
+</SpectralIndex>

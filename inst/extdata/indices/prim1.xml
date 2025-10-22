@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>PRIm1</Name>
+    <Wavelengths>
+        <Band name="R515" min="515" max="515" unit="nm"/>
+        <Band name="R530" min="530" max="530" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <minus/>
+                    <ci>R515</ci>
+                    <ci>R530</ci>
+                </apply>
+                <apply>
+                    <plus/>
+                    <ci>R515</ci>
+                    <ci>R530</ci>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Photochemical Reflectance Index (PRIm1)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Carotenoids</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Hernández-Clemente et al., 2012</Reference>
+    </Metadata>
+</SpectralIndex>

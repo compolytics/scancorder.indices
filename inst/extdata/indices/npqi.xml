@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>NPQI</Name>
+    <Wavelengths>
+        <Band name="R415" min="415" max="415" unit="nm"/>
+        <Band name="R435" min="435" max="435" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <minus/>
+                    <ci>R415</ci>
+                    <ci>R435</ci>
+                </apply>
+                <apply>
+                    <plus/>
+                    <ci>R415</ci>
+                    <ci>R435</ci>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Normalized Phaeophytinization Index (NPQI)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Wheat</Species>
+        <Reference>Tan et al., 2018</Reference>
+    </Metadata>
+</SpectralIndex>

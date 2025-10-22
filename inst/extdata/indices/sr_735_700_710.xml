@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>SR[735,700:710]</Name>
+    <Wavelengths>
+        <Band name="R735" min="735" max="735" unit="nm"/>
+        <Band name="R700:R710" min="700" max="710" unit="nm" select="min-distance"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R735</ci>
+                <ci>R700:R710</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio 735/710 (SR[735,700:710])</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Gitelson, Anatoly A.; Buschmann, Claus; Lichtenthaler, Hartmut K. - The Chlorophyll Fluorescence Ratio F735/F700 as an Accurate Measure of the Chlorophyll Content in Plants, 1999</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=409</AdditionalInformation>
+    </Metadata>
+</SpectralIndex>

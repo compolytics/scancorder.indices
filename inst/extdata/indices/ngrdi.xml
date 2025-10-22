@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>NGRDI</Name>
+    <Wavelengths>
+        <Band name="R490:R570" min="490" max="570" unit="nm" select="min-distance"/>
+        <Band name="R640:R760" min="640" max="760" unit="nm" select="min-distance"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <minus/>
+                    <ci>R490:R570</ci>
+                    <ci>R640:R760</ci>
+                </apply>
+                <apply>
+                    <plus/>
+                    <ci>R490:R570</ci>
+                    <ci>R640:R760</ci>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Normalized green red difference index (NGRDI)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Escadafal, R.; Huete, A. - Improvement in remote sensing of low vegetation cover in arid regions by correcting vegetation indices for soil "noise', 1991</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=74</AdditionalInformation>
+    </Metadata>
+</SpectralIndex>

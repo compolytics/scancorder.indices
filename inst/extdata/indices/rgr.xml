@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>RGR</Name>
+    <Name>RGR1</Name>
     <Wavelengths>
-        <Band name="GREEN" min="490" max="570" unit="nm"/>
-        <Band name="RED" min="640" max="760" unit="nm"/>
+        <Band name="GREEN" min="490" max="570" unit="nm" select="min-distance"/>
+        <Band name="RED" min="640" max="760" unit="nm" select="min-distance"/>
     </Wavelengths>
     <MathML>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -15,6 +15,12 @@
         </math>
     </MathML>
     <Metadata>
-        <Description>Red/Green Index (RGR)</Description>
+        <Description>Red/Green Index (RGR1)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Carotenoids</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Gamon, J. A.; Surfus, J. S. - Assessing leaf pigment content and activity with a reflectometer, 1999</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=213</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

@@ -6,14 +6,15 @@ library(xml2)
 #' This function reads an XML file containing the index definition,
 #' extracts the band ranges and MathML expression,
 #' and computes the index for each reflectance vector.
-#' #' @param xml_file Path to the XML file defining the index.
-#' #' @param wavelengths Numeric vector of wavelengths corresponding to the reflectance data.
-#' #' @param reflectance_list List of numeric vectors, each representing reflectance values for a sample.
-#' #' @param fwhm Optional numeric vector of full width at half maximum (FWHM) values for each wavelength.
-#' #' @return A list of computed index values for each reflectance vector.
+#' @param xml_file Path to the XML file defining the index.
+#' @param wavelengths Numeric vector of wavelengths corresponding to the reflectance data.
+#' @param reflectance_list List of numeric vectors, each representing reflectance values for a sample.
+#' @param fwhm Optional numeric vector of full width at half maximum (FWHM) values for each wavelength.
+#' @return A list of computed index values for each reflectance vector.
 #'
 #' @export
 #' @importFrom xml2 xml_attr xml_text xml_name xml_find_first xml_find_all
+#' @importFrom stats na.omit setNames
 calculate_index <- function(xml_file, wavelengths, reflectance_list, fwhm = NULL) {
   # --- 1. Parse XML once ----------------------------------------------------
   doc           <- read_xml(xml_file)
@@ -21,13 +22,17 @@ calculate_index <- function(xml_file, wavelengths, reflectance_list, fwhm = NULL
   if (is.na(index_name)) {
     stop("No <Name> element found in XML.")
   }
-  # Build a named list of band ranges
+  # Build a named list of band ranges with their selection strategy
   band_nodes    <- xml_find_all(doc, "//Wavelengths/Band")
   bands <- setNames(
     lapply(band_nodes, function(node) {
+      sel <- xml_attr(node, "select")
+      # Default selection strategy is "min-distance"
+      if (is.null(sel) || is.na(sel) || sel == "") sel <- "min-distance"
       list(
         min = as.numeric(xml_attr(node, "min")),
-        max = as.numeric(xml_attr(node, "max"))
+        max = as.numeric(xml_attr(node, "max")),
+        select = sel
       )
     }),
     xml_attr(band_nodes, "name")
@@ -58,22 +63,38 @@ calculate_index <- function(xml_file, wavelengths, reflectance_list, fwhm = NULL
 
     # ensure it's a numeric vector
     reflectance <- unlist(reflectance)
-    # for each band, find indices & mean‐aggregate
-    refl_vals <- lapply(bands, function(rng) {
-
+    # store the indices of the selected bands to assure no repetitions
+    selected_indices <- vector("integer", length(bands))
+    refl_vals <- vector("double", length(bands))
+    band_names <- names(bands)
+    for (i in seq_along(bands)) {
+      rng <- bands[[i]]
       center <- (rng$min + rng$max) / 2
       idx <- which((wavelengths+margin) >= rng$min & (wavelengths-margin) <= rng$max)
       if (length(idx) == 0) {
-        return(NULL)
+        selected_indices[i] <- NA_integer_
+        refl_vals[i] <- NA
+        next
       }
-      # pick the one whose wavelength is closest to the band center
-      dists <- abs(wavelengths[idx] - center)
-      best <- idx[which.min(dists)]
-      return(reflectance[best])
-    })
+      if (rng$select == "min-distance") {
+        dists <- abs(wavelengths[idx] - center)
+        best <- idx[which.min(dists)]
+        selected_indices[i] <- best
+        refl_vals[i] <- reflectance[best]
+      } else if (rng$select == "min-reflectance") {
+        best <- idx[which.min(reflectance[idx])]
+        selected_indices[i] <- best
+        refl_vals[i] <- reflectance[best]
+      } else {
+        stop(paste0('Unknown select attribute value: ', rng$select))
+      }
+    }
+    names(refl_vals) <- band_names
 
     # if any band is missing data → NA
-    if (any(sapply(refl_vals, is.null))) return(NA_real_)
+    if (any(sapply(refl_vals, is.na))) return(NA_real_)
+    # if any band is duplicated (same wavelength selected for two bands) → NA
+    if (any(duplicated(selected_indices))) return(NA_real_)
     names(refl_vals) <- names(bands)
 
     # evaluate the MathML formula with those band means

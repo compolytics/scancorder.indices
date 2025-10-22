@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 675/555 (SR[675,555])</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll a</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Gitelson, Anatoly; Merzlyak, Mark N. - Quantitative estimation of chlorophyll-a using reflectance spectra: Experiments with autumn chestnut and maple leaves, 1994</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=370</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>SR[520,760]</Name>
+    <Wavelengths>
+        <Band name="R520" min="520" max="520" unit="nm"/>
+        <Band name="R760" min="760" max="760" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R520</ci>
+                <ci>R760</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio 520/760 (SR[520,760])</Description>
+        <ApplicationGroup>Plant health</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Stress general, LUE, PS activity</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Carter, Gregory A. - Ratios of leaf reflectances in narrow wavebands as indicators of plant stress, 1994</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=324</AdditionalInformation>
+    </Metadata>
+</SpectralIndex>

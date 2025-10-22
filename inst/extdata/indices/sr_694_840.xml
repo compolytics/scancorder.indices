@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 694/840 (SR[694,840])</Description>
+        <ApplicationGroup>Plant health</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Stress general, Fluorescence</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Carter, Gregory A.; Cibula, William G.; Miller, Richard L. - Narrow-band Reflectance Imagery Compared with ThermalImagery for Early Detection of Plant Stress, 1996; Main, Russell; Cho, Moses Azong; Mathieu, Renaud; Oâ€™Kennedy, Martha M.; Ramoelo, Abel; Koch, Susan - An investigation into robust spectral indices for leaf chlorophyll estimation, 2011</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=314</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

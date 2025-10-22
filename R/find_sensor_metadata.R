@@ -2,7 +2,7 @@ library(jsonlite)
 
 #' Find sensor metadata by a 4-digit serial embedded in sensor_serial
 #'
-#' @param serial_number A 4-digit serial (character or numeric)
+#' @param serial_name A 4-digit serial (character or numeric)
 #' @param directory Path to folder containing .json files.
 #'   Defaults to the "sensors" sub directory of the installed scancorder.indices package.
 #' @return Parsed JSON (as an R list) for the first file whose sensor_serial contains that 4-digit code, or NULL
@@ -38,7 +38,14 @@ find_sensor_metadata <- function(
     if (is.null(obj)) next
 
     if (!is.null(obj[["sensor_serial"]])) {
-      txt <- paste(unlist(obj[["sensor_serial"]]), collapse = " ")
+      # Handle both string and numeric sensor_serial values
+      sensor_val <- obj[["sensor_serial"]]
+      if (is.numeric(sensor_val)) {
+        # Convert numeric to 4-digit zero-padded string for comparison
+        txt <- sprintf("%04d", sensor_val)
+      } else {
+        txt <- paste(unlist(sensor_val), collapse = " ")
+      }
       matches <- regmatches(txt, gregexpr("\\d{4}", txt))[[1]]
       if (serial_code %in% matches) {
         return(obj)

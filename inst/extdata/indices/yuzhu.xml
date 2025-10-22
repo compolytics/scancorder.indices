@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>YUZHU</Name>
+    <Wavelengths>
+        <Band name="R470" min="470" max="470" unit="nm"/>
+        <Band name="R530" min="530" max="530" unit="nm"/>
+        <Band name="R670" min="670" max="670" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R530</ci>
+                <apply>
+                    <plus/>
+                    <ci>R470</ci>
+                    <ci>R530</ci>
+                    <ci>R670</ci>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Yuzhu Index (YUZHU)</Description>
+        <ApplicationGroup>Nutrition</ApplicationGroup>
+        <ApplicationMolecularTarget>Compound</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Nitrogen</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>https://www.ajol.info/index.php/ajb/article/view/98244</Reference>
+    </Metadata>
+</SpectralIndex>

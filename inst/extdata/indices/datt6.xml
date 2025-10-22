@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
     <Name>Datt6</Name>
+    <AlternativeName>DattNIRCabCx_c</AlternativeName>
     <Wavelengths>
         <Band name="R550" min="550" max="550" unit="nm"/>
         <Band name="R708" min="708" max="708" unit="nm"/>
@@ -21,5 +22,11 @@
     </MathML>
     <Metadata>
         <Description>Reflectance Band Ratio (Datt6)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll a, Chlorophyll a+b, Carotenoids</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Datt, Bisun - Remote Sensing of Chlorophyll a, Chlorophyll b, Chlorophyll a+b, and Total Carotenoid Content in Eucalyptus Leaves, 1998</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=155</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

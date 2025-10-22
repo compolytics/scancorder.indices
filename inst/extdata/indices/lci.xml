@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>LCI</Name>
+    <AlternativeName>Datt1</AlternativeName>
+    <Wavelengths>
+        <Band name="R680" min="680" max="680" unit="nm"/>
+        <Band name="R710" min="710" max="710" unit="nm"/>
+        <Band name="R850" min="850" max="850" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <minus/>
+                    <ci>R850</ci>
+                    <ci>R710</ci>
+                </apply>
+                <apply>
+                    <minus/>
+                    <ci>R850</ci>
+                    <ci>R680</ci>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Leaf Chlorophyll Index (LCI)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Datt, B. "Remote Sensing of Water Content in Eucalyptus Leaves." Journal of Plant Physiology 154, no. 1 (1999): 30-36.</Reference>
+        <AdditionalInformation>https://www.nv5geospatialsoftware.com/docs/alphabeticallistspectralindices.html, https://www.indexdatabase.de/db/i-single.php?id=150</AdditionalInformation>
+    </Metadata>
+</SpectralIndex>

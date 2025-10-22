@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>PMI</Name>
+    <Wavelengths>
+        <Band name="R520" min="520" max="520" unit="nm"/>
+        <Band name="R584" min="584" max="584" unit="nm"/>
+        <Band name="R724" min="724" max="724" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <plus/>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <minus/>
+                        <ci>R520</ci>
+                        <ci>R584</ci>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <ci>R520</ci>
+                        <ci>R584</ci>
+                    </apply>
+                </apply>
+                <ci>R724</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Powdery Mildew Index (sugar beet) (PMI)</Description>
+        <ApplicationGroup>Plant health</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Mildew</ApplicationSubtarget>
+        <Species>Sugar Beet, Grain Crops</Species>
+        <Reference>Franzen, D.W., Miao, Y., Kitchen, N.R., Schepers, J.S., Scharf, P.C. (2021). Sensing for Health, Vigour and Disease Detection in Row and Grain Crops. In: Kerry, R., Escolà, A. (eds) Sensing Approaches for Precision Agriculture. Progress in Precision Agriculture. Springer, Cham. https://doi.org/10.1007/978-3-030-78431-7_6</Reference>
+    </Metadata>
+</SpectralIndex>

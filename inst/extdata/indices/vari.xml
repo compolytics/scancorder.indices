@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>VARI</Name>
+    <Wavelengths>
+        <Band name="R555" min="555" max="555" unit="nm"/>
+        <Band name="R680" min="680" max="680" unit="nm"/>
+        <Band name="R480" min="480" max="480" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <minus/>
+                    <ci>R555</ci>
+                    <ci>R680</ci>
+                </apply>
+                <apply>
+                    <minus/>
+                    <apply>
+                        <plus/>
+                        <ci>R555</ci>
+                        <ci>R680</ci>
+                    </apply>
+                    <ci>R480</ci>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Visible Atmospherically Resistant Index (VARI)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Wheat</Species>
+        <Reference>Tan et al., 2018</Reference>
+    </Metadata>
+</SpectralIndex>

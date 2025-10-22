@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>RVSI</Name>
+    <Wavelengths>
+        <Band name="R712" min="712" max="712" unit="nm"/>
+        <Band name="R752" min="752" max="752" unit="nm"/>
+        <Band name="R732" min="732" max="732" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <minus/>
+                <apply>
+                    <times/>
+                    <cn>0.5</cn>
+                    <apply>
+                        <plus/>
+                        <ci>R712</ci>
+                        <ci>R752</ci>
+                    </apply>
+                </apply>
+                <ci>R732</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Red-Edge Vegetation Stress Index, Wheat (RVSI)</Description>
+        <ApplicationGroup>Plant health</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Stress general, LUE, PS activity</ApplicationSubtarget>
+        <Species>Wheat, Tomato</Species>
+        <Reference>Abdulridha J., Ampatzidis Y., Kakarla S.C., Roberts P. Detection of target spot and bacterial spot diseases in tomato using UAV-based and benchtop-based hyperspectral imaging techniques. Precis. Agric. 2019;21:955–978. doi: 10.1007/s11119-019-09703-4.</Reference>
+        <AdditionalInformation>https://pmc.ncbi.nlm.nih.gov/articles/PMC8747141/, Ashourloo, Davoud &amp; Mobasheri, Mohammadreza &amp; Huete, Alfredo. (2014). Evaluating the Effect of Different Wheat Rust Disease Symptoms on Vegetation Indices Using Hyperspectral Measurements. Remote Sensing. 6. 10.3390/rs6065107.</AdditionalInformation>
+    </Metadata>
+</SpectralIndex>

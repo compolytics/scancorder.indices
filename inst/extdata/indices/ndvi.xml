@@ -2,8 +2,8 @@
 <SpectralIndex>
     <Name>NDVI</Name>
     <Wavelengths>
-        <Band name="Red" min="620" max="670" unit="nm"/>
-        <Band name="NIR" min="750" max="810" unit="nm"/>
+        <Band name="Red" min="620" max="670" unit="nm" select="min-distance"/>
+        <Band name="NIR" min="750" max="810" unit="nm" select="min-distance"/>
     </Wavelengths>
     <MathML>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -24,5 +24,11 @@
     </MathML>
     <Metadata>
         <Description>Normalized Difference Vegetation Index (NDVI)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Rouse, J., R. Haas, J. Schell, and D. Deering. Monitoring Vegetation Systems in the Great Plains with ERTS. Third ERTS Symposium, NASA (1973): 309-317.</Reference>
+        <AdditionalInformation>https://www.nv5geospatialsoftware.com/docs/alphabeticallistspectralindices.html</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

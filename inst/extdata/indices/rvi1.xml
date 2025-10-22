@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>RVI1</Name>
+    <Wavelengths>
+        <Band name="R810" min="810" max="810" unit="nm"/>
+        <Band name="R660" min="660" max="660" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R810</ci>
+                <ci>R660</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Ratio Vegetation Index 1 (RVI1)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Wheat</Species>
+        <Reference>Zhu et al. (2008); Lin 2012 Hyperspectral vegetation indices …</Reference>
+        <AdditionalInformation>https://www.researchgate.net/publication/260293988_Hyperspectral_vegetation_indices_for_crop_chlorophyll_estimation_Assessment_modeling_and_validation</AdditionalInformation>
+    </Metadata>
+</SpectralIndex>

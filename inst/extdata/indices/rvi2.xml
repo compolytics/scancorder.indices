@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
     <Name>RVI2</Name>
+    <AlternativeName>SR[493,678]</AlternativeName>
     <Wavelengths>
         <Band name="R493" min="493" max="493" unit="nm"/>
         <Band name="R678" min="678" max="678" unit="nm"/>
@@ -16,5 +17,10 @@
     </MathML>
     <Metadata>
         <Description>Disease-Water Stress Index 4 (RVI2)</Description>
+        <ApplicationGroup>Compound</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Ammonia</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Tilley, David Rogers, et al. "Hyperspectral reflectance of emergent macrophytes as an indicator of water column ammonia in an oligohaline, subtropical marsh." Ecological Engineering 21.2-3 (2003): 153-163.</Reference>
     </Metadata>
 </SpectralIndex>

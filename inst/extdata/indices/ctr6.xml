@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>Ctr6</Name>
+    <AlternativeName>SR[550,420]</AlternativeName>
+    <Wavelengths>
+        <Band name="R550" min="550" max="550" unit="nm"/>
+        <Band name="R420" min="420" max="420" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R550</ci>
+                <ci>R420</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio 550/420, Carter6 (Ctr6)</Description>
+        <ApplicationGroup>Plant health</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Stress general, LUE, PS activity</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Carter, Gregory A. - Ratios of leaf reflectances in narrow wavebands as indicators of plant stress, 1994;  	Carter, Gregory A.; Cibula, William G.; Miller, Richard L. - Narrow-band Reflectance Imagery Compared with ThermalImagery for Early Detection of Plant Stress, 1996</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=149</AdditionalInformation>
+    </Metadata>
+</SpectralIndex>

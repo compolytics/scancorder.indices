@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>EG</Name>
+    <Wavelengths>
+        <Band name="R470" min="470" max="470" unit="nm"/>
+        <Band name="R530" min="530" max="530" unit="nm"/>
+        <Band name="R670" min="670" max="670" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <plus/>
+                <apply>
+                    <minus/>
+                    <ci>R530</ci>
+                    <ci>R670</ci>
+                </apply>
+                <ci>R470</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Excess Greenness (EG)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>W. Nijland, R. de Jong, S.M. de Jong, M.A. Wulder, C.W. Bater, N.C. Coops, Monitoring plant condition and phenology using infrared sensitive consumer grade digital cameras, Agric. For. Meteorol., 184 (2014), pp. 98-106</Reference>
+    </Metadata>
+</SpectralIndex>

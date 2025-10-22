@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>Vog1</Name>
+    <AlternativeName>Vog1hyper</AlternativeName>
+    <AlternativeName>SR[740,720]</AlternativeName>
+    <Wavelengths>
+        <Band name="R740" min="740" max="740" unit="nm"/>
+        <Band name="R720" min="720" max="720" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R740</ci>
+                <ci>R720</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio 740/720, hyper Vogelmann indices 1 (Vog1)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Vogelmann (1993), Bagherian et al., 2022</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=100</AdditionalInformation>
+    </Metadata>
+</SpectralIndex>

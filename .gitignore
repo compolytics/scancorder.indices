@@ -48,3 +48,9 @@ po/*~
 # RStudio Connect folder
 rsconnect/
 DESCRIPTION
+
+# output of utility functions
+util/images/*
+
+# Python cache files
+__pycache__/

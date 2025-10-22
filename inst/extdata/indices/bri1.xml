@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>BRI1</Name>
+    <Wavelengths>
+        <Band name="R400" min="400" max="400" unit="nm"/>
+        <Band name="R690" min="690" max="690" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R400</ci>
+                <ci>R690</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio 400/R690, Blue/Red pigment Index-1 (BRI1)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Red Edge</ApplicationMolecularTarget>
+        <ApplicationSubtarget>RGB, Chlorophyll</ApplicationSubtarget>
+        <Species>Wheat</Species>
+        <Reference>El-Hendawy, S.; Dewir, Y.H.; Elsayed, S.; Schmidhalter, U.; Al-Gaadi, K.; Tola, E.; Refay, Y.; Tahir, M.U.; Hassan, W.M. Combining Hyperspectral Reflectance Indices and Multivariate Analysis to Estimate Different Units of Chlorophyll Content of Spring Wheat under Salinity Conditions. Plants 2022, 11, 456. https://doi.org/10.3390/plants11030456</Reference>
+    </Metadata>
+</SpectralIndex>

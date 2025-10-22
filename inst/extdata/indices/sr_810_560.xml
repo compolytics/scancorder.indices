@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 810/560, Plant biochemical index (SR[810,560])</Description>
+        <ApplicationGroup>Compound</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Biochemical Compounds</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>RAMA RAO N, GARG PK, GHOSH SK, DADHWAL VK. Estimation of leaf total chlorophyll and nitrogen concentrations using hyperspectral satellite imagery. The Journal of Agricultural Science. 2008;146(1):65-75. doi:10.1017/S0021859607007514</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=212</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

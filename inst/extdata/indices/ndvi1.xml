@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>NDVI1[760, 708]</Name>
+    <Wavelengths>
+        <Band name="R708" min="708" max="708" unit="nm"/>
+        <Band name="R760" min="760" max="760" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <minus/>
+                    <ci>R760</ci>
+                    <ci>R708</ci>
+                </apply>
+                <apply>
+                    <plus/>
+                    <ci>R760</ci>
+                    <ci>R708</ci>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Normalized Difference Vegetation Index 1 (NDVI1)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Red Edge</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Wheat</Species>
+        <Reference>Tan et al., 2018</Reference>
+    </Metadata>
+</SpectralIndex>

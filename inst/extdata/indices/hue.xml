@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>HUE</Name>
+    <Wavelengths>
+        <Band name="R670" min="670" max="670" unit="nm"/>
+        <Band name="R530" min="530" max="530" unit="nm"/>
+        <Band name="R470" min="470" max="470" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <csymbol>rgb2hue</csymbol>
+                <ci>R670</ci>
+                <ci>R530</ci>
+                <ci>R470</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>HUE Value in HSV color space (HUE)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>RGB</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>https://www.sciencedirect.com/science/article/pii/S2214317315000347?via%3Dihub</Reference>
+    </Metadata>
+</SpectralIndex>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>RGBVI</Name>
+    <Wavelengths>
+        <Band name="R530" min="530" max="530" unit="nm"/>
+        <Band name="R470" min="470" max="470" unit="nm"/>
+        <Band name="R670" min="670" max="670" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <minus/>
+                    <apply>
+                        <power/>
+                        <ci>R530</ci>
+                        <cn>2</cn>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <ci>R470</ci>
+                        <ci>R670</ci>
+                    </apply>
+                </apply>
+                <apply>
+                    <plus/>
+                    <apply>
+                        <power/>
+                        <ci>R530</ci>
+                        <cn>2</cn>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <ci>R470</ci>
+                        <ci>R670</ci>
+                    </apply>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Red Green Blue Vegetation Index (RGBVI)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>RGB</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>https://www.plantsciencejournal.com/apdf/jpsp-aid1124.pdf</Reference>
+    </Metadata>
+</SpectralIndex>

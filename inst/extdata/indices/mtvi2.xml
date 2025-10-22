@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>MTVI2</Name>
+    <Wavelengths>
+        <Band name="R550" min="550" max="550" unit="nm"/>
+        <Band name="R670" min="670" max="670" unit="nm"/>
+        <Band name="R800" min="800" max="800" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <times/>
+                <cn>1.5</cn>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <minus/>
+                        <apply>
+                            <times/>
+                            <cn>1.2</cn>
+                            <apply>
+                                <minus/>
+                                <ci>R800</ci>
+                                <ci>R550</ci>
+                            </apply>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <cn>2.5</cn>
+                            <apply>
+                                <minus/>
+                                <ci>R670</ci>
+                                <ci>R550</ci>
+                            </apply>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <root/>
+                        <apply>
+                            <minus/>
+                            <apply>
+                                <power/>
+                                <apply>
+                                    <plus/>
+                                    <apply>
+                                        <times/>
+                                        <cn>2</cn>
+                                        <ci>R800</ci>
+                                    </apply>
+                                    <cn>1</cn>
+                                </apply>
+                                <cn>2</cn>
+                            </apply>
+                            <apply>
+                                <minus/>
+                                <apply>
+                                    <times/>
+                                    <cn>6</cn>
+                                    <ci>R800</ci>
+                                </apply>
+                                <apply>
+                                    <times/>
+                                    <cn>5</cn>
+                                    <apply>
+                                        <root/>
+                                        <ci>R670</ci>
+                                    </apply>
+                                </apply>
+                            </apply>
+                            <cn>0.5</cn>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Modified Triangular Vegetation Index 2 (MTVI2)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Hunt Jr., E. Raymond; Daughtry, C. S. T.; Eitel, Jan U. H.; Long, D. S. - Remote Sensing Leaf Chlorophyll Content Using a Visible Band Index, 2011</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=47</AdditionalInformation>
+    </Metadata>
+</SpectralIndex>

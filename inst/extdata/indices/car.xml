@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>CAR</Name>
+    <AlternativeName>Srcar</AlternativeName>
+    <Wavelengths>
+        <Band name="R515" min="515" max="515" unit="nm"/>
+        <Band name="R570" min="570" max="570" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R515</ci>
+                <ci>R570</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio, Chlorophyll Absorbance Reflectance (CAR)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Carotenoids</ApplicationSubtarget>
+        <Species>Conifers</Species>
+        <Reference>Hernández-Clemente et al., 2012</Reference>
+    </Metadata>
+</SpectralIndex>

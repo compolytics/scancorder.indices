@@ -1,28 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>LIC1</Name>
+    <Name>Lic1</Name>
     <Wavelengths>
-        <Band name="R680" min="680" max="680" unit="nm"/>
-        <Band name="R800" min="800" max="800" unit="nm"/>
+        <Band name="R690" min="690" max="690" unit="nm"/>
+        <Band name="R440" min="440" max="440" unit="nm"/>
     </Wavelengths>
     <MathML>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <divide/>
-                <apply>
-                    <minus/>
-                    <ci>R800</ci>
-                    <ci>R680</ci>
-                </apply>
-                <apply>
-                    <plus/>
-                    <ci>R800</ci>
-                    <ci>R680</ci>
-                </apply>
+                <ci>R690</ci>
+                <ci>R440</ci>
             </apply>
         </math>
     </MathML>
     <Metadata>
-        <Description>Simple ratio 800/680 Normalized Difference, Pigment specific normalised difference A2, Lichtenthaler indices 1, NDVIhyper (LIC1)</Description>
+        <Description>Simple Ratio 690/440, Lichtenthaler indices 1 (Lic1)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>LUE, Photosynthetic activity</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Lichtenthaler, Lang, Sowinska, Heisel, &amp; Miehé, 1996</Reference>
+        <AdditionalInformation>https://www.sciencedirect.com/science/article/pii/S0176161796802872; https://www.indexdatabase.de/db/i-single.php?id=183</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

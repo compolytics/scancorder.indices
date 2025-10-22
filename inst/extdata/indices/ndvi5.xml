@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>NDVI5[900, 680]</Name>
+    <Wavelengths>
+        <Band name="R680" min="680" max="680" unit="nm"/>
+        <Band name="R900" min="900" max="900" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <minus/>
+                    <ci>R900</ci>
+                    <ci>R680</ci>
+                </apply>
+                <apply>
+                    <plus/>
+                    <ci>R900</ci>
+                    <ci>R680</ci>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Normalized Difference Vegetation Index 5 (NDVI5)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Tan et al., 2018</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=543</AdditionalInformation>
+    </Metadata>
+</SpectralIndex>

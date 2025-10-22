@@ -6,14 +6,23 @@
 \title{DecodeCompolyticsRegularScanner: Decodes Sensor data from Compolytics Regular ScanCorder}
 \format{
 \code{\link[R6]{R6Class}} object.
-
-Create a new instance of the decoder.
-
-This method initializes the decoder with optional parameters for averaging sensor values and a channel mask.
 }
 \description{
 An R6 class designed to decode and calibrate raw sensor data from Compolytics scanners.
 It supports JSON input, various calibration modes (two-point and multipoint), and optional sensor value masking and averaging.
+}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{average_sensor_values}}{Logical. Whether to average sensor readings per LED's across sensor elements.}
+
+\item{\code{channel_mask}}{Matrix. A binary mask indicating which channels are valid.
+
+Create a new instance of the decoder.
+
+This method initializes the decoder with optional parameters for averaging sensor values and a channel mask.}
+}
+\if{html}{\out{</div>}}
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -57,6 +66,7 @@ It supports JSON input, various calibration modes (two-point and multipoint), an
 }
 \subsection{Returns}{
 A new instance of DecodeCompolyticsRegularScanner.
+Check if a nested key exists in a list
 }
 }
 \if{html}{\out{<hr>}}
@@ -67,6 +77,19 @@ A new instance of DecodeCompolyticsRegularScanner.
 \if{html}{\out{<div class="r">}}\preformatted{DecodeCompolyticsRegularScanner$nested_key_exists(lst, keys)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{lst}}{A list or nested list structure to check}
+
+\item{\code{keys}}{A vector of keys representing the nested path to check}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+Logical value indicating whether the nested key path exists
+Calculate calibration coefficients from calibration data
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-DecodeCompolyticsRegularScanner-calculate_calibration"></a>}}
@@ -76,6 +99,17 @@ A new instance of DecodeCompolyticsRegularScanner.
 \if{html}{\out{<div class="r">}}\preformatted{DecodeCompolyticsRegularScanner$calculate_calibration(calibration_map)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{calibration_map}}{A list containing calibration data points}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+A 3D array of calibration coefficients
+Two-point calibration: expects exactly one calibration measurement
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-DecodeCompolyticsRegularScanner-two_point_calibration"></a>}}
@@ -88,6 +122,19 @@ A new instance of DecodeCompolyticsRegularScanner.
 )}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{sensor_values}}{A numeric matrix of sensor readings}
+
+\item{\code{calibration_map}}{A list containing exactly one calibration measurement}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+A calibrated numeric matrix
+Multipoint calibration: uses several calibration measurements
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-DecodeCompolyticsRegularScanner-multi_point_calibration"></a>}}
@@ -100,6 +147,19 @@ A new instance of DecodeCompolyticsRegularScanner.
 )}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{sensor_values}}{A numeric matrix of sensor readings}
+
+\item{\code{calibration_map}}{A list containing multiple calibration measurements}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+A calibrated numeric matrix
+Convert JSON data to numeric vector
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-DecodeCompolyticsRegularScanner-convert_json_to_vector"></a>}}
@@ -112,6 +172,19 @@ A new instance of DecodeCompolyticsRegularScanner.
 )}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{json_data}}{A list or data structure from JSON}
+
+\item{\code{type}}{Function to convert data type (default: as.numeric)}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+A numeric vector
+Convert JSON data frame to numeric matrix
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-DecodeCompolyticsRegularScanner-convert_json_to_matrix"></a>}}
@@ -124,6 +197,19 @@ A new instance of DecodeCompolyticsRegularScanner.
 )}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{json_data}}{A list or data frame structure from JSON}
+
+\item{\code{type}}{Function to convert data type (default: as.numeric)}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+A numeric matrix
+Ensure the input is a list, wrapping it if necessary
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-DecodeCompolyticsRegularScanner-ensure_list"></a>}}
@@ -133,6 +219,57 @@ A new instance of DecodeCompolyticsRegularScanner.
 \if{html}{\out{<div class="r">}}\preformatted{DecodeCompolyticsRegularScanner$ensure_list(x)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{x}}{Input object to ensure is a list}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+A list, either the original if already a list, or wrapped in a list
+Sanitize field names by replacing problematic characters
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-DecodeCompolyticsRegularScanner-sanitize_field_name"></a>}}
+\if{latex}{\out{\hypertarget{method-DecodeCompolyticsRegularScanner-sanitize_field_name}{}}}
+\subsection{Method \code{sanitize_field_name()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{DecodeCompolyticsRegularScanner$sanitize_field_name(field_name)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{field_name}}{A character string representing a field name to sanitize}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+A sanitized field name safe for use in R
+Filter info fields to keep only numeric or single string values
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-DecodeCompolyticsRegularScanner-filter_info_fields"></a>}}
+\if{latex}{\out{\hypertarget{method-DecodeCompolyticsRegularScanner-filter_info_fields}{}}}
+\subsection{Method \code{filter_info_fields()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{DecodeCompolyticsRegularScanner$filter_info_fields(info)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{info}}{A list containing information fields to filter}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+A filtered list containing only numeric or single string values
+Flatten a JSON structure containing multiple sample data, extracting metadata if available
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-DecodeCompolyticsRegularScanner-sanitize_field_name"></a>}}
@@ -160,6 +297,17 @@ A new instance of DecodeCompolyticsRegularScanner.
 \if{html}{\out{<div class="r">}}\preformatted{DecodeCompolyticsRegularScanner$flatten_sample_json(input_json)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{input_json}}{A list structure from parsed JSON containing sample data}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+A flattened list with extracted metadata
+Add a new row to a data frame using key-value pairs
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-DecodeCompolyticsRegularScanner-add_row_by_kv"></a>}}
@@ -169,6 +317,19 @@ A new instance of DecodeCompolyticsRegularScanner.
 \if{html}{\out{<div class="r">}}\preformatted{DecodeCompolyticsRegularScanner$add_row_by_kv(df, kv_list)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{df}}{A data frame to add a row to}
+
+\item{\code{kv_list}}{A list of key-value pairs to add as a new row}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+The updated data frame with the new row added
+Trim white space from names in a list
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-DecodeCompolyticsRegularScanner-trim_list_names"></a>}}
@@ -178,6 +339,17 @@ A new instance of DecodeCompolyticsRegularScanner.
 \if{html}{\out{<div class="r">}}\preformatted{DecodeCompolyticsRegularScanner$trim_list_names(x)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{x}}{A list whose names should be trimmed of whitespace}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+The list with trimmed names
+The main method: given a JSON string with sensor data, generate a reflectance vector
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-DecodeCompolyticsRegularScanner-score"></a>}}
@@ -187,6 +359,16 @@ A new instance of DecodeCompolyticsRegularScanner.
 \if{html}{\out{<div class="r">}}\preformatted{DecodeCompolyticsRegularScanner$score(transform_input)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{transform_input}}{A JSON string containing sensor data and configuration}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+A list containing metadata table, reflectance data, wavelengths, and FWHM values
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-DecodeCompolyticsRegularScanner-clone"></a>}}

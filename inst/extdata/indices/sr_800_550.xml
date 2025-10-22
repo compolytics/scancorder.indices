@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>SR[800,550]</Name>
+    <Wavelengths>
+        <Band name="R800" min="800" max="800" unit="nm"/>
+        <Band name="R550" min="550" max="550" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R800</ci>
+                <ci>R550</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio 800/550 (SR[800,550])</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Buschmann, C.; Nagel, E. - In vivo spectroscopy and internal optics of leaves as basis for remote sensing of vegetation</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=123</AdditionalInformation>
+    </Metadata>
+</SpectralIndex>

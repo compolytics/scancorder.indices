@@ -16,5 +16,11 @@
     </MathML>
     <Metadata>
         <Description>Simple Ratio 800/960 (SR[800,960])</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>RGB</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Malthus, Tim J.; Andrieu, Bruno; Danson, F. Mark; Jaggard, Keith W.; Steven, Michael D. - Candidate high spectral resolution infrared indices for crop cover, 1993</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=422</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

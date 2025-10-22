@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>FR</Name>
+    <AlternativeName>SR[690,735]</AlternativeName>
+    <Wavelengths>
+        <Band name="R690" min="690" max="690" unit="nm"/>
+        <Band name="R735" min="735" max="735" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R690</ci>
+                <ci>R735</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio 690/735, Fluorescence Ratio (FR)</Description>
+        <ApplicationGroup>Plant health</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Stress general, Fluorescence</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Carter, Gregory A.; Cibula, William G.; Miller, Richard L. - Narrow-band Reflectance Imagery Compared with ThermalImagery for Early Detection of Plant Stress, 1996;  	Lichtenthaler, Hartmut K. - Vegetation Stress: an Introduction to the Stress Concept in Plants, 1996</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=313</AdditionalInformation>
+    </Metadata>
+</SpectralIndex>

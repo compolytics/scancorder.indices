@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>RARS</Name>
+    <AlternativeName>SR[760,500]</AlternativeName>
+    <Wavelengths>
+        <Band name="R760" min="760" max="760" unit="nm"/>
+        <Band name="R500" min="500" max="500" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R760</ci>
+                <ci>R500</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio 760/500, Ratio Analysis of Reflectance Spectra (RARS)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Carotenoids</ApplicationSubtarget>
+        <Species>Soybean</Species>
+        <Reference>Chappelle, E.W.; Kim, M.S.; McMurtrey, J.E. - Ratio analysis of reflectance spectra (RARS): an algorithm for the remote estimation of the concentrations of chlorophyll a, chlorophyll b, and carotenoids in soybean leaves, 1992</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=228</AdditionalInformation>
+    </Metadata>
+</SpectralIndex>

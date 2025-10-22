@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>NBNDVI</Name>
+    <Wavelengths>
+        <Band name="R680" min="680" max="680" unit="nm"/>
+        <Band name="R850" min="850" max="850" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <minus/>
+                    <ci>R850</ci>
+                    <ci>R680</ci>
+                </apply>
+                <apply>
+                    <plus/>
+                    <ci>R850</ci>
+                    <ci>R680</ci>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Narrow-band normalized differance vegetation Index (NBNDVI)</Description>
+        <ApplicationGroup>Plant health</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Mildew</ApplicationSubtarget>
+        <Species>Wheat</Species>
+        <Reference>Cao et al., 2015</Reference>
+    </Metadata>
+</SpectralIndex>

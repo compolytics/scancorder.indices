@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>HI</Name>
+    <Wavelengths>
+        <Band name="R534" min="534" max="534" unit="nm"/>
+        <Band name="R698" min="698" max="698" unit="nm"/>
+        <Band name="R704" min="704" max="704" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <minus/>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <minus/>
+                        <ci>R534</ci>
+                        <ci>R698</ci>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <ci>R534</ci>
+                        <ci>R698</ci>
+                    </apply>
+                </apply>
+                <apply>
+                    <times/>
+                    <cn>0.5</cn>
+                    <ci>R704</ci>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Healthy-Index (HI)</Description>
+        <ApplicationGroup>Plant health</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Nitrogen Content</ApplicationSubtarget>
+        <Species>Rubber</Species>
+        <Reference>Rongnian T, Xupeng C, Chuang L. Detection of Nitrogen Content in Rubber Leaves Using Near-Infrared (NIR) Spectroscopy with Correlation-Based Successive Projections Algorithm (SPA)</Reference>
+        <AdditionalInformation>https://pmc.ncbi.nlm.nih.gov/articles/PMC8415606/</AdditionalInformation>
+    </Metadata>
+</SpectralIndex>

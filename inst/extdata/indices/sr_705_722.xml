@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>SR[705,722]</Name>
+    <Wavelengths>
+        <Band name="R705" min="705" max="705" unit="nm"/>
+        <Band name="R722" min="722" max="722" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R705</ci>
+                <ci>R722</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio 705/722 (SR[705,722])</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Main, Russell; Cho, Moses Azong; Mathieu, Renaud; Oâ€™Kennedy, Martha M.; Ramoelo, Abel; Koch, Susan - An investigation into robust spectral indices for leaf chlorophyll estimation, 2011</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=160</AdditionalInformation>
+    </Metadata>
+</SpectralIndex>

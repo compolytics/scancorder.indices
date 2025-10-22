@@ -9,6 +9,8 @@ library(jsonlite)
 #' @docType class
 #' @export
 #' @format \code{\link[R6]{R6Class}} object.
+#' @field average_sensor_values Logical. Whether to average sensor readings per LED's across sensor elements.
+#' @field channel_mask Matrix. A binary mask indicating which channels are valid.
 #'
 DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
   public = list(
@@ -31,6 +33,10 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
       self$helpers <- ScanCorderHelpers$new()
     },
 
+    #' Check if a nested key exists in a list
+    #' @param lst A list or nested list structure to check
+    #' @param keys A vector of keys representing the nested path to check
+    #' @return Logical value indicating whether the nested key path exists
     nested_key_exists = function(lst, keys) {
       current <- lst
       for (k in keys) {
@@ -43,6 +49,9 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
       return(TRUE)
     },
 
+    #' Calculate calibration coefficients from calibration data
+    #' @param calibration_map A list containing calibration data points
+    #' @return A 3D array of calibration coefficients
     calculate_calibration = function(calibration_map) {
       ref_keys <- names(calibration_map)
       num_ref <- length(ref_keys)
@@ -94,7 +103,10 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
       return(b)
     },
 
-    # Two–point calibration: expects exactly one calibration measurement
+    #' Two-point calibration: expects exactly one calibration measurement
+    #' @param sensor_values A numeric matrix of sensor readings
+    #' @param calibration_map A list containing exactly one calibration measurement
+    #' @return A calibrated numeric matrix
     two_point_calibration = function(sensor_values, calibration_map) {
       if (length(calibration_map) != 1) {
         stop("Two point calibration requires exactly one calibration measurement")
@@ -117,7 +129,10 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
       return(calibrated)
     },
 
-    # Multipoint calibration: uses several calibration measurements
+    #' Multipoint calibration: uses several calibration measurements
+    #' @param sensor_values A numeric matrix of sensor readings
+    #' @param calibration_map A list containing multiple calibration measurements
+    #' @return A calibrated numeric matrix
     multi_point_calibration = function(sensor_values, calibration_map) {
       # For each calibration entry, average the sensor values if multiple measurements exist.
       for (key in names(calibration_map)) {
@@ -148,20 +163,29 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
       return(calibrated)
     },
 
+    #' Convert JSON data to numeric vector
+    #' @param json_data A list or data structure from JSON
+    #' @param type Function to convert data type (default: as.numeric)
+    #' @return A numeric vector
     convert_json_to_vector  = function(json_data, type = as.numeric) {
       vec <- unlist(json_data, recursive = TRUE, use.names = FALSE)
       vec <- type(vec)
       return(vec)
     },
 
-    # Convert json data frame to numeric matrix
+    #' Convert JSON data frame to numeric matrix
+    #' @param json_data A list or data frame structure from JSON
+    #' @param type Function to convert data type (default: as.numeric)
+    #' @return A numeric matrix
     convert_json_to_matrix = function(json_data, type = as.numeric) {
       df <- do.call(rbind, json_data)
       matrix_data <- apply(df, c(1, 2), type)
       return(matrix_data)
     },
 
-    # Ensure the input is a list, wrapping it if necessary
+    #' Ensure the input is a list, wrapping it if necessary
+    #' @param x Input object to ensure is a list
+    #' @return A list, either the original if already a list, or wrapped in a list
     ensure_list = function(x) {
       # if it's not a list, or it's a named list (i.e. a JSON object),
       # then wrap it in a one-element list
@@ -173,7 +197,9 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
       }
     },
 
-    # Sanitize field names by replacing problematic characters
+    #' Sanitize field names by replacing problematic characters
+    #' @param field_name A character string representing a field name to sanitize
+    #' @return A sanitized field name safe for use in R
     sanitize_field_name = function(field_name) {
       # First trim leading and trailing whitespace
       sanitized <- trimws(field_name)
@@ -190,7 +216,9 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
       return(sanitized)
     },
 
-    # Filter info fields to keep only numeric or single string values
+    #' Filter info fields to keep only numeric or single string values
+    #' @param info A list containing information fields to filter
+    #' @return A filtered list containing only numeric or single string values
     filter_info_fields = function(info) {
       if (is.null(info) || !is.list(info)) {
         return(info)
@@ -216,8 +244,9 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
       return(filtered_info)
     },
 
-    # Flatten a JSON structure containing multiple sample data,
-    # extracting metadata if available
+    #' Flatten a JSON structure containing multiple sample data, extracting metadata if available
+    #' @param input_json A list structure from parsed JSON containing sample data
+    #' @return A flattened list with extracted metadata
     flatten_sample_json = function(input_json) {
       flat_list <- list()
       for (entry in input_json) {
@@ -242,7 +271,10 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
       return(flat_list)
     },
 
-    # Add a new row to a data frame using key-value pairs
+    #' Add a new row to a data frame using key-value pairs
+    #' @param df A data frame to add a row to
+    #' @param kv_list A list of key-value pairs to add as a new row
+    #' @return The updated data frame with the new row added
     add_row_by_kv = function(df, kv_list) {
 
       all_cols <- union(names(df), names(kv_list))
@@ -264,7 +296,9 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
       return(df)
     },
 
-    # Trim white space from names in a list
+    #' Trim white space from names in a list
+    #' @param x A list whose names should be trimmed of whitespace
+    #' @return The list with trimmed names
     trim_list_names = function(x) {
       if (is.list(x)) {
         names(x) <- trimws(names(x))
@@ -273,7 +307,9 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
       return(x)
     },
 
-    # The main method: given a JSON string with sensor data, generate a reflectance vector.
+    #' The main method: given a JSON string with sensor data, generate a reflectance vector
+    #' @param transform_input A JSON string containing sensor data and configuration
+    #' @return A list containing metadata table, reflectance data, wavelengths, and FWHM values
     score = function(transform_input) {
 
       # Parse the JSON input (expects either a single object or a list of objects)

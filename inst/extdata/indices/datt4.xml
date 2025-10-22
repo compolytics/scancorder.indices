@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>Datt4</Name>
+    <Wavelengths>
+        <Band name="R672" min="672" max="672" unit="nm"/>
+        <Band name="R550" min="550" max="550" unit="nm"/>
+        <Band name="R708" min="708" max="708" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R672</ci>
+                <apply>
+                    <times/>
+                    <ci>R550</ci>
+                    <ci>R708</ci>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Datt4 (Datt4)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Datt, Bisun - Remote Sensing of Chlorophyll a, Chlorophyll b, Chlorophyll a+b, and Total Carotenoid Content in Eucalyptus Leaves, 1998</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=153</AdditionalInformation>
+    </Metadata>
+</SpectralIndex>

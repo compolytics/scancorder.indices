@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>PRIm3</Name>
+    <Wavelengths>
+        <Band name="R531" min="531" max="531" unit="nm"/>
+        <Band name="R670" min="670" max="670" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <minus/>
+                    <ci>R670</ci>
+                    <ci>R531</ci>
+                </apply>
+                <apply>
+                    <plus/>
+                    <ci>R670</ci>
+                    <ci>R531</ci>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Photochemical Reflectance Index (PRIm3)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Carotenoids</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Gamon et al. (1992)</Reference>
+    </Metadata>
+</SpectralIndex>

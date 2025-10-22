@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>ARI1</Name>
+    <Name>ARI</Name>
+    <AlternativeName>ARI1</AlternativeName>
     <Wavelengths>
         <Band name="R550" min="550" max="550" unit="nm"/>
         <Band name="R700" min="700" max="700" unit="nm"/>
@@ -24,5 +25,11 @@
     </MathML>
     <Metadata>
         <Description>Anthocyanin Reflectance Index 1 (ARI1)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Anthocyanins</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Gitelson, A., M. Merzlyak, and O. Chivkunova. "Optical Properties and Nondestructive Estimation of Anthocyanin Content in Plant Leaves." Photochemistry and Photobiology 71 (2001): 38-45.</Reference>
+        <AdditionalInformation>https://www.nv5geospatialsoftware.com/docs/alphabeticallistspectralindices.html; https://www.indexdatabase.de/db/i-single.php?id=214</AdditionalInformation>
     </Metadata>
 </SpectralIndex>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>D1</Name>
+    <AlternativeName>SR[730,706]</AlternativeName>
+    <Wavelengths>
+        <Band name="R730" min="730" max="730" unit="nm"/>
+        <Band name="R706" min="706" max="706" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R730</ci>
+                <ci>R706</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio 730/706 (D1)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Universal</Species>
+        <Reference>Main, Russell; Cho, Moses Azong; Mathieu, Renaud; Oâ€™Kennedy, Martha M.; Ramoelo, Abel; Koch, Susan - An investigation into robust spectral indices for leaf chlorophyll estimation, 2011</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=159</AdditionalInformation>
+    </Metadata>
+</SpectralIndex>

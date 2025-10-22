@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>mNDI</Name>
+    <Wavelengths>
+        <Band name="R445" min="445" max="445" unit="nm"/>
+        <Band name="R705" min="705" max="705" unit="nm"/>
+        <Band name="R750" min="750" max="750" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <apply>
+                    <minus/>
+                    <ci>R750</ci>
+                    <ci>R705</ci>
+                </apply>
+                <apply>
+                    <minus/>
+                    <apply>
+                        <plus/>
+                        <ci>R750</ci>
+                        <ci>R705</ci>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <cn>2.0</cn>
+                        <ci>R445</ci>
+                    </apply>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Modified Normalized Difference Index (mNDI)</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
+        <Species>Wheat</Species>
+        <Reference>Tan et al., 2018</Reference>
+    </Metadata>
+</SpectralIndex>

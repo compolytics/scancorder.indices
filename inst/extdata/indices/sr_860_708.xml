@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>SR[860,708]</Name>
+    <Wavelengths>
+        <Band name="R860" min="860" max="860" unit="nm"/>
+        <Band name="R708" min="708" max="708" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R860</ci>
+                <ci>R708</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio 860/708 (SR[860,708])</Description>
+        <ApplicationGroup>Vegetation</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Chlorophyll a</ApplicationSubtarget>
+        <Species>Eucalyptus</Species>
+        <Reference>Datt, Bisun - Remote Sensing of Chlorophyll a, Chlorophyll b, Chlorophyll a+b, and Total Carotenoid Content in Eucalyptus Leaves, 1998</Reference>
+        <AdditionalInformation>https://www.indexdatabase.de/db/i-single.php?id=344</AdditionalInformation>
+    </Metadata>
+</SpectralIndex>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>SBRI</Name>
+    <Wavelengths>
+        <Band name="R570" min="570" max="570" unit="nm"/>
+        <Band name="R513" min="513" max="513" unit="nm"/>
+        <Band name="R704" min="704" max="704" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <plus/>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <minus/>
+                        <ci>R570</ci>
+                        <ci>R513</ci>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <ci>R570</ci>
+                        <ci>R513</ci>
+                    </apply>
+                </apply>
+                <apply>
+                    <times/>
+                    <cn>0.5</cn>
+                    <ci>R704</ci>
+                </apply>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Sugar Beet Rust Index (SBRI)</Description>
+        <ApplicationGroup>Plant health</ApplicationGroup>
+        <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Rust</ApplicationSubtarget>
+        <Species>Sugar Beet, Grain Crops</Species>
+        <Reference>Franzen, D.W., Miao, Y., Kitchen, N.R., Schepers, J.S., Scharf, P.C. (2021). Sensing for Health, Vigour and Disease Detection in Row and Grain Crops. In: Kerry, R., Escolà, A. (eds) Sensing Approaches for Precision Agriculture. Progress in Precision Agriculture. Springer, Cham. https://doi.org/10.1007/978-3-030-78431-7_6</Reference>
+    </Metadata>
+</SpectralIndex>

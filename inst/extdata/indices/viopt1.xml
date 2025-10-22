@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpectralIndex>
+    <Name>VIopt1</Name>
+    <Wavelengths>
+        <Band name="R760" min="760" max="760" unit="nm"/>
+        <Band name="R730" min="730" max="730" unit="nm"/>
+    </Wavelengths>
+    <MathML>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <divide/>
+                <ci>R760</ci>
+                <ci>R730</ci>
+            </apply>
+        </math>
+    </MathML>
+    <Metadata>
+        <Description>Simple Ratio Pigment Specific 1 (VIopt1)</Description>
+        <ApplicationGroup>Nutrition</ApplicationGroup>
+        <ApplicationMolecularTarget>Compound</ApplicationMolecularTarget>
+        <ApplicationSubtarget>Nitrogen</ApplicationSubtarget>
+        <Species>Wheat</Species>
+        <Reference>Tan et al., 2018; Tan C, Du Y, Zhou J, Wang D, Luo M, Zhang Y, Guo W. Analysis of Different Hyperspectral Variables for Diagnosing Leaf Nitrogen Accumulation in Wheat. Front Plant Sci. 2018 May 23;9:674. doi: 10.3389/fpls.2018.00674. PMID: 29881393; PMCID: PMC5976834.</Reference>
+    </Metadata>
+</SpectralIndex>

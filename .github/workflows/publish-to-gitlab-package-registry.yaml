@@ -140,9 +140,9 @@ jobs:
           echo "PLATFORM=$PLATFORM"
 
           if [ "${{ runner.os }}" == "Linux" ]; then
-            # Build binary package
+            # Build package
             Rscript -e "
-            built_path <- devtools::build(pkg = '.', path = '.', binary = TRUE, manual = FALSE)
+            built_path <- devtools::build(pkg = '.', path = '.', manual = FALSE)
             cat('original_file=', basename(built_path), sep='')
             " > build_output.txt
             
