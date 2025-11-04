@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpectralIndex>
-    <Name>Vog3</Name>
+    <Name>Vog3SR</Name>
     <AlternativeName>SR[715,705]</AlternativeName>
     <Wavelengths>
         <Band name="R715" min="715" max="715" unit="nm"/>
@@ -16,7 +16,7 @@
         </math>
     </MathML>
     <Metadata>
-        <Description>Simple Ratio 715/705, Vogelmann indices 3 (Vog3,SR[715,705])</Description>
+        <Description>Simple Ratio 715/705, Vogelmann indices 3 (Vog3SR,SR[715,705])</Description>
         <ApplicationGroup>Vegetation</ApplicationGroup>
         <ApplicationMolecularTarget>Leaf pigments</ApplicationMolecularTarget>
         <ApplicationSubtarget>Chlorophyll</ApplicationSubtarget>
