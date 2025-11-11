@@ -9,13 +9,15 @@
 #' @param reflectance_list List of numeric reflectance vectors.
 #' @param fwhm Optional numeric vector of full width at half maximum (FWHM) values for each wavelength.
 #' @param meta_table Optional data frame containing metadata for each sample.
+#' @param sensor_info Optional list containing sensor metadata. If provided and contains a 'valid_vi' field,
+#'   only indices listed in that field will be calculated.
 #' @return A data.frame with columns:
 #'   - `sample`: integer sample number (1 to length of `reflectance_list`)
 #'   - one column per index (named by the index, e.g. `NDVI`, `NDWI`)
 #' @importFrom pkgload pkg_path
 #' @importFrom xml2 read_xml xml_find_first xml_text
 #' @export
-calculate_indices_table <- function(wavelengths, reflectance_list, fwhm, meta_table) {
+calculate_indices_table <- function(wavelengths, reflectance_list, fwhm, meta_table, sensor_info = NULL) {
 
   # Locate the indices directory in the package source
   indices_dir <- system.file("extdata", "indices", package = "scancorder.indices")
@@ -36,6 +38,18 @@ calculate_indices_table <- function(wavelengths, reflectance_list, fwhm, meta_ta
     doc <- read_xml(f)
     xml_text(xml_find_first(doc, "//Name"))
   }, character(1), USE.NAMES = FALSE)
+
+  # Filter indices based on sensor metadata if valid_vi is provided
+  if (!is.null(sensor_info) && !is.null(sensor_info[["valid_vi"]])) {
+    valid_indices <- unlist(sensor_info[["valid_vi"]])
+    # Find which XML files correspond to valid indices
+    valid_mask <- index_names %in% valid_indices
+    
+    if (sum(valid_mask) != 0) {
+      xml_files <- xml_files[valid_mask]
+      index_names <- index_names[valid_mask]
+    }
+  }
 
   # For each XML, compute index values for all reflectance vectors
   results <- lapply(seq_along(xml_files), function(i) {

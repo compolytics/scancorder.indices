@@ -309,7 +309,7 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
 
     #' The main method: given a JSON string with sensor data, generate a reflectance vector
     #' @param transform_input A JSON string containing sensor data and configuration
-    #' @return A list containing metadata table, reflectance data, wavelengths, and FWHM values
+    #' @return A list containing metadata table, reflectance data, wavelengths, FWHM values, and sensor_info
     score = function(transform_input) {
 
       # Parse the JSON input (expects either a single object or a list of objects)
@@ -321,6 +321,7 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
 
       transform_global_output <- list()
       sample_meta_table <- data.frame()
+      combined_sensor_info <- NULL
       for (input_json in input_json_struct) {
 
         # Check if the input JSON contains the required "values" field.
@@ -357,6 +358,16 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
         sensor_config <- self$helpers$extract_sensor_configuration(input_json)
         device_sensor_info <- sensor_config$device_sensor_info
         external_sensor_info <- sensor_config$external_sensor_info
+        
+        # Merge sensor info (external takes precedence for metadata like valid_vi)
+        if (is.null(combined_sensor_info)) {
+          # Prefer external sensor info, fall back to device info
+          if (!is.null(external_sensor_info)) {
+            combined_sensor_info <- external_sensor_info
+          } else if (!is.null(device_sensor_info)) {
+            combined_sensor_info <- device_sensor_info
+          }
+        }
 
         # Extract and validate channel mask using helper function
         self$channel_mask <- self$helpers$extract_channel_mask(input_json, device_sensor_info, external_sensor_info, 
@@ -481,9 +492,9 @@ DecodeCompolyticsRegularScanner <- R6Class("DecodeCompolyticsRegularScanner",
         }
       }
 
-      # Return the list of reflectance vectors, feature wavelengths, and FWHM
+      # Return the list of reflectance vectors, feature wavelengths, FWHM, and sensor info
       list(meta_table = sample_meta_table, reflectance = transform_global_output, 
-           wavelength = feature_wavelengths, fwhm = feature_fwhm)
+           wavelength = feature_wavelengths, fwhm = feature_fwhm, sensor_info = combined_sensor_info)
     }
   )
 )

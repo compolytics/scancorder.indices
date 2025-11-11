@@ -75,7 +75,7 @@ The main method: read CSV file and generate reflectance output
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A list containing metadata table, reflectance data, wavelengths, and FWHM values
+A list containing metadata table, reflectance data, wavelengths, FWHM values, and sensor_info
 }
 }
 \if{html}{\out{<hr>}}

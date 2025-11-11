@@ -34,7 +34,8 @@ print(head(data$meta_table, 5))
 # Step 3: Calculate Indices table from all available data
 # ------------------------------------------------------------------------------
 # Note: Since reflectance was loaded from CSV, no additional calibration is needed
-index_table <- calculate_indices_table(data$wavelength, data$reflectance, data$fwhm, data$meta_table)
+# Pass sensor_info to filter indices based on valid_vi field
+index_table <- calculate_indices_table(data$wavelength, data$reflectance, data$fwhm, data$meta_table, data$sensor_info)
 
 # Step 4: Save
 # ------------------------------------------------------------------------------

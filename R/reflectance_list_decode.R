@@ -69,9 +69,9 @@ DecodeReflectanceList <- R6Class("DecodeReflectanceList",
         led_fwhm <- rep(1, length(csv_wavelengths))
       } else {
         # Extract wavelengths - prefer real over nominal
-        led_wavelengths <- sensor_info[["led_wl_real"]]
+        led_wavelengths <- sensor_info[["channel_wl_real"]]
         if (is.null(led_wavelengths)) {
-          led_wavelengths <- sensor_info[["led_wl_nom"]]
+          led_wavelengths <- sensor_info[["channel_wl_nom"]]
         }
         if (is.null(led_wavelengths)) {
           # Fallback to CSV wavelengths if sensor metadata incomplete
@@ -86,9 +86,9 @@ DecodeReflectanceList <- R6Class("DecodeReflectanceList",
         }
 
         # Extract FWHM - prefer real over nominal
-        led_fwhm <- sensor_info[["led_fwhm_real"]]
+        led_fwhm <- sensor_info[["channel_fwhm_real"]]
         if (is.null(led_fwhm)) {
-          led_fwhm <- sensor_info[["led_fwhm_nom"]]
+          led_fwhm <- sensor_info[["channel_fwhm_nom"]]
         }
         if (is.null(led_fwhm)) {
           # If FWHM not available in sensor metadata, assume 1nm
@@ -123,7 +123,7 @@ DecodeReflectanceList <- R6Class("DecodeReflectanceList",
 
     #' The main method: read CSV file and generate reflectance output
     #' @param csv_file_path Character. Path to the CSV file containing reflectance data
-    #' @return A list containing metadata table, reflectance data, wavelengths, and FWHM values
+    #' @return A list containing metadata table, reflectance data, wavelengths, FWHM values, and sensor_info
     score = function(csv_file_path) {
       # Check if file exists
       if (!file.exists(csv_file_path)) {
@@ -156,6 +156,9 @@ DecodeReflectanceList <- R6Class("DecodeReflectanceList",
 
       # Load sensor metadata for FWHM information (pass CSV wavelengths as fallback)
       sensor_meta <- self$load_sensor_metadata(csv_wavelengths)
+      
+      # Try to load full sensor metadata for valid_vi information
+      sensor_info <- find_sensor_metadata(self$sensor_name)
 
       # Verify that CSV wavelengths match sensor wavelengths (if sensor was found)
       if (length(csv_wavelengths) != length(sensor_meta$wavelength)) {
@@ -188,7 +191,8 @@ DecodeReflectanceList <- R6Class("DecodeReflectanceList",
         meta_table = sample_meta_table,
         reflectance = reflectance_list,
         wavelength = sensor_meta$wavelength,
-        fwhm = sensor_meta$fwhm
+        fwhm = sensor_meta$fwhm,
+        sensor_info = sensor_info
       )
     }
   )

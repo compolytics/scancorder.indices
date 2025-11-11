@@ -29,7 +29,7 @@ test_that("Channel mask splitting functionality works correctly", {
 
   # Assertions for splitting mode
   expect_type(result_split, "list")
-  expect_named(result_split, c("meta_table", "reflectance", "wavelength", "fwhm"))
+  expect_named(result_split, c("meta_table", "reflectance", "wavelength", "fwhm", "sensor_info"))
 
   # Check feature wavelengths (should include both LED and sensor wavelengths, no duplicates)
   expected_wavelengths <- c(650, 670, 845, 850)
@@ -71,7 +71,7 @@ test_that("Backward compatibility with traditional mode (no channel mask)", {
 
   # Assertions for traditional mode
   expect_type(result_trad, "list")
-  expect_named(result_trad, c("meta_table", "reflectance", "wavelength", "fwhm"))
+  expect_named(result_trad, c("meta_table", "reflectance", "wavelength", "fwhm", "sensor_info"))
 
   # Should return LED wavelengths (not feature wavelengths)
   expected_wavelengths <- c(650, 750, 850)
