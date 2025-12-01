@@ -4,7 +4,7 @@
 \alias{calculate_indices_table}
 \title{Calculate all available spectral indices for a list of reflectance vectors}
 \usage{
-calculate_indices_table(wavelengths, reflectance_list, fwhm, meta_table)
+calculate_indices_table(wavelengths, reflectance_list, fwhm, meta_table, sensor_info = NULL)
 }
 \arguments{
 \item{wavelengths}{Numeric vector of wavelengths (same length as each reflectance vector).}
@@ -14,6 +14,9 @@ calculate_indices_table(wavelengths, reflectance_list, fwhm, meta_table)
 \item{fwhm}{Optional numeric vector of full width at half maximum (FWHM) values for each wavelength.}
 
 \item{meta_table}{Optional data frame containing metadata for each sample.}
+
+\item{sensor_info}{Optional list containing sensor metadata. If provided and contains a 'valid_vi' field,
+only indices listed in that field will be calculated.}
 }
 \value{
 A data.frame with columns:

@@ -21,7 +21,8 @@ test_that("test calculating available indices for a CICADA json sample",
 
             # Step 3: Calculate Indices table from all available data
             # ------------------------------------------------------------------
-            index_table <- calculate_indices_table(data$wavelength, calibReflectance, data$fwhm, data$meta_table)
+            # Pass sensor_info to filter indices based on valid_vi field
+            index_table <- calculate_indices_table(data$wavelength, calibReflectance, data$fwhm, data$meta_table, data$sensor_info)
             # ---------------------------------------------------------------------------------------------------------
             # DANGER ZONE: In case we need to write the table to updated expected output
             # ---------------------------------------------------------------------------------------------------------

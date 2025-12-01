@@ -272,6 +272,24 @@ Flatten a JSON structure containing multiple sample data, extracting metadata if
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-DecodeCompolyticsRegularScanner-sanitize_field_name"></a>}}
+\if{latex}{\out{\hypertarget{method-DecodeCompolyticsRegularScanner-sanitize_field_name}{}}}
+\subsection{Method \code{sanitize_field_name()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{DecodeCompolyticsRegularScanner$sanitize_field_name(field_name)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-DecodeCompolyticsRegularScanner-filter_info_fields"></a>}}
+\if{latex}{\out{\hypertarget{method-DecodeCompolyticsRegularScanner-filter_info_fields}{}}}
+\subsection{Method \code{filter_info_fields()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{DecodeCompolyticsRegularScanner$filter_info_fields(info)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-DecodeCompolyticsRegularScanner-flatten_sample_json"></a>}}
 \if{latex}{\out{\hypertarget{method-DecodeCompolyticsRegularScanner-flatten_sample_json}{}}}
 \subsection{Method \code{flatten_sample_json()}}{
@@ -349,7 +367,7 @@ The main method: given a JSON string with sensor data, generate a reflectance ve
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A list containing metadata table, reflectance data, wavelengths, and FWHM values
+A list containing metadata table, reflectance data, wavelengths, FWHM values, and sensor_info
 }
 }
 \if{html}{\out{<hr>}}

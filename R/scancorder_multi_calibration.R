@@ -18,6 +18,7 @@ CalibrationReflectanceMultipoint <- R6Class("CalibrationReflectanceMultipoint",
 
     # Calibration factors as a 3D array, initialized to NULL.
     calibration_factors = NULL,
+    helpers = NULL,
 
     #' Initialize the CalibrationReflectanceMultipoint object
     #' @param calibration_factors A 3D array of calibration factors. If provided, it will be stored as an array.
@@ -28,6 +29,8 @@ CalibrationReflectanceMultipoint <- R6Class("CalibrationReflectanceMultipoint",
         # Ensure calibration_factors is numeric and preserve its dimensions.
         self$calibration_factors <- as.array(calibration_factors)
       }
+      # Initialize the helpers instance
+      self$helpers <- ScanCorderHelpers$new()
     },
 
     #' Helper function to slice the last dimension of a 3D array
@@ -124,36 +127,6 @@ CalibrationReflectanceMultipoint <- R6Class("CalibrationReflectanceMultipoint",
       return(array_data)
     },
 
-    #' Ensure input is a list, wrapping if necessary
-    #' @param x Input object to ensure is a list
-    #' @return A list, either the original if already a list, or wrapped in a list
-    ensure_list = function(x) {
-      # if it's not a list, or it's a named list (i.e. a JSON object),
-      # then wrap it in a one-element list
-      if (!is.list(x) || !is.null(names(x))) {
-        list(x)
-      } else {
-        # otherwise it's an unnamed list (JSON array), leave as is
-        x
-      }
-    },
-
-    #' Flatten JSON input, extracting 'data' field if it exists
-    #' @param input_json A list structure from parsed JSON
-    #' @return A flattened list with data fields extracted
-    flatten_sample_json = function(input_json) {
-      flat_list <- list()
-      for (entry in input_json) {
-        if ("data" %in% names(entry)) {
-          # If 'data' field exists, append all entries inside 'data'
-          flat_list <- c(flat_list, entry$data)
-        } else {
-          # Otherwise, append the entry itself
-          flat_list <- c(flat_list, list(entry))
-        }
-      }
-      return(flat_list)
-    },
 
     #' Perform multi-point calibration on reflectance data
     #' @param reflectance A list or matrix of reflectance data
@@ -169,28 +142,17 @@ CalibrationReflectanceMultipoint <- R6Class("CalibrationReflectanceMultipoint",
       input_json_struct <- jsonlite::fromJSON(config_json, simplifyVector = FALSE)
 
       # If the JSON is a single object, wrap it into a list.
-      input_json_struct <- self$ensure_list(input_json_struct)
+      input_json_struct <- self$helpers$ensure_list(input_json_struct)
 
       # Flatten the input JSON if it contains a 'data' field
-      input_json_struct <- self$flatten_sample_json(input_json_struct)
+      input_json_struct <- self$helpers$flatten_sample_json(input_json_struct)
 
-      # Get nested substructure with sensor information
-      keys_to_check <- c("config", "sensorHead", "additionalInfo")
-      if (self$nested_key_exists(input_json_struct[[1]], keys_to_check)) {
-        device_sensor_info <- input_json_struct[[1]]$config$sensorHead$additionalInfo
-      } else {
-        stop("Cannot find sensor information in sample file.")
-      }
+      # Extract sensor configuration using helper function
+      sensor_config <- self$helpers$extract_sensor_configuration(input_json_struct[[1]])
+      device_sensor_info <- sensor_config$device_sensor_info
+      external_sensor_info <- sensor_config$external_sensor_info
 
-      # Try to find sensor external information from package
-      keys_to_check <- c("config", "sensorHead", "name")
-      if (self$nested_key_exists(input_json_struct[[1]], keys_to_check)) {
-        external_sensor_info <- find_sensor_metadata(input_json_struct[[1]]$config$sensorHead$name)
-      } else {
-        external_sensor_info = NULL
-      }
-
-      multi_calibration <- get_field_base(device_sensor_info, external_sensor_info, "multi_calibration")
+      multi_calibration <- self$helpers$get_field_base(device_sensor_info, external_sensor_info, "multi_calibration")
       if (is.null(multi_calibration)) {
         stop("Calibration factors are not defined.")
       }
