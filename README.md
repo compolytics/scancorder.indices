@@ -20,7 +20,7 @@ You can install the source package from
 
 ``` r
 options(repos = c(
-  gitlab = "https://gitlab.com/api/v4/projects/70774833/packages/generic/scancorder.indices/1.2.2/",
+  gitlab = "https://gitlab.com/api/v4/projects/70774833/packages/generic/scancorder.indices/1.3.0/",
   CRAN   = "https://cloud.r-project.org"
 ))
 install.packages("scancorder.indices")
