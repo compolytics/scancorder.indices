@@ -83,7 +83,7 @@ calculate_indices_table <- function(wavelengths, reflectance_list, fwhm, meta_ta
   if (length(cols_to_remove) > 0) {
     df <- df[, -cols_to_remove, drop = FALSE]
   }
-
+  
   # If meta_table is provided, bind it to the results
   if (!missing(meta_table) && is.data.frame(meta_table)) {
     if (nrow(meta_table) != nrow(df)) {
