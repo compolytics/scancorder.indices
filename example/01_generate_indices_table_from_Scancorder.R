@@ -29,10 +29,14 @@ calibrator <- CalibrationReflectanceMultipoint$new()
 # Run multi-calibration with sensor provided factors
 calibReflectance <- calibrator$score(data$reflectance, sensor_file_path)
 
-# Step 3: Calculate Indices table from all available data
+# Step 3a: Calculate Indices table from all available data
 # ------------------------------------------------------------------------------
 # Pass sensor_info to filter indices based on valid_vi field
 index_table <- calculate_indices_table(data$wavelength, calibReflectance, data$fwhm, data$meta_table, data$sensor_info)
+
+# Step 3b: Generate Reflectance table from calibrated data
+# ------------------------------------------------------------------------------
+reflectance_table <- generate_reflectance_table(data$wavelength, calibReflectance, data$meta_table)
 
 # Step 4: Save
 # ------------------------------------------------------------------------------
@@ -40,6 +44,10 @@ index_table <- calculate_indices_table(data$wavelength, calibReflectance, data$f
 # Change this file and path to the location where you want to save the indices table
 table_file_path <- file.path(current_dir, "example", "data", "Compolytics_R-Package_VI_Test_File_Indices.csv")
 write_indices_csv(index_table, table_file_path, row.names = FALSE)
+
+# Save reflectance table
+reflectance_file_path <- file.path(current_dir, "example", "data", "Compolytics_R-Package_VI_Test_File_Reflectance.csv")
+write_reflectance_csv(reflectance_table, reflectance_file_path, row.names = FALSE)
 
 # ------------------------------------------------------------------------------
 # The End
