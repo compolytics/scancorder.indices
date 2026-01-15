@@ -131,40 +131,47 @@ CalibrationReflectanceMultipoint <- R6Class("CalibrationReflectanceMultipoint",
     #' Perform multi-point calibration on reflectance data
     #' @param reflectance A list or matrix of reflectance data
     #' @param json_input A JSON string containing sensor configuration and calibration data
+    #' @param multi_calibration Optional multi-point calibration data. If provided, overrides calibration from json_input. Default is NULL.
     #' @return A list of calibrated reflectance values
-    score = function(reflectance, json_input) {
+    score = function(reflectance, json_input, multi_calibration = NULL) {
 
       # First input: reflectance data (as matrix).
       reflectance_input <- do.call(rbind, reflectance)
 
-      # Second input: sensor reading configuration as a JSON string.
-      config_json <- json_input
-      input_json_struct <- jsonlite::fromJSON(config_json, simplifyVector = FALSE)
-
-      # If the JSON is a single object, wrap it into a list.
-      input_json_struct <- self$helpers$ensure_list(input_json_struct)
-
-      # Flatten the input JSON if it contains a 'data' field
-      input_json_struct <- self$helpers$flatten_sample_json(input_json_struct)
-
-      # Extract sensor configuration using helper function
-      sensor_config <- self$helpers$extract_sensor_configuration(input_json_struct[[1]])
-      device_sensor_info <- sensor_config$device_sensor_info
-      external_sensor_info <- sensor_config$external_sensor_info
-
-      multi_calibration <- self$helpers$get_field_base(device_sensor_info, external_sensor_info, "multi_calibration")
+      # If multi_calibration is not provided, extract it from json_input
       if (is.null(multi_calibration)) {
-        stop("Calibration factors are not defined.")
+        # Second input: sensor reading configuration as a JSON string.
+        config_json <- json_input
+        input_json_struct <- jsonlite::fromJSON(config_json, simplifyVector = FALSE)
+
+        # If the JSON is a single object, wrap it into a list.
+        input_json_struct <- self$helpers$ensure_list(input_json_struct)
+
+        # Flatten the input JSON if it contains a 'data' field
+        input_json_struct <- self$helpers$flatten_sample_json(input_json_struct)
+
+        # Extract sensor configuration using helper function
+        sensor_config <- self$helpers$extract_sensor_configuration(input_json_struct[[1]])
+        device_sensor_info <- sensor_config$device_sensor_info
+        external_sensor_info <- sensor_config$external_sensor_info
+
+        multi_calibration <- self$helpers$get_field_base(device_sensor_info, external_sensor_info, "multi_calibration")
+        if (is.null(multi_calibration)) {
+          stop("Calibration factors are not defined.")
+        }
+        # Extract the calibration factors from the JSON structure.
+        calibration_factors <- self$convert_json_to_3d_array(multi_calibration)
+      } else {
+        calibration_factors <- multi_calibration
       }
 
-      # Extract the calibration factors from the JSON structure.
-      calibration_factors <- self$convert_json_to_3d_array(multi_calibration)
       # Get the dimensions of the reflectance input and calibration factors.
       dims_sensor <- dim(reflectance_input)
       dims_cal <- dim(calibration_factors)
       # Ensure the calibration factors are of the correct size.
       if (length(dims_cal) != 3 || dims_sensor[2] != dims_cal[2] || dims_cal[3] != 3) {
-        stop("Calibration data not of correct size for this sensor.")
+        stop(sprintf("Calibration data not of correct size for this sensor. Sensor bands: %d, Expected calibration: (depth, %d, 3), Got: (%s)",
+                     dims_sensor[2], dims_sensor[2], paste(dims_cal, collapse = ", ")))
       }
       self$calibration_factors <- calibration_factors
       # Run the calibration.
